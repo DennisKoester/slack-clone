@@ -1,8 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --bg-color-side-nav: #4a154b;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+p,
+span {
+  font-size: 18px;
+}
 
 .full-height {
-    height: 100%;
+  height: 100%;
+}
+
+.flex-ac {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-collapsed {
+  display: none;
 }

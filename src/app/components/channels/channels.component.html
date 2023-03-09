@@ -1,0 +1,27 @@
+<div (click)="toggleDropdown()" class="channel-hl flex-ac">
+  <mat-icon fontIcon="arrow_drop_down"></mat-icon>
+  <span>Channels</span>
+</div>
+
+<div *ngIf="!collapsed" class="channel-dropdown-menu">
+  <div class="channel flex-ac">
+    <mat-icon fontIcon="numbers"></mat-icon>
+    <span>angular</span>
+  </div>
+  <div class="channel flex-ac">
+    <mat-icon fontIcon="numbers"></mat-icon>
+    <span>html/css</span>
+  </div>
+  <div class="channel flex-ac">
+    <mat-icon fontIcon="numbers"></mat-icon>
+    <span>javascript</span>
+  </div>
+  <div class="channel flex-ac">
+    <mat-icon fontIcon="numbers"></mat-icon>
+    <span>community</span>
+  </div>
+  <div class="channel flex-ac">
+    <mat-icon fontIcon="numbers"></mat-icon>
+    <span>projects</span>
+  </div>
+</div>

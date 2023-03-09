@@ -28,17 +28,34 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
 
 //components
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ThreadSideModuleComponent } from './components/thread-side-module/thread-side-module.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { ChannelsComponent } from './components/channels/channels.component';
+import { DirectMessagesSectionComponent } from './components/direct-messages-section/direct-messages-section.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, HomeComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    DashboardComponent,
+    HeaderComponent,
+    ThreadSideModuleComponent,
+    SideNavComponent,
+    ChannelsComponent,
+    DirectMessagesSectionComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -58,7 +75,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    
+    MatRadioModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],

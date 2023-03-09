@@ -1,0 +1,34 @@
+* {
+  user-select: none;
+  cursor: pointer;
+}
+
+.direct-msg-hl {
+  gap: 8px;
+  padding: 12px 5px 5px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.user-direct-msg {
+  gap: 10px;
+  margin: 0 8px;
+  padding: 5px 12px;
+  font-size: 16px;
+  cursor: pointer;
+
+  img {
+    height: 100%;
+    width: 20px;
+  }
+
+  &:hover {
+    border-radius: 5px;
+    background-color: rgba(5, 0, 51, 0.712);
+  }
+
+  &:active {
+    border-radius: 5px;
+    background-color: rgba(255, 187, 0, 0.596);
+  }
+}

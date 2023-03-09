@@ -1,0 +1,21 @@
+<div class="user-direct-msg-container">
+  <div (click)="toggleDropdown()" class="direct-msg-hl flex-ac">
+    <mat-icon fontIcon="arrow_drop_down"></mat-icon>
+    <span>Direct Messages</span>
+  </div>
+
+  <div *ngIf="!collapsed">
+    <div class="user-direct-msg flex-ac">
+      <img src="./assets/img/profile_icon.png" />Slackbot
+    </div>
+    <div class="user-direct-msg flex-ac">
+      <img src="./assets/img/profile_icon.png" />Christof
+    </div>
+    <div class="user-direct-msg flex-ac">
+      <img src="./assets/img/profile_icon.png" />Daniela
+    </div>
+    <div class="user-direct-msg flex-ac">
+      <img src="./assets/img/profile_icon.png" />Dennis
+    </div>
+  </div>
+</div>

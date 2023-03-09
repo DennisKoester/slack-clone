@@ -1,0 +1,35 @@
+* {
+  user-select: none;
+  cursor: pointer;
+}
+
+.channel-hl {
+  gap: 10px;
+  padding: 12px 5px 5px 20px;
+  font-size: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.channel {
+  gap: 10px;
+  margin: 0 8px;
+  padding: 5px 12px;
+
+  span {
+    font-size: 16px;
+  }
+
+  &:hover {
+    border-radius: 5px;
+    background-color: rgba(5, 0, 51, 0.712);
+  }
+
+  &:active {
+    border-radius: 5px;
+    background-color: rgba(255, 187, 0, 0.596);
+  }
+}
+
+mat-icon {
+  font-size: 22px;
+}
