@@ -22,7 +22,7 @@
 
       <mat-form-field class="inputEmail">
         <mat-label>Password</mat-label>
-        <input type="email" matInput [formControl]="passwordFormControl" placeholder="Ex. pat@example.com">
+        <input type="email" matInput [formControl]="passwordFormControl" placeholder="password">
         <mat-error *ngIf="passwordFormControl.hasError('required')">
           Password is <strong>required</strong>
         </mat-error>
