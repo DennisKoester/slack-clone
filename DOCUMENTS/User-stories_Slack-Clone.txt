@@ -1,0 +1,14 @@
+- Persönliche Nachricht schreiben (an 1 oder mehr User)
+- Neue Nachricht in Channel schreiben --> Thread eröffnen
+- Nachricht in Thread schreiben
+- Eigene Threads anzeigen (Auflistung)
+- Threadverlauf anzeigen (Sidebar)
+- Datei (oder nur IMG) in Nachricht hochladen?
+
+- Channel anlegen (nur für angemeldete User)
+
+- Ein-/Ausloggen
+- Anmelden
+- Profil bearbeiten? --> Avatar hochladen
+
+- App als Testuser ansehen (keine Aktionen möglich)
