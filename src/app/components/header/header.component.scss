@@ -1,0 +1,10 @@
+mat-toolbar {
+  position: static;
+  justify-content: space-between;
+  top: 0;
+  right: 0;
+  left: 300px;
+  font-size: 18px;
+  background-color: var(--bg-color-side-nav);
+  color: white;
+}

@@ -3,6 +3,14 @@
   user-select: none;
 }
 
+.mat-drawer-side{
+  border: unset;
+}
+
+.mat-drawer-container {
+  background-color: unset;
+}
+
 .example-container {
   position: absolute;
   top: 0;
@@ -20,7 +28,7 @@
   position: sticky;
   top: 0;
   justify-content: space-between;
-  padding: 8px 20px;
+  padding: 12px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   background-color: var(--bg-color-side-nav);
 
