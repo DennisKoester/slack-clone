@@ -19,9 +19,17 @@
           Email is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field class="inputEmail">
+        <mat-label>Password</mat-label>
+        <input type="email" matInput [formControl]="passwordFormControl" placeholder="Ex. pat@example.com">
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
     </form>
     
-    <button mat-raised-button color="warn">Continue</button>
+    <button mat-raised-button color="warn">Sign In</button>
 
     <div class="horizontalContent">
       <hr>
@@ -29,8 +37,8 @@
       <hr>
     </div>
 
-    <button mat-stroked-button color="primary">Continue with Google</button>
-    <button mat-stroked-button color="basic">Continue with Apple</button>
+    <button mat-stroked-button color="primary">Sign In with Google</button>
+    <button mat-stroked-button color="basic">Sign In with Apple</button>
     <span class="spanQuestion">Already using Slack?</span>
     <a routerLink="/login" class="spanSignIn">Sign in to an existing workspace</a>
   </div>

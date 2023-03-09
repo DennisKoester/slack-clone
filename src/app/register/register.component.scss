@@ -47,13 +47,19 @@ header {
   button {
     width: 400px;
     height: 44px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+    margin-top: 8px;
     font-size: 18px;
   }
 }
 
 .bold {
   font-weight: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
 }
 
 .inputEmail {
@@ -63,7 +69,7 @@ header {
 .horizontalContent {
   display: flex;
   width: 400px;
-  margin: 8px 0 24px 0;
+  margin: 16px 0 24px 0;
 
   hr {
     width: 150px;

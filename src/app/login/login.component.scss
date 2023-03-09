@@ -34,26 +34,32 @@ header {
     font-weight: 600;
     line-height: 46px;
     text-align: center;
-    margin: 0 0 15px 0;
+    margin: 0 0 30px 0;
     color: #1d1c1d;
   }
 
-  p {
-    font-size: 18px;
-    color: #454245;
-    margin-bottom: 40px;
-  }
+  // p {
+  //   font-size: 18px;
+  //   color: #454245;
+  //   margin-bottom: 40px;
+  // }
 
   button {
     width: 400px;
     height: 44px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+    margin-top: 8px;
     font-size: 18px;
   }
 }
 
-.bold {
-  font-weight: 500;
+// .bold {
+//   font-weight: 500;
+// }
+
+.form {
+  display: flex;
+  flex-direction: column;
 }
 
 .inputEmail {
@@ -63,7 +69,7 @@ header {
 .horizontalContent {
   display: flex;
   width: 400px;
-  margin: 8px 0 24px 0;
+  margin: 16px 0 24px 0;
 
   hr {
     width: 150px;
