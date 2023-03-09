@@ -1,4 +1,5 @@
 export const environment = {
+  production: false,
   firebase: {
     projectId: 'slack-clone-e1e2b',
     appId: '1:664976476249:web:2d9833015fe0da6b5b8948',
