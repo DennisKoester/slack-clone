@@ -4,9 +4,9 @@
 
 
 <div class="row" *ngIf="authenticationService.userData as user">
-  <div class="col-md-12">
-    <div class="media">
-      <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : ''}}"
+  <div>
+    <div>
+      <span>Photo:<img src="{{(user.photoURL) ? user.photoURL : ''}}"></span>
         alt="{{user.displayName}}">
       <div class="media-body">
         <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
