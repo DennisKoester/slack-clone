@@ -24,6 +24,7 @@
           Password is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+      
     </form>
     
     <button mat-raised-button color="warn"(click)="authenticationService.SignUp(userEmail.value, userPassword.value)">Sign In</button>
@@ -34,7 +35,7 @@
       <hr>
     </div>
 
-    <button mat-stroked-button color="primary" (click)="authenticationService.GoogleAuth()">Sign In with Google</button>
+    <button mat-stroked-button color="primary" (click)="authenticationService.GoogleAuth()">Sign in with Google</button>
 
 
     <span class="spanQuestion">Already using Slack?</span>

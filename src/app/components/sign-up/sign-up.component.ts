@@ -11,6 +11,7 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
 export class SignUpComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required]);
+  nameFormControl = new FormControl('', [Validators.required]);
 
   constructor(public authenticationService: AuthenticationService) {}
 }
