@@ -1,7 +1,7 @@
 <app-sign-header></app-sign-header>
 <div class="mainContentContainer">
   <div class="mainContent">
-    <h1>Login - enter your email & password</h1>
+    <h1>sign in - enter your email & password</h1>
     <!-- <p>We suggest using the <span class="bold">email address that you use at work.</span></p> -->
 
     <form class="form">
@@ -25,7 +25,7 @@
       </mat-form-field>
     </form>
     
-    <button mat-raised-button color="warn" (click)="authenticationService.SignIn(userEmail.value, userPassword.value)">login</button>
+    <button mat-raised-button color="warn" (click)="authenticationService.SignIn(userEmail.value, userPassword.value)">sign in</button>
 
     <div class="horizontalContent">
       <hr>
@@ -33,7 +33,7 @@
       <hr>
     </div>
 
-    <button mat-stroked-button color="primary" (click)="authenticationService.GoogleAuth()">login with Google</button>
+    <button mat-stroked-button color="primary" (click)="authenticationService.GoogleAuth()">sign in with Google</button>
       <span class="forgotPassword" routerLink="/forgot-password">Forgot Password?</span>
 
   </div>
