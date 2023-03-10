@@ -5,8 +5,8 @@
 
 <div class="mainContentContainer">
   <div class="mainContent">
-    <h1>Login - enter your email & password</h1>
-    <!-- <p>We suggest using the <span class="bold">email address that you use at work.</span></p> -->
+    <h1>Sign In - enter your email & a new password</h1>
+    <p>We suggest using the <span class="bold">email address that you use at work.</span></p>
 
     <form class="form">
       <mat-form-field class="inputEmail">
@@ -29,7 +29,7 @@
       </mat-form-field>
     </form>
     
-    <button mat-raised-button color="warn" (click)="authenticationService.SignIn(userEmail.value, userPassword.value)">login</button>
+    <button mat-raised-button color="warn"(click)="authenticationService.SignUp (userEmail.value, userPassword.value)">Sign In</button>
 
     <div class="horizontalContent">
       <hr>
@@ -37,15 +37,25 @@
       <hr>
     </div>
 
-    <button mat-stroked-button color="primary">login with Google</button>
-    <button mat-stroked-button color="basic">login with Apple</button>
-    <!-- <span class="spanQuestion">Already using Slack?</span>
-    <a routerLink="/login" class="spanSignIn">Sign in to an existing workspace</a> -->
+    <button mat-stroked-button color="primary" (click)="authenticationService.GoogleAuth()">Sign In with Google</button>
+    <button mat-stroked-button color="basic">Sign In with Apple</button>
+
+
+    <span class="spanQuestion">Already using Slack?</span>
+    <a routerLink="/login" class="spanSignIn">Sign in to an existing workspace</a>
   </div>
-</div>
+
+
+  <mat-card [class.d-none]="!authenticationService.signedUp" [class.signedUp] = "authenticationService.signedUp">
+    <mat-card-content>Signed Up!</mat-card-content>
+  </mat-card>
+
+  <mat-card [class.d-none]="!authenticationService.signUpError" [class.signUpError] = "authenticationService.signUpError">
+    <mat-card-content>{{authenticationService.signUpErrorMessage}}</mat-card-content>
+  </mat-card>
 
 <footer>
-<a>Privacy & terms</a>
-<a>Contact us</a>
-<a>Change region</a>
+  <a>Privacy & terms</a>
+  <a>Contact us</a>
+  <a>Change region</a>
 </footer>
