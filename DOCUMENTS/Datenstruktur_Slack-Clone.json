@@ -34,7 +34,7 @@
 					]
 				},
 				{
-					"..."
+					"...": ""
 				}
 			],
 			"channels": [
@@ -78,6 +78,7 @@
 			"cID": "",
 			"name": "",
 			"status": "private | public",
+			"users": ["uID1", "uID2", "uID3", "..."],
 			"threads": [
 				"tID1",
 				"tID2",
