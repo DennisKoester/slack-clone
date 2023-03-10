@@ -1,0 +1,92 @@
+{
+	"USERS": [
+		{
+			"name": "",
+			"email": "",
+			"password": "",
+			"img": "",
+			"status": "online | offline", // manuell setzbar?
+			// "messages": [
+			// 	"mID1",
+			// 	"mID2",
+			// 	"mID3",
+			// 	"..."
+			// ],
+			// "threads": [
+			// 	"tID1",
+			// 	"tID2",
+			// 	"tID3",
+			// 	"..."
+			// ],
+			"privThreads": [
+				{
+					"contacts": [
+						"uID1",
+						"uID2",
+						"uID3",
+						"..."
+					],
+					"messages": [
+						"mID1",
+						"mID2",
+						"mID3",
+						"..."
+					]
+				},
+				{
+					"..."
+				}
+			],
+			"channels": [
+				"cID1",
+				"cID2",
+				"cID3",
+				"..."
+			]
+		},
+		{
+			"...": ""
+		}
+	],
+	"MESSAGES": [
+		{
+			"mID": 1,
+			"user": "uID",
+			"time": "YYYY-MM-DD hh:mm:ss",
+			"text": "" // wie mit eingefügten Grafiken bzw. Dateien umgehen?
+		},
+		{
+			"...": ""
+		}
+	],
+	"THREADS": [
+		{
+			"tID": 1,
+			"messages": [
+				"mID1",
+				"mID2",
+				"mID3",
+				"..."
+			]
+		},
+		{
+			"...": ""
+		}
+	],
+	"CHANNELS": [
+		{
+			"cID": "",
+			"name": "",
+			"status": "private | public",
+			"threads": [
+				"tID1",
+				"tID2",
+				"tID3",
+				"..."
+			]
+		},
+		{
+			"...": ""
+		}
+	]
+}
