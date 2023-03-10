@@ -1,7 +1,4 @@
-<header>
-  <img src="assets/img/logo.png">
-  <h2>slack</h2>
-</header>
+<app-sign-header></app-sign-header>
 
 <div class="mainContentContainer">
   <div class="mainContent">
@@ -11,7 +8,7 @@
     <form class="form">
       <mat-form-field class="inputEmail">
         <mat-label>Email</mat-label>
-        <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com" #userEmail>
+        <input type="email" matInput [formControl]="emailFormControl" placeholder="name@work-email.com" #userEmail>
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
           Please enter a valid email address
         </mat-error>
@@ -29,7 +26,7 @@
       </mat-form-field>
     </form>
     
-    <button mat-raised-button color="warn"(click)="authenticationService.SignUp (userEmail.value, userPassword.value)">Sign In</button>
+    <button mat-raised-button color="warn"(click)="authenticationService.SignUp(userEmail.value, userPassword.value)">Sign In</button>
 
     <div class="horizontalContent">
       <hr>
@@ -38,24 +35,14 @@
     </div>
 
     <button mat-stroked-button color="primary" (click)="authenticationService.GoogleAuth()">Sign In with Google</button>
-    <button mat-stroked-button color="basic">Sign In with Apple</button>
 
 
     <span class="spanQuestion">Already using Slack?</span>
-    <a routerLink="/login" class="spanSignIn">Sign in to an existing workspace</a>
+    <a routerLink="/login" class="spanSignIn">Sign in with existing account!</a>
   </div>
-
-
-  <mat-card [class.d-none]="!authenticationService.signedUp" [class.signedUp] = "authenticationService.signedUp">
-    <mat-card-content>Signed Up!</mat-card-content>
-  </mat-card>
 
   <mat-card [class.d-none]="!authenticationService.signUpError" [class.signUpError] = "authenticationService.signUpError">
     <mat-card-content>{{authenticationService.signUpErrorMessage}}</mat-card-content>
   </mat-card>
-
-<footer>
-  <a>Privacy & terms</a>
-  <a>Contact us</a>
-  <a>Change region</a>
-</footer>
+</div>
+<app-sign-footer></app-sign-footer>

@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+// import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 //firebase neu
 // import { environment } from '../environments/environment';
 // import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -29,17 +29,22 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
 
 //components
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ThreadSideModuleComponent } from './components/thread-side-module/thread-side-module.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { ChannelsComponent } from './components/channels/channels.component';
 import { DirectMessagesSectionComponent } from './components/direct-messages-section/direct-messages-section.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { SignFooterComponent } from './components/sign-footer/sign-footer.component';
+import { SignHeaderComponent } from './components/sign-header/sign-header.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+
 
 
 
@@ -47,19 +52,23 @@ import { DirectMessagesSectionComponent } from './components/direct-messages-sec
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
+    SignInComponent,
+    SignUpComponent,
     HomeComponent,
-    DashboardComponent,
     HeaderComponent,
     ThreadSideModuleComponent,
     SideNavComponent,
     ChannelsComponent,
     DirectMessagesSectionComponent,
+    VerifyEmailComponent,
+    SignFooterComponent,
+    SignHeaderComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    // CommonModule,
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAuth(() => getAuth()),
     // provideFirestore(() => getFirestore()),
@@ -77,6 +86,7 @@ import { DirectMessagesSectionComponent } from './components/direct-messages-sec
     ReactiveFormsModule,
     MatButtonModule,
     MatRadioModule,
+    MatDialogModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],

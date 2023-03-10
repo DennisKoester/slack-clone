@@ -4,17 +4,26 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import * as auth from 'firebase/auth';
 import {AngularFirestore,AngularFirestoreDocument} from '@angular/fire/compat/firestore';
+import { VerifyEmailComponent } from 'src/app/components/verify-email/verify-email.component';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthenticationService {
 
-signedUp = false;
+resetPw = false;
 signUpError = false;
 signUpErrorMessage;
+
 signInError = false;
 signInErrorMessage;
+
+forgotPwError = false;
+forgotPwErrorMessage;
+
+
+
 userData: any;
 
   constructor(public afAuth: AngularFireAuth, private router: Router, public ngZone: NgZone, public afs: AngularFirestore) {
@@ -39,11 +48,6 @@ SignUp(email: string, password: string) {
   return this.afAuth
   .createUserWithEmailAndPassword(email, password)
   .then((result) => {
-    this.signedUp = true;
-    setTimeout(() => {
-      this.signedUp = false;
-      this.router.navigate(['/', 'login']);
-    }, 2400);
     this.SendVerificationMail();
     this.SetUserData(result.user);
   })
@@ -94,10 +98,17 @@ ForgotPassword(passwordResetEmail: string) {
   return this.afAuth
   .sendPasswordResetEmail(passwordResetEmail)
   .then(() => {
-    window.alert('Password reset email sent, check your inbox.');
+     this.resetPw = true;
+    setTimeout(() => {
+      this.resetPw = false;
+    }, 3000);
   })
   .catch((error) => {
-    window.alert(error);
+    this.forgotPwError = true;
+    this.forgotPwErrorMessage = error;
+    setTimeout(() => {
+      this.forgotPwError = false;
+    }, 4000);
   });
 }
 
@@ -112,7 +123,7 @@ get isLoggedIn(): boolean {
 // Sign in with Google
 GoogleAuth() {
   return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['home']);
   });
 }
 
@@ -121,7 +132,7 @@ AuthLogin(provider: any) {
   return this.afAuth
     .signInWithPopup(provider)
     .then((result) => {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['home']);
       this.SetUserData(result.user);
     })
     .catch((error) => {
@@ -154,20 +165,9 @@ AuthLogin(provider: any) {
 SignOut() {
   return this.afAuth.signOut().then(() => {
     localStorage.removeItem('user');
-    this.router.navigate(['sign-in']);
+    this.router.navigate(['login']);
   });
 }
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
