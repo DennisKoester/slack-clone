@@ -2,7 +2,7 @@
 
 <div class="mainContentContainer">
   <div class="mainContent">
-    <h1>Sign In - enter your email & a new password</h1>
+    <h1>Sign Up - enter your email & a new password</h1>
     <p>We suggest using the <span class="bold">email address that you use at work.</span></p>
 
     <form class="form">
@@ -38,7 +38,7 @@
 
 
     <span class="spanQuestion">Already using Slack?</span>
-    <a routerLink="/login" class="spanSignIn">Sign in with existing account!</a>
+    <a routerLink="/sign-in" class="spanSignIn">Sign in with existing account!</a>
   </div>
 
   <mat-card [class.d-none]="!authenticationService.signUpError" [class.signUpError] = "authenticationService.signUpError">
