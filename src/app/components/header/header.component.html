@@ -6,8 +6,13 @@
         <span>Slack Clone</span>
       </div>
 
-      <div>
-        <a (click)="authenticationService.SignOut()" class="logout">logout</a>
+      <div class="searchbar">
+        <input type="text" />
+        <mat-icon fontIcon="search"></mat-icon>
+      </div>
+
+      <div class="profile-img">
+        <a (click)="authenticationService.SignOut()" class="logout"><img src="./assets/img/profile_image.jpg" alt=""></a>
       </div>
     </mat-toolbar-row>
 

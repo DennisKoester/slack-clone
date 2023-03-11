@@ -9,7 +9,7 @@ mat-toolbar-row {
   color: white;
 
   span {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 
@@ -34,4 +34,50 @@ mat-toolbar-row {
       width: 40px;
     }
   }
+}
+
+.searchbar {
+  justify-content: space-between;
+  height: 30px;
+  width: 30%;
+  border-radius: 6px;
+  background-color: #742175;
+  padding: 0 10px;
+
+  input {
+    width: 100%;
+    outline: unset;
+    border: unset;
+    color: white;
+    background-color: #742175;
+  }
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+.profile-img,
+a {
+  height: 40px;
+  width: 40px;
+  position: relative;
+
+  img {
+    border-radius: 6px 6px 0 6px;
+    object-fit: cover;
+  }
+}
+
+.profile-img::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  background-color: transparent;
+  bottom: -25px;
+  right: 0;
+  height: 10px;
+  width: 10px;
+  border-top-left-radius: 25px;
+  box-shadow: 0 -25px 0 0 var(--bg-color-side-nav);
 }
