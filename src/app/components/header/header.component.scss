@@ -76,7 +76,7 @@ a {
   }
 }
 
-.profile-img::before {
+.profile-img a::before {
   content: "";
   position: absolute;
   z-index: 1;
