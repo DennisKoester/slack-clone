@@ -5,19 +5,7 @@
 			"email": "",
 			"password": "",
 			"img": "",
-			"status": "online | offline", // manuell setzbar?
-			// "messages": [
-			// 	"mID1",
-			// 	"mID2",
-			// 	"mID3",
-			// 	"..."
-			// ],
-			// "threads": [
-			// 	"tID1",
-			// 	"tID2",
-			// 	"tID3",
-			// 	"..."
-			// ],
+			"status": "online | offline   // ---> manuell setzbar?",
 			"privThreads": [
 				{
 					"contacts": [
@@ -53,26 +41,27 @@
 			"mID": 1,
 			"user": "uID",
 			"time": "YYYY-MM-DD hh:mm:ss",
-			"text": "" // wie mit eingefügten Grafiken bzw. Dateien umgehen?
+			"text": "",
+			"img": [" ...  // wie mit eingefügten Grafiken bzw. Dateien umgehen?"]
 		},
 		{
 			"...": ""
 		}
 	],
-	// "THREADS": [
-	// 	{
-	// 		"tID": 1,
-	// 		"messages": [
-	// 			"mID1",
-	// 			"mID2",
-	// 			"mID3",
-	// 			"..."
-	// 		]
-	// 	},
-	// 	{
-	// 		"...": ""
-	// 	}
-	// ],
+	"THREADS": [
+		{
+			"tID": 1,
+			"messages": [
+				"mID1",
+				"mID2",
+				"mID3",
+				"..."
+			]
+		},
+		{
+			"...": ""
+		}
+	],
 	"CHANNELS": [
 		{
 			"cID": "",
@@ -80,11 +69,10 @@
 			"status": "private | public",
 			"users": ["uID1", "uID2", "uID3", "..."],
 			"threads": [
-				// "tID1",
-				// "tID2",
-				// "tID3",
-				// "..."
-				["mID1", "mID2", "mID3"]
+				"tID1",
+				"tID2",
+				"tID3",
+				"..."
 			]
 		},
 		{
