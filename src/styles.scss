@@ -7,6 +7,7 @@
 html,
 body {
   height: 100%;
+  font-size: 14px;
   overflow: hidden;
 }
 body {
@@ -14,10 +15,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-p,
-span {
-  font-size: 18px;
-}
+
 
 .full-height {
   height: 100%;

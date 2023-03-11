@@ -3,25 +3,19 @@
   user-select: none;
 }
 
-.mat-drawer-side{
-  border: unset;
-}
-
-.mat-drawer-container {
-  background-color: unset;
-}
-
-.example-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.mat-drawer-side {
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .mat-drawer {
-  width: 400px;
+  top: 64px;
+
+  width: 300px;
   background-color: var(--bg-color-side-nav);
+}
+
+.mat-drawer-container {
+  position: unset;
 }
 
 .server-name {
@@ -41,7 +35,7 @@
   gap: 10px;
   padding: 5px 20px 5px 20px;
   margin: 8px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
 
   &:hover {
@@ -52,5 +46,12 @@
   &:active {
     border-radius: 5px;
     background-color: rgba(255, 187, 0, 0.596);
+  }
+}
+
+.new-msg-btn {
+  &:active {
+    transform: scale(0.9);
+    filter: brightness(0.9);
   }
 }

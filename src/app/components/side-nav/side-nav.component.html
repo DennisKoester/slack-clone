@@ -15,18 +15,19 @@
   <mat-drawer mode="side" opened>
     <div class="server-name flex-ac">
       <h2>Developer Akademie</h2>
-      <button mat-mini-fab [ngStyle]="{ 'background-color': 'white' }">
+      <button class="new-msg-btn" mat-mini-fab [ngStyle]="{ 'background-color': 'white' }">
         <mat-icon [ngStyle]="{ color: 'black' }">edit_note</mat-icon>
       </button>
     </div>
     <div class="thread-hl flex-ac">
       <mat-icon font-icon>comment</mat-icon>Threads
     </div>
+    <div class="thread-hl flex-ac">
+      <mat-icon font-icon>supervisor_account</mat-icon>Users
+    </div>
 
     <app-channels></app-channels>
     <app-direct-messages-section></app-direct-messages-section>
   </mat-drawer>
-  <mat-drawer-content>
-    <app-header></app-header>
-  </mat-drawer-content>
+  <mat-drawer-content> </mat-drawer-content>
 </mat-drawer-container>
