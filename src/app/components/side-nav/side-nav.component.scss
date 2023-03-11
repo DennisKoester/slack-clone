@@ -77,21 +77,24 @@
   }
 }
 
-.button {
+.new-msg-btn {
+  margin-left: 10px;
+  background-color: white;
   &:active {
     transform: scale(0.9);
     filter: brightness(0.9);
   }
 }
 
-  .burger-menu-btn{
-    display: none;
-  }
+.burger-menu-btn {
+  display: none;
+}
 
 .channel-toolbar {
   font-size: 20px;
   background-color: var(--bg-color-side-nav);
   height: 64px;
+  padding: 12px 20px;
 }
 
 .channel-content-container {
@@ -106,11 +109,11 @@
     display: none;
   }
 
-  .mat-drawer-content{
+  .mat-drawer-content {
     // display: none;
   }
 
-  .burger-menu-btn{
+  .burger-menu-btn {
     display: block;
   }
 }
