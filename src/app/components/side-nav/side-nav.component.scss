@@ -9,8 +9,8 @@
 
 .mat-drawer {
   top: 64px;
-
-  width: 300px;
+  max-width: 300px;
+  width: 30%;
   background-color: var(--bg-color-side-nav);
 }
 
@@ -28,15 +28,38 @@
 
   h2 {
     margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
 
-.thread-hl {
+.navigation {
+  div:first-of-type {
+    margin-top: 8px;
+  }
+
+  div:last-of-type {
+    margin-bottom: 8px;
+  }
+}
+
+.nav-hl {
+  display: flex;
+  align-items: center;
   gap: 10px;
+  margin: 0 8px;
   padding: 5px 20px 5px 20px;
-  margin: 8px;
   font-size: 16px;
+
   cursor: pointer;
+
+  p {
+    margin: 0 !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 
   &:hover {
     border-radius: 5px;
@@ -54,4 +77,10 @@
     transform: scale(0.9);
     filter: brightness(0.9);
   }
+}
+
+.channel-toolbar {
+  font-size: 20px;
+  background-color: var(--bg-color-side-nav);
+  height: 64px;
 }

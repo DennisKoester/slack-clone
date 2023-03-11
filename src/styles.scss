@@ -15,7 +15,21 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+p,
+span,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 
+.mat-icon {
+  overflow: unset !important;
+}
 
 .full-height {
   height: 100%;
@@ -30,6 +44,6 @@ body {
   display: none;
 }
 
-.rotate90{
+.rotate90 {
   transform: rotate(-90deg);
 }

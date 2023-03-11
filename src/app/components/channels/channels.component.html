@@ -1,35 +1,35 @@
 <div (click)="toggleDropdown()" class="channel-hl flex-ac">
   <mat-icon
     [ngClass]="collapsed ? 'rotate90' : ''"
-    style="transition: all 125ms ease-in-out;"
+    style="transition: all 125ms ease-in-out"
     fontIcon="arrow_drop_down"
   ></mat-icon>
-  <span>Channels</span>
+  <p>Channels</p>
 </div>
 
 <div *ngIf="!collapsed" class="channel-dropdown-menu">
   <div class="channel flex-ac">
-    <mat-icon fontIcon="numbers"></mat-icon>
-    <span>angular</span>
+    <mat-icon fontIcon>numbers</mat-icon>
+    <p>angular</p>
   </div>
   <div class="channel flex-ac">
-    <mat-icon fontIcon="numbers"></mat-icon>
-    <span>html/css</span>
+    <mat-icon fontIcon>numbers</mat-icon>
+    <p>html/css</p>
   </div>
   <div class="channel flex-ac">
-    <mat-icon fontIcon="numbers"></mat-icon>
-    <span>javascript</span>
+    <mat-icon fontIcon>numbers</mat-icon>
+    <p>javascript</p>
   </div>
   <div class="channel flex-ac">
-    <mat-icon fontIcon="numbers"></mat-icon>
-    <span>community</span>
+    <mat-icon fontIcon>numbers</mat-icon>
+    <p>community</p>
   </div>
   <div class="channel flex-ac">
-    <mat-icon fontIcon="numbers"></mat-icon>
-    <span>projects</span>
+    <mat-icon fontIcon>numbers</mat-icon>
+    <p>projects</p>
   </div>
   <div (click)="createChannel()" class="channel flex-ac">
     <mat-icon fontIcon="add"></mat-icon>
-    <span>Create new channel</span>
+    <p>Create new channel</p>
   </div>
 </div>
