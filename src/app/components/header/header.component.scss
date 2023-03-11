@@ -71,8 +71,8 @@ a {
   .status-dot {
     position: absolute;
     z-index: 2;
-    right: -3px;
-    bottom: -3px;
+    right: -2px;
+    bottom: -2px;
     height: 10px;
     width: 10px;
     border-radius: 100%;
@@ -85,10 +85,9 @@ a {
   position: absolute;
   z-index: 1;
   background-color: var(--bg-color-side-nav);
-  bottom: 0;
-  right: 0;
-  height: 9px;
-  width: 9px;
-  border-top-left-radius: 7px;
-  // box-shadow: 0px -26px 0 0 var(--bg-color-side-nav);
+  bottom: -4px;
+  right: -4px;
+  height: 14px;
+  width: 14px;
+  border-radius: 100%;
 }
