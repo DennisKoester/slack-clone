@@ -44,6 +44,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { SignFooterComponent } from './components/sign-footer/sign-footer.component';
 import { SignHeaderComponent } from './components/sign-header/sign-header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { DialogCreateChannelComponent } from './components/dialog-create-channel/dialog-create-channel.component';
 
 
 
@@ -63,7 +64,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     VerifyEmailComponent,
     SignFooterComponent,
     SignHeaderComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    DialogCreateChannelComponent
   ],
   imports: [
     BrowserModule,

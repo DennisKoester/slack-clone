@@ -11,4 +11,8 @@ export class ChannelsComponent {
   toggleDropdown() {
     this.collapsed = !this.collapsed;
   }
+
+  createChannel() {
+    // TODO: Add new channel to dropdown and save it in Firebase
+  }
 }
