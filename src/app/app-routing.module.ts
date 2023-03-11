@@ -10,9 +10,9 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: AppComponent},
+  // {path: '', component: AppComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'sign-in', component: SignInComponent},
+  {path: '', component: SignInComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'verify-email', component: VerifyEmailComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},

@@ -1,14 +1,37 @@
-mat-toolbar {
-  position: static;
+mat-toolbar-row {
+  align-items: center;
   justify-content: space-between;
   top: 0;
   right: 0;
   left: 300px;
-  font-size: 18px;
+  height: 64px;
   background-color: var(--bg-color-side-nav);
   color: white;
+
+  span {
+    font-size: 22px;
+  }
 }
 
 .logout {
   cursor: pointer;
+}
+
+.channel-toolbar {
+  padding-left: 316px;
+}
+
+.header-toolbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
 }
