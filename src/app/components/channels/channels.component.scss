@@ -4,7 +4,7 @@
 }
 
 .channel-hl {
-  gap: 10px;
+  gap: 8px;
   padding: 12px 5px 5px 20px;
   font-size: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
@@ -14,14 +14,6 @@
   gap: 8px;
   margin: 0 8px;
   padding: 5px 12px;
-
-  p {
-    font-size: 14px;
-    // margin: 0 !important;
-    // white-space: nowrap;
-    // text-overflow: ellipsis;
-    // overflow: hidden;
-  }
 
   &:hover {
     border-radius: 5px;
