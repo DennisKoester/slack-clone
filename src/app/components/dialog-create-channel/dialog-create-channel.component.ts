@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./dialog-create-channel.component.scss']
 })
 export class DialogCreateChannelComponent {
-  name: string = '';
+  dialogData = {
+    name: '',
+    isPrivate: false
+  }
 }
