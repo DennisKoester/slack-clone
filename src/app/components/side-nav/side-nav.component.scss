@@ -18,6 +18,11 @@
   position: unset;
 }
 
+.mat-drawer-content {
+  height: 100vh;
+  background-color: #742175;
+}
+
 .server-name {
   position: sticky;
   top: 0;
@@ -83,4 +88,15 @@
   font-size: 20px;
   background-color: var(--bg-color-side-nav);
   height: 64px;
+}
+
+.channel-content-container {
+  color: black;
+  margin: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .mat-drawer {
+    display: none;
+  }
 }

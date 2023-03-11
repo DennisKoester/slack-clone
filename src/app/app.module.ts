@@ -48,6 +48,7 @@ import { SignFooterComponent } from './components/sign-footer/sign-footer.compon
 import { SignHeaderComponent } from './components/sign-header/sign-header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { DialogCreateChannelComponent } from './components/dialog-create-channel/dialog-create-channel.component';
+import { MessageCardComponent } from './components/message-card/message-card.component';
 
 
 
@@ -69,6 +70,7 @@ import { DialogCreateChannelComponent } from './components/dialog-create-channel
     SignHeaderComponent,
     ForgotPasswordComponent,
     DialogCreateChannelComponent,
+    MessageCardComponent,
   ],
   imports: [
     BrowserModule,

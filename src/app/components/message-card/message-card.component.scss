@@ -1,0 +1,9 @@
+mat-card {
+  background-color: unset;
+  box-shadow: unset;
+  color: white;
+
+  &:hover {
+    background-color: var(--bg-color-side-nav);
+  }
+}
