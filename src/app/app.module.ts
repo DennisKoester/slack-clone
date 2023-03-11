@@ -10,9 +10,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //firebase neu
 // import { environment } from '../environments/environment';
-// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 // import { provideAuth,getAuth } from '@angular/fire/auth';
-// import { provideFirestore,getFirestore} from '@angular/fire/firestore';
+import { provideFirestore,getFirestore} from '@angular/fire/firestore';
 
 //firebase alt
 import { AngularFireModule } from '@angular/fire/compat';
@@ -74,9 +74,9 @@ import { DialogCreateChannelComponent } from './components/dialog-create-channel
     BrowserModule,
     AppRoutingModule,
     // CommonModule,
-    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAuth(() => getAuth()),
-    // provideFirestore(() => getFirestore()),
+    provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireStorageModule,
