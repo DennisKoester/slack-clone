@@ -1,22 +1,9 @@
-<!-- <mat-sidenav-container class="example-container" >
-  <mat-sidenav #sidenav [mode]="mode.value || 'side'">
-    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-    <h2>Developer Akademie</h2>
-   
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-    
-  </mat-sidenav-content>
-</mat-sidenav-container> -->
-
 <mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>
+  <mat-drawer *ngIf="!menuCollapsed" mode="side" opened>
     <div class="server-name flex-ac">
       <h2>Developer Akademie</h2>
       <button
-        class="new-msg-btn"
+        class="button"
         mat-mini-fab
         [ngStyle]="{ 'background-color': 'white' }"
       >
@@ -40,7 +27,16 @@
   <mat-drawer-content>
     <mat-toolbar-row class="channel-toolbar">
       <div class="flex-ac">
-        <mat-icon fontIcon="numbers"></mat-icon><span>channel name</span>
+        <button
+          (click)="toggleMenu()"
+          class="burger-menu-btn"
+          [ngStyle]="{ 'background-color': 'white', 'margin-right': '16px' }"
+          mat-mini-fab
+        >
+          <mat-icon [ngStyle]="{ color: 'black' }">menu</mat-icon>
+        </button>
+        <mat-icon fontIcon="numbers"></mat-icon>
+        <span>channel name</span>
       </div>
     </mat-toolbar-row>
     <div class="channel-content-container">

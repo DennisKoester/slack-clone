@@ -77,12 +77,16 @@
   }
 }
 
-.new-msg-btn {
+.button {
   &:active {
     transform: scale(0.9);
     filter: brightness(0.9);
   }
 }
+
+  .burger-menu-btn{
+    display: none;
+  }
 
 .channel-toolbar {
   font-size: 20px;
@@ -97,6 +101,16 @@
 
 @media screen and (max-width: 480px) {
   .mat-drawer {
+    // width: 100vw;
+    // max-width: unset;
     display: none;
+  }
+
+  .mat-drawer-content{
+    // display: none;
+  }
+
+  .burger-menu-btn{
+    display: block;
   }
 }

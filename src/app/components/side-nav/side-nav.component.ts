@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDrawerMode } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-side-nav',
@@ -8,5 +6,9 @@ import { MatDrawerMode } from '@angular/material/sidenav';
   styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent {
-  mode = new FormControl('side' as MatDrawerMode);
+  menuCollapsed = false;
+
+  toggleMenu() {
+    this.menuCollapsed = !this.menuCollapsed;
+  }
 }
