@@ -4,7 +4,7 @@
 }
 
 .mat-drawer-side {
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .mat-drawer {
@@ -29,7 +29,7 @@
   top: 0;
   justify-content: space-between;
   padding: 12px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   background-color: var(--bg-color-side-nav);
 
   h2 {
