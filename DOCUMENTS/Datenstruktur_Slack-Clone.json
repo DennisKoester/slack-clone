@@ -59,20 +59,20 @@
 			"...": ""
 		}
 	],
-	"THREADS": [
-		{
-			"tID": 1,
-			"messages": [
-				"mID1",
-				"mID2",
-				"mID3",
-				"..."
-			]
-		},
-		{
-			"...": ""
-		}
-	],
+	// "THREADS": [
+	// 	{
+	// 		"tID": 1,
+	// 		"messages": [
+	// 			"mID1",
+	// 			"mID2",
+	// 			"mID3",
+	// 			"..."
+	// 		]
+	// 	},
+	// 	{
+	// 		"...": ""
+	// 	}
+	// ],
 	"CHANNELS": [
 		{
 			"cID": "",
@@ -80,10 +80,11 @@
 			"status": "private | public",
 			"users": ["uID1", "uID2", "uID3", "..."],
 			"threads": [
-				"tID1",
-				"tID2",
-				"tID3",
-				"..."
+				// "tID1",
+				// "tID2",
+				// "tID3",
+				// "..."
+				["mID1", "mID2", "mID3"]
 			]
 		},
 		{
