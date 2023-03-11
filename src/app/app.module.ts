@@ -30,6 +30,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 //components
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -88,7 +89,8 @@ import { DialogCreateChannelComponent } from './components/dialog-create-channel
     ReactiveFormsModule,
     MatButtonModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
