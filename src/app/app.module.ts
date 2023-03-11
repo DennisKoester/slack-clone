@@ -5,14 +5,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //firebase neu
 // import { environment } from '../environments/environment';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 // import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore} from '@angular/fire/firestore';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 //firebase alt
 import { AngularFireModule } from '@angular/fire/compat';
@@ -32,7 +31,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 //components
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -49,10 +48,7 @@ import { SignHeaderComponent } from './components/sign-header/sign-header.compon
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { DialogCreateChannelComponent } from './components/dialog-create-channel/dialog-create-channel.component';
 import { MessageCardComponent } from './components/message-card/message-card.component';
-
-
-
-
+import { TextEditorComponent } from './components/text-editor/text-editor.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +67,7 @@ import { MessageCardComponent } from './components/message-card/message-card.com
     ForgotPasswordComponent,
     DialogCreateChannelComponent,
     MessageCardComponent,
+    TextEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +92,7 @@ import { MessageCardComponent } from './components/message-card/message-card.com
     MatRadioModule,
     MatDialogModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
