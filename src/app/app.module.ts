@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -65,7 +67,7 @@ import { DialogCreateChannelComponent } from './components/dialog-create-channel
     SignFooterComponent,
     SignHeaderComponent,
     ForgotPasswordComponent,
-    DialogCreateChannelComponent
+    DialogCreateChannelComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +90,8 @@ import { DialogCreateChannelComponent } from './components/dialog-create-channel
     ReactiveFormsModule,
     MatButtonModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
