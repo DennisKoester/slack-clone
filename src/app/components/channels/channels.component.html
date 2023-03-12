@@ -9,9 +9,10 @@
 
 <div *ngIf="!collapsed" class="channel-dropdown-menu">
   <app-channel-item
-    *ngFor="let channel of channels"
+    *ngFor="let channel of channels index as i"
     [name]="channel.name"
     [isPrivate]="channel.isPrivate"
+    [routerLink]="['/home/channel/' + channel.id]"
   ></app-channel-item>
 
   <div (click)="openDialog()" class="channel flex-ac">

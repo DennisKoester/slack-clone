@@ -2,10 +2,7 @@
   <mat-drawer *ngIf="!menuCollapsed" mode="side" opened>
     <div class="server-name flex-ac">
       <h2>Developer Akademie</h2>
-      <button
-        class="new-msg-btn"
-        mat-mini-fab
-      >
+      <button class="new-msg-btn" mat-mini-fab>
         <mat-icon [ngStyle]="{ color: 'black' }">edit_note</mat-icon>
       </button>
     </div>
@@ -39,9 +36,7 @@
       </div>
     </mat-toolbar-row>
     <div class="channel-content-container">
-      <app-message-card></app-message-card>
-      <app-message-card></app-message-card>
-      <app-text-editor></app-text-editor>
+      <router-outlet></router-outlet>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

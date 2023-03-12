@@ -50,6 +50,7 @@ import { DialogCreateChannelComponent } from './components/dialog-create-channel
 import { MessageCardComponent } from './components/message-card/message-card.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { ChannelItemComponent } from './components/channel-item/channel-item.component';
+import { OpenChannelComponent } from './components/open-channel/open-channel.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { ChannelItemComponent } from './components/channel-item/channel-item.com
     MessageCardComponent,
     TextEditorComponent,
     ChannelItemComponent,
+    OpenChannelComponent,
   ],
   imports: [
     BrowserModule,

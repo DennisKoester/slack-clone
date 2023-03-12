@@ -8,20 +8,25 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './shared/guard/auth.guard';
+import { OpenChannelComponent } from './components/open-channel/open-channel.component';
 
 const routes: Routes = [
   // {path: '', component: AppComponent},
-  {path: 'sign-up', component: SignUpComponent},
-  {path: '', component: SignInComponent},
-  {path: 'forgot-password', component: ForgotPasswordComponent},
-  {path: 'verify-email', component: VerifyEmailComponent},
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  
-  
+  { path: '', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'verify-email', component: VerifyEmailComponent },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'channel/:id', component: OpenChannelComponent }],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
