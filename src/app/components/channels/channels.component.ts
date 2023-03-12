@@ -36,7 +36,7 @@ export class ChannelsComponent {
   // channelId = '';
   // messages = [];
 
-  constructor(public dialog: MatDialog, private firestore: Firestore) {
+  constructor(public dialog: MatDialog, private firestore: Firestore, public functions: FunctionsService) {
     this.channelsCollection = collection(firestore, 'channels');
     this.channels$ = collectionData(this.channelsCollection, {
       idField: 'channelId',

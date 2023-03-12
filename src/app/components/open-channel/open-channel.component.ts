@@ -38,7 +38,7 @@ export class OpenChannelComponent implements OnInit {
       this.channelId = paramMap.get('id');
     });
     // this.loadThreads();
-    console.log(this.channelId);
+    // console.log(this.channelId);
   }
 
   // loadThreads() {
@@ -83,38 +83,4 @@ export class OpenChannelComponent implements OnInit {
   //   });
   // }
 
-  //
-  //
-  //
-  // ! TESTING!!!!!!
-  //
-  //
-  //
-  //
-
-  // showThreads(currentChannel) {
-  //   this.channelId = currentChannel;
-  //   console.log('ChannelId is', this.channelId);
-  //   // this.loadThreads(currentChannel);
-  //   this.gettingThreadsId();
-  // }
-
-  // gettingThreadsId() {
-  //   const threadsCollection = collection(
-  //     this.firestore,
-  //     'channels',
-  //     this.channelId,
-  //     'threads'
-  //   );
-  //   this.threads$ = collectionData(threadsCollection, {
-  //     idField: 'threadsId',
-  //   });
-
-  //   this.threads$.subscribe((data) => {
-  //     console.log(data);
-  //     console.log(data[1]['threadsId']);
-  //     this.threads = data;
-  //   });
-  //   // console.log('threadsId is', this.threads);
-  // }
 }
