@@ -7,9 +7,11 @@ import {
   query,
   collectionData,
   getFirestore,
+  DocumentData,
 } from '@angular/fire/firestore';
 
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-open-channel',
@@ -21,6 +23,11 @@ export class OpenChannelComponent implements OnInit {
   channelId = '';
   sendedPostID = '';
 
+  threads$: Observable<DocumentData[]>;
+  threadsId = '';
+  threads: Array<any> = [];
+
+
   constructor(private firestore: Firestore, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -30,55 +37,84 @@ export class OpenChannelComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap) => {
       this.channelId = paramMap.get('id');
     });
-    this.loadThreads();
-    console.log('oninit loaded');
+    // this.loadThreads();
+    console.log(this.channelId);
   }
 
-  loadThreads() {
-    const threads = collection(
-      this.firestore,
-      'channels',
-      this.channelId,
-      'threads'
-    );
-    const order = query(threads, orderBy('timestamp'));
-    const lodadId = this.channelId;
-    let unsubscribe = onSnapshot(order, async (threads) => {
-      if (lodadId != this.channelId) {
-        unsubscribe();
-      } else {
-        this.startLoading(threads);
-        console.log('threads', threads);
-      }
-    });
-  }
+  // loadThreads() {
+  //   const threads = collection(
+  //     this.firestore,
+  //     'channels',
+  //     this.channelId,
+  //     'threads'
+  //   );
+  //   const order = query(threads, orderBy('timestamp'));
+  //   const lodadId = this.channelId;
+  //   let unsubscribe = onSnapshot(order, async (threads) => {
+  //     if (lodadId != this.channelId) {
+  //       unsubscribe();
+  //     } else {
+  //       this.startLoading(threads);
+  //     }
+  //   });
+  // }
 
-  startLoading(threads: any) {
-    const threadsCollection = collection(
-      this.firestore,
-      'channels',
-      this.channelId,
-      'threads'
-    );
+  // startLoading(threads: any) {
+  //   const threadsCollection = collection(
+  //     this.firestore,
+  //     'channels',
+  //     this.channelId,
+  //     'threads'
+  //   );
 
-    const threads$ = collectionData(threadsCollection, {
-      idField: 'threadId',
-    });
+  //   const threads$ = collectionData(threadsCollection, {
+  //     idField: 'threadId',
+  //   });
 
-    console.log('threadcollection', threadsCollection);
-    
+  //   this.messages = [];
+  //   threads.forEach((messageDoc: any) => {
+  //     let message = {
+  //       author: messageDoc.author,
+  //       authorImg: messageDoc.authorImg,
+  //       message: messageDoc.message,
+  //       timestamp: messageDoc.timestamp,
+  //     };
+  //     this.messages.push(message);
+  //   });
+  // }
 
-    this.messages = [];
-    threads.forEach((messageDoc: any) => {
-      let message = {
-        author: messageDoc.author,
-        authorImg: messageDoc.authorImg,
-        message: messageDoc.message,
-        timestamp: messageDoc.timestamp,
-      };
-      this.messages.push(message);
-    });
-  }
+  //
+  //
+  //
+  // ! TESTING!!!!!!
+  //
+  //
+  //
+  //
 
+  // showThreads(currentChannel) {
+  //   this.channelId = currentChannel;
+  //   console.log('ChannelId is', this.channelId);
+  //   // this.loadThreads(currentChannel);
+  //   this.gettingThreadsId();
+  // }
 
+  // gettingThreadsId() {
+  //   const threadsCollection = collection(
+  //     this.firestore,
+  //     'channels',
+  //     this.channelId,
+  //     'threads'
+  //   );
+  //   this.threads$ = collectionData(threadsCollection, {
+  //     idField: 'threadsId',
+  //   });
+
+  //   this.threads$.subscribe((data) => {
+  //     console.log(data);
+  //     console.log(data[1]['threadsId']);
+  //     this.threads = data;
+  //   });
+  //   // console.log('threadsId is', this.threads);
+  // }
 }
