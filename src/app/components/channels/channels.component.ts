@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCreateChannelComponent } from '../dialog-create-channel/dialog-create-channel.component';
-import { addDoc, collection, collectionData, CollectionReference, Firestore, setDoc, doc } from '@angular/fire/firestore';
-import { Observable } from '@firebase/util';
-
+import {
+  addDoc,
+  collection,
+  collectionData,
+  CollectionReference,
+  Firestore,
+  setDoc,
+  doc,
+  DocumentData,
+} from '@angular/fire/firestore';
+// import { Observable } from '@firebase/util';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-channels',
@@ -13,30 +22,26 @@ import { Observable } from '@firebase/util';
 export class ChannelsComponent {
   collapsed = false;
   channelsCollection: CollectionReference;
-  channels$;
+  channels$: Observable<DocumentData[]>;
   channels: Array<any> = [];
-
 
   constructor(public dialog: MatDialog, private firestore: Firestore) {
     this.channelsCollection = collection(firestore, 'channels');
-    this.channels$ = collectionData(this.channelsCollection, {idField: 'id'});
+    this.channels$ = collectionData(this.channelsCollection, { idField: 'id' });
     this.channels$.subscribe((data) => {
       console.log(data);
       this.channels = data;
       this.channels.sort((a, b) => {
         if (a.name.toLowerCase() < b.name.toLowerCase()) {
           return -1;
-        }
-        else if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        } else if (a.name.toLowerCase() > b.name.toLowerCase()) {
           return 1;
-        }
-        else {
+        } else {
           return 0;
         }
       });
     });
   }
-
 
   /**
    * Toogles the dropdown lists for channels and private messages
@@ -44,7 +49,6 @@ export class ChannelsComponent {
   toggleDropdown() {
     this.collapsed = !this.collapsed;
   }
-
 
   /**
    * Opens the dialog for creating a new channel
@@ -55,11 +59,12 @@ export class ChannelsComponent {
     dialogRef.afterClosed().subscribe(async (dialogData) => {
       if (dialogData.name) {
         await this.createChannel(dialogData);
-        console.log(`Channel '${dialogData.name}' created (private = ${dialogData.isPrivate}).`)
+        console.log(
+          `Channel '${dialogData.name}' created (private = ${dialogData.isPrivate}).`
+        );
       }
     });
   }
-
 
   /**
    * Creates a new channel in the Database
@@ -70,7 +75,7 @@ export class ChannelsComponent {
       name: data.name,
       isPrivate: data.isPrivate,
       users: [],
-      threads: []
-    })
+      threads: [],
+    });
   }
 }

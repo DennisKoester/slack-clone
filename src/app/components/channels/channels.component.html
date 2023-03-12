@@ -8,27 +8,12 @@
 </div>
 
 <div *ngIf="!collapsed" class="channel-dropdown-menu">
-  <app-channel-item *ngFor="let channel of channels" [name]="channel.name" [isPrivate]="channel.isPrivate"></app-channel-item>
-  <!-- <div class="channel flex-ac">
-    <mat-icon fontIcon>numbers</mat-icon>
-    <p>angular</p>
-  </div>
-  <div class="channel flex-ac">
-    <mat-icon fontIcon>numbers</mat-icon>
-    <p>html/css</p>
-  </div>
-  <div class="channel flex-ac">
-    <mat-icon fontIcon>numbers</mat-icon>
-    <p>javascript</p>
-  </div>
-  <div class="channel flex-ac">
-    <mat-icon fontIcon>numbers</mat-icon>
-    <p>community</p>
-  </div>
-  <div class="channel flex-ac">
-    <mat-icon fontIcon>numbers</mat-icon>
-    <p>projects</p>
-  </div> -->
+  <app-channel-item
+    *ngFor="let channel of channels"
+    [name]="channel.name"
+    [isPrivate]="channel.isPrivate"
+  ></app-channel-item>
+
   <div (click)="openDialog()" class="channel flex-ac">
     <mat-icon fontIcon="add"></mat-icon>
     <p>Create new channel</p>
