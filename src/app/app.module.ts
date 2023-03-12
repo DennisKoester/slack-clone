@@ -47,10 +47,11 @@ import { SignFooterComponent } from './components/sign-footer/sign-footer.compon
 import { SignHeaderComponent } from './components/sign-header/sign-header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { DialogCreateChannelComponent } from './components/dialog-create-channel/dialog-create-channel.component';
-import { MessageCardComponent } from './components/message-card/message-card.component';
+import { ThreadCardComponent } from './components/thread-card/thread-card.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { ChannelItemComponent } from './components/channel-item/channel-item.component';
 import { OpenChannelComponent } from './components/open-channel/open-channel.component';
+import { ActivatedRoute, RouterModule, ROUTES } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { OpenChannelComponent } from './components/open-channel/open-channel.com
     SignHeaderComponent,
     ForgotPasswordComponent,
     DialogCreateChannelComponent,
-    MessageCardComponent,
+    ThreadCardComponent,
     TextEditorComponent,
     ChannelItemComponent,
     OpenChannelComponent,

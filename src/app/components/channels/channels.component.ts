@@ -27,7 +27,7 @@ export class ChannelsComponent {
 
   constructor(public dialog: MatDialog, private firestore: Firestore) {
     this.channelsCollection = collection(firestore, 'channels');
-    this.channels$ = collectionData(this.channelsCollection, { idField: 'id' });
+    this.channels$ = collectionData(this.channelsCollection, { idField: 'channelId' });
     this.channels$.subscribe((data) => {
       console.log(data);
       this.channels = data;

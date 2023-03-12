@@ -12,7 +12,7 @@
     *ngFor="let channel of channels index as i"
     [name]="channel.name"
     [isPrivate]="channel.isPrivate"
-    [routerLink]="['/home/channel/' + channel.id]"
+    [routerLink]="['/home/channel/' + channel.channelId]"
   ></app-channel-item>
 
   <div (click)="openDialog()" class="channel flex-ac">
