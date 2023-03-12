@@ -49,6 +49,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { DialogCreateChannelComponent } from './components/dialog-create-channel/dialog-create-channel.component';
 import { MessageCardComponent } from './components/message-card/message-card.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
+import { ChannelItemComponent } from './components/channel-item/channel-item.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { TextEditorComponent } from './components/text-editor/text-editor.compon
     DialogCreateChannelComponent,
     MessageCardComponent,
     TextEditorComponent,
+    ChannelItemComponent,
   ],
   imports: [
     BrowserModule,

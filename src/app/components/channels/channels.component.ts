@@ -20,13 +20,35 @@ export class ChannelsComponent {
   constructor(public dialog: MatDialog, private firestore: Firestore) {
     this.channelsCollection = collection(firestore, 'channels');
     this.channels$ = collectionData(this.channelsCollection, {idField: 'id'});
-    this.channels$.subscribe((data) => {console.log(data)});
+    this.channels$.subscribe((data) => {
+      console.log(data);
+      this.channels = data;
+      this.channels.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1;
+        }
+        else if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      });
+    });
   }
 
+
+  /**
+   * Toogles the dropdown lists for channels and private messages
+   */
   toggleDropdown() {
     this.collapsed = !this.collapsed;
   }
 
+
+  /**
+   * Opens the dialog for creating a new channel
+   */
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogCreateChannelComponent);
 
@@ -38,10 +60,12 @@ export class ChannelsComponent {
     });
   }
 
+
+  /**
+   * Creates a new channel in the Database
+   * @param {JSON} data The metadata of the new channel
+   */
   async createChannel(data) {
-
-    // TODO: Add new channel to dropdown and save it in Firebase
-
     await setDoc(doc(this.channelsCollection), {
       name: data.name,
       isPrivate: data.isPrivate,
