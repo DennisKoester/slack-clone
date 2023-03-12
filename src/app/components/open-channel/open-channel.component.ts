@@ -12,6 +12,9 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
+
+
 
 @Component({
   selector: 'app-open-channel',
@@ -27,8 +30,11 @@ export class OpenChannelComponent implements OnInit {
   threadsId = '';
   threads: Array<any> = [];
 
-
-  constructor(private firestore: Firestore, private route: ActivatedRoute) {}
+  constructor(
+    private firestore: Firestore,
+    private route: ActivatedRoute,
+    public functions: FunctionsService
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -82,5 +88,4 @@ export class OpenChannelComponent implements OnInit {
   //     this.messages.push(message);
   //   });
   // }
-
 }

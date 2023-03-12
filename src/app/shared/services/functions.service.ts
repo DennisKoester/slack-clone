@@ -47,7 +47,6 @@ export class FunctionsService {
       console.log('Timestamp of that thread is', this.threads[0]['timestamp']);
       console.log('');
       console.log('');
-      
     });
   }
 
@@ -69,6 +68,12 @@ export class FunctionsService {
       this.messagesId = this.messages[0]['messagesId'];
       console.log('Collection of messages', this.messages);
       console.log('ID of current message', this.messagesId);
+      console.log(
+        'Timestamp of current message',
+        this.messages[0]['timestamp']
+      );
+      console.log('Author of current message', this.messages[0]['author']);
+      console.log('Message of current message', this.messages[0]['message']);
     });
   }
 }
