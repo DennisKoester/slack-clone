@@ -6,6 +6,7 @@ import {
   onSnapshot,
   query,
   collectionData,
+  getFirestore,
 } from '@angular/fire/firestore';
 
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +20,7 @@ export class OpenChannelComponent implements OnInit {
   messages = [];
   channelId = '';
   sendedPostID = '';
+
   constructor(private firestore: Firestore, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -42,13 +44,12 @@ export class OpenChannelComponent implements OnInit {
     const order = query(threads, orderBy('timestamp'));
     const lodadId = this.channelId;
     let unsubscribe = onSnapshot(order, async (threads) => {
-      // if (lodadId != this.channelId) {
-      //   unsubscribe();
-      // } else {
-      this.startLoading(threads);
-      console.log('threads', threads);
-
-      // }
+      if (lodadId != this.channelId) {
+        unsubscribe();
+      } else {
+        this.startLoading(threads);
+        console.log('threads', threads);
+      }
     });
   }
 
@@ -59,19 +60,25 @@ export class OpenChannelComponent implements OnInit {
       this.channelId,
       'threads'
     );
+
     const threads$ = collectionData(threadsCollection, {
       idField: 'threadId',
     });
+
+    console.log('threadcollection', threadsCollection);
+    
+
     this.messages = [];
     threads.forEach((messageDoc: any) => {
       let message = {
-        author: messageDoc.threadId.author,
+        author: messageDoc.author,
         authorImg: messageDoc.authorImg,
         message: messageDoc.message,
         timestamp: messageDoc.timestamp,
       };
       this.messages.push(message);
-      console.log('id', threads$);
     });
   }
+
+
 }
