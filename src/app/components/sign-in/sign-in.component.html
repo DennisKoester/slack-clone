@@ -1,7 +1,7 @@
 <app-sign-header></app-sign-header>
 <div class="mainContentContainer">
   <div class="mainContent">
-    <h1>sign in - enter your email & password</h1>
+    <h1>Sign in - enter your email & password</h1>
     <!-- <p>We suggest using the <span class="bold">email address that you use at work.</span></p> -->
 
     <form class="form">
@@ -34,7 +34,9 @@
     </div>
 
     <button mat-stroked-button color="primary" (click)="authenticationService.GoogleAuth()">sign in with Google</button>
-      <span class="forgotPassword" routerLink="/forgot-password">Forgot Password?</span>
+    <span class="forgotPassword" routerLink="/forgot-password">Forgot Password?</span>
+    <span class="spanQuestion">Don't have an account?</span>
+    <a routerLink="/sign-up" class="spanSignUp">Sign up!</a>
 
   </div>
 </div>

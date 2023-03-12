@@ -4,7 +4,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import * as auth from 'firebase/auth';
 import {AngularFirestore,AngularFirestoreDocument} from '@angular/fire/compat/firestore';
-import { VerifyEmailComponent } from 'src/app/components/verify-email/verify-email.component';
 
 @Injectable({
   providedIn: 'root',
@@ -63,6 +62,7 @@ SignUp(email: string, password: string) {
 
 // Sign in with email/password
 SignIn(email, password) {
+   
   return this.afAuth
   .signInWithEmailAndPassword(email, password)
   .then((result) => {
@@ -80,6 +80,7 @@ SignIn(email, password) {
       this.signInError = false;
     }, 4000);
   });
+  
 }
 
 
@@ -151,7 +152,7 @@ AuthLogin(provider: any) {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
+      displayName: user.email.split('@')[0],
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
     };

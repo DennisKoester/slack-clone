@@ -14,8 +14,9 @@
     font-weight: 600;
     line-height: 46px;
     text-align: center;
-    margin: 0 0 30px 0;
+    padding: 0 0 30px 0;
     color: #1d1c1d;
+    white-space: initial;
   }
 
   button {
@@ -39,7 +40,7 @@
 .horizontalContent {
   display: flex;
   width: 400px;
-  margin: 16px 0 24px 0;
+  padding: 16px 0 24px 0;
 
   hr {
     width: 150px;
@@ -54,11 +55,11 @@
 }
 
 .spanQuestion {
-  margin-top: 10px;
+  padding-top: 10px;
   color: #616061;
 }
 
-.spanSignIn {
+.spanSignUp {
   color: #1266a6;
   text-decoration: none;
 
@@ -95,7 +96,12 @@
 }
 
 .forgotPassword {
-  margin-top: 20px;
+  padding-top: 20px;
   font-size: 16px;
+  color: #616061;
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
