@@ -25,6 +25,7 @@ export class OpenChannelComponent implements OnInit {
   messages = [];
   channelId = '';
   sendedPostID = '';
+  author: string = 'Test User 1'
 
   threads$: Observable<DocumentData[]>;
   threadsId = '';
