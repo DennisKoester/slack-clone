@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   collection,
   Firestore,
@@ -25,7 +25,6 @@ export class OpenChannelComponent implements OnInit {
   messages = [];
   channelId = '';
   sendedPostID = '';
-  author: string = 'Test User 1'
 
   threads$: Observable<DocumentData[]>;
   threadsId = '';

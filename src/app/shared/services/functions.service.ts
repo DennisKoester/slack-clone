@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { collectionData } from '@angular/fire/firestore';
 import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -12,13 +12,21 @@ export class FunctionsService {
   messagesId = '';
   sendedPostID = '';
 
+  private index: number;
+
+  public setValue(value: number) {
+    this.index = value;
+  }
+
+  @Input() author: string;
+  @Input() message: string;
+
   threads$: Observable<DocumentData[]>;
   messages$: Observable<DocumentData[]>;
   messages: Array<any> = [];
   threads: Array<any> = [];
 
   constructor(private firestore: Firestore) {}
-
   showThreads(currentChannel) {
     this.channelId = currentChannel;
     console.log('ChannelId is', this.channelId);
@@ -40,6 +48,8 @@ export class FunctionsService {
     this.threads$.subscribe((data) => {
       this.threads = data;
       this.threadsId = this.threads[0]['threadsId'];
+      console.log('Index is', this.index);
+
       console.log('Collection of threads', this.threads);
       console.log('Data of current thread', this.threads[0]);
       console.log('ID of current thread', this.threads[0]['threadsId']);
@@ -66,6 +76,8 @@ export class FunctionsService {
     this.messages$.subscribe((data) => {
       this.messages = data;
       this.messagesId = this.messages[0]['messagesId'];
+      this.author = this.messages[0]['author'];
+      this.message = this.messages[0]['message'];
       console.log('Collection of messages', this.messages);
       console.log('ID of current message', this.messagesId);
       console.log(
