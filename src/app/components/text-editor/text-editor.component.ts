@@ -18,6 +18,7 @@ import { Observable } from '@firebase/util';
 import { DocumentData } from '@angular/fire/compat/firestore';
 import { getAuth } from 'firebase/auth';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 
 @Component({
   selector: 'app-text-editor',

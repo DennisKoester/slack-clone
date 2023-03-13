@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -6,7 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent {
+  @Input() isPrivate: boolean;
+
   menuCollapsed = false;
+
+  constructor(public functions: FunctionsService) {}
 
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;

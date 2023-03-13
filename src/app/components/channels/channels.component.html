@@ -13,7 +13,7 @@
     [name]="channel.name"
     [isPrivate]="channel.isPrivate"
     [routerLink]="['/home/channel/' + channel.channelId]"
-    (click)="functions.showThreads(channel.channelId)"
+    (click)="functions.showChannelName(channel.channelId)"
   ></app-channel-item>
 
   <div (click)="openDialog()" class="channel flex-ac">

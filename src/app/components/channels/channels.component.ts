@@ -17,6 +17,7 @@ import {
 // import { Observable } from '@firebase/util';
 import { Observable } from 'rxjs';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-channels',
@@ -29,9 +30,16 @@ export class ChannelsComponent {
   channels$: Observable<DocumentData[]>;
   channels: Array<any> = [];
 
-  constructor(public dialog: MatDialog, private firestore: Firestore, public functions: FunctionsService) {
+  constructor(
+    public dialog: MatDialog,
+    private firestore: Firestore,
+    public functions: FunctionsService,
+    public router: Router
+  ) {
     this.channelsCollection = collection(firestore, 'channels');
-    this.channels$ = collectionData(this.channelsCollection, {idField: 'channelId',});
+    this.channels$ = collectionData(this.channelsCollection, {
+      idField: 'channelId',
+    });
     this.channels$.subscribe((data) => {
       console.log(data);
       this.channels = data;
@@ -74,13 +82,36 @@ export class ChannelsComponent {
    * Creates a new channel in the Database
    * @param {JSON} data The metadata of the new channel
    */
+  // async createChannel(data) {
+  //   await setDoc(doc(this.channelsCollection), {
+  //     name: data.name,
+  //     isPrivate: data.isPrivate,
+  //     users: [],
+  //     threads: [],
+  //   });
+  // }
+
+  /**
+   * Creates a new channel in the Database
+   * @param {JSON} data The metadata of the new channel
+   */
   async createChannel(data) {
-    await setDoc(doc(this.channelsCollection), {
+    const channelRef = doc(this.channelsCollection);
+
+    await setDoc(channelRef, {
       name: data.name,
       isPrivate: data.isPrivate,
       users: [],
       threads: [],
     });
+
+    this.navigateToCreatedChannel(channelRef);
   }
 
+  navigateToCreatedChannel(channelRef) {
+    const createdChannelId = channelRef.id;
+
+    this.router.navigate(['/home/channel/' + createdChannelId]);
+    this.functions.showChannelName(createdChannelId);
+  }
 }

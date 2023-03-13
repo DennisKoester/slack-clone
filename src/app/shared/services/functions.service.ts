@@ -1,5 +1,5 @@
 import { Injectable, Input } from '@angular/core';
-import { collectionData } from '@angular/fire/firestore';
+import { collectionData, doc, getDoc } from '@angular/fire/firestore';
 import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,7 @@ export class FunctionsService {
   threadsId = '';
   threadsIds = [];
   channelId = '';
+  channelName: string = '';
   messagesId = '';
   sendedPostID = '';
 
@@ -77,5 +78,14 @@ export class FunctionsService {
         this.allMessages.push(this.messages[0]['message']);
       });
     }
+  }
+
+  async showChannelName(channelId: any) {
+    const channelCollection = getDoc(
+      doc(this.firestore, 'channels', channelId)
+    );
+
+    const channelData = (await channelCollection).data();
+    this.channelName = channelData['name'];
   }
 }
