@@ -95,7 +95,7 @@ export class ChannelsComponent {
    * Creates a new channel in the Database
    * @param {JSON} data The metadata of the new channel
    */
-  async createChannel(data) {
+  async createChannel(data: any) {
     const channelRef = doc(this.channelsCollection);
 
     await setDoc(channelRef, {
@@ -108,7 +108,7 @@ export class ChannelsComponent {
     this.navigateToCreatedChannel(channelRef);
   }
 
-  navigateToCreatedChannel(channelRef) {
+  navigateToCreatedChannel(channelRef: any) {
     const createdChannelId = channelRef.id;
 
     this.router.navigate(['/home/channel/' + createdChannelId]);
