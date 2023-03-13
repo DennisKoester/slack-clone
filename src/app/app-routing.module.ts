@@ -9,6 +9,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { OpenChannelComponent } from './components/open-channel/open-channel.component';
+import { TextEditorComponent } from './components/text-editor/text-editor.component';
 
 const routes: Routes = [
   // {path: '', component: AppComponent},

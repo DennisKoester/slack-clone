@@ -52,6 +52,8 @@ import { TextEditorComponent } from './components/text-editor/text-editor.compon
 import { ChannelItemComponent } from './components/channel-item/channel-item.component';
 import { OpenChannelComponent } from './components/open-channel/open-channel.component';
 import { ActivatedRoute, RouterModule, ROUTES } from '@angular/router';
+import { QuillModule } from 'ngx-quill';
+
 
 @NgModule({
   declarations: [
@@ -98,6 +100,12 @@ import { ActivatedRoute, RouterModule, ROUTES } from '@angular/router';
     MatDialogModule,
     MatCheckboxModule,
     FormsModule,
+    QuillModule.forRoot({
+      // customOptions: [{
+      //   import: 'formats/font',
+      //   whitelist: ['mirza', 'roboto', 'aref', 'serif', 'sansserif', 'monospace']
+      // }]
+    }),
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
