@@ -25,10 +25,10 @@ export class OpenChannelComponent implements OnInit {
   messages = [];
   channelId = '';
   sendedPostID = '';
-
   threads$: Observable<DocumentData[]>;
   threadsId = '';
   threads: Array<any> = [];
+  status: boolean = false;
 
   constructor(
     private firestore: Firestore,
@@ -46,6 +46,12 @@ export class OpenChannelComponent implements OnInit {
     // this.loadThreads();
     // console.log(this.channelId);
   }
+
+
+  openThread() {
+    this.status = !this.status;
+  }
+
 
   // loadThreads() {
   //   const threads = collection(

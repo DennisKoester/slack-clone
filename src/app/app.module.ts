@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ActivatedRoute, RouterModule, ROUTES } from '@angular/router';
+import { QuillModule } from 'ngx-quill';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+
 //firebase neu
 // import { environment } from '../environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -51,8 +53,8 @@ import { ThreadCardComponent } from './components/thread-card/thread-card.compon
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { ChannelItemComponent } from './components/channel-item/channel-item.component';
 import { OpenChannelComponent } from './components/open-channel/open-channel.component';
-import { ActivatedRoute, RouterModule, ROUTES } from '@angular/router';
-import { QuillModule } from 'ngx-quill';
+import { OpenedThreadComponent } from './components/opened-thread/opened-thread.component';
+
 
 
 @NgModule({
@@ -75,6 +77,7 @@ import { QuillModule } from 'ngx-quill';
     TextEditorComponent,
     ChannelItemComponent,
     OpenChannelComponent,
+    OpenedThreadComponent,
   ],
   imports: [
     BrowserModule,

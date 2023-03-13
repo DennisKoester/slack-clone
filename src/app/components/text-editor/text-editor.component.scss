@@ -1,15 +1,14 @@
 .editor {
-  position: absolute;
-  bottom: 85px;
-  left: 20px;
-  right: 20px;
+  position: relative;
   background-color: white;
   z-index: 999;
+
 
   quill-editor {
     height: 100px;
     width: 100%;
-    z-index: 999;   
+    z-index: 999;
+   
   }
   
   button {
