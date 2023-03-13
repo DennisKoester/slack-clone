@@ -19,8 +19,8 @@ export class FunctionsService {
     this.index = value;
   }
 
-  @Input() author: Array<any> = [];
-  @Input() message: Array<any> = [];
+  @Input() allAuthors: Array<any> = [];
+  @Input() allMessages: Array<any> = [];
 
   threads$: Observable<DocumentData[]>;
   messages$: Observable<DocumentData[]>;
@@ -29,6 +29,8 @@ export class FunctionsService {
 
   constructor(private firestore: Firestore) {}
   showThreads(currentChannel) {
+    this.allMessages = [];
+    this.allAuthors = [];
     this.channelId = currentChannel;
     // console.log('ChannelId is', this.channelId);
     this.gettingThreadsId();
@@ -53,7 +55,7 @@ export class FunctionsService {
           this.threadsIds.push(this.threads[i]['threadsId'])
         }
       }
-      this.threadsId = this.threads[0]['threadsId'];
+      // this.threadsId = this.threads[0]['threadsId'];
       // console.log('Index is', this.index);
 
       // console.log('Collection of threads', this.threads);
@@ -87,9 +89,10 @@ export class FunctionsService {
     this.messages$.subscribe((data) => {
       this.messages = data;
       // console.log(this.messages$);
-      this.messagesId = this.messages[0]['messagesId'];
-      this.author.push(this.messages[0]['author']);
-      this.message.push(this.messages[0]['message']);
+      // this.messagesId = this.messages[0]['messagesId'];
+      this.allAuthors.push(this.messages[0]['author']);
+      this.allMessages.push(this.messages[0]['message']);
+      // console.log(this.messages[0]['author']);
       // console.log('this.messagesId', this.messagesId);
 
       // console.log('Collection of messages', this.messages);
@@ -101,7 +104,7 @@ export class FunctionsService {
       // );
       // console.log('Author of current message', this.messages[0]['author']);
       // console.log('Message of current message', this.messages[0]['message']);
-      console.log('this.message',this.messages[0]['message']);
+      // console.log('this.message',this.messages[0]['message']);
     });
   }
   
