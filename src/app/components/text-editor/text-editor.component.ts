@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { User } from '@firebase/auth';
+import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill/public-api';
 
 @Component({
   selector: 'app-text-editor',
@@ -8,8 +10,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class TextEditorComponent implements OnInit{
 
-form: FormGroup;
-html: string;
+// form: FormGroup;
+// html: string;
+
+editorText = '' ;
+editorAuthor = '';
 quillConfig = {
   toolbar: {
     container: [
@@ -24,16 +29,16 @@ quillConfig = {
 
 
 ngOnInit(): void {
-  this.form = new FormGroup ( {
-    'text': new FormControl('<p><strong>Hello</strong></p>')
-  })
+  // this.form = new FormGroup ( {
+  //   'text': new FormControl('<p><strong>Hello</strong></p>')
+  // })
+
 }
 
- onSelectionChanged () {
-  console.log('TEST');
- }
+changedEditor(event: EditorChangeContent | EditorChangeSelection) {
+  this.editorText = event['text'];
+  console.log(this.editorText);
+}
 
- public blur(): void {
-  console.log('blur');
- }
+
 }

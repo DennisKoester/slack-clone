@@ -1,5 +1,7 @@
 <div class="editor">
-  <quill-editor></quill-editor>
+  <quill-editor (onEditorChanged)="changedEditor($event)">
+    <button>send</button>
+  </quill-editor>
 </div>
 
 

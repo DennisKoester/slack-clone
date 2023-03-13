@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import * as auth from 'firebase/auth';
 import {AngularFirestore,AngularFirestoreDocument} from '@angular/fire/compat/firestore';
+import { TextEditorComponent } from 'src/app/components/text-editor/text-editor.component';
 
 @Injectable({
   providedIn: 'root',
@@ -156,9 +157,12 @@ AuthLogin(provider: any) {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
     };
+
     return userRef.set(userData, {
       merge: true,
     });
+    
+
   }
 
 
