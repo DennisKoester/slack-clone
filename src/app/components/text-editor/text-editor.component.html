@@ -1,7 +1,8 @@
 <div class="editor">
   <quill-editor (onEditorChanged)="changedEditor($event)">
-    <button>send</button>
+    
   </quill-editor>
+  <button mat-flat-button color="primary" (click)="toFirebase()">send</button>
 </div>
 
 

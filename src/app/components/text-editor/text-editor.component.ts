@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { User } from '@firebase/auth';
 import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill/public-api';
+import { ActivatedRoute } from '@angular/router';
+import { addDoc, collection } from '@firebase/firestore';
+import { collectionData, doc, Firestore, getDoc } from '@angular/fire/firestore';
+import { Observable } from '@firebase/util';
+import { DocumentData } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-text-editor',
@@ -10,35 +15,28 @@ import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill/public-api
 })
 export class TextEditorComponent implements OnInit{
 
-// form: FormGroup;
-// html: string;
+  constructor(private route: ActivatedRoute, private firestore: Firestore) {
+    
+  }
 
 editorText = '' ;
 editorAuthor = '';
-quillConfig = {
-  toolbar: {
-    container: [
-      ['bold', 'italic', 'underline', 'strike', 'image', 'video'],
-      [{'size': ['xsmall', 'small', 'medium', 'large', 'xlarge']}],
-      [{'align': []}],
-      ['clean'],
-      ['link']
-    ]
-  }
-}
+channelId;
 
 
 ngOnInit(): void {
-  // this.form = new FormGroup ( {
-  //   'text': new FormControl('<p><strong>Hello</strong></p>')
-  // })
-
 }
 
 changedEditor(event: EditorChangeContent | EditorChangeSelection) {
   this.editorText = event['text'];
-  console.log(this.editorText);
 }
 
+toFirebase() {
+  this.route.paramMap.subscribe((paramMap) => {
+    this.channelId = paramMap.get('id');
+    const threads = collection(this.firestore, 'channels', this.channelId, 'threads');
+    addDoc(threads, {});
+  });
+}
 
 }
