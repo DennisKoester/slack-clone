@@ -114,4 +114,18 @@ export class ChannelsComponent {
     this.router.navigate(['/home/channel/' + createdChannelId]);
     this.functions.showChannelName(createdChannelId);
   }
+
+  // loadMessages() {
+  //   const q = query(
+  //     collection(this.firestore, 'channels', '2PO51PiEyilr2fPCxSwL')
+  //   );
+  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //     const threads = [];
+  //     querySnapshot.forEach((doc) => {
+  //       threads.push(doc.data()['thread']);
+  //     });
+  //     console.log('All threads ', threads.join(', '));
+  //     unsubscribe();
+  //   });
+  // }
 }

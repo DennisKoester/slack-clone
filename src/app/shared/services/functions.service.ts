@@ -1,5 +1,11 @@
 import { Injectable, Input } from '@angular/core';
-import { collectionData, doc, getDoc } from '@angular/fire/firestore';
+import {
+  collectionData,
+  doc,
+  getDoc,
+  onSnapshot,
+  query,
+} from '@angular/fire/firestore';
 import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -26,7 +32,7 @@ export class FunctionsService {
   threads$: Observable<DocumentData[]>;
   messages$: Observable<DocumentData[]>;
   messages: Array<any> = [];
-  threads: Array<any> = [];
+  // threads: Array<any> = [];
 
   constructor(private firestore: Firestore) {}
   showThreads(currentChannel) {
@@ -87,5 +93,21 @@ export class FunctionsService {
 
     const channelData = (await channelCollection).data();
     this.channelName = channelData['name'];
+
+    this.loadMessages(channelId);
+  }
+  threads: Array<any> = [];
+
+  loadMessages(channelId: any) {
+    const threadsInstance = collection(
+      this.firestore,
+      'channels',
+      channelId,
+      'threads',
+    );
+    collectionData(threadsInstance).subscribe((val) => {
+      console.log(val);
+    });
+
   }
 }

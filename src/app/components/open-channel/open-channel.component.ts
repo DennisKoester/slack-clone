@@ -8,6 +8,7 @@ import {
   collectionData,
   getFirestore,
   DocumentData,
+  where,
 } from '@angular/fire/firestore';
 
 import { ActivatedRoute } from '@angular/router';
@@ -46,4 +47,6 @@ export class OpenChannelComponent implements OnInit {
   openThread() {
     this.status = !this.status;
   }
+
+  
 }
