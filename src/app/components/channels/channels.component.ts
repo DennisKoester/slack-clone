@@ -29,13 +29,6 @@ export class ChannelsComponent {
   channels$: Observable<DocumentData[]>;
   channels: Array<any> = [];
 
-  // threads$: Observable<DocumentData[]>;
-  // threadsId = '';
-  // threads: Array<any> = [];
-
-  // channelId = '';
-  // messages = [];
-
   constructor(public dialog: MatDialog, private firestore: Firestore, public functions: FunctionsService) {
     this.channelsCollection = collection(firestore, 'channels');
     this.channels$ = collectionData(this.channelsCollection, {idField: 'channelId',});
@@ -90,74 +83,4 @@ export class ChannelsComponent {
     });
   }
 
-  // loadThreads(currentChannel) {
-  //   const threads = collection(
-  //     this.firestore,
-  //     'channels',
-  //     this.channelId,
-  //     'threads'[0]
-  //   );
-  //   const order = query(threads, orderBy('timestamp'));
-  //   const lodadId = this.channelId;
-
-  //   console.log('threads', threads);
-
-  //   let unsubscribe = onSnapshot(order, async (threads) => {
-  //     if (lodadId != this.channelId) {
-  //       unsubscribe();
-  //     } else {
-  //       // this.startLoading(threads);
-  //     }
-  //   });
-  // }
-
-  // startLoading(threads: any) {
-  //   const threadsCollection = collection(
-  //     this.firestore,
-  //     'channels',
-  //     this.channelId,
-  //     'threads'
-  //   );
-
-  //   const threads$ = collectionData(threadsCollection, {
-  //     idField: 'threadId',
-  //   });
-
-  //   this.messages = [];
-  //   threads.forEach((messageDoc: any) => {
-  //     let message = {
-  //       author: messageDoc.author,
-  //       authorImg: messageDoc.authorImg,
-  //       message: messageDoc.message,
-  //       timestamp: messageDoc.timestamp,
-  //     };
-  //     this.messages.push(message);
-  //   });
-  // }
-
-  // showThreads(currentChannel) {
-  //   this.channelId = currentChannel;
-  //   console.log('ChannelId is', this.channelId);
-  //   // this.loadThreads(currentChannel);
-  //   this.gettingThreadsId();
-  // }
-
-  // gettingThreadsId() {
-  //   const threadsCollection = collection(
-  //     this.firestore,
-  //     'channels',
-  //     this.channelId,
-  //     'threads'
-  //   );
-  //   this.threads$ = collectionData(threadsCollection, {
-  //     idField: 'threadsId',
-  //   });
-
-  //   this.threads$.subscribe((data) => {
-  //     console.log(data);
-  //     console.log(data[1]['threadsId']);
-  //     this.threads = data;
-  //   });
-  //   // console.log('threadsId is', this.threads);
-  // }
 }
