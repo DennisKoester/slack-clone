@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class FunctionsService {
+export class ChannelService {
   threadsId = '';
   threadsIds = [];
   channelId = '';
@@ -36,6 +36,7 @@ export class FunctionsService {
   threads: Array<any> = [];
 
   constructor(private firestore: Firestore) {}
+
   showThreads(currentChannel) {
     this.allMessages = [];
     this.allAuthors = [];
@@ -62,7 +63,9 @@ export class FunctionsService {
           this.threadsIds.push(this.threads[i]['threadsId']);
         }
       }
+      console.log('threadids', this.threadsIds);
     });
+    
   }
 
   gettingMessagesId() {
@@ -90,6 +93,7 @@ export class FunctionsService {
   openChannel(channelId) {
     this.showChannelName(channelId);
     this.loadMessages(channelId);
+    this.showThreads(channelId);
   }
 
   async showChannelName(channelId: any) {

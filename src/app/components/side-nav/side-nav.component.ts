@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { ChannelService } from 'src/app/shared/services/channel.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -11,7 +11,7 @@ export class SideNavComponent {
 
   menuCollapsed = false;
 
-  constructor(public functions: FunctionsService) {}
+  constructor(public channelService: ChannelService) {}
 
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
