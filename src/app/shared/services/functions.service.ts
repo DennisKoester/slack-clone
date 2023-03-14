@@ -17,6 +17,7 @@ export class FunctionsService {
   threadsIds = [];
   channelId = '';
   channelName: string = '';
+  channelIsPrivate: boolean = false;
   messagesId = '';
   sendedPostID = '';
 
@@ -98,6 +99,7 @@ export class FunctionsService {
 
     const channelData = (await channelCollection).data();
     this.channelName = channelData['name'];
+    this.channelIsPrivate = channelData['isPrivate'];
   }
 
   loadMessages(channelId: any) {
