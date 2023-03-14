@@ -36,6 +36,7 @@ export class ChannelService {
   threads: Array<any> = [];
 
   constructor(private firestore: Firestore) {}
+
   showThreads(currentChannel) {
     this.allMessages = [];
     this.allAuthors = [];
@@ -62,7 +63,9 @@ export class ChannelService {
           this.threadsIds.push(this.threads[i]['threadsId']);
         }
       }
+      console.log('threadids', this.threadsIds);
     });
+    
   }
 
   gettingMessagesId() {
@@ -90,6 +93,7 @@ export class ChannelService {
   openChannel(channelId) {
     this.showChannelName(channelId);
     this.loadMessages(channelId);
+    this.showThreads(channelId);
   }
 
   async showChannelName(channelId: any) {
