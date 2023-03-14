@@ -32,7 +32,7 @@ export class FunctionsService {
   threads$: Observable<DocumentData[]>;
   messages$: Observable<DocumentData[]>;
   messages: Array<any> = [];
-  // threads: Array<any> = [];
+  threads: Array<any> = [];
 
   constructor(private firestore: Firestore) {}
   showThreads(currentChannel) {
@@ -86,6 +86,11 @@ export class FunctionsService {
     }
   }
 
+  openChannel(channelId) {
+    this.showChannelName(channelId);
+    this.loadMessages(channelId);
+  }
+
   async showChannelName(channelId: any) {
     const channelCollection = getDoc(
       doc(this.firestore, 'channels', channelId)
@@ -93,21 +98,17 @@ export class FunctionsService {
 
     const channelData = (await channelCollection).data();
     this.channelName = channelData['name'];
-
-    this.loadMessages(channelId);
   }
-  threads: Array<any> = [];
 
   loadMessages(channelId: any) {
     const threadsInstance = collection(
       this.firestore,
       'channels',
       channelId,
-      'threads',
+      'threads'
     );
     collectionData(threadsInstance).subscribe((val) => {
       console.log(val);
     });
-
   }
 }
