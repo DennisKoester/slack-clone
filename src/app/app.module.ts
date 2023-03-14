@@ -103,12 +103,7 @@ import { OpenedThreadComponent } from './components/opened-thread/opened-thread.
     MatDialogModule,
     MatCheckboxModule,
     FormsModule,
-    QuillModule.forRoot({
-      // customOptions: [{
-      //   import: 'formats/font',
-      //   whitelist: ['mirza', 'roboto', 'aref', 'serif', 'sansserif', 'monospace']
-      // }]
-    }),
+    QuillModule.forRoot(),
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
