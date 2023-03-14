@@ -67,7 +67,7 @@ SignIn(email, password) {
   return this.afAuth
   .signInWithEmailAndPassword(email, password)
   .then((result) => {
-    this.SetUserData(result.user);
+    // this.SetUserData(result.user);
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.router.navigate(['home']);
