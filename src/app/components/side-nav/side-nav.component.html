@@ -31,10 +31,10 @@
         >
           <mat-icon [ngStyle]="{ color: 'black' }">menu</mat-icon>
         </button>
-        <mat-icon *ngIf="functions.channelName" fontIcon>{{
-          functions.channelIsPrivate ? "lock" : "numbers"
+        <mat-icon *ngIf="channelService.channelName" fontIcon>{{
+          channelService.channelIsPrivate ? "lock" : "numbers"
         }}</mat-icon>
-        <span> {{ functions.channelName }}</span>
+        <span> {{ channelService.channelName }}</span>
       </div>
     </mat-toolbar-row>
     <div class="channel-content-container">

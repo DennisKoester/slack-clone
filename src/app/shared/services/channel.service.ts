@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class FunctionsService {
+export class ChannelService {
   threadsId = '';
   threadsIds = [];
   channelId = '';

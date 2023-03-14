@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { ChannelService } from 'src/app/shared/services/channel.service';
 
 @Component({
   selector: 'app-thread-card',
@@ -11,14 +11,13 @@ export class ThreadCardComponent implements OnInit {
   @Input() message: string;
   @Input() index: number;
 
-  constructor(private functions: FunctionsService) {}
+  constructor(private channelService: ChannelService) {}
 
-ngOnInit(): void {
-  this.sendIndex();
-}
+  ngOnInit(): void {
+    this.sendIndex();
+  }
 
-sendIndex() {
-  this.functions.setValue(this.index);
-}
-
+  sendIndex() {
+    this.channelService.setValue(this.index);
+  }
 }

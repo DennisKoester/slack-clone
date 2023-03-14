@@ -16,8 +16,9 @@ import {
 } from '@angular/fire/firestore';
 // import { Observable } from '@firebase/util';
 import { Observable } from 'rxjs';
-import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-channels',
@@ -33,7 +34,7 @@ export class ChannelsComponent {
   constructor(
     public dialog: MatDialog,
     private firestore: Firestore,
-    public functions: FunctionsService,
+    public channelService: ChannelService,
     public router: Router
   ) {
     this.channelsCollection = collection(firestore, 'channels');
@@ -112,7 +113,7 @@ export class ChannelsComponent {
     const createdChannelId = channelRef.id;
 
     this.router.navigate(['/home/channel/' + createdChannelId]);
-    this.functions.showChannelName(createdChannelId);
+    this.channelService.showChannelName(createdChannelId);
   }
 
   // loadMessages() {

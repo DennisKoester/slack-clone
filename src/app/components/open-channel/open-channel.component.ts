@@ -13,7 +13,7 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { ChannelService } from 'src/app/shared/services/channel.service';
 
 @Component({
   selector: 'app-open-channel',
@@ -32,7 +32,7 @@ export class OpenChannelComponent implements OnInit {
   constructor(
     private firestore: Firestore,
     private route: ActivatedRoute,
-    public functions: FunctionsService
+    public channelService: ChannelService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +47,4 @@ export class OpenChannelComponent implements OnInit {
   openThread() {
     this.status = !this.status;
   }
-
-  
 }
