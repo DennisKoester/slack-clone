@@ -1,3 +1,15 @@
+p,
+span,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .channel {
     gap: 8px;
     margin: 0 8px;

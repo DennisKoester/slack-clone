@@ -3,6 +3,18 @@
   cursor: pointer;
 }
 
+p,
+span,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .direct-msg-hl {
   gap: 8px;
   padding: 12px 5px 5px 20px;

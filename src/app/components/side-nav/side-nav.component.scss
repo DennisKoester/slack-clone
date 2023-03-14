@@ -31,13 +31,18 @@
   padding: 12px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   background-color: var(--bg-color-side-nav);
+}
 
-  h2 {
-    margin: 0;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+p,
+span,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .navigation {

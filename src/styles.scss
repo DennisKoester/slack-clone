@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~quill/dist/quill.core.css';
-@import '~quill/dist/quill.bubble.css';
-@import '~quill/dist/quill.snow.css';
-@import '~quill-emoji/dist/quill-emoji.css';
-@import '~quill-emoji/dist/quill-emoji.css';
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.snow.css";
+@import "~quill-emoji/dist/quill-emoji.css";
+@import "~quill-emoji/dist/quill-emoji.css";
 
 :root {
   --bg-color-side-nav: #4a154b;
@@ -18,18 +18,6 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-p,
-span,
-h1,
-h2,
-h3,
-h4 {
-  margin: 0 !important;
-  // white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .mat-icon {
