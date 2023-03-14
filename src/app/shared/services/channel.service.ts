@@ -182,7 +182,7 @@ export class ChannelService {
       'threads'
     );
     collectionData(threadsInstance).subscribe((val) => {
-      console.log(val);
+      console.log('val:',val);
     });
   }
 }
