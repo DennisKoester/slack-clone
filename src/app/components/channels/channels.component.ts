@@ -17,6 +17,7 @@ import {
 // import { Observable } from '@firebase/util';
 import { Observable } from 'rxjs';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-channels',
@@ -29,16 +30,16 @@ export class ChannelsComponent {
   channels$: Observable<DocumentData[]>;
   channels: Array<any> = [];
 
-  // threads$: Observable<DocumentData[]>;
-  // threadsId = '';
-  // threads: Array<any> = [];
-
-  // channelId = '';
-  // messages = [];
-
-  constructor(public dialog: MatDialog, private firestore: Firestore, public functions: FunctionsService) {
+  constructor(
+    public dialog: MatDialog,
+    private firestore: Firestore,
+    public functions: FunctionsService,
+    public router: Router
+  ) {
     this.channelsCollection = collection(firestore, 'channels');
-    this.channels$ = collectionData(this.channelsCollection, {idField: 'channelId',});
+    this.channels$ = collectionData(this.channelsCollection, {
+      idField: 'channelId',
+    });
     this.channels$.subscribe((data) => {
       console.log(data);
       this.channels = data;
@@ -81,83 +82,50 @@ export class ChannelsComponent {
    * Creates a new channel in the Database
    * @param {JSON} data The metadata of the new channel
    */
-  async createChannel(data) {
-    await setDoc(doc(this.channelsCollection), {
+  // async createChannel(data) {
+  //   await setDoc(doc(this.channelsCollection), {
+  //     name: data.name,
+  //     isPrivate: data.isPrivate,
+  //     users: [],
+  //     threads: [],
+  //   });
+  // }
+
+  /**
+   * Creates a new channel in the Database
+   * @param {JSON} data The metadata of the new channel
+   */
+  async createChannel(data: any) {
+    const channelRef = doc(this.channelsCollection);
+
+    await setDoc(channelRef, {
       name: data.name,
       isPrivate: data.isPrivate,
       users: [],
       threads: [],
     });
+
+    this.navigateToCreatedChannel(channelRef);
   }
 
-  // loadThreads(currentChannel) {
-  //   const threads = collection(
-  //     this.firestore,
-  //     'channels',
-  //     this.channelId,
-  //     'threads'[0]
+  navigateToCreatedChannel(channelRef: any) {
+    const createdChannelId = channelRef.id;
+
+    this.router.navigate(['/home/channel/' + createdChannelId]);
+    this.functions.showChannelName(createdChannelId);
+  }
+
+  // loadMessages() {
+  //   const q = query(
+  //     collection(this.firestore, 'channels', '2PO51PiEyilr2fPCxSwL')
   //   );
-  //   const order = query(threads, orderBy('timestamp'));
-  //   const lodadId = this.channelId;
-
-  //   console.log('threads', threads);
-
-  //   let unsubscribe = onSnapshot(order, async (threads) => {
-  //     if (lodadId != this.channelId) {
-  //       unsubscribe();
-  //     } else {
-  //       // this.startLoading(threads);
-  //     }
+  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //     const threads = [];
+  //     querySnapshot.forEach((doc) => {
+  //       threads.push(doc.data()['thread']);
+  //     });
+  //     console.log('All threads ', threads.join(', '));
+  //     unsubscribe();
   //   });
-  // }
-
-  // startLoading(threads: any) {
-  //   const threadsCollection = collection(
-  //     this.firestore,
-  //     'channels',
-  //     this.channelId,
-  //     'threads'
-  //   );
-
-  //   const threads$ = collectionData(threadsCollection, {
-  //     idField: 'threadId',
-  //   });
-
-  //   this.messages = [];
-  //   threads.forEach((messageDoc: any) => {
-  //     let message = {
-  //       author: messageDoc.author,
-  //       authorImg: messageDoc.authorImg,
-  //       message: messageDoc.message,
-  //       timestamp: messageDoc.timestamp,
-  //     };
-  //     this.messages.push(message);
-  //   });
-  // }
-
-  // showThreads(currentChannel) {
-  //   this.channelId = currentChannel;
-  //   console.log('ChannelId is', this.channelId);
-  //   // this.loadThreads(currentChannel);
-  //   this.gettingThreadsId();
-  // }
-
-  // gettingThreadsId() {
-  //   const threadsCollection = collection(
-  //     this.firestore,
-  //     'channels',
-  //     this.channelId,
-  //     'threads'
-  //   );
-  //   this.threads$ = collectionData(threadsCollection, {
-  //     idField: 'threadsId',
-  //   });
-
-  //   this.threads$.subscribe((data) => {
-  //     console.log(data);
-  //     console.log(data[1]['threadsId']);
-  //     this.threads = data;
-  //   });
-  //   // console.log('threadsId is', this.threads);
   // }
 }
