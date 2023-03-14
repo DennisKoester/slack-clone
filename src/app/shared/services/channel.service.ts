@@ -3,10 +3,13 @@ import {
   collectionData,
   doc,
   getDoc,
+  getDocs,
   onSnapshot,
+  orderBy,
   query,
 } from '@angular/fire/firestore';
 import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
+import { Unsubscribe } from 'firebase/app-check';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -34,6 +37,7 @@ export class ChannelService {
   messages$: Observable<DocumentData[]>;
   messages: Array<any> = [];
   threads: Array<any> = [];
+  unsub: Unsubscribe;
 
   constructor(private firestore: Firestore) {}
 
@@ -41,54 +45,118 @@ export class ChannelService {
     this.allMessages = [];
     this.allAuthors = [];
     this.channelId = currentChannel;
-    this.gettingThreadsId();
-    this.gettingMessagesId();
+    // this.gettingThreadsId();
+    // this.gettingMessagesId();
+    this.snapCurrentChannel();
   }
+  //
+  //
+  //
+  //
+  //
 
-  gettingThreadsId() {
-    const threadsCollection = collection(
+  snapCurrentChannel() {
+    this.allMessages = [];
+    const colRef = collection(
       this.firestore,
       'channels',
       this.channelId,
       'threads'
     );
-    this.threads$ = collectionData(threadsCollection, {
-      idField: 'threadsId',
-    });
-
-    this.threads$.subscribe((data) => {
-      this.threads = data;
-      for (let i = 0; i < this.threads.length; i++) {
-        if (!this.threadsIds.includes(this.threads[i]['threadsId'])) {
-          this.threadsIds.push(this.threads[i]['threadsId']);
-        }
+    const q = query(colRef, orderBy('timestamp'));
+    this.unsub = onSnapshot(
+      q,
+      (snapshot) => {
+        this.snapCurrentChannelMessages(snapshot);
+        console.log(snapshot);
+      },
+      (error) => {
+        console.warn('Loading current channel error', error);
       }
-      console.log('threadids', this.threadsIds);
-    });
-    
+    );
   }
 
-  gettingMessagesId() {
-    for (let i = 0; i < this.threadsIds.length; i++) {
-      const messagesCollection = collection(
+  snapCurrentChannelMessages(snapshot) {
+    snapshot.docChanges().forEach(async (change) => {
+      if (change.type == 'added') {
+        this.addSnapMessage(change);
+        console.log('change', change);
+      } else if (change.type == 'removed') {
+        console.log('change removed', change);
+      } else if (change.type == 'modified') {
+      }
+    });
+  }
+
+  async addSnapMessage(change) {
+    let message = await getDocs(
+      collection(
         this.firestore,
         'channels',
         this.channelId,
         'threads',
-        this.threadsIds[i],
+        change.doc.id,
         'messages'
-      );
-      this.messages$ = collectionData(messagesCollection, {
-        idField: 'messagesId',
-      });
+      )
+    );
+    let thread = {
+      ...(change.doc.data() as object),
+      id: change.doc.id,
+      message: message.size,
+    };
+    console.log('message is', thread);
 
-      this.messages$.subscribe((data) => {
-        this.messages = data;
-        this.allAuthors.push(this.messages[0]['author']);
-        this.allMessages.push(this.messages[0]['message']);
-      });
-    }
+    this.allMessages.push(message);
+    console.log('all messages', this.allMessages);
   }
+  //
+  //
+  //
+  //
+  //
+  // gettingThreadsId() {
+  //   const threadsCollection = collection(
+  //     this.firestore,
+  //     'channels',
+  //     this.channelId,
+  //     'threads'
+  //   );
+  //   this.threads$ = collectionData(threadsCollection, {
+  //     idField: 'threadsId',
+  //   });
+
+  //   this.threads$.subscribe((data) => {
+  //     this.threads = data;
+  //     for (let i = 0; i < this.threads.length; i++) {
+  //       if (!this.threadsIds.includes(this.threads[i]['threadsId'])) {
+  //         this.threadsIds.push(this.threads[i]['threadsId']);
+  //       }
+  //     }
+  //     console.log('threadids', this.threadsIds);
+  //   });
+  // }
+
+  // gettingMessagesId() {
+  //   for (let i = 0; i < this.threadsIds.length; i++) {
+  //     const messagesCollection = collection(
+  //       this.firestore,
+  //       'channels',
+  //       this.channelId,
+  //       'threads',
+  //       this.threadsIds[i],
+  //       'messages'
+  //     );
+  //     this.messages$ = collectionData(messagesCollection, {
+  //       idField: 'messagesId',
+  //     });
+
+  //     this.messages$.subscribe((data) => {
+  //       this.messages = data;
+  //       this.allAuthors.push(this.messages[0]['author']);
+  //       this.allMessages.push(this.messages[0]['message']);
+  //     });
+  //   }
+  // }
 
   openChannel(channelId) {
     this.showChannelName(channelId);

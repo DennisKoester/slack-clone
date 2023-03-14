@@ -11,7 +11,7 @@ export class ThreadCardComponent implements OnInit {
   @Input() message: string;
   @Input() index: number;
 
-  constructor(private channelService: ChannelService) {}
+  constructor(public channelService: ChannelService) {}
 
   ngOnInit(): void {
     this.sendIndex();
