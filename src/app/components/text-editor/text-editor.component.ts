@@ -23,7 +23,6 @@ editorText = '' ;
 editorAuthor = '';
 channelId;
 
-
 ngOnInit(): void {
 }
 
@@ -35,7 +34,8 @@ toFirebase() {
   this.route.paramMap.subscribe((paramMap) => {
     this.channelId = paramMap.get('id');
     const threads = collection(this.firestore, 'channels', this.channelId, 'threads');
-    addDoc(threads, {});
+    const id = addDoc(threads, {message: 'hallo'});
+    console.log(id);
   });
 }
 
