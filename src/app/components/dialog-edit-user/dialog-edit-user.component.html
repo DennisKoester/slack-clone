@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>edit user</h1>
+<div mat-dialog-content id="dialog-content">
+    <mat-form-field appearance="fill">
+        <mat-label>name</mat-label>
+        <input matInput [(ngModel)]="name">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button cdkFocusInitial (click)="updateUser()" mat-dialog-close>OK</button>
+</div>
+
+<!-- 
+  [(ngModel)]="dialogData.name"
+  
+  [mat-dialog-close]="dialogData"
+  [disabled]="dialogData.name.length == 0"
+  
+  [(ngModel)]="dialogData.isPrivate" -->

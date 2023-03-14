@@ -34,6 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
 
 //components
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -54,6 +55,7 @@ import { TextEditorComponent } from './components/text-editor/text-editor.compon
 import { ChannelItemComponent } from './components/channel-item/channel-item.component';
 import { OpenChannelComponent } from './components/open-channel/open-channel.component';
 import { OpenedThreadComponent } from './components/opened-thread/opened-thread.component';
+import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
 
 
 
@@ -78,6 +80,7 @@ import { OpenedThreadComponent } from './components/opened-thread/opened-thread.
     ChannelItemComponent,
     OpenChannelComponent,
     OpenedThreadComponent,
+    DialogEditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +107,7 @@ import { OpenedThreadComponent } from './components/opened-thread/opened-thread.
     MatCheckboxModule,
     FormsModule,
     QuillModule.forRoot(),
+    MatMenuModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],

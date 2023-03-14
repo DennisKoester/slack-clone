@@ -11,9 +11,23 @@
         <mat-icon fontIcon="search"></mat-icon>
       </div>
 
-      <div class="profile-img">
-        <a (click)="authenticationService.SignOut()" class="logout"><img src="./assets/img/profile_image.jpg"><div class="status-dot"></div></a>
-      </div>
+      
+
+      <button mat-button [matMenuTriggerFor]="menu"><div class="profile-img" >
+        <a class="logout">
+          <img src="./assets/img/profile_image.jpg">
+          <div class="status-dot"></div>
+        </a>
+      </div></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openDialog()">edit User</button>
+        <button mat-menu-item (click)="authenticationService.SignOut()">logout</button>
+      </mat-menu>
+
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
+
+
+
+<!--   -->
