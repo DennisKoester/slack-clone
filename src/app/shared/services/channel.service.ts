@@ -107,17 +107,15 @@ export class ChannelService {
       id: change.doc.id,
       messages: message.size,
     };
-    
+
     console.log('change is', change);
-    console.log('thread is', thread); //! doc of thread
- 
+    console.log('thread is', thread);
+
     // this.allMessages.push(message);
     // this.allThreads.push(thread);
     // console.log('all threads', this.allThreads);
   }
 
-
-  
   // async testFunction() {
   //   const querySnapshot = await getDocs(
   //     collection(
