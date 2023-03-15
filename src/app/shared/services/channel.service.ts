@@ -24,6 +24,10 @@ export class ChannelService {
   messagesFromCurrentThreadIds: Array<any> = [];
   openedThreadId;
   currentThreadContent = [];
+
+  openedChannel = false;
+  openedThread = false;
+  
   // threadsId = '';
   // messagesId = '';
   // sendedPostID = '';
@@ -47,8 +51,9 @@ export class ChannelService {
   constructor(private firestore: Firestore) {}
   
 
-
   async openChannel(channelId) {
+    if (this.openedChannel == false ) {
+    this.openedChannel = true;
     this.threadsIds = [];
     this.firstMessagesIds = [];
     this.firstMessages = [];
@@ -62,6 +67,8 @@ export class ChannelService {
     await this.getThreadIds(channelId);
     await this.getFirstMessagesIds(channelId);
     await this.getFirstMessagesContent(channelId);
+    this.openedChannel = false;
+    }
   }
 
 
@@ -108,7 +115,6 @@ export class ChannelService {
       this.allMessagesFromThread.sort((a, b) => {
         return parseFloat(a.timestamp) - parseFloat(b.timestamp);
       });
-      this.allMessagesFromThread.splice(1);
       this.firstMessagesIds.push(this.allMessagesFromThread[0]);
       this.allMessagesFromThread = [];
     }
@@ -136,13 +142,18 @@ export class ChannelService {
   
 
   async openThread(i) {
-    this.currentThreadContent = [];
-    this.messagesFromCurrentThreadIds = [];
-    this.status = !this.status;
-    this.openedThreadId = this.threadsIds[i]['id'];
-    await this.getCurrentThreadMessagesIds();
-    await this.getCurrentThreadContent();
+    if (this.openedThread == false ) {
+      this.openedThread = true;
+      this.currentThreadContent = [];
+      this.messagesFromCurrentThreadIds = [];
+      this.status = !this.status;
+      this.openedThreadId = this.threadsIds[i]['id'];
+      await this.getCurrentThreadMessagesIds();
+      await this.getCurrentThreadContent();
+      this.openedThread = false;
+    }
   }
+
 
   async getCurrentThreadMessagesIds() {
     const colRef = collection(this.firestore, 'channels', this.channelId, 'threads', this.openedThreadId, 'messages');
@@ -159,7 +170,6 @@ export class ChannelService {
       
     }
   
-
 
   async getCurrentThreadContent() {
     console.log('length', this.messagesFromCurrentThreadIds.length)
