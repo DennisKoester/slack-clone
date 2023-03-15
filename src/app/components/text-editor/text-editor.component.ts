@@ -97,7 +97,7 @@ export class TextEditorComponent implements OnInit {
 
   createMessage(threadId: any, timestamp: any) {
     const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-
+  
     const messages = collection(
       this.firestore,
       'channels',
