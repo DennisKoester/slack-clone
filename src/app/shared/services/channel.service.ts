@@ -18,7 +18,7 @@ export class ChannelService implements OnInit{
   firstMessagesIds: Array<any> = [];
   @Input() firstMessages = [];
   i;
-
+  allMessagesFromThread = [];
 
 
   threadsId = '';
@@ -68,35 +68,49 @@ export class ChannelService implements OnInit{
 
 
   async getThreadIds(channelId: any) {
-    //get ids of all threads in the current channel and push them into threadsIds
+    //get ids of all threads in the current channel and push them into threadsIds (sorted by timestamp)
     this.threadsIds = [];
     const colRef = collection(this.firestore, 'channels', channelId, 'threads');
     const docsSnap = await getDocs(colRef);
+
     docsSnap.forEach(doc => {
-      this.threadsIds.push(doc.id);
+      this.threadsIds.push({
+        'id': doc.id,
+        'timestamp': doc['_document']['createTime']['timestamp']['seconds']
+      });
     });
+
+    this.threadsIds.sort((a, b) => {
+      return parseFloat(a.timestamp) - parseFloat(b.timestamp);
+    })
   }
 
 
   async getFirstMessagesIds (channelId: any) {
     //get ids of all threads in the current channel and push them into threadsIds
     for (let i = 0; i < this.threadsIds.length; i++) {
-      const colRef = collection(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i], 'messages');
+      const colRef = collection(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i]['id'], 'messages');
       const docsSnap = await getDocs(colRef);
-      this.i = 0;
       docsSnap.forEach(doc => {
-        if (this.i == 0) {
-          this.firstMessagesIds.push(doc.id);
-          this.i = 1;
-        }
+          this.allMessagesFromThread.push({
+            'id':doc.id,
+            'timestamp': doc['_document']['createTime']['timestamp']['seconds']
+          }); 
       });
+      this.allMessagesFromThread.sort((a, b) => {
+        return parseFloat(a.timestamp) - parseFloat(b.timestamp);
+      });
+      this.allMessagesFromThread.splice(1);
+      this.firstMessagesIds.push(this.allMessagesFromThread[0]);
+      this.allMessagesFromThread = [];
     }
   } 
+
 
   async getFirstMessagesContent(channelId) {
     //get the message and author of every first message and push them into firstMessages
     for (let i = 0; i < this.firstMessagesIds.length; i++) {
-      const docRef =  doc(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i],'messages', this.firstMessagesIds[i]);
+      const docRef =  doc(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i]['id'],'messages', this.firstMessagesIds[i]['id']);
       const docSnap = await getDoc(docRef);
       const data = await docSnap.data();
       this.firstMessages.push({
