@@ -27,7 +27,7 @@ export class ChannelService {
 
   openedChannel = false;
   openedThread = false;
-  
+
   // threadsId = '';
   // messagesId = '';
   // sendedPostID = '';
@@ -126,11 +126,11 @@ export class ChannelService {
     for (let i = 0; i < this.firstMessagesIds.length; i++) {
       const docRef =  doc(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i]['id'],'messages', this.firstMessagesIds[i]['id']);
       const docSnap = await getDoc(docRef);
-      const data = await docSnap.data();
+      const data = docSnap.data();
 
       const docRef2 =  doc(this.firestore, 'users', data['author']);
       const docSnap2 = await getDoc(docRef2);
-      const data2 = await docSnap2.data();
+      const data2 = docSnap2.data();
       
       this.firstMessages.push({
         'author': data2['displayName'],
