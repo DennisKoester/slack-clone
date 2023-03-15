@@ -10,6 +10,7 @@ export class ThreadCardComponent implements OnInit {
   @Input() author: string;
   @Input() message: string;
   @Input() index: number;
+  
 
   constructor(public channelService: ChannelService) {}
 

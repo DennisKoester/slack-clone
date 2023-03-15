@@ -23,6 +23,7 @@ export class ChannelService {
   channelIsPrivate: boolean = false;
   messagesId = '';
   sendedPostID = '';
+  messageData: Observable<any>;
 
   private index: number;
 
@@ -32,6 +33,7 @@ export class ChannelService {
 
   @Input() allAuthors: Array<any> = [];
   @Input() allMessages: Array<any> = [];
+  @Input() allThreads: Array<any> = [];
 
   threads$: Observable<DocumentData[]>;
   messages$: Observable<DocumentData[]>;
@@ -48,6 +50,7 @@ export class ChannelService {
     // this.gettingThreadsId();
     // this.gettingMessagesId();
     this.snapCurrentChannel();
+    // this.testFunction();
   }
   //
   //
@@ -80,9 +83,9 @@ export class ChannelService {
     snapshot.docChanges().forEach(async (change) => {
       if (change.type == 'added') {
         this.addSnapMessage(change);
-        console.log('change', change);
+        // console.log('change', change);
       } else if (change.type == 'removed') {
-        console.log('change removed', change);
+        // console.log('change removed', change);
       } else if (change.type == 'modified') {
       }
     });
@@ -102,13 +105,42 @@ export class ChannelService {
     let thread = {
       ...(change.doc.data() as object),
       id: change.doc.id,
-      message: message.size,
+      messages: message.size,
     };
-    console.log('message is', thread);
-
-    this.allMessages.push(message);
-    console.log('all messages', this.allMessages);
+    
+    console.log('change is', change);
+    console.log('thread is', thread); //! doc of thread
+ 
+    // this.allMessages.push(message);
+    // this.allThreads.push(thread);
+    // console.log('all threads', this.allThreads);
   }
+
+
+  
+  // async testFunction() {
+  //   const querySnapshot = await getDocs(
+  //     collection(
+  //       this.firestore,
+  //       'channels',
+  //       this.channelId,
+  //       'threads',
+  //       '5QDER5vAPQbG3ZFGR4ex',
+  //       'messages'
+  //     )
+  //   );
+  //   querySnapshot.forEach((doc) => {
+  //     // doc.data() is never undefined for query doc snapshots
+  //     console.log(doc.id, ' => ', doc.data());
+  //     const data = doc.data();
+  //     const author = data['author'];
+  //     console.log('author is', author);
+
+  //   });
+  // }
+
+  // }
+
   //
   //
   //
@@ -182,7 +214,7 @@ export class ChannelService {
       'threads'
     );
     collectionData(threadsInstance).subscribe((val) => {
-      console.log('val:',val);
+      console.log('val:', val);
     });
   }
 }
