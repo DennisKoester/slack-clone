@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChannelService } from 'src/app/shared/services/channel.service';
 
 @Component({
   selector: 'app-opened-thread',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class OpenedThreadComponent {
 
+
+  constructor(public channelService: ChannelService) {
+
+  }
 }

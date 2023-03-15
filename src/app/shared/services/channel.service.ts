@@ -10,50 +10,53 @@ import { Observable } from 'rxjs';
 })
 
 
-export class ChannelService implements OnInit{
+export class ChannelService {
   channelId = '';
   channelName: string = '';
   channelIsPrivate: boolean = false;
   threadsIds: Array<any> = [];
   firstMessagesIds: Array<any> = [];
   @Input() firstMessages = [];
-  i;
   allMessagesFromThread = [];
-
-
-  threadsId = '';
-  messagesId = '';
-  sendedPostID = '';
-  messageData: Observable<any>;
-  threads$: Observable<DocumentData[]>;
-  messages$: Observable<DocumentData[]>;
-  messages: Array<any> = [];
-  threads: Array<any> = [];
-  unsub: Unsubscribe;
   private index: number;
+  status: boolean = false;
+  messagesFromCurrentThreadIds: Array<any> = [];
+  openedThreadId;
+  currentThreadContent = [];
+  // threadsId = '';
+  // messagesId = '';
+  // sendedPostID = '';
+  // messageData: Observable<any>;
+  // threads$: Observable<DocumentData[]>;
+  // messages$: Observable<DocumentData[]>;
+  // messages: Array<any> = [];
+  // threads: Array<any> = [];
+  // unsub: Unsubscribe;
+ 
 
   public setValue(value: number) {
     this.index = value;
   }
 
-  @Input() allAuthors: Array<any> = [];
-  @Input() allMessages: Array<any> = [];
-  @Input() allThreads: Array<any> = [];
+  // @Input() allAuthors: Array<any> = [];
+  // @Input() allMessages: Array<any> = [];
+  // @Input() allThreads: Array<any> = [];
 
   
   constructor(private firestore: Firestore) {}
-
-  ngOnInit(): void {
-    
-  }
+  
 
 
   async openChannel(channelId) {
+    this.threadsIds = [];
+    this.firstMessagesIds = [];
+    this.firstMessages = [];
+    this.allMessagesFromThread = [];
+    this.channelId = channelId;
     await this.showChannelName(channelId);
     await this.getThreadIds(channelId);
     await this.getFirstMessagesIds(channelId);
     await this.getFirstMessagesContent(channelId);
-    this.showThreads(channelId);
   }
 
 
@@ -67,8 +70,8 @@ export class ChannelService implements OnInit{
   }
 
 
+//get ids of all threads in the current channel and push them into threadsIds (sorted by timestamp)
   async getThreadIds(channelId: any) {
-    //get ids of all threads in the current channel and push them into threadsIds (sorted by timestamp)
     this.threadsIds = [];
     const colRef = collection(this.firestore, 'channels', channelId, 'threads');
     const docsSnap = await getDocs(colRef);
@@ -85,9 +88,9 @@ export class ChannelService implements OnInit{
     })
   }
 
-
+  
+//get ids of all threads in the current channel and push them into threadsIds
   async getFirstMessagesIds (channelId: any) {
-    //get ids of all threads in the current channel and push them into threadsIds
     for (let i = 0; i < this.threadsIds.length; i++) {
       const colRef = collection(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i]['id'], 'messages');
       const docsSnap = await getDocs(colRef);
@@ -107,21 +110,74 @@ export class ChannelService implements OnInit{
   } 
 
 
+//get the message and author of every first message and push them into firstMessages
   async getFirstMessagesContent(channelId) {
-    //get the message and author of every first message and push them into firstMessages
     for (let i = 0; i < this.firstMessagesIds.length; i++) {
       const docRef =  doc(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i]['id'],'messages', this.firstMessagesIds[i]['id']);
       const docSnap = await getDoc(docRef);
       const data = await docSnap.data();
+
+      const docRef2 =  doc(this.firestore, 'users', data['author']);
+      const docSnap2 = await getDoc(docRef2);
+      const data2 = await docSnap2.data();
+      
       this.firstMessages.push({
-        'author': data['author'],
+        'author': data2['displayName'],
         'message': data['message'],
         'timestamp': data['timestamp']
       });
     }
-    console.log(this.firstMessages);
   }
   
+
+  async openThread(i) {
+    this.currentThreadContent = [];
+    this.messagesFromCurrentThreadIds = [];
+    this.status = !this.status;
+    this.openedThreadId = this.threadsIds[i]['id'];
+    await this.getCurrentThreadMessagesIds();
+    await this.getCurrentThreadContent();
+  }
+
+  async getCurrentThreadMessagesIds() {
+    const colRef = collection(this.firestore, 'channels', this.channelId, 'threads', this.openedThreadId, 'messages');
+      const docsSnap = await getDocs(colRef);
+      docsSnap.forEach(doc => {
+          this.messagesFromCurrentThreadIds.push({
+            'id':doc.id,
+            'timestamp': doc['_document']['createTime']['timestamp']['seconds']
+          }); 
+      });
+      this.messagesFromCurrentThreadIds.sort((a, b) => {
+        return parseFloat(a.timestamp) - parseFloat(b.timestamp);
+      });
+      
+    }
+  
+
+
+  async getCurrentThreadContent() {
+    console.log('length', this.messagesFromCurrentThreadIds.length)
+    for (let i = 0; i < this.messagesFromCurrentThreadIds.length; i++) {
+      const docRef =  doc(this.firestore, 'channels', this.channelId, 'threads', this.openedThreadId,'messages', this.messagesFromCurrentThreadIds[i]['id']);
+      const docSnap = await getDoc(docRef);
+      const data = await docSnap.data();
+
+      const docRef2 =  doc(this.firestore, 'users', data['author']);
+      const docSnap2 = await getDoc(docRef2);
+      const data2 = await docSnap2.data();
+      
+      this.currentThreadContent.push({
+        'author': data2['displayName'],
+        'message': data['message'],
+        'timestamp': data['timestamp']
+      });
+    }
+    console.log('ids',this.messagesFromCurrentThreadIds, 'content', this.currentThreadContent);
+  }
+
+
+
 /*get ids of all first messages in the current channel and push them into firstMessagesIds
 this.firstMessagesIds = [];
 this.threadsIds.forEach(async threadId => {
@@ -140,17 +196,15 @@ console.log(this.firstMessagesIds); */
   
 
 
-      showThreads(currentChannel) {
-        this.allMessages = [];
-        this.allAuthors = [];
-        this.channelId = currentChannel;
+      // showThreads(currentChannel) {
+      //   this.allMessages = [];
+      //   this.allAuthors = [];
+      //   this.channelId = currentChannel;
         // this.gettingThreadsId();
         // this.gettingMessagesId();
         // this.snapCurrentChannel();
         // this.testFunction();
-      }
-
-
+      // }
     
     // console.log('firstMessages',this.firstMessages);
 
@@ -167,15 +221,6 @@ console.log(this.firstMessagesIds); */
     //   console.log('val:', val);
     // });
   // } 
-
-
- 
-
-
-
-
-
-
   
   // snapCurrentChannel() {
   //   this.allMessages = [];
@@ -306,13 +351,6 @@ console.log(this.firstMessagesIds); */
   //     });
   //   }
   // }
-
-
-
-
-
-
-   
   // }
   
 }

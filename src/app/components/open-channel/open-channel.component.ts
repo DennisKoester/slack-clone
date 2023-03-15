@@ -27,7 +27,7 @@ export class OpenChannelComponent implements OnInit {
   threads$: Observable<DocumentData[]>;
   threadsId = '';
   threads: Array<any> = [];
-  status: boolean = false;
+  
 
   constructor(
     private firestore: Firestore,
@@ -44,7 +44,4 @@ export class OpenChannelComponent implements OnInit {
     // });
   }
 
-  openThread() {
-    this.status = !this.status;
-  }
 }

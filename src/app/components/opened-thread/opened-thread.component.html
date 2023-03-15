@@ -1,1 +1,1 @@
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates, possimus? Quod unde quae delectus aliquam, sed vitae illo quidem facilis, nesciunt, ipsam magnam! Molestiae ad, tenetur consequatur eos debitis rerum.
+<app-thread-card  *ngFor="let thread of channelService.currentThreadContent; index as i" [index]="i" [author]="channelService.currentThreadContent[i]['author']" [message]="channelService.currentThreadContent[i]['message']"></app-thread-card>
