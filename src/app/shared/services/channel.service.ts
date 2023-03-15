@@ -58,7 +58,7 @@ export class ChannelService {
       let unsub = onSnapshot(doc(this.firestore, 'channels', channelId), async (doc) => {
         console.log(`I'm rendering channel #${doc.id}`);
         if (doc.id != channelId) {
-          console.log(`Subscribe to channel #${doc.id} stopped.`)
+          console.log(`Unsubscribed from channel #${doc.id}.`)
           unsub();
         } else {
           this.threadsIds = [];
