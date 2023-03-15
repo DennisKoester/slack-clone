@@ -111,7 +111,7 @@ export class ChannelService {
     console.log('change is', change);
     console.log('thread is', thread);
 
-    // this.allMessages.push(message);
+    this.allMessages.push(message);
     // this.allThreads.push(thread);
     // console.log('all threads', this.allThreads);
   }
