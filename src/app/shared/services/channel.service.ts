@@ -54,21 +54,26 @@ export class ChannelService {
   openChannel(channelId) {
     if (this.openedChannel == false ) {
       this.openedChannel = true;
-      let unsub = onSnapshot(doc(this.firestore, 'channels', channelId), async () => {
-        console.log(`I'm rendering channel #${channelId}`);
-        this.threadsIds = [];
-        this.firstMessagesIds = [];
-        this.firstMessages = [];
-        this.allMessagesFromThread = [];
-        this.channelId = channelId;
-        this.currentThreadContent = [];
-        this.messagesFromCurrentThreadIds = [];
-        this.openedThreadId = '';
-        this.status = false;
-        await this.showChannelName(channelId);
-        await this.getThreadIds(channelId);
-        await this.getFirstMessagesIds(channelId);
-        await this.getFirstMessagesContent(channelId);
+      let unsub = onSnapshot(doc(this.firestore, 'channels', channelId), async (doc) => {
+        console.log(`I'm rendering channel #${doc.id}`);
+        if (doc.id != channelId) {
+          console.log(`Subscribe to channel #${doc.id} stopped.`)
+          unsub();
+        } else {
+          this.threadsIds = [];
+          this.firstMessagesIds = [];
+          this.firstMessages = [];
+          this.allMessagesFromThread = [];
+          this.channelId = channelId;
+          this.currentThreadContent = [];
+          this.messagesFromCurrentThreadIds = [];
+          this.openedThreadId = '';
+          this.status = false;
+          await this.showChannelName(channelId);
+          await this.getThreadIds(channelId);
+          await this.getFirstMessagesIds(channelId);
+          await this.getFirstMessagesContent(channelId);
+        }
       })
     this.openedChannel = false;
     }
