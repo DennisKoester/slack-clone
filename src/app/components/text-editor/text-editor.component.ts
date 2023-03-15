@@ -89,7 +89,9 @@ export class TextEditorComponent implements OnInit {
         'threads'
       );
       const threadId = await addDoc(threads, { timestamp });
+      console.log(`New thread created, id: ${threadId.id}`);
       this.createMessage(threadId, timestamp);
+      console.log(`New message in thread ${threadId.id} created`);
     });
   }
 

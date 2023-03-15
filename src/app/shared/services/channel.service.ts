@@ -53,20 +53,29 @@ export class ChannelService {
 
   async openChannel(channelId) {
     if (this.openedChannel == false ) {
-    this.openedChannel = true;
-    this.threadsIds = [];
-    this.firstMessagesIds = [];
-    this.firstMessages = [];
-    this.allMessagesFromThread = [];
-    this.channelId = channelId;
-    this.currentThreadContent = [];
-    this.messagesFromCurrentThreadIds = [];
-    this.openedThreadId = '';
-    this.status = false;
-    await this.showChannelName(channelId);
-    await this.getThreadIds(channelId);
-    await this.getFirstMessagesIds(channelId);
-    await this.getFirstMessagesContent(channelId);
+      this.openedChannel = true;
+      await this.showChannelName(channelId);
+      let unsub = onSnapshot(doc(this.firestore, 'channels', channelId), async (doc) => {
+        console.log(`I'm rendering channel #${doc.id}`);
+        if (doc.id != channelId) {
+          console.log(`Unsubscribed from channel #${doc.id}.`)
+          unsub();
+        } else {
+          this.threadsIds = [];
+          this.firstMessagesIds = [];
+          this.firstMessages = [];
+          this.allMessagesFromThread = [];
+          this.channelId = channelId;
+          this.currentThreadContent = [];
+          this.messagesFromCurrentThreadIds = [];
+          this.openedThreadId = '';
+          this.status = false;
+          if (await this.getThreadIds(channelId)) {
+            await this.getFirstMessagesIds(channelId);
+            await this.getFirstMessagesContent(channelId);
+          }
+        }
+      })
     this.openedChannel = false;
     }
   }
@@ -88,6 +97,8 @@ export class ChannelService {
     const colRef = collection(this.firestore, 'channels', channelId, 'threads');
     const docsSnap = await getDocs(colRef);
 
+    if (docsSnap.docs.length == 0) return false;
+
     docsSnap.forEach(doc => {
       this.threadsIds.push({
         'id': doc.id,
@@ -98,6 +109,8 @@ export class ChannelService {
     this.threadsIds.sort((a, b) => {
       return parseFloat(a.timestamp) - parseFloat(b.timestamp);
     })
+
+    return true;
   }
 
   
