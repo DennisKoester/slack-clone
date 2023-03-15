@@ -51,9 +51,10 @@ export class ChannelService {
   constructor(private firestore: Firestore) {}
   
 
-  openChannel(channelId) {
+  async openChannel(channelId) {
     if (this.openedChannel == false ) {
       this.openedChannel = true;
+      await this.showChannelName(channelId);
       let unsub = onSnapshot(doc(this.firestore, 'channels', channelId), async (doc) => {
         console.log(`I'm rendering channel #${doc.id}`);
         if (doc.id != channelId) {
@@ -69,7 +70,6 @@ export class ChannelService {
           this.messagesFromCurrentThreadIds = [];
           this.openedThreadId = '';
           this.status = false;
-          await this.showChannelName(channelId);
           await this.getThreadIds(channelId);
           await this.getFirstMessagesIds(channelId);
           await this.getFirstMessagesContent(channelId);
