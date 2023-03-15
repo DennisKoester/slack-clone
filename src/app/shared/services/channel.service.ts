@@ -19,6 +19,7 @@ export class ChannelService {
   @Input() firstMessages = [];
   allMessagesFromThread = [];
   private index: number;
+
   status: boolean = false;
   messagesFromCurrentThreadIds: Array<any> = [];
   openedThreadId;
@@ -53,6 +54,10 @@ export class ChannelService {
     this.firstMessages = [];
     this.allMessagesFromThread = [];
     this.channelId = channelId;
+    this.currentThreadContent = [];
+    this.messagesFromCurrentThreadIds = [];
+    this.openedThreadId = '';
+    this.status = false;
     await this.showChannelName(channelId);
     await this.getThreadIds(channelId);
     await this.getFirstMessagesIds(channelId);
