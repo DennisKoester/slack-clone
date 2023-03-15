@@ -70,9 +70,10 @@ export class ChannelService {
           this.messagesFromCurrentThreadIds = [];
           this.openedThreadId = '';
           this.status = false;
-          await this.getThreadIds(channelId);
-          await this.getFirstMessagesIds(channelId);
-          await this.getFirstMessagesContent(channelId);
+          if (await this.getThreadIds(channelId)) {
+            await this.getFirstMessagesIds(channelId);
+            await this.getFirstMessagesContent(channelId);
+          }
         }
       })
     this.openedChannel = false;
@@ -96,6 +97,8 @@ export class ChannelService {
     const colRef = collection(this.firestore, 'channels', channelId, 'threads');
     const docsSnap = await getDocs(colRef);
 
+    if (docsSnap.docs.length == 0) return false;
+
     docsSnap.forEach(doc => {
       this.threadsIds.push({
         'id': doc.id,
@@ -106,6 +109,8 @@ export class ChannelService {
     this.threadsIds.sort((a, b) => {
       return parseFloat(a.timestamp) - parseFloat(b.timestamp);
     })
+
+    return true;
   }
 
   
