@@ -11,13 +11,23 @@ export class ThreadCardComponent implements OnInit {
   @Input() message: string;
   @Input() index: number;
 
+  converted;
+
   constructor(private channelService: ChannelService) {}
 
   ngOnInit(): void {
     this.sendIndex();
+    this.convert();
   }
 
   sendIndex() {
     this.channelService.setValue(this.index);
   }
+
+  convert() {
+      const parser = new DOMParser();
+      const document = parser.parseFromString(this.message, "text/html");
+      console.log(document);
+    }
+
 }

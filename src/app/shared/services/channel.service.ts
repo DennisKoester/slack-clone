@@ -29,6 +29,7 @@ export class ChannelService {
 
   @Input() allAuthors: Array<any> = [];
   @Input() allMessages: Array<any> = [];
+  @Input() allMessagesConverted: Array<any> = [];
 
   threads$: Observable<DocumentData[]>;
   messages$: Observable<DocumentData[]>;
@@ -87,9 +88,25 @@ export class ChannelService {
         this.allAuthors.push(this.messages[0]['author']);
         this.allMessages.push(this.messages[0]['message']);
       });
+      console.log('allMessages',this.allMessages);
+      
     }
+    // this.convert();
   }
 
+
+// convert() {
+//   const parser = new DOMParser();
+//   for (let i = 0; i < this.allMessages.length; i++) {
+    
+//     const document = parser.parseFromString(this.allMessages[i], "text/html");
+//     this.allMessagesConverted.push(document);
+//     console.log('convert',this.allMessagesConverted);
+//   }
+  
+// }
+
+  
   openChannel(channelId) {
     this.showChannelName(channelId);
     this.loadMessages(channelId);
@@ -116,5 +133,7 @@ export class ChannelService {
     collectionData(threadsInstance).subscribe((val) => {
       console.log('val:',val);
     });
+   
   }
+  
 }
