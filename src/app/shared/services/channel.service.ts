@@ -54,13 +54,13 @@ export class ChannelService {
   async openChannel(channelId) {
     if (this.openedChannel == false ) {
       this.openedChannel = true;
-      await this.showChannelName(channelId);
-      let unsub = onSnapshot(doc(this.firestore, 'channels', channelId), async (doc) => {
-        console.log(`I'm rendering channel #${doc.id}`);
-        if (doc.id != channelId) {
-          console.log(`Unsubscribed from channel #${doc.id}.`)
-          unsub();
-        } else {
+      // await this.showChannelName(channelId);
+      // let unsub = onSnapshot(doc(this.firestore, 'channels', channelId), async (doc) => {
+      //   console.log(`I'm rendering channel #${doc.id}`);
+      //   if (doc.id != channelId) {
+      //     console.log(`Unsubscribed from channel #${doc.id}.`)
+      //     unsub();
+      //   } else {
           this.threadsIds = [];
           this.firstMessagesIds = [];
           this.firstMessages = [];
@@ -70,12 +70,12 @@ export class ChannelService {
           this.messagesFromCurrentThreadIds = [];
           this.openedThreadId = '';
           this.status = false;
-          if (await this.getThreadIds(channelId)) {
+          // if (await this.getThreadIds(channelId)) {
             await this.getFirstMessagesIds(channelId);
             await this.getFirstMessagesContent(channelId);
-          }
-        }
-      })
+      //     }
+      //   }
+      // })
     this.openedChannel = false;
     }
   }
