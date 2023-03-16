@@ -92,7 +92,7 @@ export class TextEditorComponent implements OnInit {
         GLOBAL_VAR.COLL_THREADS
       );
       const threadId = await addDoc(threads, { MESSAGES: [{
-        timestamp: new Date(timestamp.seconds),
+        timestamp: timestamp,
         author: currentUserId,
         content: this.editorContent
       }] });
