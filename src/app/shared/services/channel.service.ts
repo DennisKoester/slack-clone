@@ -3,6 +3,7 @@ import { collectionData,doc,getDoc,getDocs,onSnapshot,orderBy,query } from '@ang
 import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Unsubscribe } from 'firebase/app-check';
 import { Observable } from 'rxjs';
+import * as GLOBAL_VAR from './globals';
 
 
 @Injectable({
@@ -11,8 +12,8 @@ import { Observable } from 'rxjs';
 
 
 export class ChannelService {
-  COLL_CHANNELS: string = 'CHANNELS';
-  COLL_THREADS: string = 'THREADS';
+  // COLL_CHANNELS: string = 'CHANNELS';
+  // COLL_THREADS: string = 'THREADS';
   // channelId = '';
   channelName: string = '';
   channelIsPrivate: boolean = false;
@@ -88,7 +89,7 @@ export class ChannelService {
 
   async showChannelName(channelId: string) {
     const channelCollection = getDoc(
-      doc(this.firestore, this.COLL_CHANNELS, channelId)
+      doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, channelId)
     );
     const channelData = (await channelCollection).data();
     this.channelName = channelData['name'];
@@ -96,11 +97,15 @@ export class ChannelService {
   }
 
   getThreads(channelID: string) {
-    const threadsCollection = collection(this.firestore, this.COLL_CHANNELS, channelID, this.COLL_THREADS);
+    const threadsCollection = collection(this.firestore, GLOBAL_VAR.COLL_CHANNELS, channelID, GLOBAL_VAR.COLL_THREADS);
     const threads$ = collectionData(threadsCollection, {idField: 'threadId'});
     threads$.subscribe((threads) => {
       console.log(`Threads in channel ${channelID}`, threads);
       this.threads = threads;
+      this.threads.sort((a, b) => {
+              return parseFloat(a['MESSAGES'][0]['timestamp']['seconds']) - parseFloat(b['MESSAGES'][0]['timestamp']['seconds']);
+            })
+      
     })
   }
 
