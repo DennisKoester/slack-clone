@@ -6,7 +6,9 @@
       <app-thread-card  *ngFor="let thread of channelService.threads; index as i"
         [index]="i"
         [author]="thread['MESSAGES'][0]['author']"
-        [message]="thread['MESSAGES'][0]['content']"(click)="channelService.openThread(i)"></app-thread-card>
+        [message]="thread['MESSAGES'][0]['content']"
+        [timestamp]="thread['MESSAGES'][0]['timestamp']['seconds']"
+        (click)="channelService.openThread(i)"></app-thread-card>
     </div>
     <app-text-editor></app-text-editor>
   </div>

@@ -18,6 +18,7 @@ import {
 import { Observable } from 'rxjs';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 
 
 @Component({
@@ -26,7 +27,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./channels.component.scss'],
 })
 export class ChannelsComponent {
-  COLL_CHANNELS: string = 'CHANNELS';
+  // COLL_CHANNELS: string = 'CHANNELS';
   collapsed = false;
   channelsCollection: CollectionReference;
   channels$: Observable<DocumentData[]>;
@@ -38,7 +39,7 @@ export class ChannelsComponent {
     public channelService: ChannelService,
     public router: Router
   ) {
-    this.channelsCollection = collection(firestore, this.COLL_CHANNELS);
+    this.channelsCollection = collection(firestore, GLOBAL_VAR.COLL_CHANNELS);
     this.channels$ = collectionData(this.channelsCollection, {idField: 'channelId'});
     this.channels$.subscribe((data) => {
       console.log(data);
