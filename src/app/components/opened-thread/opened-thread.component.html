@@ -1,1 +1,3 @@
-<app-thread-card  *ngFor="let thread of channelService.currentThreadContent; index as i" [index]="i" [author]="channelService.currentThreadContent[i]['author']" [message]="channelService.currentThreadContent[i]['message']"></app-thread-card>
+<app-thread-card  *ngFor="let thread of channelService.threads; index as i"
+    [index]="i" [author]="thread['author']"
+    [message]="thread['message']"></app-thread-card>

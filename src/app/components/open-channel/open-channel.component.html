@@ -3,7 +3,10 @@
   <div class="left">
     <div class="leftContent">
       <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
-      <app-thread-card  *ngFor="let thread of channelService.firstMessages; index as i" [index]="i" [author]="channelService.firstMessages[i]['author']" [message]="channelService.firstMessages[i]['message']"(click)="channelService.openThread(i)"></app-thread-card>
+      <app-thread-card  *ngFor="let thread of channelService.threads; index as i"
+        [index]="i"
+        [author]="thread['MESSAGES'][0]['author']"
+        [message]="thread['MESSAGES'][0]['content']"(click)="channelService.openThread(i)"></app-thread-card>
     </div>
     <app-text-editor></app-text-editor>
   </div>

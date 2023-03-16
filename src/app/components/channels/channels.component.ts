@@ -26,6 +26,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./channels.component.scss'],
 })
 export class ChannelsComponent {
+  COLL_CHANNELS: string = 'CHANNELS';
   collapsed = false;
   channelsCollection: CollectionReference;
   channels$: Observable<DocumentData[]>;
@@ -37,10 +38,8 @@ export class ChannelsComponent {
     public channelService: ChannelService,
     public router: Router
   ) {
-    this.channelsCollection = collection(firestore, 'channels');
-    this.channels$ = collectionData(this.channelsCollection, {
-      idField: 'channelId',
-    });
+    this.channelsCollection = collection(firestore, this.COLL_CHANNELS);
+    this.channels$ = collectionData(this.channelsCollection, {idField: 'channelId'});
     this.channels$.subscribe((data) => {
       console.log(data);
       this.channels = data;

@@ -11,19 +11,21 @@ import { Observable } from 'rxjs';
 
 
 export class ChannelService {
-  channelId = '';
+  COLL_CHANNELS: string = 'CHANNELS';
+  COLL_THREADS: string = 'THREADS';
+  // channelId = '';
   channelName: string = '';
   channelIsPrivate: boolean = false;
-  threadsIds: Array<any> = [];
-  firstMessagesIds: Array<any> = [];
-  @Input() firstMessages = [];
-  allMessagesFromThread = [];
+  // threadsIds: Array<any> = [];
+  // firstMessagesIds: Array<any> = [];
+  // @Input() firstMessages = [];
+  // allMessagesFromThread = [];
   private index: number;
 
   status: boolean = false;
-  messagesFromCurrentThreadIds: Array<any> = [];
-  openedThreadId;
-  currentThreadContent = [];
+  // messagesFromCurrentThreadIds: Array<any> = [];
+  // openedThreadId;
+  // currentThreadContent = [];
 
   openedChannel = false;
   openedThread = false;
@@ -37,6 +39,8 @@ export class ChannelService {
   // messages: Array<any> = [];
   // threads: Array<any> = [];
   // unsub: Unsubscribe;
+
+  threads: any = [];
  
 
   public setValue(value: number) {
@@ -51,29 +55,30 @@ export class ChannelService {
   constructor(private firestore: Firestore) {}
   
 
-  async openChannel(channelId) {
+  async openChannel(channelId: string) {
     if (this.openedChannel == false ) {
       this.openedChannel = true;
       await this.showChannelName(channelId);
+      this.getThreads(channelId);
       // let unsub = onSnapshot(doc(this.firestore, 'channels', channelId), async (doc) => {
       //   console.log(`I'm rendering channel #${doc.id}`);
       //   if (doc.id != channelId) {
       //     console.log(`Unsubscribed from channel #${doc.id}.`)
       //     unsub();
       //   } else {
-          this.threadsIds = [];
-          this.firstMessagesIds = [];
-          this.firstMessages = [];
-          this.allMessagesFromThread = [];
-          this.channelId = channelId;
-          this.currentThreadContent = [];
-          this.messagesFromCurrentThreadIds = [];
-          this.openedThreadId = '';
-          this.status = false;
-          if (await this.getThreadIds(channelId)) {
-            await this.getFirstMessagesIds(channelId);
-            await this.getFirstMessagesContent(channelId);
-          }
+          // this.threadsIds = [];
+          // this.firstMessagesIds = [];
+          // this.firstMessages = [];
+          // this.allMessagesFromThread = [];
+          // this.channelId = channelId;
+          // this.currentThreadContent = [];
+          // this.messagesFromCurrentThreadIds = [];
+          // this.openedThreadId = '';
+          // this.status = false;
+          // if (await this.getThreadIds(channelId)) {
+          //   await this.getFirstMessagesIds(channelId);
+          //   await this.getFirstMessagesContent(channelId);
+          // }
       //   }
       // })
     this.openedChannel = false;
@@ -81,128 +86,151 @@ export class ChannelService {
   }
 
 
-  async showChannelName(channelId: any) {
+  async showChannelName(channelId: string) {
     const channelCollection = getDoc(
-      doc(this.firestore, 'channels', channelId)
+      doc(this.firestore, this.COLL_CHANNELS, channelId)
     );
     const channelData = (await channelCollection).data();
     this.channelName = channelData['name'];
     this.channelIsPrivate = channelData['isPrivate'];
   }
 
-
-//get ids of all threads in the current channel and push them into threadsIds (sorted by timestamp)
-  async getThreadIds(channelId: any) {
-    this.threadsIds = [];
-    const colRef = collection(this.firestore, 'channels', channelId, 'threads');
-    const docsSnap = await getDocs(colRef);
-
-    if (docsSnap.docs.length == 0) return false;
-
-    docsSnap.forEach(doc => {
-      this.threadsIds.push({
-        'id': doc.id,
-        'timestamp': doc['_document']['createTime']['timestamp']['seconds']
-      });
-    });
-
-    this.threadsIds.sort((a, b) => {
-      return parseFloat(a.timestamp) - parseFloat(b.timestamp);
+  getThreads(channelID: string) {
+    const threadsCollection = collection(this.firestore, this.COLL_CHANNELS, channelID, this.COLL_THREADS);
+    const threads$ = collectionData(threadsCollection, {idField: 'threadId'});
+    threads$.subscribe((threads) => {
+      console.log(`Threads in channel ${channelID}`, threads);
+      this.threads = threads;
     })
-
-    return true;
   }
 
+/**
+ * *** AB HIER CODE VON DANIELA ********************
+ */
+// //get ids of all threads in the current channel and push them into threadsIds (sorted by timestamp)
+//   async getThreadIds(channelId: any) {
+//     this.threadsIds = [];
+//     const colRef = collection(this.firestore, 'channels', channelId, 'threads');
+//     const docsSnap = await getDocs(colRef);
+
+//     if (docsSnap.docs.length == 0) return false;
+
+//     docsSnap.forEach(doc => {
+//       this.threadsIds.push({
+//         'id': doc.id,
+//         'timestamp': doc['_document']['createTime']['timestamp']['seconds']
+//       });
+//     });
+
+//     this.threadsIds.sort((a, b) => {
+//       return parseFloat(a.timestamp) - parseFloat(b.timestamp);
+//     })
+
+//     return true;
+//   }
+
   
-//get ids of all threads in the current channel and push them into threadsIds
-  async getFirstMessagesIds (channelId: any) {
-    for (let i = 0; i < this.threadsIds.length; i++) {
-      const colRef = collection(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i]['id'], 'messages');
-      const docsSnap = await getDocs(colRef);
-      docsSnap.forEach(doc => {
-          this.allMessagesFromThread.push({
-            'id':doc.id,
-            'timestamp': doc['_document']['createTime']['timestamp']['seconds']
-          }); 
-      });
-      this.allMessagesFromThread.sort((a, b) => {
-        return parseFloat(a.timestamp) - parseFloat(b.timestamp);
-      });
-      this.firstMessagesIds.push(this.allMessagesFromThread[0]);
-      this.allMessagesFromThread = [];
-    }
-  } 
+// //get ids of all threads in the current channel and push them into threadsIds
+//   async getFirstMessagesIds (channelId: any) {
+//     for (let i = 0; i < this.threadsIds.length; i++) {
+//       const colRef = collection(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i]['id'], 'messages');
+//       const docsSnap = await getDocs(colRef);
+//       docsSnap.forEach(doc => {
+//           this.allMessagesFromThread.push({
+//             'id':doc.id,
+//             'timestamp': doc['_document']['createTime']['timestamp']['seconds']
+//           }); 
+//       });
+//       this.allMessagesFromThread.sort((a, b) => {
+//         return parseFloat(a.timestamp) - parseFloat(b.timestamp);
+//       });
+//       this.firstMessagesIds.push(this.allMessagesFromThread[0]);
+//       this.allMessagesFromThread = [];
+//     }
+//   } 
 
 
-//get the message and author of every first message and push them into firstMessages
-  async getFirstMessagesContent(channelId) {
-    for (let i = 0; i < this.firstMessagesIds.length; i++) {
-      const docRef =  doc(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i]['id'],'messages', this.firstMessagesIds[i]['id']);
-      const docSnap = await getDoc(docRef);
-      const data = docSnap.data();
+// //get the message and author of every first message and push them into firstMessages
+//   async getFirstMessagesContent(channelId) {
+//     for (let i = 0; i < this.firstMessagesIds.length; i++) {
+//       const docRef =  doc(this.firestore, 'channels', channelId, 'threads', this.threadsIds[i]['id'],'messages', this.firstMessagesIds[i]['id']);
+//       const docSnap = await getDoc(docRef);
+//       const data = docSnap.data();
 
-      const docRef2 =  doc(this.firestore, 'users', data['author']);
-      const docSnap2 = await getDoc(docRef2);
-      const data2 = docSnap2.data();
+//       const docRef2 =  doc(this.firestore, 'users', data['author']);
+//       const docSnap2 = await getDoc(docRef2);
+//       const data2 = docSnap2.data();
       
-      this.firstMessages.push({
-        'author': data2['displayName'],
-        'message': data['message'],
-        'timestamp': data['timestamp']
-      });
-    }
-  }
+//       this.firstMessages.push({
+//         'author': data2['displayName'],
+//         'message': data['message'],
+//         'timestamp': data['timestamp']
+//       });
+//     }
+//   }
+/**
+ * *** ENDE : CODE VON DANIELA ****************************
+ */
   
 
+
+// ***** OPEN THREAD *************************
   async openThread(i) {
-    if (this.openedThread == false ) {
-      this.openedThread = true;
-      this.currentThreadContent = [];
-      this.messagesFromCurrentThreadIds = [];
-      this.status = !this.status;
-      this.openedThreadId = this.threadsIds[i]['id'];
-      await this.getCurrentThreadMessagesIds();
-      await this.getCurrentThreadContent();
-      this.openedThread = false;
-    }
+  //   if (this.openedThread == false ) {
+  //     this.openedThread = true;
+  //     this.currentThreadContent = [];
+  //     this.messagesFromCurrentThreadIds = [];
+  //     this.status = !this.status;
+  //     this.openedThreadId = this.threadsIds[i]['id'];
+  //     await this.getCurrentThreadMessagesIds();
+  //     await this.getCurrentThreadContent();
+  //     this.openedThread = false;
+  //   }
   }
 
 
-  async getCurrentThreadMessagesIds() {
-    const colRef = collection(this.firestore, 'channels', this.channelId, 'threads', this.openedThreadId, 'messages');
-      const docsSnap = await getDocs(colRef);
-      docsSnap.forEach(doc => {
-          this.messagesFromCurrentThreadIds.push({
-            'id':doc.id,
-            'timestamp': doc['_document']['createTime']['timestamp']['seconds']
-          }); 
-      });
-      this.messagesFromCurrentThreadIds.sort((a, b) => {
-        return parseFloat(a.timestamp) - parseFloat(b.timestamp);
-      });
+  // async getCurrentThreadMessagesIds() {
+  //   const colRef = collection(this.firestore, 'channels', this.channelId, 'threads', this.openedThreadId, 'messages');
+  //     const docsSnap = await getDocs(colRef);
+  //     docsSnap.forEach(doc => {
+  //         this.messagesFromCurrentThreadIds.push({
+  //           'id':doc.id,
+  //           'timestamp': doc['_document']['createTime']['timestamp']['seconds']
+  //         }); 
+  //     });
+  //     this.messagesFromCurrentThreadIds.sort((a, b) => {
+  //       return parseFloat(a.timestamp) - parseFloat(b.timestamp);
+  //     });
       
-    }
+  //   }
   
 
-  async getCurrentThreadContent() {
-    console.log('length', this.messagesFromCurrentThreadIds.length)
-    for (let i = 0; i < this.messagesFromCurrentThreadIds.length; i++) {
-      const docRef =  doc(this.firestore, 'channels', this.channelId, 'threads', this.openedThreadId,'messages', this.messagesFromCurrentThreadIds[i]['id']);
-      const docSnap = await getDoc(docRef);
-      const data = await docSnap.data();
+  // async getCurrentThreadContent() {
+  //   console.log('length', this.messagesFromCurrentThreadIds.length)
+  //   for (let i = 0; i < this.messagesFromCurrentThreadIds.length; i++) {
+  //     const docRef =  doc(this.firestore, 'channels', this.channelId, 'threads', this.openedThreadId,'messages', this.messagesFromCurrentThreadIds[i]['id']);
+  //     const docSnap = await getDoc(docRef);
+  //     const data = await docSnap.data();
 
-      const docRef2 =  doc(this.firestore, 'users', data['author']);
-      const docSnap2 = await getDoc(docRef2);
-      const data2 = await docSnap2.data();
+  //     const docRef2 =  doc(this.firestore, 'users', data['author']);
+  //     const docSnap2 = await getDoc(docRef2);
+  //     const data2 = await docSnap2.data();
       
-      this.currentThreadContent.push({
-        'author': data2['displayName'],
-        'message': data['message'],
-        'timestamp': data['timestamp']
-      });
-    }
-    console.log('ids',this.messagesFromCurrentThreadIds, 'content', this.currentThreadContent);
-  }
+  //     this.currentThreadContent.push({
+  //       'author': data2['displayName'],
+  //       'message': data['message'],
+  //       'timestamp': data['timestamp']
+  //     });
+  //   }
+  //   console.log('ids',this.messagesFromCurrentThreadIds, 'content', this.currentThreadContent);
+  // }
+
+  // *********************** END: OPEN THREAD
+
+
+
+
+
 
 
 

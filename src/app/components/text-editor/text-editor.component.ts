@@ -34,6 +34,7 @@ export class TextEditorComponent implements OnInit {
     public authenticationService: AuthenticationService
   ) {}
 
+  
   editorContent;
   editorAuthor = '';
   channelId;
