@@ -18,7 +18,7 @@ export class ChannelService {
   channelIsPrivate: boolean = false;
   // threadsIds: Array<any> = [];
   // firstMessagesIds: Array<any> = [];
-  // @Input() firstMessages = [];
+  @Input() timeAndDate
   // allMessagesFromThread = [];
   private index: number;
 
@@ -115,7 +115,7 @@ export class ChannelService {
 
 //     if (docsSnap.docs.length == 0) return false;
 
-//     docsSnap.forEach(doc => {
+//     docsSnap.forEach(doc => { 
 //       this.threadsIds.push({
 //         'id': doc.id,
 //         'timestamp': doc['_document']['createTime']['timestamp']['seconds']
