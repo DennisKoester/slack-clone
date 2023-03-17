@@ -40,6 +40,7 @@ export class TextEditorComponent implements OnInit {
   editorAuthor = '';
   channelId;
   event = [];
+  threads;
 
   quillConfiguration = {
     'emoji-shortname': true,
@@ -80,18 +81,19 @@ export class TextEditorComponent implements OnInit {
     console.log(this.editorContent);
   }
 
-  createThread() {
+  async createThread() {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
     this.route.paramMap.subscribe(async (paramMap) => {
       this.channelId = paramMap.get('id');
-      const threads = collection(
+      this.threads = collection(
         this.firestore,
         GLOBAL_VAR.COLL_CHANNELS,
         this.channelId,
         GLOBAL_VAR.COLL_THREADS
       );
-      const threadId = await addDoc(threads, { MESSAGES: [{
+    });
+      const threadId = await addDoc(this.threads, { MESSAGES: [{
         timestamp: timestamp,
         author: currentUserId,
         content: this.editorContent
@@ -99,7 +101,7 @@ export class TextEditorComponent implements OnInit {
       console.log(`New thread created, id: ${threadId.id}`);
       // this.createMessage(threadId, timestamp);
       // console.log(`New message in thread ${threadId.id} created`);
-    });
+   
   }
 
   // createMessage(threadId: any, timestamp: any) {
