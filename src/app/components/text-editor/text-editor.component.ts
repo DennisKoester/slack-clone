@@ -58,12 +58,13 @@ export class TextEditorComponent implements OnInit {
   ngOnInit() {}
 
   getContent(event: EditorChangeContent | EditorChangeSelection) {
+   
     if (this.event.length > 9) {
       this.event.splice(0, 2);
       this.event.push(event);
     }
     this.event.push(event);
-    console.log(this.event);
+    
 
     if (this.event[this.event.length - 1].html) {
       this.editorContent = this.event[this.event.length - 1].html;
@@ -78,7 +79,7 @@ export class TextEditorComponent implements OnInit {
     ) {
       this.editorContent = this.event[this.event.length - 3].html;
     }
-    console.log(this.editorContent);
+    
   }
 
   async createThread() {
@@ -93,32 +94,21 @@ export class TextEditorComponent implements OnInit {
         GLOBAL_VAR.COLL_THREADS
       );
     });
+    if (this.editorContent) {
+      console.log('content beginning', this.editorContent);
       const threadId = await addDoc(this.threads, { MESSAGES: [{
         timestamp: timestamp,
         author: currentUserId,
         content: this.editorContent
       }] });
       console.log(`New thread created, id: ${threadId.id}`);
-      // this.createMessage(threadId, timestamp);
-      // console.log(`New message in thread ${threadId.id} created`);
-   
+      // document.getElementById('editor').innerHTML = '';
+      document.querySelector('#editor .ql-editor').innerHTML = '';
+      this.editorContent = '';
+      this.event = [];
+      console.log('content end', this.editorContent);
+    }
+      
   }
 
-  // createMessage(threadId: any, timestamp: any) {
-  //   const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-  
-  //   const messages = collection(
-  //     this.firestore,
-  //     'channels',
-  //     this.channelId,
-  //     'threads',
-  //     threadId.id,
-  //     'messages'
-  //   );
-  //   addDoc(messages, {
-  //     author: currentUserId,
-  //     message: this.editorContent,
-  //     timestamp: timestamp,
-  //   });
-  // }
 }

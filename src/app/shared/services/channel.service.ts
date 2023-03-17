@@ -34,7 +34,6 @@ export class ChannelService {
      if (this.unsubChannel) {
       this.unsubChannel.unsubscribe();
      }
-      console.log('this.threads$',this.threads$);
       this.openedChannel = true;
       await this.showChannelName(channelId);
       this.getThreads(channelId);
@@ -58,7 +57,7 @@ export class ChannelService {
     this.threads$ = collectionData(threadsCollection, {idField: 'threadId'});
       
     this.unsubChannel = this.threads$.subscribe((threads) => {
-      console.log(`Threads in channel ${channelID}`, threads);
+      // console.log(`Threads in channel ${channelID}`, threads);
       this.threads = threads;
       this.threads.sort((a, b) => {
         return parseFloat(a['MESSAGES'][0]['timestamp']['seconds']) - parseFloat(b['MESSAGES'][0]['timestamp']['seconds']);
