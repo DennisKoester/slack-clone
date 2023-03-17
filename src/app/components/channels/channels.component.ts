@@ -70,6 +70,7 @@ export class ChannelsComponent {
     dialogRef.afterClosed().subscribe(async (dialogData) => {
       if (dialogData.name) {
         await this.createChannel(dialogData);
+        
         console.log(
           `Channel '${dialogData.name}' created (private = ${dialogData.isPrivate}).`
         );
@@ -87,8 +88,7 @@ export class ChannelsComponent {
     await setDoc(channelRef, {
       name: data.name,
       isPrivate: data.isPrivate,
-      users: [],
-      threads: [],
+      users: []
     });
 
     this.navigateToCreatedChannel(channelRef);
