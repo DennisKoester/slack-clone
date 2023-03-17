@@ -99,15 +99,29 @@ export class ChannelService {
   getThreads(channelID: string) {
     const threadsCollection = collection(this.firestore, GLOBAL_VAR.COLL_CHANNELS, channelID, GLOBAL_VAR.COLL_THREADS);
     const threads$ = collectionData(threadsCollection, {idField: 'threadId'});
+      
     threads$.subscribe((threads) => {
       console.log(`Threads in channel ${channelID}`, threads);
       this.threads = threads;
       this.threads.sort((a, b) => {
-              return parseFloat(a['MESSAGES'][0]['timestamp']['seconds']) - parseFloat(b['MESSAGES'][0]['timestamp']['seconds']);
-            })
-      
+        return parseFloat(a['MESSAGES'][0]['timestamp']['seconds']) - parseFloat(b['MESSAGES'][0]['timestamp']['seconds']);
+      })
     })
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * *** AB HIER CODE VON DANIELA ********************

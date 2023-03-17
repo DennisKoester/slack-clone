@@ -27,7 +27,7 @@ export class ThreadCardComponent implements OnInit {
   convert() {
       const parser = new DOMParser();
       const document = parser.parseFromString(this.message, "text/html");
-      console.log(document);
+    
     }
 
 }
