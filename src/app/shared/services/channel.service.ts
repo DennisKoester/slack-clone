@@ -86,7 +86,7 @@ export class ChannelService {
 
 
   async openThread(i) {
-  
+    this.status = !this.status;
   }
   
 }
