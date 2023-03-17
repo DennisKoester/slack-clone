@@ -20,7 +20,7 @@ export class ChannelService {
   openedChannel = false;
   openedThread = false;
   threads: any = [];
-  threads$;
+  threads$: Observable<any>;
   unsubChannel: Subscription;
 
   public setValue(value: number) {

@@ -14,7 +14,7 @@ export class UsersService {
   
   getUsers() {
     const usersCollection = collection(this.firestore, GLOBAL_VAR.COLL_USERS);
-    const users$ = collectionData(usersCollection, {idField: 'threadId'});
+    const users$ = collectionData(usersCollection);
     users$.subscribe((_users) => {
       console.log(`Users:`, _users);
       this.usersCollListener.next({users: _users});      
