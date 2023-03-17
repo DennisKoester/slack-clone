@@ -4,6 +4,7 @@ import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Unsubscribe } from 'firebase/app-check';
 import { Observable, Subscription } from 'rxjs';
 import * as GLOBAL_VAR from './globals';
+import { UsersService } from './users.service';
 
 
 @Injectable({
@@ -26,7 +27,9 @@ export class ChannelService {
     this.index = value;
   }
   
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private usersService: UsersService) {
+    this.usersService.usersCollListener.subscribe({next: users => console.log('Current users list from UsersService:', users)});
+  }
   
 
   async openChannel(channelId: string) {
@@ -58,13 +61,29 @@ export class ChannelService {
       
     this.unsubChannel = this.threads$.subscribe((threads) => {
       // console.log(`Threads in channel ${channelID}`, threads);
+      this.sortThreads(threads);
+      this.getUserNames(threads);
       this.threads = threads;
-      this.threads.sort((a, b) => {
-        return parseFloat(a['MESSAGES'][0]['timestamp']['seconds']) - parseFloat(b['MESSAGES'][0]['timestamp']['seconds']);
-      })
       
     })
   }
+  
+
+  sortThreads(threads) {
+    threads.sort((thread_1: any, thread_2: any) => {
+      return parseFloat(thread_1['MESSAGES'][0]['timestamp']['seconds']) - parseFloat(thread_2['MESSAGES'][0]['timestamp']['seconds']);
+    })
+  }
+
+
+  getUserNames(threads) {
+    threads.forEach(thread => {
+      const uid = thread['MESSAGES'][0]['author'];
+      const user = this.usersService.usersCollListener.value.users.find((user: any) => user.uid == uid);
+      thread['MESSAGES'][0]['author'] = user.displayName;
+    });
+  }
+
 
   async openThread(i) {
   

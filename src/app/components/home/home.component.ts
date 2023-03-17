@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 
 @Component({
@@ -9,8 +10,8 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 })
 export class HomeComponent {
 
-  constructor(public authenticationService: AuthenticationService) {}
-
-
+  constructor(public authenticationService: AuthenticationService, public usersService: UsersService) {
+    this.usersService.getUsers();
+  }
 
 }

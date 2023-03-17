@@ -14,7 +14,6 @@ import {
   orderBy,
   onSnapshot,
 } from '@angular/fire/firestore';
-// import { Observable } from '@firebase/util';
 import { Observable } from 'rxjs';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +26,6 @@ import * as GLOBAL_VAR from 'src/app/shared/services/globals';
   styleUrls: ['./channels.component.scss'],
 })
 export class ChannelsComponent {
-  // COLL_CHANNELS: string = 'CHANNELS';
   collapsed = false;
   channelsCollection: CollectionReference;
   channels$: Observable<DocumentData[]>;
@@ -83,19 +81,6 @@ export class ChannelsComponent {
    * Creates a new channel in the Database
    * @param {JSON} data The metadata of the new channel
    */
-  // async createChannel(data) {
-  //   await setDoc(doc(this.channelsCollection), {
-  //     name: data.name,
-  //     isPrivate: data.isPrivate,
-  //     users: [],
-  //     threads: [],
-  //   });
-  // }
-
-  /**
-   * Creates a new channel in the Database
-   * @param {JSON} data The metadata of the new channel
-   */
   async createChannel(data: any) {
     const channelRef = doc(this.channelsCollection);
 
@@ -115,18 +100,4 @@ export class ChannelsComponent {
     this.router.navigate(['/home/channel/' + createdChannelId]);
     this.channelService.showChannelName(createdChannelId);
   }
-
-  // loadMessages() {
-  //   const q = query(
-  //     collection(this.firestore, 'channels', '2PO51PiEyilr2fPCxSwL')
-  //   );
-  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  //     const threads = [];
-  //     querySnapshot.forEach((doc) => {
-  //       threads.push(doc.data()['thread']);
-  //     });
-  //     console.log('All threads ', threads.join(', '));
-  //     unsubscribe();
-  //   });
-  // }
 }

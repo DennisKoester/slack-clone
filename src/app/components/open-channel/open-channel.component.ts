@@ -20,7 +20,7 @@ import { ChannelService } from 'src/app/shared/services/channel.service';
   templateUrl: './open-channel.component.html',
   styleUrls: ['./open-channel.component.scss'],
 })
-export class OpenChannelComponent implements OnInit {
+export class OpenChannelComponent {
   messages = [];
   channelId = '';
   sendedPostID = '';
@@ -29,19 +29,6 @@ export class OpenChannelComponent implements OnInit {
   threads: Array<any> = [];
   
 
-  constructor(
-    private firestore: Firestore,
-    private route: ActivatedRoute,
-    public channelService: ChannelService
+  constructor(public channelService: ChannelService
   ) {}
-
-  ngOnInit(): void {
-    // this.route.queryParams.subscribe((params) => {
-    //   this.sendedPostID = params['sendedPostID'];
-    // });
-    // this.route.paramMap.subscribe((paramMap) => {
-    //   this.channelId = paramMap.get('id');
-    // });
-  }
-
 }
