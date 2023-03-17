@@ -19,7 +19,7 @@ export class ChannelService {
   channelIsPrivate: boolean = false;
   // threadsIds: Array<any> = [];
   // firstMessagesIds: Array<any> = [];
-  @Input() timeAndDate
+  // @Input() timeAndDate;
   // allMessagesFromThread = [];
   private index: number;
 
@@ -106,6 +106,7 @@ export class ChannelService {
       this.threads.sort((a, b) => {
         return parseFloat(a['MESSAGES'][0]['timestamp']['seconds']) - parseFloat(b['MESSAGES'][0]['timestamp']['seconds']);
       })
+      
     })
   }
 
