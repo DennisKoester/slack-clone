@@ -22,6 +22,7 @@ export class ChannelService {
   threads: any = [];
   threads$;
   unsubChannel: Subscription;
+  channelId;
 
   public setValue(value: number) {
     this.index = value;
@@ -33,6 +34,7 @@ export class ChannelService {
   
 
   async openChannel(channelId: string) {
+    this.channelId = channelId;
     if (this.openedChannel == false ) {
      if (this.unsubChannel) {
       this.unsubChannel.unsubscribe();
@@ -87,6 +89,21 @@ export class ChannelService {
 
   async openThread(i) {
     this.status = !this.status;
+    this.getThreadMessages(i);
+
   }
-  
+
+
+  getThreadMessages(i) {
+    const threadsCollection = collection(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.channelId, GLOBAL_VAR.COLL_THREADS);
+    this.threads$ = collectionData(threadsCollection, {idField: 'threadId'});
+      console.log('i',i);
+    // this.unsubChannel = this.threads$.subscribe((threads) => {
+    //   this.sortThreads(threads);
+    //   this.getUserNames(threads);
+    //   this.threads = threads;
+    // })
+  }
+
+
 }

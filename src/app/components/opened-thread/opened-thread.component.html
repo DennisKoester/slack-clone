@@ -1,3 +1,6 @@
-<app-thread-card  *ngFor="let thread of channelService.threads; index as i"
-    [index]="i" [author]="thread['author']"
-    [message]="thread['message']"></app-thread-card>
+<app-thread-card  
+    *ngFor="let thread of channelService.threads; index as i"
+    [author]="thread['MESSAGES'][0]['author']"
+    [message]="thread['MESSAGES'][0]['content']"
+    [timestamp]="thread['MESSAGES'][0]['timestamp']['seconds']*1000 | date: 'yyyy/MM/dd HH:mm:ss'">
+</app-thread-card>
