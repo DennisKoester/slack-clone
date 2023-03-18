@@ -4,7 +4,7 @@
 }
 
 .mat-drawer-side {
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgb(87, 87, 87);
 }
 
 .mat-drawer {
@@ -29,8 +29,8 @@
   position: sticky;
   top: 0;
   justify-content: space-between;
-  padding: 8px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-bottom: 1px solid rgb(87, 87, 87);
   background-color: var(--bg-color-side-nav);
 }
 
@@ -85,6 +85,8 @@ h4 {
 }
 
 .new-msg-btn {
+  height: 35px;
+  width: 35px;
   margin-left: 10px;
   background-color: white;
   &:active {
@@ -93,22 +95,12 @@ h4 {
   }
 }
 
-.burger-menu-btn {
-  display: none;
-}
-
 @media screen and (max-width: 480px) {
   .mat-drawer {
-    // width: 100vw;
-    // max-width: unset;
     display: none;
   }
 
   .mat-drawer-content {
     // display: none;
-  }
-
-  .burger-menu-btn {
-    display: block;
   }
 }

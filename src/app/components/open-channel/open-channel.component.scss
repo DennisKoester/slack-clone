@@ -17,15 +17,15 @@
 .channel-toolbar {
   font-size: 20px;
   background-color: var(--bg-color-side-nav);
-  height: 57px;
+  height: 56px;
   padding: 8px 20px;
-  border-bottom: 1px solid rgb(119, 119, 119);
+  border-bottom: 1px solid rgb(87, 87, 87);
 }
 
 .right {
   width: 100%;
   height: calc(100vh - 64px);
-  border-left: 1px solid rgb(119, 119, 119);
+  border-left: 1px solid rgb(87, 87, 87);
 }
 
 .rightContent {
@@ -53,6 +53,13 @@ span {
   cursor: pointer;
 }
 
+.burger-menu-btn {
+  height: 35px;
+  width: 35px;
+  display: block;
+}
+
+
 .editor-channel {
   position: sticky;
   bottom: 0;
@@ -66,8 +73,8 @@ span {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .open {
