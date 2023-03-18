@@ -28,9 +28,18 @@ body {
   height: 100%;
 }
 
+.full-width{
+  width: 100%;
+}
+
 .flex-ac {
   display: flex;
   align-items: center;
+}
+
+.flex-sb{
+  display: flex;
+  justify-content: space-between;
 }
 
 .dropdown-collapsed {

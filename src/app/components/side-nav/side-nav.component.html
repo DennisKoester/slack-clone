@@ -21,24 +21,6 @@
     <app-direct-messages-section></app-direct-messages-section>
   </mat-drawer>
   <mat-drawer-content>
-    <mat-toolbar-row class="channel-toolbar">
-      <div class="flex-ac">
-        <button
-          (click)="toggleMenu()"
-          class="burger-menu-btn"
-          [ngStyle]="{ 'background-color': 'white', 'margin-right': '16px' }"
-          mat-mini-fab
-        >
-          <mat-icon [ngStyle]="{ color: 'black' }">menu</mat-icon>
-        </button>
-        <mat-icon *ngIf="channelService.channelName" fontIcon>{{
-          channelService.channelIsPrivate ? "lock" : "numbers"
-        }}</mat-icon>
-        <span> {{ channelService.channelName }}</span>
-      </div>
-    </mat-toolbar-row>
-    <div class="channel-content-container">
-      <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>

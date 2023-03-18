@@ -28,7 +28,7 @@
   position: sticky;
   top: 0;
   justify-content: space-between;
-  padding: 12px 20px;
+  padding: 8px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   background-color: var(--bg-color-side-nav);
 }
@@ -96,17 +96,6 @@ h4 {
   display: none;
 }
 
-.channel-toolbar {
-  font-size: 20px;
-  background-color: var(--bg-color-side-nav);
-  height: 64px;
-  padding: 12px 20px;
-}
-
-.channel-content-container {
-  color: black;
-  margin: 20px;
-}
 
 @media screen and (max-width: 480px) {
   .mat-drawer {
