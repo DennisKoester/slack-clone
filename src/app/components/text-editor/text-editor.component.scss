@@ -1,8 +1,8 @@
 .editor {
   position: relative;
-  background-color: white;
+  color: white;
+  background-color: rgb(43, 44, 46);
   z-index: 999;
-  
 
   quill-editor {
     height: 100px;
@@ -10,11 +10,16 @@
     z-index: 999;
     white-space: pre-wrap !important;
   }
-  
-  button {
+
+  .send-btn {
     position: absolute;
-    right: 20px;
-    bottom: 20px;
+    right: 15px;
+    bottom: 15px;
     z-index: 1000;
+    background-color: transparent;
+    padding: 0;
+    border: unset;
+    color: white;
+    cursor: pointer;
   }
 }

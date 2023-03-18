@@ -1,4 +1,11 @@
 <div class="editor">
-  <quill-editor (onEditorChanged)="getContent($event)" [modules]="quillConfiguration" id="editor"> </quill-editor>
-  <button mat-flat-button color="primary" (click)="createThread()">send</button>
+  <quill-editor
+    (onEditorChanged)="getContent($event)"
+    [modules]="quillConfiguration"
+    id="editor"
+  >
+  </quill-editor>
+  <button class="send-btn" (click)="createThread()">
+    <mat-icon>send</mat-icon>
+  </button>
 </div>
