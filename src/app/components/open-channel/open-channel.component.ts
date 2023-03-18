@@ -14,6 +14,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ChannelService } from 'src/app/shared/services/channel.service';
+import { SideNavComponent } from '../side-nav/side-nav.component';
 
 @Component({
   selector: 'app-open-channel',
@@ -27,8 +28,7 @@ export class OpenChannelComponent {
   threads$: Observable<DocumentData[]>;
   threadsId = '';
   threads: Array<any> = [];
-  
+  menuCollapsed = false;
 
-  constructor(public channelService: ChannelService
-  ) {}
+  constructor(public channelService: ChannelService, public navFunction: SideNavComponent) {}
 }

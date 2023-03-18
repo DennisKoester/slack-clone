@@ -2,13 +2,7 @@
   <div class="left">
     <mat-toolbar-row class="channel-toolbar">
       <div class="flex-ac">
-        <button
-          class="burger-menu-btn"
-          [ngStyle]="{ 'background-color': 'white', 'margin-right': '16px' }"
-          mat-mini-fab
-        >
-          <mat-icon [ngStyle]="{ color: 'black' }">menu</mat-icon>
-        </button>
+       
         <mat-icon *ngIf="channelService.channelName" fontIcon>{{
           channelService.channelIsPrivate ? "lock" : "numbers"
         }}</mat-icon>

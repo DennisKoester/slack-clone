@@ -32,6 +32,13 @@ mat-toolbar-row {
   }
 }
 
+.burger-menu-btn {
+  &:active {
+    transform: scale(0.9);
+    filter: brightness(0.9);
+  }
+}
+
 .searchbar {
   justify-content: space-between;
   height: 30px;

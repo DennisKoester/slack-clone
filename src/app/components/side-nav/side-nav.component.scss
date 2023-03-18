@@ -3,6 +3,23 @@
   user-select: none;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 20px;
+
+  img {
+    height: 40px;
+    width: 40px;
+  }
+  
+  span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 .mat-drawer-side {
   border-right: 1px solid rgb(87, 87, 87);
 }
