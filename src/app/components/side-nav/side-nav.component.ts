@@ -12,7 +12,7 @@ export class SideNavComponent {
   menuCollapsed = false;
 
   constructor(public channelService: ChannelService) {}
-  toggleMenu() {
-    this.menuCollapsed = !this.menuCollapsed;
-  }
+  // toggleMenu() {
+  //   this.menuCollapsed = !this.menuCollapsed;
+  // }
 }
