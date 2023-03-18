@@ -22,6 +22,7 @@
   height: 100vh;
   // background-color: #742175;
   background-color: rgba(25, 27, 30, 1);
+  overflow: hidden;
 }
 
 .server-name {
@@ -95,7 +96,6 @@ h4 {
 .burger-menu-btn {
   display: none;
 }
-
 
 @media screen and (max-width: 480px) {
   .mat-drawer {

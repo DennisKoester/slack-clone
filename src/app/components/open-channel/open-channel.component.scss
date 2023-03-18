@@ -4,11 +4,14 @@
 
 .left {
   width: 100%;
+  height: calc(100vh - 64px);
 }
 
 .leftContent {
   margin: 20px;
-  height: 100%;
+  height: calc(100vh - 162px);
+  position: relative;
+  overflow-y: auto;
 }
 
 .channel-toolbar {
@@ -27,7 +30,7 @@
 
 .rightContent {
   margin: 20px;
-  height: 100%;
+  height: calc(100vh - 162px);
 }
 
 span {
@@ -50,8 +53,25 @@ span {
   cursor: pointer;
 }
 
+.editor-channel {
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .open {
-  display: flex;
+  display: block;
 }
 
 .d-none {
