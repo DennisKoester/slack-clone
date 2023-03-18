@@ -1,9 +1,11 @@
 .leftAndRight {
   display: flex;
+  width: 100%;
 }
 
 .left {
   width: 100%;
+  min-width: 350px;
   height: calc(100vh - 64px);
 }
 
@@ -23,12 +25,14 @@
 }
 
 .right {
+  // width: 400px;
   width: 100%;
   height: calc(100vh - 64px);
   border-left: 1px solid rgb(87, 87, 87);
 }
 
 .rightContent {
+  min-width: 350px;
   margin: 20px;
   height: calc(100vh - 162px);
 }
@@ -57,8 +61,12 @@ span {
   height: 35px;
   width: 35px;
   display: block;
-}
 
+  &:active {
+    transform: scale(0.9);
+    filter: brightness(0.9);
+  }
+}
 
 .editor-channel {
   position: sticky;
@@ -71,10 +79,9 @@ span {
   display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .open {
@@ -83,4 +90,10 @@ span {
 
 .d-none {
   display: none;
+}
+
+@media screen and (max-width: 1100px) {
+  .left {
+    display: none;
+  }
 }
