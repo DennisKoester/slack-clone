@@ -13,7 +13,7 @@
     height: 40px;
     width: 40px;
   }
-  
+
   span {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -46,7 +46,9 @@
   position: sticky;
   top: 0;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 8px 20px;
+  height: 61px;
+  box-sizing: border-box;
   border-bottom: 1px solid rgb(87, 87, 87);
   background-color: var(--bg-color-side-nav);
 }
