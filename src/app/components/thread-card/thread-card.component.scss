@@ -2,8 +2,30 @@ mat-card {
   background-color: unset;
   box-shadow: unset;
   color: white;
+  padding: 20px;
 
   &:hover {
     background-color: var(--bg-color-side-nav);
+  }
+
+  .card-header {
+    display: flex;
+    margin-bottom: 10px;
+
+    img {
+      margin: 0 10px 0 0;
+      height: 50px;
+      width: 50px;
+      object-fit: cover;
+    }
+    .author {
+      font-size: 18px;
+      font-weight: 500;
+      margin-right: 10px;
+    }
+    .timestamp {
+      font-size: 12px;
+      color: gray;
+    }
   }
 }
