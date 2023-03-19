@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 
 @Component({
@@ -12,4 +12,18 @@ export class SideNavComponent implements OnInit {
   ngOnInit() {}
 
   constructor(public channelService: ChannelService) {}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    event.target.innerWidth;
+    if (innerWidth <= 620 && this.channelService.menuCollapsed === false) {
+      this.channelService.menuCollapsed = true;
+    } else if (
+      innerWidth > 620 &&
+      this.channelService.menuCollapsed === true &&
+      this.channelService.status === false
+    ) {
+      this.channelService.menuCollapsed = false;
+    }
+  }
 }

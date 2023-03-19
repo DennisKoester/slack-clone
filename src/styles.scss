@@ -20,15 +20,23 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+p {
+  margin: 0 !important;
+}
+
 .mat-icon {
   overflow: unset !important;
+}
+
+.mat-mdc-card {
+  border-radius: unset !important;
 }
 
 .full-height {
   height: 100%;
 }
 
-.full-width{
+.full-width {
   width: 100%;
 }
 
@@ -37,7 +45,7 @@ body {
   align-items: center;
 }
 
-.flex-sb{
+.flex-sb {
   display: flex;
   justify-content: space-between;
 }
@@ -55,5 +63,12 @@ body {
   bottom: 135px !important;
 }
 
+// .ql-toolbar{
+// border-top-left-radius: 8px;
+// border-top-right-radius: 8px;
+// }
 
-
+// .ql-container{
+//   border-bottom-left-radius: 8px;
+//   border-bottom-right-radius: 8px;
+// }

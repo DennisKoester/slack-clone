@@ -9,7 +9,7 @@
       </div>
     </mat-toolbar-row>
     <div class="leftContent">
-      <div class="scroll-container hide-scrollbar">
+      <div class="scroll-container">
         <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
         <app-thread-card
           *ngFor="let thread of channelService.threads; index as i"
@@ -26,39 +26,8 @@
       <app-text-editor class="editor-channel"></app-text-editor>
     </div>
   </div>
-
-  <!-- <div class="right" [ngClass]="channelService.status ? 'open' : 'd-none'">
-    <div class="bar" [ngClass]="channelService.status ? 'display' : 'd-none'">
-    <div class="bar">
-      <span>Thread</span>
-      <span class="channel-name"
-        ><mat-icon>numbers</mat-icon> {{ channelService.channelName }}</span
-      >
-    </div>
-    <div class="rightContent">
-      <app-opened-thread></app-opened-thread>
-    </div>
-    <app-text-editor></app-text-editor>
-  </div> -->
-
-  <div class="right" [ngClass]="channelService.status ? 'open' : 'd-none'">
-    <mat-toolbar-row class="channel-toolbar">
-      <div class="flex-ac flex-sb full-width">
-        <div>
-          <span>Thread</span>
-          <span class="channel-name"
-            ><mat-icon>numbers</mat-icon> {{ channelService.channelName }}</span
-          >
-        </div>
-
-        <div class="close-thread-btn">
-          <mat-icon (click)="closeThread()">close</mat-icon>
-        </div>
-      </div>
-    </mat-toolbar-row>
-    <div class="rightContent hide-scrollbar">
-      <app-opened-thread></app-opened-thread>
-      <app-text-editor></app-text-editor>
-    </div>
+  <!-- <div class="right" [ngClass]="channelService.status ? 'open' : 'd-none'"> -->
+  <div class="right" *ngIf="channelService.status">
+    <app-opened-thread></app-opened-thread>
   </div>
 </div>

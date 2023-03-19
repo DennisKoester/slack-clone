@@ -10,8 +10,7 @@
 }
 
 .leftContent {
-  margin: 20px;
-  height: calc(100vh - 162px);
+  height: calc(100vh - 120px);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -27,21 +26,13 @@
 }
 
 .scroll-container {
-  // height: 100%;
   overflow-y: auto;
 }
 
 .right {
-  // width: 400px;
   width: 100%;
   height: calc(100vh - 64px);
   border-left: 1px solid rgb(87, 87, 87);
-}
-
-.rightContent {
-  min-width: 350px;
-  margin: 20px;
-  height: calc(100vh - 162px);
 }
 
 span {
@@ -60,38 +51,27 @@ span {
   }
 }
 
-.close-thread-btn {
-  cursor: pointer;
-}
-
-.editor-channel {
-  // position: sticky;
-  // bottom: 0;
-  // right: 0;
-  // left: 0;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-// ::-webkit-scrollbar-thumb {
-//   background: #ababad;
-//   -webkit-border-radius: 5px;
+// .hide-scrollbar::-webkit-scrollbar {
+//   display: none;
 // }
 
-// ::-webkit-scrollbar {
-//   width: 5px;
+// .hide-scrollbar {
+//   -ms-overflow-style: none;
+//   scrollbar-width: none;
 // }
 
-// ::-webkit-scrollbar-track {
-//   background: transparent;
-// }
+::-webkit-scrollbar-thumb {
+  background: #ababad;
+  -webkit-border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 
 .open {
   display: block;

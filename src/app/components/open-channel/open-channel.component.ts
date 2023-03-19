@@ -22,12 +22,12 @@ import { SideNavComponent } from '../side-nav/side-nav.component';
   styleUrls: ['./open-channel.component.scss'],
 })
 export class OpenChannelComponent {
-  messages = [];
-  channelId = '';
-  sendedPostID = '';
-  threads$: Observable<DocumentData[]>;
-  threadsId = '';
-  threads: Array<any> = [];
+  // messages = [];
+  // channelId = '';
+  // sendedPostID = '';
+  // threads$: Observable<DocumentData[]>;
+  // threadsId = '';
+  // threads: Array<any> = [];
   menuCollapsed = false;
 
   constructor(
@@ -52,8 +52,4 @@ export class OpenChannelComponent {
     }
   }
 
-  closeThread() {
-    this.channelService.status = false;
-    this.channelService.channelIsOpen = true;
-  }
 }
