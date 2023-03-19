@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,6 @@ import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.co
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  menuCollapsed = false;
   status: boolean = false;
 
   openProfile(): void {
@@ -18,14 +18,11 @@ export class HeaderComponent {
 
   constructor(
     public authenticationService: AuthenticationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public home: HomeComponent
   ) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogEditUserComponent);
-  }
-
-  toggleMenu() {
-    this.menuCollapsed = !this.menuCollapsed;
   }
 }

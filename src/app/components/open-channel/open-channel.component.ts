@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import {
   collection,
   Firestore,
@@ -29,6 +29,31 @@ export class OpenChannelComponent {
   threadsId = '';
   threads: Array<any> = [];
   menuCollapsed = false;
+  threadIsOpen = false;
 
-  constructor(public channelService: ChannelService, public navFunction: SideNavComponent) {}
+  constructor(
+    public channelService: ChannelService,
+    public navFunction: SideNavComponent
+  ) {}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(e) {
+    e.target.innerWidth;
+    if (
+      innerWidth <= 620 &&
+      this.channelService.status === true &&
+      this.threadIsOpen === false
+    ) {
+      this.threadIsOpen = true;
+    } else if (innerWidth > 620 && this.threadIsOpen === true) {
+      this.threadIsOpen = false;
+    }
+
+    console.log('thread', this.threadIsOpen);
+  }
+
+  closeThread() {
+    this.channelService.status = false;
+    this.threadIsOpen = false;
+  }
 }
