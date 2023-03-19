@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { collection, doc, getDoc } from '@firebase/firestore';
 import { Observable } from 'rxjs';
+import * as GLOBAL_VAR from 'src/app/shared/services/globals';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-direct-messages-section',
@@ -12,8 +14,10 @@ export class DirectMessagesSectionComponent implements OnInit {
   collapsed = false;
   users$: Observable<any>;
 
-  constructor(public firestore: Firestore) {
-
+  constructor(public firestore: Firestore, private usersService: UsersService) {
+    this.usersService.usersCollListener.subscribe({
+      next: (users) => null
+    });
   }
 
   toggleDropdown() {
