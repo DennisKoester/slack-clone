@@ -6,7 +6,7 @@
 @import "~quill-emoji/dist/quill-emoji.css";
 
 :root {
-  --bg-color-side-nav: rgb(24,23,27);
+  --bg-color-side-nav: rgb(24, 23, 27);
 }
 
 html,
@@ -22,14 +22,6 @@ body {
 
 p {
   margin: 0 !important;
-}
-
-.mat-icon {
-  overflow: unset !important;
-}
-
-.mat-mdc-card {
-  border-radius: unset !important;
 }
 
 .full-height {
@@ -58,6 +50,8 @@ p {
   transform: rotate(-90deg);
 }
 
+// Quil Editor Changes //
+
 #emoji-palette {
   top: unset !important;
   bottom: 135px !important;
@@ -73,3 +67,56 @@ p {
 //   border-bottom-right-radius: 8px;
 // }
 
+// Material Design Changes //
+
+.mat-icon {
+  overflow: unset !important;
+}
+
+.mat-mdc-card {
+  border-radius: unset !important;
+}
+
+.mat-mdc-menu-content {
+  padding: 0 !important;
+  background-color: rgb(56, 56, 56);
+}
+.mat-mdc-menu-content button span {
+  color: white;
+}
+
+.mdc-dialog__container * {
+  color: white !important;
+
+  .mdc-button:hover:not([disabled]) {
+    background: rgb(77, 77, 77) !important;
+  }
+  .mdc-checkbox__ripple {
+    background: rgb(110, 110, 110) !important;
+  }
+  .mdc-text-field__input {
+    caret-color: unset !important;
+  }
+
+  .mdc-line-ripple::after {
+    border-bottom-color: white !important;
+  }
+  .mdc-checkbox__background {
+    border-color: white !important;
+  }
+  .mat-mdc-text-field-wrapper {
+    background-color: rgba(56, 56, 56, 1) !important;
+  }
+}
+
+.mdc-menu-surface {
+  background-color: unset !important;
+}
+
+.mat-mdc-menu-item:hover:not([disabled]) {
+  background: rgb(77, 77, 77) !important;
+}
+
+.mat-mdc-dialog-surface {
+  background-color: rgba(56, 56, 56, 1) !important;
+}
