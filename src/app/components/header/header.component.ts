@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { ChannelService } from 'src/app/shared/services/channel.service';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { HomeComponent } from '../home/home.component';
 
@@ -19,7 +20,8 @@ export class HeaderComponent {
   constructor(
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
-    public home: HomeComponent
+    public home: HomeComponent,
+    public channelService: ChannelService
   ) {}
 
   openDialog(): void {

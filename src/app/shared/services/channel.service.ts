@@ -22,9 +22,10 @@ export class ChannelService {
   channelIsPrivate: boolean = false;
   private index: number;
   status: boolean = false;
-  threadIsOpen: boolean = false;
+  channelIsOpen: boolean = true;
   openedChannel = false;
   openedThread = false;
+  menuCollapsed = false;
   threads: any = [];
   threads$: Observable<any>;
   unsubChannel: Subscription;
@@ -36,7 +37,7 @@ export class ChannelService {
 
   constructor(
     private firestore: Firestore,
-    private usersService: UsersService,
+    private usersService: UsersService
   ) {
     this.usersService.usersCollListener.subscribe({
       next: (users) =>
@@ -103,6 +104,10 @@ export class ChannelService {
   }
 
   async openThread(i) {
+    if (innerWidth <= 620) {
+      this.channelIsOpen = false;
+      this.menuCollapsed = true;
+    }
     this.status = true;
     this.getThreadMessages(i);
   }
@@ -127,5 +132,7 @@ export class ChannelService {
     // })
   }
 
-  
+  toggleMenu() {
+    this.menuCollapsed = !this.menuCollapsed;
+  }
 }

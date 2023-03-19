@@ -1,5 +1,5 @@
 <div class="leftAndRight">
-  <div class="left" *ngIf="!this.threadIsOpen">
+  <div class="left" *ngIf="this.channelService.channelIsOpen">
     <mat-toolbar-row class="channel-toolbar">
       <div class="flex-ac">
         <mat-icon *ngIf="channelService.channelName" fontIcon>{{
@@ -12,7 +12,6 @@
       <div class="scroll-container hide-scrollbar">
         <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
         <app-thread-card
-          
           *ngFor="let thread of channelService.threads; index as i"
           [index]="i"
           [author]="thread['MESSAGES'][0]['author']"

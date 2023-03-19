@@ -1,5 +1,6 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { ChannelService } from 'src/app/shared/services/channel.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
@@ -8,12 +9,10 @@ import { UsersService } from 'src/app/shared/services/users.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  @ViewChild('matDrawer') matDrawer;
-  menuCollapsed: boolean = false;
-
   constructor(
     public authenticationService: AuthenticationService,
-    public usersService: UsersService
+    public usersService: UsersService,
+    public channelService: ChannelService
   ) {
     this.usersService.getUsers();
   }
@@ -21,14 +20,14 @@ export class HomeComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     event.target.innerWidth;
-    if (innerWidth <= 620 && this.menuCollapsed === false) {
-      this.menuCollapsed = true;
-    } else if (innerWidth > 620 && this.menuCollapsed === true) {
-      this.menuCollapsed = false;
+    if (innerWidth <= 620 && this.channelService.menuCollapsed === false) {
+      this.channelService.menuCollapsed = true;
+    } else if (
+      innerWidth > 620 &&
+      this.channelService.menuCollapsed === true &&
+      this.channelService.status === false
+    ) {
+      this.channelService.menuCollapsed = false;
     }
-  }
-
-  toggleMenu() {
-    this.menuCollapsed = !this.menuCollapsed;
   }
 }

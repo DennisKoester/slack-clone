@@ -8,11 +8,8 @@ import { ChannelService } from 'src/app/shared/services/channel.service';
 })
 export class SideNavComponent implements OnInit {
   @Input() isPrivate: boolean;
-  @Input() menuCollapsed: boolean;
 
-ngOnInit(){
-  
-}
+  ngOnInit() {}
 
   constructor(public channelService: ChannelService) {}
 }

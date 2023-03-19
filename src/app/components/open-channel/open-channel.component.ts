@@ -29,7 +29,6 @@ export class OpenChannelComponent {
   threadsId = '';
   threads: Array<any> = [];
   menuCollapsed = false;
-  threadIsOpen = false;
 
   constructor(
     public channelService: ChannelService,
@@ -42,18 +41,19 @@ export class OpenChannelComponent {
     if (
       innerWidth <= 620 &&
       this.channelService.status === true &&
-      this.threadIsOpen === false
+      this.channelService.channelIsOpen === true
     ) {
-      this.threadIsOpen = true;
-    } else if (innerWidth > 620 && this.threadIsOpen === true) {
-      this.threadIsOpen = false;
+      this.channelService.channelIsOpen = false;
+    } else if (
+      innerWidth > 620 &&
+      this.channelService.channelIsOpen === false
+    ) {
+      this.channelService.channelIsOpen = true;
     }
-
-    console.log('thread', this.threadIsOpen);
   }
 
   closeThread() {
     this.channelService.status = false;
-    this.threadIsOpen = false;
+    this.channelService.channelIsOpen = true;
   }
 }
