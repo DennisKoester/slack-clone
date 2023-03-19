@@ -1,13 +1,13 @@
 <mat-drawer-container class="example-container">
   <mat-drawer *ngIf="!menuCollapsed" mode="side" opened>
-    <div class="server-name flex-ac">
+    <div class="server-name">
       <div class="logo">
         <img src="./assets/img/logo.png" />
         <span>Slack Clone</span>
+        <button class="new-msg-btn" mat-mini-fab>
+          <mat-icon [ngStyle]="{ color: 'black' }">edit_note</mat-icon>
+        </button>
       </div>
-      <button class="new-msg-btn" mat-mini-fab>
-        <mat-icon [ngStyle]="{ color: 'black' }">edit_note</mat-icon>
-      </button>
     </div>
     <div class="navigation">
       <div class="nav-hl flex-ac">

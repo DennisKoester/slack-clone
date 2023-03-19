@@ -6,6 +6,7 @@
 .logo {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 15px;
   font-size: 20px;
 
@@ -46,8 +47,7 @@
 .server-name {
   position: sticky;
   top: 0;
-  justify-content: space-between;
-  padding: 8px 20px;
+  padding: 8px 10px;
   height: 61px;
   box-sizing: border-box;
   border-bottom: 1px solid rgb(87, 87, 87);
@@ -107,7 +107,7 @@ h4 {
 .new-msg-btn {
   height: 35px;
   width: 35px;
-  margin-left: 10px;
+  margin-left: auto;
   background-color: white;
   &:active {
     transform: scale(0.9);
@@ -120,7 +120,5 @@ h4 {
     display: none;
   }
 
-  .mat-drawer-content {
-    // display: none;
-  }
+  
 }
