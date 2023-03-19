@@ -40,8 +40,7 @@ export class ChannelService {
     private usersService: UsersService
   ) {
     this.usersService.usersCollListener.subscribe({
-      next: (users) =>
-        console.log('Current users list from UsersService:', users),
+      next: (users) => null
     });
   }
 
