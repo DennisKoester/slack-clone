@@ -38,7 +38,7 @@
 }
 
 .mat-drawer-content {
-  background-color: rgb(25,27,30);
+  background-color: rgb(25, 27, 30);
   overflow: hidden;
 }
 
@@ -93,8 +93,7 @@ h4 {
 
   &:hover {
     border-radius: 5px;
-       background-color: rgb(35, 33, 39);
-
+    background-color: rgb(35, 33, 39);
   }
 }
 
@@ -110,7 +109,8 @@ h4 {
 }
 
 @media screen and (max-width: 480px) {
-  // mat-drawer {
-  // display: none;
-  // }
+  mat-drawer {
+    width: 100% !important;
+    max-width: unset !important;
+  }
 }

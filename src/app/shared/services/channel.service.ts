@@ -40,7 +40,7 @@ export class ChannelService {
     private usersService: UsersService
   ) {
     this.usersService.usersCollListener.subscribe({
-      next: (users) => null
+      next: (users) => null,
     });
   }
 
@@ -49,6 +49,9 @@ export class ChannelService {
     if (this.openedChannel == false) {
       if (this.unsubChannel) {
         this.unsubChannel.unsubscribe();
+      }
+      if (innerWidth < 620 && !this.menuCollapsed) {
+        this.menuCollapsed = true;
       }
       this.openedChannel = true;
       await this.showChannelName(channelId);
