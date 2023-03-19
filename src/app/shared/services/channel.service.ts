@@ -1,4 +1,4 @@
-import { Injectable, Input, OnInit } from '@angular/core';
+import { HostListener, Injectable, Input, OnInit } from '@angular/core';
 import {
   collectionData,
   doc,
@@ -22,6 +22,7 @@ export class ChannelService {
   channelIsPrivate: boolean = false;
   private index: number;
   status: boolean = false;
+  threadIsOpen: boolean = false;
   openedChannel = false;
   openedThread = false;
   threads: any = [];
@@ -35,7 +36,7 @@ export class ChannelService {
 
   constructor(
     private firestore: Firestore,
-    private usersService: UsersService
+    private usersService: UsersService,
   ) {
     this.usersService.usersCollListener.subscribe({
       next: (users) => null
@@ -125,7 +126,5 @@ export class ChannelService {
     // })
   }
 
-  closeTread() {
-    this.status = false;
-  }
+  
 }
