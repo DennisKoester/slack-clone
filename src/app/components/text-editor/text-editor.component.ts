@@ -52,6 +52,7 @@ export class TextEditorComponent implements OnInit {
       ['image'],
       ['emoji'],
     ],
+    'theme': 'bubble',
   };
 
   ngOnInit() {}
