@@ -95,11 +95,6 @@ h4 {
     border-radius: 5px;
     background-color: rgba(5, 0, 51, 0.712);
   }
-
-  &:active {
-    border-radius: 5px;
-    background-color: rgba(255, 187, 0, 0.596);
-  }
 }
 
 .new-msg-btn {
@@ -115,8 +110,6 @@ h4 {
 
 @media screen and (max-width: 480px) {
   // mat-drawer {
-    // display: none;
+  // display: none;
   // }
-
-  
 }
