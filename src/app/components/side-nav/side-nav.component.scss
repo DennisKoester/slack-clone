@@ -38,7 +38,7 @@
 }
 
 .mat-drawer-content {
-  background-color: rgba(25, 27, 30, 1);
+  background-color: rgb(25,27,30);
   overflow: hidden;
 }
 
@@ -93,7 +93,8 @@ h4 {
 
   &:hover {
     border-radius: 5px;
-    background-color: rgba(5, 0, 51, 0.712);
+       background-color: rgb(35, 33, 39);
+
   }
 }
 

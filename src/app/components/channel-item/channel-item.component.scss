@@ -12,17 +12,15 @@ h4 {
 
 .channel {
   gap: 8px;
+}
+
+.channelitem {
   margin: 0 8px;
   padding: 5px 12px;
   cursor: pointer;
 
-  &:hover {
+  &:hover:not(.activeLink) {
     border-radius: 5px;
-    background-color: rgba(5, 0, 51, 0.712);
+    background-color: rgb(35, 33, 39);
   }
-
-  // &:active {
-  //   border-radius: 5px;
-  //   background-color: red;
-  // }
 }
