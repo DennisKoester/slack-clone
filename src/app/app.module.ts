@@ -56,6 +56,7 @@ import { OpenChannelComponent } from './components/open-channel/open-channel.com
 import { OpenedThreadComponent } from './components/opened-thread/opened-thread.component';
 import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
 import { ChatlistItemComponent } from './components/chatlist-item/chatlist-item.component';
+import { OpenChatComponent } from './components/open-chat/open-chat.component';
 
 
 
@@ -82,6 +83,7 @@ import { ChatlistItemComponent } from './components/chatlist-item/chatlist-item.
     OpenedThreadComponent,
     DialogEditUserComponent,
     ChatlistItemComponent,
+    OpenChatComponent,
   ],
   imports: [
     BrowserModule,
