@@ -34,6 +34,8 @@ export class ChannelService {
   public setValue(value: number) {
     this.index = value;
   }
+  searchValue: string = '';
+  searchActive: boolean = false;
 
   constructor(
     private firestore: Firestore,
@@ -150,4 +152,11 @@ export class ChannelService {
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
   }
+
+
+  search() {
+    // this.searchValue = this.searchValue.toLowerCase();
+  }
+
+
 }

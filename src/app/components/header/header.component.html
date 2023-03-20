@@ -11,8 +11,8 @@
       </button>
 
       <div class="searchbar">
-        <input type="text" placeholder="Channel durchsuchen..." [(ngModel)]="searchValue" (keyup)="search()">
-        <mat-icon fontIcon="search"></mat-icon>
+        <input type="text" placeholder="Channel durchsuchen..." [(ngModel)]="channelService.searchValue" >
+        <mat-icon fontIcon="search" (click)="channelService.search()"></mat-icon>
       </div>
 
       <button mat-button [matMenuTriggerFor]="menu">

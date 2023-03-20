@@ -31,8 +31,4 @@ export class HeaderComponent {
     const dialogRef = this.dialog.open(DialogEditUserComponent);
   }
 
-
-  search() {
-    this.searchValue = this.searchValue.toLowerCase();
-  }
 }
