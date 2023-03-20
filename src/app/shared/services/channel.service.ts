@@ -90,7 +90,6 @@ export class ChannelService {
   async openThread(i) {
     this.status = !this.status;
     this.getThreadMessages(i);
-
   }
 
 
@@ -99,14 +98,5 @@ export class ChannelService {
       doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.channelId, GLOBAL_VAR.COLL_THREADS, this.threads[i]['threadId'])
     );
     this.threadMessages = (await threadMessages).data();
-
-      console.log('log',this.threadMessages['MESSAGES']);
-    // this.unsubChannel = this.threads$.subscribe((threads) => {
-    //   this.sortThreads(threads);
-    //   this.getUserNames(threads);
-    //   this.threads = threads;
-    // })
   }
-
-
 }
