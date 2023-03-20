@@ -24,6 +24,7 @@
     [timestamp]="
       message['timestamp']['seconds'] * 1000 | date : 'yyyy/MM/dd HH:mm:ss'
     "
+    [class.d-none]="!message['content'].includes(channelService.searchValue)"
   >
   </app-thread-card>
 </div>
