@@ -9,7 +9,8 @@
   </div>
 
   <div *ngIf="!collapsed">
-    <app-chatlist-item></app-chatlist-item>
+    <app-chatlist-item *ngFor="let chat of chats"
+      [name]="chat['USERS'][0].userName"></app-chatlist-item>
     <!-- <div class="user-direct-msg flex-ac">
       <img src="./assets/img/profile_icon.png" />
       <p>Slackbot</p>
