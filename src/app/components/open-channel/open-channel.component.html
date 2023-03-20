@@ -1,42 +1,9 @@
-<<<<<<< HEAD
 <mat-toolbar-row class="channel-toolbar">
   <div class="flex-ac">
     <mat-icon *ngIf="channelService.channelName" fontIcon>{{
       channelService.channelIsPrivate ? "lock" : "numbers"
     }}</mat-icon>
     <span> {{ channelService.channelName }}</span>
-=======
-<div class="leftAndRight">
-  <div class="left" *ngIf="this.channelService.channelIsOpen">
-    <mat-toolbar-row class="channel-toolbar">
-      <div class="flex-ac">
-        <mat-icon *ngIf="channelService.channelName" fontIcon>{{
-          channelService.channelIsPrivate ? "lock" : "numbers"
-        }}</mat-icon>
-        <span> {{ channelService.channelName }}</span>
-      </div>
-    </mat-toolbar-row>
-    <div class="leftContent">
-      <div class="scroll-container">
-        <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
-        
-          <app-thread-card class="threadCard"
-            *ngFor="let thread of channelService.threads; index as i"
-            [index]="i"
-            [author]="thread['MESSAGES'][0]['author']"
-            [message]="thread['MESSAGES'][0]['content']"
-            [timestamp]="
-              thread['MESSAGES'][0]['timestamp']['seconds'] * 1000
-                | date : 'yyyy/MM/dd HH:mm:ss'
-            "
-            (click)="channelService.openThread(i)"
-            
-            [class.d-none]="!thread['MESSAGES'][0]['content'].includes(channelService.searchValue)" >
-          ></app-thread-card>
-      </div>
-      <app-text-editor class="editor-channel"></app-text-editor>
-    </div>
->>>>>>> a051505a94574ba9e57c7119a3f4d364ee0ade44
   </div>
 </mat-toolbar-row>
 <div class="leftContent">
