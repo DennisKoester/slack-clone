@@ -1,0 +1,10 @@
+@import "../open-channel/open-channel.component.scss";
+
+.rightContent {
+  //   min-width: 350px;
+  height: calc(100vh - 162px);
+}
+
+.close-thread-btn {
+  cursor: pointer;
+}

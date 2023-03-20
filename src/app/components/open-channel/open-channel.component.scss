@@ -1,62 +1,88 @@
-.d-none {
-  display: none;
-}
-
-.bar {
+.leftAndRight {
   display: flex;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #4a154b;
-  height: 64px;
-  width: 500px;
-  padding-right: 20px;
-  border-left: 1px solid rgb(119, 119, 119);
-
-  span {
-    color: white;
-    font-size: 20px;
-  }
-}
-
-.d-none {
-  display: none;
+  width: 100%;
 }
 
 .left {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   width: 100%;
-  height: calc(100vH - 164px);
-}
-
-.right {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: -20px;
-  height: calc(100vH - 144px);
-  z-index: 1100;
-  max-width: 500px;
-  background-color: #191b1e;
-  border-left: 1px solid rgb(119, 119, 119);
-}
-
-.leftAndRight {
-  display: flex;
+  // min-width: 350px;
+  height: calc(100vh - 64px);
 }
 
 .leftContent {
-  // height: 550px;
-  overflow: auto;
+  height: calc(100vh - 120px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.rightContent {
-  height: 585px;
-  overflow: auto;
+.channel-toolbar {
+  font-size: 20px;
+  background-color: rgb(25, 27, 30);
+  height: 61px;
+  padding: 8px 20px;
+  border-bottom: 1px solid rgb(87, 87, 87);
 }
 
+.scroll-container {
+  overflow-y: auto;
+}
 
+.right {
+  width: 100%;
+  height: calc(100vh - 64px);
+  border-left: 1px solid rgb(87, 87, 87);
+}
 
+span {
+  color: white;
+  font-size: 20px;
+}
+
+.channel-name {
+  padding-left: 15px;
+  color: gray;
+  font-size: 14px;
+  mat-icon {
+    font-size: 14px;
+    height: 14px;
+    width: 12px;
+  }
+}
+
+// .hide-scrollbar::-webkit-scrollbar {
+//   display: none;
+// }
+
+// .hide-scrollbar {
+//   -ms-overflow-style: none;
+//   scrollbar-width: none;
+// }
+
+::-webkit-scrollbar-thumb {
+  background: #ababad;
+  -webkit-border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.open {
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
+
+// @media screen and (max-width: 1100px) {
+//   .left {
+//     display: none;
+//   }
+// }

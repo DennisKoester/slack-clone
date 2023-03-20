@@ -3,8 +3,26 @@
   user-select: none;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 20px;
+
+  img {
+    height: 40px;
+    width: 40px;
+  }
+
+  span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 .mat-drawer-side {
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgb(87, 87, 87);
 }
 
 .mat-drawer {
@@ -16,20 +34,21 @@
 
 .mat-drawer-container {
   position: unset;
+  height: 100%;
 }
 
 .mat-drawer-content {
-  height: 100vh;
-  // background-color: #742175;
-  background-color: rgba(25, 27, 30, 1);
+  background-color: rgb(25, 27, 30);
+  overflow: hidden;
 }
 
 .server-name {
   position: sticky;
   top: 0;
-  justify-content: space-between;
-  padding: 12px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 10px;
+  height: 61px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(87, 87, 87);
   background-color: var(--bg-color-side-nav);
 }
 
@@ -74,17 +93,14 @@ h4 {
 
   &:hover {
     border-radius: 5px;
-    background-color: rgba(5, 0, 51, 0.712);
-  }
-
-  &:active {
-    border-radius: 5px;
-    background-color: rgba(255, 187, 0, 0.596);
+    background-color: rgb(35, 33, 39);
   }
 }
 
 .new-msg-btn {
-  margin-left: 10px;
+  height: 35px;
+  width: 35px;
+  margin-left: auto;
   background-color: white;
   &:active {
     transform: scale(0.9);
@@ -92,34 +108,9 @@ h4 {
   }
 }
 
-.burger-menu-btn {
-  display: none;
-}
-
-.channel-toolbar {
-  font-size: 20px;
-  background-color: var(--bg-color-side-nav);
-  height: 64px;
-  padding: 12px 20px;
-}
-
-.channel-content-container {
-  color: black;
-  margin: 20px;
-}
-
 @media screen and (max-width: 480px) {
-  .mat-drawer {
-    // width: 100vw;
-    // max-width: unset;
-    display: none;
-  }
-
-  .mat-drawer-content {
-    // display: none;
-  }
-
-  .burger-menu-btn {
-    display: block;
+  mat-drawer {
+    width: 100% !important;
+    max-width: unset !important;
   }
 }

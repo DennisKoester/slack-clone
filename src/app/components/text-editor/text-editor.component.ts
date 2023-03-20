@@ -35,7 +35,6 @@ export class TextEditorComponent implements OnInit {
     public authenticationService: AuthenticationService
   ) {}
 
-
   editorContent;
   editorAuthor = '';
   channelId;
@@ -58,13 +57,11 @@ export class TextEditorComponent implements OnInit {
   ngOnInit() {}
 
   getContent(event: EditorChangeContent | EditorChangeSelection) {
-   
     if (this.event.length > 9) {
       this.event.splice(0, 2);
       this.event.push(event);
     }
     this.event.push(event);
-    
 
     if (this.event[this.event.length - 1].html) {
       this.editorContent = this.event[this.event.length - 1].html;
@@ -79,7 +76,6 @@ export class TextEditorComponent implements OnInit {
     ) {
       this.editorContent = this.event[this.event.length - 3].html;
     }
-    
   }
 
   async createThread() {
@@ -96,11 +92,15 @@ export class TextEditorComponent implements OnInit {
     });
     if (this.editorContent) {
       console.log('content beginning', this.editorContent);
-      const threadId = await addDoc(this.threads, { MESSAGES: [{
-        timestamp: timestamp,
-        author: currentUserId,
-        content: this.editorContent
-      }] });
+      const threadId = await addDoc(this.threads, {
+        MESSAGES: [
+          {
+            timestamp: timestamp,
+            author: currentUserId,
+            content: this.editorContent,
+          },
+        ],
+      });
       console.log(`New thread created, id: ${threadId.id}`);
       // document.getElementById('editor').innerHTML = '';
       document.querySelector('#editor .ql-editor').innerHTML = '';
@@ -108,7 +108,5 @@ export class TextEditorComponent implements OnInit {
       this.event = [];
       console.log('content end', this.editorContent);
     }
-      
   }
-
 }

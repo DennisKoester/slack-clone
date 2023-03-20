@@ -1,7 +1,11 @@
-@import 'src/app/components/channel-item/channel-item.component.scss';
+@import "src/app/components/channel-item/channel-item.component.scss";
 
 * {
   user-select: none;
+}
+
+.channel-container {
+  border-top: 1px solid rgb(87, 87, 87);
   cursor: pointer;
 }
 
@@ -9,22 +13,9 @@
   gap: 8px;
   padding: 12px 5px 5px 20px;
   font-size: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-// .channel {
-//   gap: 8px;
-//   margin: 0 8px;
-//   padding: 5px 12px;
-
-//   &:hover {
-//     border-radius: 5px;
-//     background-color: rgba(5, 0, 51, 0.712);
-//   }
-
-//   &:active {
-//     border-radius: 5px;
-//     background-color: rgba(255, 187, 0, 0.596);
-//   }
-// }
-
+.activeLink {
+  border-radius: 5px;
+  background-color: rgba(255, 187, 0, 0.596);
+}

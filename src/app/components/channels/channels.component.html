@@ -1,23 +1,27 @@
-<div (click)="toggleDropdown()" class="channel-hl flex-ac">
-  <mat-icon
-    [ngClass]="collapsed ? 'rotate90' : ''"
-    style="transition: all 125ms ease-in-out"
-    fontIcon="arrow_drop_down"
-  ></mat-icon>
-  <p>Channels</p>
-</div>
+<div class="channel-container">
+  <div (click)="toggleDropdown()" class="channel-hl flex-ac">
+    <mat-icon
+      [ngClass]="collapsed ? 'rotate90' : ''"
+      style="transition: all 125ms ease-in-out"
+      fontIcon="arrow_drop_down"
+    ></mat-icon>
+    <p>Channels</p>
+  </div>
 
-<div *ngIf="!collapsed" class="channel-dropdown-menu">
-  <app-channel-item
-    *ngFor="let channel of channels"
-    [name]="channel.name"
-    [isPrivate]="channel.isPrivate"
-    [routerLink]="['/home/channel/' + channel.channelId]"
-    (click)="channelService.openChannel(channel.channelId)"
-  ></app-channel-item>
+  <div *ngIf="!collapsed" class="channel-dropdown-menu">
+    <app-channel-item
+      class="channelitem flex-ac"
+      *ngFor="let channel of channels"
+      [name]="channel.name"
+      [isPrivate]="channel.isPrivate"
+      [routerLink]="['/home/channel/' + channel.channelId]"
+      routerLinkActive="activeLink"
+      (click)="channelService.openChannel(channel.channelId)"
+    ></app-channel-item>
 
-  <div (click)="openDialog()" class="channel flex-ac">
-    <mat-icon fontIcon="add"></mat-icon>
-    <p>Create new channel</p>
+    <div (click)="openDialog()" class="channelitem channel flex-ac">
+      <mat-icon fontIcon="add"></mat-icon>
+      <p>Create new channel</p>
+    </div>
   </div>
 </div>

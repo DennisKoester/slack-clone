@@ -1,33 +1,34 @@
 <div class="channel-header">
   <mat-toolbar>
     <mat-toolbar-row class="header-toolbar">
-      <div>
-        <img src="./assets/img/logo.png" />
-        <span>Slack Clone</span>
-      </div>
+      <button
+        (click)="channelService.toggleMenu()"
+        class="burger-menu-btn"
+        [ngStyle]="{ 'background-color': 'white', 'margin-right': '16px' }"
+        mat-mini-fab
+      >
+        <mat-icon [ngStyle]="{ color: 'black' }">menu</mat-icon>
+      </button>
 
       <div class="searchbar">
         <input type="text" />
         <mat-icon fontIcon="search"></mat-icon>
       </div>
 
-      
-
-      <button mat-button [matMenuTriggerFor]="menu"><div class="profile-img" >
-        <a class="logout">
-          <img src="./assets/img/profile_image.jpg">
-          <div class="status-dot"></div>
-        </a>
-      </div></button>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <div class="profile-img">
+          <a class="logout">
+            <img src="./assets/img/profile_image.jpg" />
+            <div class="status-dot"></div>
+          </a>
+        </div>
+      </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="openDialog()">edit User</button>
-        <button mat-menu-item (click)="authenticationService.SignOut()">logout</button>
+        <button mat-menu-item (click)="authenticationService.SignOut()">
+          logout
+        </button>
       </mat-menu>
-
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
-
-
-
-<!--   -->
