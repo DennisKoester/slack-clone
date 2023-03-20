@@ -124,15 +124,28 @@ export class ChannelService {
         this.threads[i]['threadId']
       )
     );
+    
     this.threadMessages = (await threadMessages).data();
-
-    console.log('log', this.threadMessages['MESSAGES']);
+    this.getUserNamesThread();
+    // console.log('log', this.threadMessages['MESSAGES']);
     // this.unsubChannel = this.threads$.subscribe((threads) => {
     //   this.sortThreads(threads);
     //   this.getUserNames(threads);
     //   this.threads = threads;
     // })
   }
+
+
+  getUserNamesThread() {
+    this.threadMessages['MESSAGES'].forEach((message) => {
+      const uid = message['author'];
+      const user = this.usersService.usersCollListener.value.users.find(
+        (user: any) => user.uid == uid
+      );
+      message['author'] = user.displayName;
+    });
+  }
+
 
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
