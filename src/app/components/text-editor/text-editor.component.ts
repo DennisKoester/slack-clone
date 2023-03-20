@@ -51,7 +51,6 @@ export class TextEditorComponent implements OnInit {
       [{ list: 'ordered' }, { list: 'bullet' }],
       ['emoji'],
     ],
-    theme: 'bubble'
   };
 
   ngOnInit() {}

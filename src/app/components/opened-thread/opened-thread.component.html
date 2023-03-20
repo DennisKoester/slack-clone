@@ -13,6 +13,7 @@
   </div>
 </mat-toolbar-row>
 <div class="rightContent">
+  <div>
   <app-thread-card
     *ngFor="
       let message of channelService.threadMessages['MESSAGES'];
@@ -25,5 +26,6 @@
     "
   >
   </app-thread-card>
+</div>
   <app-text-editor></app-text-editor>
 </div>
