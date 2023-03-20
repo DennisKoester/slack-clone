@@ -51,5 +51,4 @@ export class OpenChannelComponent {
       this.channelService.channelIsOpen = true;
     }
   }
-
 }

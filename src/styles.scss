@@ -4,7 +4,6 @@
 @import "~quill/dist/quill.snow.css";
 @import "~quill-emoji/dist/quill-emoji.css";
 
-
 :root {
   --bg-color-side-nav: rgb(24, 23, 27);
 }
@@ -57,15 +56,16 @@ p {
   bottom: 135px !important;
 }
 
-// .ql-toolbar{
-// border-top-left-radius: 8px;
-// border-top-right-radius: 8px;
-// }
+.ql-toolbar {
+  border: 1px solid white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
 
-// .ql-container{
-//   border-bottom-left-radius: 8px;
-//   border-bottom-right-radius: 8px;
-// }
+.ql-container {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
 
 // Material Design Changes //
 
@@ -119,4 +119,8 @@ p {
 
 .mat-mdc-dialog-surface {
   background-color: rgba(56, 56, 56, 1) !important;
+}
+
+.cdk-global-scrollblock {
+  overflow: hidden !important;
 }

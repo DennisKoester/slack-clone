@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { OpenChannelComponent } from './components/open-channel/open-channel.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
+import { OpenChatComponent } from './components/open-chat/open-chat.component';
 
 const routes: Routes = [
   // {path: '', component: AppComponent},
@@ -22,7 +23,12 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'channel/:id', component: OpenChannelComponent }],
+      { path: 'channel/:id', component: OpenChannelComponent },
+      {
+        path: 'chat/:id',
+        component: OpenChatComponent,
+      },
+    ],
   },
 ];
 
