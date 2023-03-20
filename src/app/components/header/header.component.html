@@ -11,7 +11,7 @@
       </button>
 
       <div class="searchbar">
-        <input type="text" />
+        <input type="text" placeholder="Channel durchsuchen..." [(ngModel)]="searchValue" (keyup)="search()">
         <mat-icon fontIcon="search"></mat-icon>
       </div>
 

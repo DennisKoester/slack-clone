@@ -12,10 +12,12 @@ import { HomeComponent } from '../home/home.component';
 })
 export class HeaderComponent {
   status: boolean = false;
+  searchValue: string;
 
   openProfile(): void {
     this.status = !this.status;
   }
+
 
   constructor(
     public authenticationService: AuthenticationService,
@@ -24,7 +26,13 @@ export class HeaderComponent {
     public channelService: ChannelService
   ) {}
 
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogEditUserComponent);
+  }
+
+
+  search() {
+    this.searchValue = this.searchValue.toLowerCase();
   }
 }
