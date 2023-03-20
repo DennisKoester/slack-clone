@@ -32,7 +32,7 @@ export class TextEditorComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private firestore: Firestore,
-    public authenticationService: AuthenticationService
+    public authenticationService: AuthenticationService,
   ) {}
 
   editorContent;
@@ -49,9 +49,9 @@ export class TextEditorComponent implements OnInit {
       ['bold', 'italic', 'underline', 'strike'],
       ['code-block'],
       [{ list: 'ordered' }, { list: 'bullet' }],
-      ['image'],
       ['emoji'],
     ],
+    theme: 'bubble'
   };
 
   ngOnInit() {}
