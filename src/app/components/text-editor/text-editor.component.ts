@@ -90,7 +90,7 @@ export class TextEditorComponent implements OnInit {
       );
     });
     if (this.editorContent) {
-      console.log('content beginning', this.editorContent);
+      // console.log('content beginning', this.editorContent);
       const threadId = await addDoc(this.threads, {
         MESSAGES: [
           {
@@ -100,12 +100,12 @@ export class TextEditorComponent implements OnInit {
           },
         ],
       });
-      console.log(`New thread created, id: ${threadId.id}`);
+      // console.log(`New thread created, id: ${threadId.id}`);
       // document.getElementById('editor').innerHTML = '';
       document.querySelector('#editor .ql-editor').innerHTML = '';
       this.editorContent = '';
       this.event = [];
-      console.log('content end', this.editorContent);
+      // console.log('content end', this.editorContent);
     }
   }
 }
