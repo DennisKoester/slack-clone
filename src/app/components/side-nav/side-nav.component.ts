@@ -29,6 +29,14 @@ export class SideNavComponent implements OnInit {
       this.channelService.threadIsOpen === false
     ) {
       this.channelService.menuCollapsed = false;
+    } else if (innerWidth > 620 && this.channelService.threadIsOpen === true) {
+      this.channelService.channelIsOpen = true;
+    } else if (
+      innerWidth <= 620 &&
+      this.channelService.threadIsOpen === true &&
+      this.channelService.channelIsOpen === true
+    ) {
+      this.channelService.channelIsOpen = false;
     }
   }
 }

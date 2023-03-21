@@ -15,7 +15,6 @@ import * as GLOBAL_VAR from './globals';
 import { UsersService } from './users.service';
 import { ThreadService } from './thread.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -42,7 +41,6 @@ export class ChannelService {
   channelEditor: boolean;
   channelIdOpenedThread;
 
-
   constructor(
     private firestore: Firestore,
     private usersService: UsersService,
@@ -53,7 +51,6 @@ export class ChannelService {
     });
   }
 
-
   async openChannel(channelId: string) {
     this.channelId = channelId;
     if (this.openedChannel == false) {
@@ -62,6 +59,8 @@ export class ChannelService {
       }
       if (innerWidth <= 620 && !this.menuCollapsed) {
         this.menuCollapsed = true;
+        this.threadIsOpen = false;
+        this.channelIsOpen = true;
       }
       this.openedChannel = true;
       await this.showChannelName(channelId);
@@ -69,7 +68,6 @@ export class ChannelService {
       this.openedChannel = false;
     }
   }
-
 
   async showChannelName(channelId: string) {
     const channelCollection = getDoc(
@@ -79,7 +77,6 @@ export class ChannelService {
     this.channelName = channelData['name'];
     this.channelIsPrivate = channelData['isPrivate'];
   }
-
 
   getThreads(channelID: string) {
     const threadsCollection = collection(
@@ -96,7 +93,6 @@ export class ChannelService {
     });
   }
 
-
   sortThreads(threads) {
     threads.sort((thread_1: any, thread_2: any) => {
       return (
@@ -105,7 +101,6 @@ export class ChannelService {
       );
     });
   }
-
 
   getUserNames(threads) {
     threads.forEach((thread) => {
@@ -117,7 +112,6 @@ export class ChannelService {
     });
   }
 
-
   async openThread(i) {
     if (innerWidth <= 800) {
       this.menuCollapsed = true;
@@ -126,11 +120,16 @@ export class ChannelService {
       this.channelIsOpen = false;
     }
     this.threadIsOpen = true;
-    this.threadService.getThreadMessages(this.channelId, this.threads[i]['threadId']);
+    this.threadService.getThreadMessages(
+      this.channelId,
+      this.threads[i]['threadId']
+    );
   }
-
 
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
+    if (innerWidth > 620 && this.threadIsOpen === true) {
+      this.threadIsOpen = false;
+    }
   }
 }

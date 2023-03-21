@@ -35,19 +35,21 @@ export class OpenChannelComponent {
     public navFunction: SideNavComponent
   ) {}
 
-  @HostListener('window:resize', ['$event'])
-  onResize(e) {
-    e.target.innerWidth;
-    if (
-      innerWidth <= 620 &&
-      this.channelService.threadIsOpen === true &&
-      this.channelService.channelIsOpen === true
-    ) {
-      this.channelService.channelIsOpen = false;
-    }
-    if (innerWidth > 620 && this.channelService.threadIsOpen === true) {
-      this.channelService.channelIsOpen = true;
-      console.log(this.channelService.channelIsOpen);
-    }
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(e) {
+  //   e.target.innerWidth;
+  //   console.log('IS WORKING');
+    
+  //   if (
+  //     innerWidth <= 620 &&
+  //     this.channelService.threadIsOpen === true &&
+  //     this.channelService.channelIsOpen === true
+  //   ) {
+  //     this.channelService.channelIsOpen = false;
+  //   } else if (innerWidth > 620 && this.channelService.threadIsOpen === true) {
+  //     this.channelService.channelIsOpen = true;
+  //     // console.log(this.channelService.channelIsOpen);
+  //   }
+  //   console.log(this.channelService.threadIsOpen);
+  // }
 }

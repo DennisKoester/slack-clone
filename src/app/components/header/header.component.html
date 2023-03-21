@@ -10,9 +10,12 @@
         <mat-icon [ngStyle]="{ color: 'white' }">menu</mat-icon>
       </button> -->
 
-      <div class="plate plate1" onclick="this.classList.toggle('')">
+      <div
+        class="plate plate1"
+        onclick="this.classList.toggle('active')"
+        (click)="channelService.toggleMenu()"
+      >
         <svg
-          (click)="channelService.toggleMenu()"
           class="burger"
           version="1.1"
           height="100"
@@ -47,18 +50,14 @@
           placeholder="Channel durchsuchen..."
           [(ngModel)]="channelService.searchValue"
         />
-        
+
         <mat-icon
           class="delete"
           fontIcon="delete"
           (click)="resetSearch()"
           *ngIf="channelService.searchValue"
         ></mat-icon>
-        <mat-icon
-          class="search"
-          fontIcon="search"
-        ></mat-icon>
- 
+        <mat-icon class="search" fontIcon="search"></mat-icon>
       </div>
 
       <button mat-button [matMenuTriggerFor]="menu">

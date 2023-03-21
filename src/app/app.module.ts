@@ -57,6 +57,8 @@ import { OpenedThreadComponent } from './components/opened-thread/opened-thread.
 import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
 import { ChatlistItemComponent } from './components/chatlist-item/chatlist-item.component';
 import { OpenChatComponent } from './components/open-chat/open-chat.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserCardComponent } from './user-card/user-card.component';
 
 
 
@@ -84,6 +86,8 @@ import { OpenChatComponent } from './components/open-chat/open-chat.component';
     DialogEditUserComponent,
     ChatlistItemComponent,
     OpenChatComponent,
+    UserListComponent,
+    UserCardComponent,
   ],
   imports: [
     BrowserModule,

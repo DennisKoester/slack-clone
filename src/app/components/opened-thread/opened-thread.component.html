@@ -15,14 +15,11 @@
 <div class="rightContent" (click)="channelService.channelEditor = false">
   <div *ngIf="threadService.thread">
     <app-thread-card
-      *ngFor="
-        let message of threadService.thread['MESSAGES'];
-        index as i
-      "
+      *ngFor="let message of threadService.thread['MESSAGES']; index as i"
       [author]="message['author']"
       [message]="message['content']"
       [timestamp]="
-      message['timestamp']['seconds'] * 1000 | date : 'yyyy/MM/dd HH:mm:ss'
+        message['timestamp']['seconds'] * 1000 | date : 'yyyy/MM/dd HH:mm:ss'
       "
       [class.d-none]="
         !message['content']
