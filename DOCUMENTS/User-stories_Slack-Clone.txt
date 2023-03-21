@@ -8,9 +8,9 @@
     - "Letzte Nachricht am {Datum} um {Uhrzeit}"
     - Anzahl der Antworten anzeigen
 
-- [in Arbeit] Thread anzeigen
-    - [in Arbeit] Thread bleibt offen bei Channelwechsel
-        TODO: zugehöriger Channelname wird auch nach Channelwechsel noch korrekt angezeigt
+- [OK] Thread anzeigen
+    - [OK] Thread bleibt offen bei Channelwechsel
+    - [OK] zugehöriger Channelname wird auch nach Channelwechsel noch korrekt angezeigt
 
 - [OK] Nachricht in Thread schreiben
 
@@ -20,6 +20,7 @@
 - [OK] Channel anlegen
 
 - Channel privat/öffentlich?
+    TODO: Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
 
 - [OK] Ein-/Ausloggen
 
