@@ -19,7 +19,20 @@ export class UsersService {
     users$.subscribe((_users) => {
       console.log(`Users:`, _users);
       this.usersCollListener.next({ users: _users });
-      this.users = _users;
+      this.sortUsers(_users);
+    });
+  }
+
+  sortUsers(_users) {
+    this.users = _users;
+    this.users.sort((a, b) => {
+      if (a.displayName.toLowerCase() < b.displayName.toLowerCase()) {
+        return -1;
+      } else if (a.displayName.toLowerCase() > b.displayName.toLowerCase()) {
+        return 1;
+      } else {
+        return 0;
+      }
     });
   }
 }
