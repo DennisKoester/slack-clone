@@ -21,7 +21,7 @@ export class ChannelService {
   channelName: string = '';
   channelIsPrivate: boolean = false;
   private index: number;
-  status: boolean = false;
+  threadIsOpen: boolean = false;
   channelIsOpen: boolean = true;
   openedChannel = false;
   openedThread = false;
@@ -52,7 +52,7 @@ export class ChannelService {
       if (this.unsubChannel) {
         this.unsubChannel.unsubscribe();
       }
-      if (innerWidth < 620 && !this.menuCollapsed) {
+      if (innerWidth <= 620 && !this.menuCollapsed) {
         this.menuCollapsed = true;
       }
       this.openedChannel = true;
@@ -108,11 +108,13 @@ export class ChannelService {
   }
 
   async openThread(i) {
-    if (innerWidth <= 620) {
-      this.channelIsOpen = false;
+    if (innerWidth <= 800) {
       this.menuCollapsed = true;
     }
-    this.status = true;
+    if (innerWidth <= 620) {
+      this.channelIsOpen = false;
+    }
+    this.threadIsOpen = true;
     this.getThreadMessages(i);
   }
 
@@ -126,7 +128,7 @@ export class ChannelService {
         this.threads[i]['threadId']
       )
     );
-    
+
     this.threadMessages = (await threadMessages).data();
     this.getUserNamesThread();
     // console.log('log', this.threadMessages['MESSAGES']);
@@ -136,7 +138,6 @@ export class ChannelService {
     //   this.threads = threads;
     // })
   }
-
 
   getUserNamesThread() {
     this.threadMessages['MESSAGES'].forEach((message) => {
@@ -148,15 +149,11 @@ export class ChannelService {
     });
   }
 
-
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
   }
 
-
   search() {
     // this.searchValue = this.searchValue.toLowerCase();
   }
-
-
 }

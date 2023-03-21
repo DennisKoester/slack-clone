@@ -25,10 +25,10 @@
   </mat-drawer>
   <mat-drawer-content>
     <div class="leftAndRight">
-      <div class="left" *ngIf="this.channelService.channelIsOpen">
+      <div class="left" *ngIf="channelService.channelIsOpen">
         <router-outlet></router-outlet>
       </div>
-      <div class="right" *ngIf="channelService.status">
+      <div class="right" *ngIf="channelService.threadIsOpen">
         <app-opened-thread></app-opened-thread>
       </div>
     </div>

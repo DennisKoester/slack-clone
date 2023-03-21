@@ -110,9 +110,10 @@ h4 {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
   mat-drawer {
     width: 100% !important;
     max-width: unset !important;
+    border-right: unset !important;
   }
 }

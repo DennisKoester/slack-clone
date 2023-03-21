@@ -28,7 +28,7 @@ export class OpenChannelComponent {
   // threads$: Observable<DocumentData[]>;
   // threadsId = '';
   // threads: Array<any> = [];
-  menuCollapsed = false;
+  // menuCollapsed = false;
 
   constructor(
     public channelService: ChannelService,
@@ -40,15 +40,14 @@ export class OpenChannelComponent {
     e.target.innerWidth;
     if (
       innerWidth <= 620 &&
-      this.channelService.status === true &&
+      this.channelService.threadIsOpen === true &&
       this.channelService.channelIsOpen === true
     ) {
       this.channelService.channelIsOpen = false;
-    } else if (
-      innerWidth > 620 &&
-      this.channelService.channelIsOpen === false
-    ) {
+    }
+    if (innerWidth > 620 && this.channelService.threadIsOpen === true) {
       this.channelService.channelIsOpen = true;
+      console.log(this.channelService.channelIsOpen);
     }
   }
 }
