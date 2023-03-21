@@ -86,7 +86,7 @@ export class TextEditorComponent implements OnInit {
     }
   }
 
-  async createThread() {
+  async createMessages() {
     if (this.channelService.channelEditor == true) {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = JSON.parse(localStorage.getItem('user')).uid;

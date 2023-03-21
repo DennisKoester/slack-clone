@@ -3,6 +3,7 @@
 .rightContent {
   //   min-width: 350px;
   height: calc(100vh - 125px);
+  overflow: auto;
 }
 
 .close-thread-btn {

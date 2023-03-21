@@ -9,8 +9,10 @@ import { ThreadService } from 'src/app/shared/services/thread.service';
 })
 export class OpenedThreadComponent {
   constructor(public channelService: ChannelService, public threadService: ThreadService) {}
+
   closeThread() {
     this.channelService.threadIsOpen = false;
     this.channelService.channelIsOpen = true;
+    this.threadService.unsubscribe();
   }
 }

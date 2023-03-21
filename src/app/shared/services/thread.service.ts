@@ -28,6 +28,7 @@ export class ThreadService {
 
 
   async getThreadMessages(channelId, threadId) {
+    if (this.unsubscribe) this.unsubscribe();
     this.channelId = channelId;
     this.threadId = threadId;
     this.unsubscribe = onSnapshot(doc(
