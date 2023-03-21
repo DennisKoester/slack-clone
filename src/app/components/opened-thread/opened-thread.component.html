@@ -16,7 +16,7 @@
   <div>
     <app-thread-card
       *ngFor="
-        let message of channelService.threadMessages['MESSAGES'];
+        let message of threadService.thread['MESSAGES'];
         index as i
       "
       [author]="message['author']"

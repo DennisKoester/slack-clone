@@ -13,6 +13,7 @@ import { Unsubscribe } from 'firebase/app-check';
 import { Observable, Subscription } from 'rxjs';
 import * as GLOBAL_VAR from './globals';
 import { UsersService } from './users.service';
+import { ThreadService } from './thread.service';
 
 
 @Injectable({
@@ -30,7 +31,7 @@ export class ChannelService {
   threads: any = [];
   threads$: Observable<any>;
   unsubChannel: Subscription;
-  channelId;
+  channelId: string;
   threadMessages: any = [];
   public setValue(value: number) {
     this.index = value;
@@ -44,7 +45,8 @@ export class ChannelService {
 
   constructor(
     private firestore: Firestore,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private threadService: ThreadService
   ) {
     this.usersService.usersCollListener.subscribe({
       next: (users) => null,
@@ -124,41 +126,7 @@ export class ChannelService {
       this.channelIsOpen = false;
     }
     this.threadIsOpen = true;
-    this.getThreadMessages(i);
-  }
-
-
-  async getThreadMessages(i) {
-    const threadMessages = getDoc(
-      doc(
-        this.firestore,
-        GLOBAL_VAR.COLL_CHANNELS,
-        this.channelId,
-        GLOBAL_VAR.COLL_THREADS,
-        this.threads[i]['threadId']
-      )
-    );
-    this.threadId = this.threads[i]['threadId'];
-    this.threadMessages = (await threadMessages).data();
-    this.getUserNamesThread();
-    this.channelIdOpenedThread = this.channelId;
-   
-    this.threads$.subscribe((threads) => {
-    //   this.sortThreads(threads);
-    //   this.getUserNamesthread;
-    //   this.threads = threads;
-    })
-  }
-
-
-  getUserNamesThread() {
-    this.threadMessages['MESSAGES'].forEach((message) => {
-      const uid = message['author'];
-      const user = this.usersService.usersCollListener.value.users.find(
-        (user: any) => user.uid == uid
-      );
-      message['author'] = user.displayName;
-    });
+    this.threadService.getThreadMessages(this.channelId, this.threads[i]['threadId']);
   }
 
 
