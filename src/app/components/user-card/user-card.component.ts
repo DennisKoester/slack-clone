@@ -9,10 +9,17 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class UserCardComponent {
   @Input() userName: string;
   @Input() email: string;
-  @Input() userImage: string;
+  @Input() userImage: any;
   constructor(public sanitizer: DomSanitizer) {}
 
   getSanitizedUrl() {
-    return this.sanitizer.bypassSecurityTrustUrl(this.userImage);
+    if (this.userImage) {
+      const url = this.sanitizer.bypassSecurityTrustUrl(this.userImage);
+      console.log('image', this.userImage);
+    } else {
+      this.userImage =
+        'https://material.angular.io/assets/img/examples/shiba2.jpg';
+    }
+    return this.userImage;
   }
 }

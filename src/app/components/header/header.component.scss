@@ -42,7 +42,8 @@ mat-toolbar-row {
 .searchbar {
   justify-content: space-between;
   height: 30px;
-  width: 30%;
+  width: 50%;
+  max-width: 350px;
   border-radius: 6px;
   background-color: rgb(49, 49, 52);
   padding: 0 10px;

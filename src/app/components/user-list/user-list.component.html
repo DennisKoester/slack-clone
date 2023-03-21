@@ -7,4 +7,12 @@
   [userName]="user['displayName']"
   [email]="user['email']"
   [userImage]="user['photoURL']"
+  [class.d-none]="
+    !user['displayName']
+      .toLowerCase()
+      .includes(channelService.searchValue.toLowerCase()) &&
+    !user['displayName']
+      .toLowerCase()
+      .includes(channelService.searchValue.toLowerCase())
+  "
 ></app-user-card>
