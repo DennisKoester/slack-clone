@@ -1,6 +1,7 @@
 .mainContentContainer {
   display: flex;
   justify-content: center;
+  height: calc(100vH - 119px - 90px);
 }
 
 .mainContent {
@@ -103,4 +104,93 @@
   5% {opacity: 1; transform: scale(1)};
   95% {opacity: 1; transform: scale(1)};
   100% {opacity: 0; transform: scale(0)};
+}
+
+@media (max-width: 700px) {
+  .mainContent h1 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  p {
+    text-align: center;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 450px) {
+  .mainContent  {
+    h1 {
+      font-size: 40px;
+    }
+
+    button {
+      width: 300px;
+    }
+  }
+
+  .inputEmail {
+    width: 300px;
+  }
+
+  .horizontalContent {
+    width: 300px;
+
+    hr {
+      width: 100px;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .mainContent  {
+    button {
+      width: 250px;
+    }
+  }
+
+  .inputEmail {
+    width: 250px;
+  }
+
+  .horizontalContent {
+    width: 250px;
+
+    hr {
+      width: 80px;
+    }
+  }
+}
+
+@media (max-width: 300px) {
+  .mainContent  {
+    h1 {
+      font-size: 36px;
+    }
+
+    button {
+      width: 200px;
+    }
+  }
+
+  .inputEmail {
+    width: 200px;
+  }
+
+  .horizontalContent {
+    width: 200px;
+
+    hr {
+      width: 60px;
+    }
+  }
+}
+
+@media (max-height: 800px) {
+  .mainContentContainer {
+    height: unset;
+  }
 }
