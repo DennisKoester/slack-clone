@@ -70,7 +70,11 @@ export class TextEditorComponent implements OnInit {
       this.event.push(event);
     }
     this.event.push(event);
+    this.getHTML();
+  }
 
+
+  getHTML() {
     if (this.event[this.event.length - 1].html) {
       this.editorContent = this.event[this.event.length - 1].html;
     } else if (
@@ -86,51 +90,74 @@ export class TextEditorComponent implements OnInit {
     }
   }
 
+
   async createMessages() {
     if (this.channelService.channelEditor == true) {
-    const timestamp = Timestamp.fromDate(new Date());
-    const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-    this.route.paramMap.subscribe(async (paramMap) => {
-      this.channelId = paramMap.get('id');
-      this.threads = collection(
-        this.firestore,
-        GLOBAL_VAR.COLL_CHANNELS,
-        this.channelId,
-        GLOBAL_VAR.COLL_THREADS
-      );
-    });
-    if (this.editorContent) {
-      const threadId = await addDoc(this.threads, {
-        MESSAGES: [
-          {
-            timestamp: timestamp,
-            author: currentUserId,
-            content: this.editorContent,
-          },
-        ],
-      });
-    }
-    document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
-  } 
-  
-
-    else {
-    const timestamp = Timestamp.fromDate(new Date());
-    const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-    if (this.editorContent) {
-      const thread = doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.threadService.channelId, GLOBAL_VAR.COLL_THREADS, this.threadService.threadId);
-      await updateDoc(thread, {
-        MESSAGES: arrayUnion(
-          {timestamp: timestamp,
-          author: currentUserId,
-          content: this.editorContent})
-      })
-      
-    }
+      this.createThread();
+    } else {
+      this.createMessage();
   }
-
-  document.querySelector('.rightContent #editor .ql-editor').innerHTML = '';
       this.editorContent = '';
       this.event = [];
-}
+  }
+
+
+  async createThread() {
+    const timestamp = Timestamp.fromDate(new Date());
+      const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+      this.route.paramMap.subscribe(async (paramMap) => {
+        this.channelId = paramMap.get('id');
+        this.getCollection();
+      });
+      if (this.editorContent) {
+        this.addDocument(timestamp, currentUserId);
+      }
+    document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
+  }
+
+
+  getCollection() {
+    this.threads = collection(
+      this.firestore,
+      GLOBAL_VAR.COLL_CHANNELS,
+      this.channelId,
+      GLOBAL_VAR.COLL_THREADS
+    );
+  }
+
+
+  async addDocument(timestamp, currentUserId) {
+    const threadId = await addDoc(this.threads, {
+      MESSAGES: [
+        {
+          timestamp: timestamp,
+          author: currentUserId,
+          content: this.editorContent,
+        },
+      ],
+    });
+  }
+
+
+  async createMessage() {
+    const timestamp = Timestamp.fromDate(new Date());
+      const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+      if (this.editorContent) {
+        this.updateDocument(timestamp, currentUserId);
+      }
+    document.querySelector('.rightContent #editor .ql-editor').innerHTML = '';
+  }
+
+
+  async updateDocument(timestamp, currentUserId) {
+    const thread = doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.threadService.channelId, GLOBAL_VAR.COLL_THREADS, this.threadService.threadId);
+    await updateDoc(thread, {
+      MESSAGES: arrayUnion(
+        {timestamp: timestamp,
+        author: currentUserId,
+        content: this.editorContent})
+    })
+  }
+
+
 }
