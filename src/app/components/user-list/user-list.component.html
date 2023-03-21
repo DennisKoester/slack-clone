@@ -6,4 +6,5 @@
   *ngFor="let user of usersService.users"
   [userName]="user['displayName']"
   [email]="user['email']"
+  [userImage]="user['photoURL']"
 ></app-user-card>
