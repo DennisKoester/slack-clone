@@ -41,6 +41,7 @@ export class ChannelService {
   channelEditor: boolean;
   channelIdOpenedThread;
 
+
   constructor(
     private firestore: Firestore,
     private usersService: UsersService
@@ -49,6 +50,7 @@ export class ChannelService {
       next: (users) => null,
     });
   }
+
 
   async openChannel(channelId: string) {
     this.channelId = channelId;
@@ -66,6 +68,7 @@ export class ChannelService {
     }
   }
 
+
   async showChannelName(channelId: string) {
     const channelCollection = getDoc(
       doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, channelId)
@@ -75,6 +78,7 @@ export class ChannelService {
     this.channelIsPrivate = channelData['isPrivate'];
   }
 
+
   getThreads(channelID: string) {
     const threadsCollection = collection(
       this.firestore,
@@ -83,14 +87,13 @@ export class ChannelService {
       GLOBAL_VAR.COLL_THREADS
     );
     this.threads$ = collectionData(threadsCollection, { idField: 'threadId' });
-
     this.unsubChannel = this.threads$.subscribe((threads) => {
-      // console.log(`Threads in channel ${channelID}`, threads);
       this.sortThreads(threads);
       this.getUserNames(threads);
       this.threads = threads;
     });
   }
+
 
   sortThreads(threads) {
     threads.sort((thread_1: any, thread_2: any) => {
@@ -100,6 +103,7 @@ export class ChannelService {
       );
     });
   }
+
 
   getUserNames(threads) {
     threads.forEach((thread) => {
@@ -111,6 +115,7 @@ export class ChannelService {
     });
   }
 
+
   async openThread(i) {
     if (innerWidth <= 800) {
       this.menuCollapsed = true;
@@ -121,6 +126,7 @@ export class ChannelService {
     this.threadIsOpen = true;
     this.getThreadMessages(i);
   }
+
 
   async getThreadMessages(i) {
     const threadMessages = getDoc(
@@ -136,13 +142,14 @@ export class ChannelService {
     this.threadMessages = (await threadMessages).data();
     this.getUserNamesThread();
     this.channelIdOpenedThread = this.channelId;
-    // console.log('log', this.threadMessages['MESSAGES']);
-    // this.unsubChannel = this.threads$.subscribe((threads) => {
+   
+    this.threads$.subscribe((threads) => {
     //   this.sortThreads(threads);
-    //   this.getUserNames(threads);
+    //   this.getUserNamesthread;
     //   this.threads = threads;
-    // })
+    })
   }
+
 
   getUserNamesThread() {
     this.threadMessages['MESSAGES'].forEach((message) => {
@@ -154,11 +161,8 @@ export class ChannelService {
     });
   }
 
+
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
-  }
-
-  search() {
-    // this.searchValue = this.searchValue.toLowerCase();
   }
 }
