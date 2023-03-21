@@ -35,12 +35,14 @@ export class ThreadService {
       GLOBAL_VAR.COLL_CHANNELS,
       this.channelId,
       GLOBAL_VAR.COLL_THREADS,
-      threadId), (doc) => {
-        console.log(doc.data());
+      threadId), (doc) => { 
         this.thread = doc.data();
+        this.getUserNamesThread();
+        // console.log('MESSAGES',this.thread['MESSAGES']);
       });
     
-    this.getUserNamesThread();
+    
+    // console.log('threadID', this.threadId);
   }
 
 

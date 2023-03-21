@@ -21,6 +21,7 @@ import { DocumentData } from '@angular/fire/compat/firestore';
 import { getAuth } from 'firebase/auth';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ChannelService } from 'src/app/shared/services/channel.service';
+import { ThreadService } from 'src/app/shared/services/thread.service';
 import Quill from 'quill';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
@@ -35,7 +36,8 @@ export class TextEditorComponent implements OnInit {
     private route: ActivatedRoute,
     private firestore: Firestore,
     public authenticationService: AuthenticationService,
-    public channelService: ChannelService
+    public channelService: ChannelService,
+    public threadService: ThreadService
   ) {}
 
   editorContent;
@@ -98,7 +100,6 @@ export class TextEditorComponent implements OnInit {
       );
     });
     if (this.editorContent) {
-      // console.log('content beginning', this.editorContent);
       const threadId = await addDoc(this.threads, {
         MESSAGES: [
           {
@@ -108,30 +109,28 @@ export class TextEditorComponent implements OnInit {
           },
         ],
       });
-      // console.log(`New thread created, id: ${threadId.id}`);
-      // document.getElementById('editor').innerHTML = '';
-      document.querySelector('#editor .ql-editor').innerHTML = '';
-      this.editorContent = '';
-      this.event = [];
-      // console.log('content end', this.editorContent);
     }
+    document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
   } 
   
+
     else {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
     if (this.editorContent) {
-      const thread = doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.channelService.channelIdOpenedThread, GLOBAL_VAR.COLL_THREADS, this.channelService.threadId);
+      const thread = doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.threadService.channelId, GLOBAL_VAR.COLL_THREADS, this.threadService.threadId);
       await updateDoc(thread, {
         MESSAGES: arrayUnion(
           {timestamp: timestamp,
           author: currentUserId,
           content: this.editorContent})
       })
-      document.querySelector('#editor .ql-editor').innerHTML = '';
-      this.editorContent = '';
-      this.event = [];
+      
     }
   }
+
+  document.querySelector('.rightContent #editor .ql-editor').innerHTML = '';
+      this.editorContent = '';
+      this.event = [];
 }
 }
