@@ -12,7 +12,7 @@ import { HomeComponent } from '../home/home.component';
 })
 export class HeaderComponent {
   status: boolean = false;
-  searchValue: string;
+  // searchValue: string;
 
   openProfile(): void {
     this.status = !this.status;
@@ -31,4 +31,8 @@ export class HeaderComponent {
     const dialogRef = this.dialog.open(DialogEditUserComponent);
   }
 
+
+  resetSearch() {
+    this.channelService.searchValue = '';
+  }
 }

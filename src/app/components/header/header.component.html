@@ -16,10 +16,17 @@
           placeholder="Channel durchsuchen..."
           [(ngModel)]="channelService.searchValue"
         />
+        
         <mat-icon
-          fontIcon="search"
-          (click)="channelService.search()"
+          class="delete"
+          fontIcon="delete"
+          (click)="resetSearch()"
         ></mat-icon>
+        <mat-icon
+          class="search"
+          fontIcon="search"
+        ></mat-icon>
+ 
       </div>
 
       <button mat-button [matMenuTriggerFor]="menu">

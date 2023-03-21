@@ -23,7 +23,7 @@ mat-toolbar-row {
   div {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
 
     img {
       height: 40px;
@@ -54,10 +54,19 @@ mat-toolbar-row {
     color: white;
     background-color: rgb(49, 49, 52);
   }
+}
 
-  mat-icon {
-    cursor: pointer;
+.delete {
+  transform: scale(0.8);
+  cursor: pointer;
+
+  &:hover {
+    filter: invert(0.1);
   }
+}
+
+.search {
+  filter: invert(0.5);
 }
 
 .profile-img,
