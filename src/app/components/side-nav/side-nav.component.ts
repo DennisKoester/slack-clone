@@ -16,12 +16,17 @@ export class SideNavComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     event.target.innerWidth;
-    if (innerWidth <= 620 && this.channelService.menuCollapsed === false) {
+    // if (innerWidth <= 620 && this.channelService.menuCollapsed === false) {
+    if (
+      innerWidth <= 800 &&
+      this.channelService.menuCollapsed === false &&
+      this.channelService.threadIsOpen === true
+    ) {
       this.channelService.menuCollapsed = true;
     } else if (
       innerWidth > 620 &&
       this.channelService.menuCollapsed === true &&
-      this.channelService.status === false
+      this.channelService.threadIsOpen === false
     ) {
       this.channelService.menuCollapsed = false;
     }

@@ -7,11 +7,9 @@ import { ChannelService } from 'src/app/shared/services/channel.service';
   styleUrls: ['./opened-thread.component.scss'],
 })
 export class OpenedThreadComponent {
-  constructor(
-    public channelService: ChannelService,
-  ) {}
+  constructor(public channelService: ChannelService) {}
   closeThread() {
-    this.channelService.status = false;
+    this.channelService.threadIsOpen = false;
     this.channelService.channelIsOpen = true;
   }
 }
