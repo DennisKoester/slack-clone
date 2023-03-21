@@ -6,7 +6,7 @@
     <span> {{ channelService.channelName }}</span>
   </div>
 </mat-toolbar-row>
-<div class="leftContent">
+<div class="leftContent" [routerLink]="['/home/channel/' + channelService.channelId]" (click)="channelService.channelEditor = true">
   <div class="scroll-container">
     <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
 

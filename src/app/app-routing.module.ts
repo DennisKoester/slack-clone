@@ -11,6 +11,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
 import { OpenChannelComponent } from './components/open-channel/open-channel.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { OpenChatComponent } from './components/open-chat/open-chat.component';
+import { OpenedThreadComponent } from './components/opened-thread/opened-thread.component';
 
 const routes: Routes = [
   // {path: '', component: AppComponent},
@@ -28,6 +29,8 @@ const routes: Routes = [
         path: 'chat/:id',
         component: OpenChatComponent,
       },
+      { path: 'channel/:id', component: OpenedThreadComponent },
+      { path: 'channel/:id', component: TextEditorComponent},
     ],
   },
 ];

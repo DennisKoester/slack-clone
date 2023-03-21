@@ -14,6 +14,7 @@ import { Observable, Subscription } from 'rxjs';
 import * as GLOBAL_VAR from './globals';
 import { UsersService } from './users.service';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -36,6 +37,9 @@ export class ChannelService {
   }
   searchValue: string = '';
   searchActive: boolean = false;
+  threadId;
+  channelEditor: boolean;
+  channelIdOpenedThread;
 
   constructor(
     private firestore: Firestore,
@@ -128,9 +132,10 @@ export class ChannelService {
         this.threads[i]['threadId']
       )
     );
-
+    this.threadId = this.threads[i]['threadId'];
     this.threadMessages = (await threadMessages).data();
     this.getUserNamesThread();
+    this.channelIdOpenedThread = this.channelId;
     // console.log('log', this.threadMessages['MESSAGES']);
     // this.unsubChannel = this.threads$.subscribe((threads) => {
     //   this.sortThreads(threads);

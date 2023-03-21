@@ -8,11 +8,13 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { addDoc, collection } from '@firebase/firestore';
 import {
+  arrayUnion,
   collectionData,
   doc,
   Firestore,
   getDoc,
   Timestamp,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { Observable } from '@firebase/util';
 import { DocumentData } from '@angular/fire/compat/firestore';
@@ -33,6 +35,7 @@ export class TextEditorComponent implements OnInit {
     private route: ActivatedRoute,
     private firestore: Firestore,
     public authenticationService: AuthenticationService,
+    public channelService: ChannelService
   ) {}
 
   editorContent;
@@ -40,6 +43,9 @@ export class TextEditorComponent implements OnInit {
   channelId;
   event = [];
   threads;
+  threadId;
+  thread;
+ 
 
   quillConfiguration = {
     'emoji-shortname': true,
@@ -53,7 +59,8 @@ export class TextEditorComponent implements OnInit {
     ],
   };
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   getContent(event: EditorChangeContent | EditorChangeSelection) {
     if (this.event.length > 9) {
@@ -78,6 +85,7 @@ export class TextEditorComponent implements OnInit {
   }
 
   async createThread() {
+    if (this.channelService.channelEditor == true) {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
     this.route.paramMap.subscribe(async (paramMap) => {
@@ -107,5 +115,23 @@ export class TextEditorComponent implements OnInit {
       this.event = [];
       // console.log('content end', this.editorContent);
     }
+  } 
+  
+    else {
+    const timestamp = Timestamp.fromDate(new Date());
+    const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+    if (this.editorContent) {
+      const thread = doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.channelService.channelIdOpenedThread, GLOBAL_VAR.COLL_THREADS, this.channelService.threadId);
+      await updateDoc(thread, {
+        MESSAGES: arrayUnion(
+          {timestamp: timestamp,
+          author: currentUserId,
+          content: this.editorContent})
+      })
+      document.querySelector('#editor .ql-editor').innerHTML = '';
+      this.editorContent = '';
+      this.event = [];
+    }
   }
+}
 }

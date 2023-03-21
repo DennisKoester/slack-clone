@@ -12,7 +12,7 @@
     </div>
   </div>
 </mat-toolbar-row>
-<div class="rightContent">
+<div class="rightContent" [routerLink]="['/home/channel/' + channelService.threadId]" (click)="channelService.channelEditor = false">
   <div>
     <app-thread-card
       *ngFor="
