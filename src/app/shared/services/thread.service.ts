@@ -22,7 +22,7 @@ export class ThreadService {
   threadId: string;
   thread: any;
   unsubscribe: Unsubscribe;
-
+  channelName: string;
 
   constructor(private firestore: Firestore, private usersService: UsersService) { }
 
@@ -39,12 +39,19 @@ export class ThreadService {
       threadId), (doc) => { 
         this.thread = doc.data();
         this.getUserNamesThread();
-        // console.log('MESSAGES',this.thread['MESSAGES']);
       });
-    
-    
-    // console.log('threadID', this.threadId);
+    this.showChannelName();
   }
+
+  async showChannelName() {
+    const channelCollection = getDoc(
+      doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.channelId)
+    );
+    const channelData = (await channelCollection).data();
+    this.channelName = channelData['name'];
+  }
+
+
 
 
   getUserNamesThread() {
