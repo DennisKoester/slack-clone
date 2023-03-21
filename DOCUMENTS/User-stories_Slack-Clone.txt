@@ -1,14 +1,17 @@
-- Persönliche Nachricht schreiben (an 1 oder mehr User)
-- Neue Nachricht in Channel schreiben --> Thread eröffnen
-- Nachricht in Thread schreiben
-- Eigene Threads anzeigen (Auflistung)
-- Threadverlauf anzeigen (Sidebar)
+- [in Arbeit] Persönliche Nachricht schreiben (an 1 oder mehr User)
+- In Chatauflistung: +x anzeigen bei mehr als zwei Usern
+- [OK] Neue Nachricht in Channel schreiben (eröffnet neuen Thread)
+- [in Arbeit] Thread anzeigen
+    - [in Arbeit] Thread bleibt offen bei Channelwechsel
+        TODO: zugehöriger Channelname wird auch bei Channelwechsel angezeigt
+- [in Arbeit] Nachricht in Thread schreiben
+    TODO: Listener auf Thread implementieren
+- [verworfen] Eigene Threads anzeigen (Auflistung)
 - Datei (oder nur IMG) in Nachricht hochladen?
-
-- Channel anlegen (nur für angemeldete User)
-
-- Ein-/Ausloggen
-- Anmelden
+- [OK] Channel anlegen
+- Channel privat/öffentlich?
+- [OK] Ein-/Ausloggen
+- Einloggen als Testuser (gleiche Rechte wie angemeldete User?)
+- [OK] Anmelden
+- [OK] Passwort zurücksetzen
 - Profil bearbeiten? --> Avatar hochladen
-
-- App als Testuser ansehen (keine Aktionen möglich)
