@@ -1,17 +1,35 @@
 - [in Arbeit] Persönliche Nachricht schreiben (an 1 oder mehr User)
-- In Chatauflistung: +x anzeigen bei mehr als zwei Usern
+
+- In Chatauflistung: [+x] anzeigen bei mehr als zwei Usern
+
 - [OK] Neue Nachricht in Channel schreiben (eröffnet neuen Thread)
-- [in Arbeit] Thread anzeigen
-    - [in Arbeit] Thread bleibt offen bei Channelwechsel
-        TODO: zugehöriger Channelname wird auch bei Channelwechsel angezeigt
-- [in Arbeit] Nachricht in Thread schreiben
-    TODO: Listener auf Thread implementieren
-- [verworfen] Eigene Threads anzeigen (Auflistung)
+
+- In Threadliste ergänzen:
+    - "Letzte Nachricht am {Datum} um {Uhrzeit}"
+    - Anzahl der Antworten anzeigen
+
+- [OK] Thread anzeigen
+    - [OK] Thread bleibt offen bei Channelwechsel
+    - [OK] zugehöriger Channelname wird auch nach Channelwechsel noch korrekt angezeigt
+
+- [OK] Nachricht in Thread schreiben
+
+
 - Datei (oder nur IMG) in Nachricht hochladen?
+
 - [OK] Channel anlegen
+
 - Channel privat/öffentlich?
+    TODO: Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
+
 - [OK] Ein-/Ausloggen
+
 - Einloggen als Testuser (gleiche Rechte wie angemeldete User?)
+
 - [OK] Anmelden
+
 - [OK] Passwort zurücksetzen
+
 - Profil bearbeiten? --> Avatar hochladen
+
+- [verworfen] Eigene Threads anzeigen (Auflistung)
