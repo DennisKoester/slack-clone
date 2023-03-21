@@ -89,7 +89,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 430px;
+  top: 460px;
   height: auto;
   width: 400px;
   background-color: #ef4135;
@@ -113,11 +113,21 @@
   }
 }
 
+@media (max-width: 560px) {
+  .signUpError {
+    top: 510px;
+  }
+}
+
 @media (max-width: 550px) {
   p {
     text-align: center;
     padding-left: 40px;
     padding-right: 40px;
+  }
+
+  .signUpError {
+    top: 530px;
   }
 }
 
@@ -143,6 +153,10 @@
       width: 100px;
     }
   }
+
+  .signUpError {
+    width: 300px;
+  }
 }
 
 @media (max-width: 350px) {
@@ -162,6 +176,10 @@
     hr {
       width: 80px;
     }
+  }
+
+  .signUpError {
+    width: 250px;
   }
 }
 
@@ -186,6 +204,10 @@
     hr {
       width: 60px;
     }
+  }
+
+  .signUpError {
+    width: 250px;
   }
 }
 
