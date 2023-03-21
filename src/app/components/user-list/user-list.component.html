@@ -1,0 +1,9 @@
+<mat-toolbar-row class="channel-toolbar">
+  <div class="flex-ac">User List</div>
+</mat-toolbar-row>
+<app-user-card
+  class="userCard"
+  *ngFor="let user of usersService.users"
+  [userName]="user['displayName']"
+  [email]="user['email']"
+></app-user-card>

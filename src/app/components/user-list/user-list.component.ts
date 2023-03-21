@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-user-list',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
+
+constructor(public usersService: UsersService){}
 
 }

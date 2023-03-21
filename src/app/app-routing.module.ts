@@ -12,7 +12,7 @@ import { OpenChannelComponent } from './components/open-channel/open-channel.com
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { OpenChatComponent } from './components/open-chat/open-chat.component';
 import { OpenedThreadComponent } from './components/opened-thread/opened-thread.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 const routes: Routes = [
   // {path: '', component: AppComponent},
@@ -32,7 +32,7 @@ const routes: Routes = [
         component: OpenChatComponent,
       },
       { path: 'channel/:id', component: OpenedThreadComponent },
-      { path: 'channel/:id', component: TextEditorComponent},
+      { path: 'channel/:id', component: TextEditorComponent },
     ],
   },
 ];
