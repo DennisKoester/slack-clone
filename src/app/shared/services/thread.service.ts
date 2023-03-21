@@ -31,6 +31,12 @@ export class ThreadService {
     if (this.unsubscribe) this.unsubscribe();
     this.channelId = channelId;
     this.threadId = threadId;
+    this.getData(threadId);
+    this.showChannelName();
+  }
+
+
+  getData(threadId) {
     this.unsubscribe = onSnapshot(doc(
       this.firestore,
       GLOBAL_VAR.COLL_CHANNELS,
@@ -40,8 +46,8 @@ export class ThreadService {
         this.thread = doc.data();
         this.getUserNamesThread();
       });
-    this.showChannelName();
   }
+
 
   async showChannelName() {
     const channelCollection = getDoc(
@@ -50,8 +56,6 @@ export class ThreadService {
     const channelData = (await channelCollection).data();
     this.channelName = channelData['name'];
   }
-
-
 
 
   getUserNamesThread() {
@@ -63,4 +67,6 @@ export class ThreadService {
       message['author'] = user.displayName;
     });
   }
+
+  
 }

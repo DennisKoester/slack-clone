@@ -52,6 +52,7 @@
           class="delete"
           fontIcon="delete"
           (click)="resetSearch()"
+          *ngIf="channelService.searchValue"
         ></mat-icon>
         <mat-icon
           class="search"
