@@ -4,7 +4,10 @@
     <div>
       <div class="card-header">
         <div class="author">{{ author }}</div>
-        <div class="timestamp">{{timestamp | date:'EEE, dd. MMMM yy'}} | {{timestamp | date:'shortTime'}}</div>
+        <div class="timestamp">
+          {{ timestamp | date : "EEE, dd. MMMM yy" }} |
+          {{ timestamp | date : "HH:mm" }}
+        </div>
       </div>
       <div [innerHTML]="message"></div>
     </div>

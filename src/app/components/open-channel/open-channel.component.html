@@ -6,7 +6,11 @@
     <span> {{ channelService.channelName }}</span>
   </div>
 </mat-toolbar-row>
-<div class="leftContent" [routerLink]="['/home/channel/' + channelService.channelId]" (click)="channelService.channelEditor = true">
+<div
+  class="leftContent"
+  [routerLink]="['/home/channel/' + channelService.channelId]"
+  (click)="channelService.channelEditor = true"
+>
   <div class="scroll-container">
     <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
 
@@ -16,10 +20,7 @@
       [index]="i"
       [author]="thread['MESSAGES'][0]['author']"
       [message]="thread['MESSAGES'][0]['content']"
-      [timestamp]="
-        thread['MESSAGES'][0]['timestamp']['seconds'] * 1000
-          | date : 'yyyy/MM/dd HH:mm:ss'
-      "
+      [timestamp]="thread['MESSAGES'][0]['timestamp']['seconds'] * 1000"
       (click)="channelService.openThread(i)"
       [class.d-none]="
         !thread['MESSAGES'][0]['content']

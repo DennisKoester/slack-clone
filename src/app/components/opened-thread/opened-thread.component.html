@@ -18,9 +18,7 @@
       *ngFor="let message of threadService.thread['MESSAGES']; index as i"
       [author]="message['author']"
       [message]="message['content']"
-      [timestamp]="
-        message['timestamp']['seconds'] * 1000 | date : 'yyyy/MM/dd HH:mm:ss'
-      "
+      [timestamp]="message['timestamp']['seconds'] * 1000"
       [class.d-none]="
         !message['content']
           .toLowerCase()

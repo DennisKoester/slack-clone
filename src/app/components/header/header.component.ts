@@ -18,7 +18,6 @@ export class HeaderComponent {
     this.status = !this.status;
   }
 
-
   constructor(
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
@@ -26,11 +25,9 @@ export class HeaderComponent {
     public channelService: ChannelService
   ) {}
 
-
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogEditUserComponent);
   }
-
 
   resetSearch() {
     this.channelService.searchValue = '';

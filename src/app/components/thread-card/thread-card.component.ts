@@ -9,7 +9,7 @@ import { ChannelService } from 'src/app/shared/services/channel.service';
 export class ThreadCardComponent implements OnInit {
   @Input() author: string;
   @Input() message: string;
-  @Input() timestamp: string;
+  @Input() timestamp: any;
   @Input() index: number;
   
 
