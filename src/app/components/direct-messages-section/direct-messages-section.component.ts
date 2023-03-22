@@ -5,6 +5,7 @@ import { collection, CollectionReference, doc, DocumentData, getDoc } from '@fir
 import { Observable } from 'rxjs';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { ChatService } from 'src/app/shared/services/chat.service';
 
 @Component({
   selector: 'app-direct-messages-section',
@@ -18,7 +19,11 @@ export class DirectMessagesSectionComponent {
   chats: Array<any> = [];
   currentUserId: string;
 
-  constructor(public firestore: Firestore, private usersService: UsersService, public router: Router) {
+  constructor(
+    public firestore: Firestore,
+    private usersService: UsersService,
+    public router: Router,
+    public chatService: ChatService) {
     this.usersService.usersCollListener.subscribe({
       next: (users) => null
     });
@@ -38,7 +43,7 @@ export class DirectMessagesSectionComponent {
     this.chatsCollection = collection(this.firestore, GLOBAL_VAR.COLL_CHATS);
     this.chats$ = collectionData(this.chatsCollection, {idField: 'chatId'});
     this.chats$.subscribe((chatsData) => {
-      console.log('All chats', chatsData);
+      // console.log('All chats', chatsData);
       this.chats = this.filterChats(chatsData);
     });
   }
@@ -51,7 +56,7 @@ export class DirectMessagesSectionComponent {
    */
   filterChats(chatsData: Array<any>) {
     let chats = chatsData.filter(chat => chat['USERS'].includes(this.currentUserId));
-    console.log(`Privat chats for ${this.currentUserId}`, chats);
+    // console.log(`Privat chats for ${this.currentUserId}`, chats);
     chats = this.cleanUpUserLists(chats);
     chats = this.getUserNamesAndImages(chats);
     return chats;
@@ -67,7 +72,7 @@ export class DirectMessagesSectionComponent {
     chats.forEach((chat) => {
       chat['USERS'] = chat['USERS'].filter(user => user != this.currentUserId);
     });
-    console.log('Filtered chat list: ', chats);
+    // console.log('Filtered chat list: ', chats);
     return chats;
   }
 
@@ -80,13 +85,18 @@ export class DirectMessagesSectionComponent {
   getUserNamesAndImages(chats: Array<any>) {
     chats.forEach(chat => {
       for (let u = 0; u < chat['USERS'].length; u++) {
-        console.log(`Processing chatUser: ${chat['USERS'][u]}`);
+        // console.log(`Processing chatUser: ${chat['USERS'][u]}`);
         chat['USERS'][u] = this.getUserMetaData(chat['USERS'][u]);
-        console.log(`After processing chatUser: `, chat['USERS'][u]);
+
+        // 
+        // ***TODO: Implement user image *****************
+        // 
+
+        // console.log(`After processing chatUser: `, chat['USERS'][u]);
       }
 
       // 
-      // TODO: Implement in rendering of chat messages
+      // ***TODO: Implement in rendering of chat messages
       // 
       // chat['MESSAGES'].forEach(chatMessage => {
       //   chatMessage['author'] = this.getUserMetaData(chatMessage['author']);
@@ -94,7 +104,7 @@ export class DirectMessagesSectionComponent {
       // 
       // 
     });
-    console.log('Metadata implemented: ', chats);
+    // console.log('Metadata implemented: ', chats);
     return chats;
   }
 
