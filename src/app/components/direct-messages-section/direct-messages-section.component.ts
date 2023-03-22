@@ -5,6 +5,7 @@ import { collection, CollectionReference, doc, DocumentData, getDoc } from '@fir
 import { Observable } from 'rxjs';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { ChatService } from 'src/app/shared/services/chat.service';
 
 @Component({
   selector: 'app-direct-messages-section',
@@ -18,7 +19,11 @@ export class DirectMessagesSectionComponent {
   chats: Array<any> = [];
   currentUserId: string;
 
-  constructor(public firestore: Firestore, private usersService: UsersService, public router: Router) {
+  constructor(
+    public firestore: Firestore,
+    private usersService: UsersService,
+    public router: Router,
+    public chatService: ChatService) {
     this.usersService.usersCollListener.subscribe({
       next: (users) => null
     });
