@@ -1,22 +1,44 @@
-<h1 mat-dialog-title>edit user</h1>
-<div mat-dialog-content id="dialog-content">
-  <mat-form-field appearance="fill">
-    <mat-label>name</mat-label>
-    <input matInput [(ngModel)]="name" />
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button cdkFocusInitial (click)="updateUser()" mat-dialog-close>
-    OK
-  </button>
+<h1 mat-dialog-title>Settings</h1>
+<div class="dialog-wrapper">
+  <div class="dialog-left" mat-dialog-content id="dialog-content">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="email" />
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-right">
+    <div class="profilePic">
+      <div>
+        <img src="{{ photoURL }}" class="profile_image" />
+      </div>
+      <!-- <div *ngIf="downloadURL | async; let url"> -->
+      <!-- <img [src]="url" class="picture" /> -->
+      <!-- </div> -->
+    </div>
+
+    <div class="button-upload">
+      <label for="file" class="upload-file">
+        <i class="material-icons">cloud_upload</i>
+        Upload image
+      </label>
+      <input type="file" id="file" accept=".png,.jpg" />
+    </div>
+  </div>
 </div>
 
-<label for="file" class="upload-file">
-  <i class="material-icons">cloud_upload</i>
-  Upload image
-</label>
-<input type="file" id="file" accept=".png,.jpg" />
+<div class="dialog-btns">
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button cdkFocusInitial (click)="updateUser()" mat-dialog-close>
+      Save
+    </button>
+  </div>
+</div>
 
 <!-- 
   [(ngModel)]="dialogData.name"

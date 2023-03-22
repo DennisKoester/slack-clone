@@ -1,0 +1,83 @@
+.dialog-wrapper {
+  display: flex;
+
+  .dialog-left {
+    border-right: 1px solid rgb(87, 87, 87);
+    padding: 0 25px;
+  }
+
+  .dialog-right {
+    padding: 0 25px !important;
+    align-items: center;
+  }
+}
+
+.dialog-left,
+.dialog-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-btns {
+  float: right;
+}
+
+.mdc-dialog__actions {
+  padding: 15px !important;
+}
+
+.profile_image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.button-upload {
+  margin-top: 10px;
+}
+
+.upload-file {
+  border: 1px solid rgb(87, 87, 87);
+  border-radius: 5px;
+  display: flex;
+  align-items: end;
+  padding: 6px 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(77, 77, 77);
+    transition: all 125ms ease-in-out;
+  }
+
+  .material-icons {
+    padding-right: 8px;
+    color: rgb(56, 56, 56);
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+input {
+  font-size: 16px !important;
+}
+
+@media screen and (max-width: 620px) {
+  .dialog-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dialog-left {
+    margin: 0 25px !important;
+    padding: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgb(87, 87, 87);
+  }
+
+  .profile_image {
+    padding-top: 20px;
+  }
+}
