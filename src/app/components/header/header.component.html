@@ -8,11 +8,14 @@
         mat-mini-fab
       >
         <mat-icon [ngStyle]="{ color: 'white' }">menu</mat-icon>
+
+        onclick="this.classList.toggle('active')"
+
       </button> -->
 
       <div
         class="plate plate1"
-        onclick="this.classList.toggle('active')"
+        [ngClass]="channelService.menuCollapsed ? '' : 'active'"
         (click)="channelService.toggleMenu()"
       >
         <svg

@@ -6,11 +6,11 @@
 .left {
   width: 100%;
   // min-width: 350px;
-  height: calc(100vh - 64px);
+  height: calc(100svh - 64px);
 }
 
 .leftContent {
-  height: calc(100vh - 120px);
+  height: calc(100svh - 125px);
   position: relative;
   display: flex;
   flex-direction: column;
