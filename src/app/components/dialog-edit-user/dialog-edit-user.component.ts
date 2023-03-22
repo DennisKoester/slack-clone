@@ -16,6 +16,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dialog-edit-user.component.scss'],
 })
 export class DialogEditUserComponent implements OnInit {
+  static PhotoUrl() {
+    throw new Error('Method not implemented.');
+  }
   // user$: Observable<any>;
   currentUserId = '';
   name: String;
