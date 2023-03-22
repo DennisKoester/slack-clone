@@ -49,8 +49,16 @@ mat-card {
     font-weight: 400;
   }
 
-  img {
-    max-height: 200px;
-    max-width: 200px;
-  }
+  
+}
+
+// mat-card div div div p img{
+  
+//     
+  
+// }
+
+.resizeImg {
+  height: 40px !important;
+  width: 40px !important;
 }

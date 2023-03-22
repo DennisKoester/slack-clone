@@ -70,10 +70,6 @@ export class TextEditorComponent implements OnInit {
     }
   }
 
-  
-  onSelectionChanged($event) {
-  }
-  
 
   async sendMessage() {
     if (this.channelService.editorRef == 'channel') {
