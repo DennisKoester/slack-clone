@@ -7,7 +7,7 @@
   }
 
   .dialog-right {
-    padding: 0 25px !important;
+    padding: 0 25px;
     align-items: center;
   }
 }
@@ -77,7 +77,7 @@ input {
     border-bottom: 1px solid rgb(87, 87, 87);
   }
 
-  .profile_image {
-    padding-top: 20px;
+  .dialog-right {
+    padding: 20px 25px !important;
   }
 }
