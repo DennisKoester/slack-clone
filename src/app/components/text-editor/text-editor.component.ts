@@ -40,10 +40,9 @@ export class TextEditorComponent implements OnInit {
     public threadService: ThreadService
   ) { }
 
-  editorContent;
   editorAuthor = '';
   channelId;
-  event = [];
+  event = '';
   threads;
   threadId;
   thread;
@@ -58,6 +57,7 @@ export class TextEditorComponent implements OnInit {
       ['code-block'],
       [{ list: 'ordered' }, { list: 'bullet' }],
       ['emoji'],
+      ['image']
     ],
   };
 
@@ -65,31 +65,15 @@ export class TextEditorComponent implements OnInit {
   }
 
   getContent(event: EditorChangeContent | EditorChangeSelection) {
-    if (this.event.length > 9) {
-      this.event.splice(0, 2);
-      this.event.push(event);
-    }
-    this.event.push(event);
-    this.getHTML();
-  }
-
-
-  getHTML() {
-    if (this.event[this.event.length - 1].html) {
-      this.editorContent = this.event[this.event.length - 1].html;
-    } else if (
-      this.event.length > 1 &&
-      this.event[this.event.length - 2].html
-    ) {
-      this.editorContent = this.event[this.event.length - 2].html;
-    } else if (
-      this.event.length > 2 &&
-      this.event[this.event.length - 3].html
-    ) {
-      this.editorContent = this.event[this.event.length - 3].html;
+    if (event.event === 'text-change') {
+      this.event = event.html;
     }
   }
 
+  
+  onSelectionChanged($event) {
+  }
+  
 
   async sendMessage() {
     if (this.channelService.editorRef == 'channel') {
@@ -97,10 +81,9 @@ export class TextEditorComponent implements OnInit {
     } else if (this.channelService.editorRef == 'thread') {
       this.createMessage();
     } else if (this.channelService.editorRef == 'chat') {
-      // TODO: Write new message to opened chat
+
     }
-    this.editorContent = '';
-    this.event = [];
+    this.event = '';
   }
 
 
@@ -111,7 +94,7 @@ export class TextEditorComponent implements OnInit {
       this.channelId = paramMap.get('id');
       this.getCollection();
     });
-    if (this.editorContent) {
+    if (this.event) {
       this.addDocument(timestamp, currentUserId);
     }
     document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
@@ -134,7 +117,7 @@ export class TextEditorComponent implements OnInit {
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.editorContent,
+          content: this.event,
         },
       ],
     });
@@ -144,7 +127,7 @@ export class TextEditorComponent implements OnInit {
   async createMessage() {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-    if (this.editorContent) {
+    if (this.event) {
       this.updateDocument(timestamp, currentUserId);
     }
     document.querySelector('.rightContent #editor .ql-editor').innerHTML = '';
@@ -158,7 +141,7 @@ export class TextEditorComponent implements OnInit {
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.editorContent
+          content: this.event
         })
     })
   }

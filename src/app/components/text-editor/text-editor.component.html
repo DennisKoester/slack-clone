@@ -1,6 +1,7 @@
 <div class="editor">
   <quill-editor
     (onEditorChanged)="getContent($event)"
+    (onSelectionChanged)="onSelectionChanged($event)"
     [modules]="quillConfiguration"
     id="editor"
   >
