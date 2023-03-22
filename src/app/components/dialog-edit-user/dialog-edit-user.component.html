@@ -1,14 +1,22 @@
 <h1 mat-dialog-title>edit user</h1>
 <div mat-dialog-content id="dialog-content">
-    <mat-form-field appearance="fill">
-        <mat-label>name</mat-label>
-        <input matInput [(ngModel)]="name">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>name</mat-label>
+    <input matInput [(ngModel)]="name" />
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button cdkFocusInitial (click)="updateUser()" mat-dialog-close>OK</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button cdkFocusInitial (click)="updateUser()" mat-dialog-close>
+    OK
+  </button>
 </div>
+
+<label for="file" class="upload-file">
+  <i class="material-icons">cloud_upload</i>
+  Upload image
+</label>
+<input type="file" id="file" accept=".png,.jpg" />
 
 <!-- 
   [(ngModel)]="dialogData.name"
