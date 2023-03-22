@@ -20,6 +20,7 @@ import { UsersService } from './users.service';
 
 export class ChatService {
   chatId: string;
+  chatMessages: Array<any> = [];
 
   constructor() { }
 
