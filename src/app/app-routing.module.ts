@@ -30,9 +30,7 @@ const routes: Routes = [
       {
         path: 'chat/:id',
         component: OpenChatComponent,
-      },
-      { path: 'channel/:id', component: OpenedThreadComponent },
-      { path: 'channel/:id', component: TextEditorComponent },
+      }
     ],
   },
 ];
