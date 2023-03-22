@@ -11,7 +11,8 @@
         
       </div>
       <div [innerHTML]="message"></div>
-      <div *ngIf="thread && amountAnswers>0">{{amountAnswers}} Antworten</div>
+      <div *ngIf="thread && amountAnswers>1">{{amountAnswers}} Antworten</div>
+      <div *ngIf="thread && amountAnswers==1">{{amountAnswers}} Antwort</div>
     </div>
   </div>
 </mat-card>
