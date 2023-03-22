@@ -38,7 +38,7 @@ export class TextEditorComponent implements OnInit {
     public authenticationService: AuthenticationService,
     public channelService: ChannelService,
     public threadService: ThreadService
-  ) {}
+  ) { }
 
   editorContent;
   editorAuthor = '';
@@ -47,7 +47,7 @@ export class TextEditorComponent implements OnInit {
   threads;
   threadId;
   thread;
- 
+
 
   quillConfiguration = {
     'emoji-shortname': true,
@@ -91,27 +91,29 @@ export class TextEditorComponent implements OnInit {
   }
 
 
-  async createMessages() {
-    if (this.channelService.channelEditor == true) {
+  async sendMessage() {
+    if (this.channelService.editorRef == 'channel') {
       this.createThread();
-    } else {
+    } else if (this.channelService.editorRef == 'thread') {
       this.createMessage();
-  }
-      this.editorContent = '';
-      this.event = [];
+    } else if (this.channelService.editorRef == 'chat') {
+      // TODO: Write new message to opened chat
+    }
+    this.editorContent = '';
+    this.event = [];
   }
 
 
   async createThread() {
     const timestamp = Timestamp.fromDate(new Date());
-      const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-      this.route.paramMap.subscribe(async (paramMap) => {
-        this.channelId = paramMap.get('id');
-        this.getCollection();
-      });
-      if (this.editorContent) {
-        this.addDocument(timestamp, currentUserId);
-      }
+    const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+    this.route.paramMap.subscribe(async (paramMap) => {
+      this.channelId = paramMap.get('id');
+      this.getCollection();
+    });
+    if (this.editorContent) {
+      this.addDocument(timestamp, currentUserId);
+    }
     document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
   }
 
@@ -141,10 +143,10 @@ export class TextEditorComponent implements OnInit {
 
   async createMessage() {
     const timestamp = Timestamp.fromDate(new Date());
-      const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-      if (this.editorContent) {
-        this.updateDocument(timestamp, currentUserId);
-      }
+    const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+    if (this.editorContent) {
+      this.updateDocument(timestamp, currentUserId);
+    }
     document.querySelector('.rightContent #editor .ql-editor').innerHTML = '';
   }
 
@@ -153,9 +155,11 @@ export class TextEditorComponent implements OnInit {
     const thread = doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.threadService.channelId, GLOBAL_VAR.COLL_THREADS, this.threadService.threadId);
     await updateDoc(thread, {
       MESSAGES: arrayUnion(
-        {timestamp: timestamp,
-        author: currentUserId,
-        content: this.editorContent})
+        {
+          timestamp: timestamp,
+          author: currentUserId,
+          content: this.editorContent
+        })
     })
   }
 

@@ -38,7 +38,7 @@ export class ChannelService {
   searchValue: string = '';
   searchActive: boolean = false;
   threadId;
-  channelEditor: boolean;
+  editorRef: string = 'channel';
   channelIdOpenedThread;
 
   constructor(
