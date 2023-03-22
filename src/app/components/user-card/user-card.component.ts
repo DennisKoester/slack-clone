@@ -14,7 +14,7 @@ export class UserCardComponent {
 
   getSanitizedUrl() {
     if (this.userImage) {
-      const url = this.sanitizer.bypassSecurityTrustUrl(this.userImage);
+      this.sanitizer.bypassSecurityTrustUrl(this.userImage);
       console.log('image', this.userImage);
     } else {
       this.userImage =
