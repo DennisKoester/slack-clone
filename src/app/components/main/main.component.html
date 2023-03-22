@@ -14,7 +14,11 @@
         <mat-icon font-icon>comment</mat-icon>
         <p>Threads</p>
       </div>
-      <div [routerLink]="['/home/user-list']" class="nav-hl flex-ac">
+      <div
+        (click)="closeMenu()"
+        [routerLink]="['/home/user-list']"
+        class="nav-hl flex-ac"
+      >
         <mat-icon font-icon>supervisor_account</mat-icon>
         <p>Users</p>
       </div>
@@ -29,7 +33,7 @@
         <router-outlet></router-outlet>
       </div>
       <div class="right" *ngIf="channelService.threadIsOpen">
-        <app-opened-thread></app-opened-thread>
+        <app-thread-side-module></app-thread-side-module>
       </div>
     </div>
   </mat-drawer-content>

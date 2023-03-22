@@ -8,11 +8,11 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './shared/guard/auth.guard';
-import { OpenChannelComponent } from './components/open-channel/open-channel.component';
+import { ChannelModuleComponent } from './components/channel-module/channel-module.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
-import { OpenChatComponent } from './components/open-chat/open-chat.component';
-import { OpenedThreadComponent } from './components/opened-thread/opened-thread.component';
-import { UserListComponent } from './components/user-list/user-list.component';
+import { ChatModuleComponent } from './components/chat-module/chat-module.component';
+import { ThreadSideModuleComponent } from './components/thread-side-module/thread-side-module.component';
+import { UserModuleComponent } from './components/user-module/user-module.component';
 
 const routes: Routes = [
   // {path: '', component: AppComponent},
@@ -25,12 +25,12 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'user-list', component: UserListComponent },
-      { path: 'channel/:id', component: OpenChannelComponent },
+      { path: 'user-list', component: UserModuleComponent },
+      { path: 'channel/:id', component: ChannelModuleComponent },
       {
         path: 'chat/:id',
-        component: OpenChatComponent,
-      }
+        component: ChatModuleComponent,
+      },
     ],
   },
 ];

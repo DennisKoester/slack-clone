@@ -2,11 +2,11 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 
 @Component({
-  selector: 'app-side-nav',
-  templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.scss'],
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
 })
-export class SideNavComponent implements OnInit {
+export class MainComponent implements OnInit {
   @Input() isPrivate: boolean;
 
   ngOnInit() {}
@@ -37,6 +37,12 @@ export class SideNavComponent implements OnInit {
       this.channelService.channelIsOpen === true
     ) {
       this.channelService.channelIsOpen = false;
+    }
+  }
+
+  closeMenu() {
+    if (innerWidth < 620) {
+      this.channelService.toggleMenu();
     }
   }
 }

@@ -1,0 +1,15 @@
+@import "../channel-module/channel-module.component.scss";
+
+.rightContent {
+  //   min-width: 350px;
+  height: calc(100vh - 125px);
+  overflow: auto;
+}
+
+.close-thread-btn {
+  cursor: pointer;
+}
+
+// .d-none {
+//   display: none;
+// }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OpenChannelComponent } from './open-channel.component';
+import { UserModuleComponent } from './user-module.component';
 
-describe('OpenChannelComponent', () => {
-  let component: OpenChannelComponent;
-  let fixture: ComponentFixture<OpenChannelComponent>;
+describe('UserModuleComponent', () => {
+  let component: UserModuleComponent;
+  let fixture: ComponentFixture<UserModuleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OpenChannelComponent ]
+      declarations: [ UserModuleComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OpenChannelComponent);
+    fixture = TestBed.createComponent(UserModuleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

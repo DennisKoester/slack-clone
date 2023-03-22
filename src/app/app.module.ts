@@ -40,8 +40,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ThreadSideModuleComponent } from './components/thread-side-module/thread-side-module.component';
-import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { MainComponent } from './components/main/main.component';
 import { ChannelsComponent } from './components/channels/channels.component';
 import { DirectMessagesSectionComponent } from './components/direct-messages-section/direct-messages-section.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
@@ -52,12 +51,12 @@ import { DialogCreateChannelComponent } from './components/dialog-create-channel
 import { ThreadCardComponent } from './components/thread-card/thread-card.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { ChannelItemComponent } from './components/channel-item/channel-item.component';
-import { OpenChannelComponent } from './components/open-channel/open-channel.component';
-import { OpenedThreadComponent } from './components/opened-thread/opened-thread.component';
+import { ChannelModuleComponent } from './components/channel-module/channel-module.component';
+import { ThreadSideModuleComponent } from './components/thread-side-module/thread-side-module.component';
 import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
 import { ChatlistItemComponent } from './components/chatlist-item/chatlist-item.component';
-import { OpenChatComponent } from './components/open-chat/open-chat.component';
-import { UserListComponent } from './components/user-list/user-list.component';
+import { ChatModuleComponent } from './components/chat-module/chat-module.component';
+import { UserModuleComponent } from './components/user-module/user-module.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 
 @NgModule({
@@ -67,8 +66,7 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     SignUpComponent,
     HomeComponent,
     HeaderComponent,
-    ThreadSideModuleComponent,
-    SideNavComponent,
+    MainComponent,
     ChannelsComponent,
     DirectMessagesSectionComponent,
     VerifyEmailComponent,
@@ -79,12 +77,12 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     ThreadCardComponent,
     TextEditorComponent,
     ChannelItemComponent,
-    OpenChannelComponent,
-    OpenedThreadComponent,
+    ChannelModuleComponent,
+    ThreadSideModuleComponent,
     DialogEditUserComponent,
     ChatlistItemComponent,
-    OpenChatComponent,
-    UserListComponent,
+    ChatModuleComponent,
+    UserModuleComponent,
     UserCardComponent,
   ],
   imports: [

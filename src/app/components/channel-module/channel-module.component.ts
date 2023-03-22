@@ -14,14 +14,14 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ChannelService } from 'src/app/shared/services/channel.service';
-import { SideNavComponent } from '../side-nav/side-nav.component';
+import { MainComponent } from '../main/main.component';
 
 @Component({
-  selector: 'app-open-channel',
-  templateUrl: './open-channel.component.html',
-  styleUrls: ['./open-channel.component.scss'],
+  selector: 'app-channel-module',
+  templateUrl: './channel-module.component.html',
+  styleUrls: ['./channel-module.component.scss'],
 })
-export class OpenChannelComponent {
+export class ChannelModuleComponent {
   // messages = [];
   // channelId = '';
   // sendedPostID = '';
@@ -32,7 +32,7 @@ export class OpenChannelComponent {
 
   constructor(
     public channelService: ChannelService,
-    public navFunction: SideNavComponent
+    public navFunction: MainComponent
   ) {}
 
   // @HostListener('window:resize', ['$event'])
