@@ -15,9 +15,11 @@
     <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
 
     <app-thread-card
+      [thread]="true"
       class="threadCard"
       *ngFor="let thread of channelService.threads; index as i"
       [index]="i"
+      [amountAnswers]="thread['MESSAGES'].length-1"
       [author]="thread['MESSAGES'][0]['author']"
       [message]="thread['MESSAGES'][0]['content']"
       [timestamp]="thread['MESSAGES'][0]['timestamp']['seconds'] * 1000"

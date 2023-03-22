@@ -8,8 +8,10 @@
           {{ timestamp | date : "EEE, dd. MMMM yy" }} |
           {{ timestamp | date : "HH:mm" }}
         </div>
+        
       </div>
       <div [innerHTML]="message"></div>
+      <div *ngIf="thread && amountAnswers>0">{{amountAnswers}} Antworten</div>
     </div>
   </div>
 </mat-card>
