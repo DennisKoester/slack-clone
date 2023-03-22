@@ -13,7 +13,8 @@ export class ThreadCardComponent implements OnInit {
   @Input() timestamp: any;
   @Input() index: number;
   @Input() thread: boolean = false;
-  @Input() amountAnswers;
+  @Input() amountAnswers: number;
+  @Input() lastAnswer;
   constructor(public channelService: ChannelService, public threadService: ThreadService) {}
 
   ngOnInit(): void {

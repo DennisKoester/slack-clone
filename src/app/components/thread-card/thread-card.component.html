@@ -11,8 +11,8 @@
         
       </div>
       <div [innerHTML]="message"></div>
-      <div class="amountAnswers" *ngIf="thread && amountAnswers>1">{{amountAnswers}} Antworten</div>
-      <div class="amountAnswers" *ngIf="thread && amountAnswers==1">{{amountAnswers}} Antwort</div>
+      <div class="amountAnswers" *ngIf="thread && amountAnswers>1">{{amountAnswers}} Antworten<span class="lastAnswer">last answer: {{lastAnswer | date : "EEE, dd. MMMM yy"}} {{ lastAnswer | date : "HH:mm" }}</span></div>
+      <div class="amountAnswers" *ngIf="thread && amountAnswers==1">{{amountAnswers}} Antworten<span class="lastAnswer">last answer: {{lastAnswer | date : "EEE, dd. MMMM yy"}} {{ lastAnswer | date : "HH:mm" }}</span></div>
     </div>
   </div>
 </mat-card>

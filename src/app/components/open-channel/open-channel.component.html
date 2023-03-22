@@ -20,6 +20,7 @@
       *ngFor="let thread of channelService.threads; index as i"
       [index]="i"
       [amountAnswers]="thread['MESSAGES'].length-1"
+      [lastAnswer]="thread['MESSAGES'][thread['MESSAGES'].length-1]['timestamp']['seconds']* 1000"
       [author]="thread['MESSAGES'][0]['author']"
       [message]="thread['MESSAGES'][0]['content']"
       [timestamp]="thread['MESSAGES'][0]['timestamp']['seconds'] * 1000"
