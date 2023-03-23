@@ -1,4 +1,5 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import Quill from 'quill';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { UsersService } from 'src/app/shared/services/users.service';
@@ -16,4 +17,8 @@ export class HomeComponent {
   ) {
     this.usersService.getUsers();
   }
+
+
+
+
 }

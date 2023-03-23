@@ -20,12 +20,11 @@ export class ThreadCardComponent implements OnInit {
 
   constructor(public channelService: ChannelService, public threadService: ThreadService) {}
 
-  ngOnInit(): void {
-    this.sendIndex();
-    this.convert();
-    setTimeout(() => {
-      this.resizeImg();
-    }, 10); 
+  async ngOnInit()  {
+    await this.sendIndex();
+    await this.convert();
+    this.resizeImg();
+    
    
   }
 
@@ -42,10 +41,10 @@ export class ThreadCardComponent implements OnInit {
   resizeImg() {
     this.test = document.querySelectorAll('.card-header p img');
     for (let i = 0; i < this.test.length; i++) {
-      this.test[i].style.maxHeight = "200px";
-      this.test[i].style.maxWidth = "200px";
+      this.test[i].style.maxHeight = "400px";
+      this.test[i].style.maxWidth = "400px";
       this.test[i].style.objectfit = "cover";
     }
-    console.log(this.test);
+    // console.log(this.test);
   }
 }

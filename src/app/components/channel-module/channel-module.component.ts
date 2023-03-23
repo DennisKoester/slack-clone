@@ -12,6 +12,7 @@ import {
 } from '@angular/fire/firestore';
 
 import { ActivatedRoute } from '@angular/router';
+import Quill from 'quill';
 import { Observable } from 'rxjs';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { MainComponent } from '../main/main.component';
@@ -34,6 +35,8 @@ export class ChannelModuleComponent {
     public channelService: ChannelService,
     public navFunction: MainComponent
   ) {}
+
+
 
   // @HostListener('window:resize', ['$event'])
   // onResize(e) {

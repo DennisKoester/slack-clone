@@ -26,6 +26,9 @@ import Quill from 'quill';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 
+
+
+
 @Component({
   selector: 'app-text-editor',
   templateUrl: './text-editor.component.html',
@@ -40,18 +43,15 @@ export class TextEditorComponent implements OnInit {
     public threadService: ThreadService
   ) { }
 
+
   editorAuthor = '';
   channelId;
   event = '';
   threads;
   threadId;
   thread;
-
-
-  quillConfiguration = {
-    'emoji-shortname': true,
-    'emoji-textarea': false,
-    'emoji-toolbar': true,
+  quill;
+  config = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
       ['code-block'],
@@ -59,14 +59,21 @@ export class TextEditorComponent implements OnInit {
       ['emoji'],
       ['image']
     ],
+    "emoji-toolbar": true,
+    "emoji-textarea": false,
+    "emoji-shortname": true,
+
   };
+
 
   ngOnInit() {
   }
 
+
   getContent(event: EditorChangeContent | EditorChangeSelection) {
     if (event.event === 'text-change') {
       this.event = event.html;
+      console.log(this.event);
     }
   }
 

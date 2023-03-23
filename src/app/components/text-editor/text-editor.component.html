@@ -1,10 +1,5 @@
 <div class="editor">
-  <quill-editor
-    (onEditorChanged)="getContent($event)"
-    [modules]="quillConfiguration"
-    id="editor"
-  >
-  </quill-editor>
+  <quill-editor (onEditorChanged)="getContent($event)" id="editor" [modules]="config"></quill-editor>
   <button class="send-btn" (click)="sendMessage()">
     <mat-icon>send</mat-icon>
   </button>
