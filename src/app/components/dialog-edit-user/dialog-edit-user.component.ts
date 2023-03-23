@@ -12,7 +12,9 @@ import { doc } from '@firebase/firestore';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 import { UsersService } from 'src/app/shared/services/users.service';
+
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -28,7 +30,8 @@ export class DialogEditUserComponent implements OnInit {
 
   constructor(
     private firestore: Firestore,
-    public usersService: UsersService
+    public usersService: UsersService,
+    public imgUploadService: ImageUploadService
   ) {}
 
   async ngOnInit() {

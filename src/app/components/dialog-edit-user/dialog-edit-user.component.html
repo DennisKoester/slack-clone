@@ -14,7 +14,7 @@
   <div class="dialog-right">
     <div class="profilePic">
       <div>
-        <img src="{{ photoURL }}" class="profile_image" />
+        <img src="{{ imgUploadService.photoURL }}" class="profile_image" />
       </div>
       <!-- <div *ngIf="downloadURL | async; let url"> -->
       <!-- <img [src]="url" class="picture" /> -->
@@ -26,7 +26,7 @@
         <i class="material-icons">cloud_upload</i>
         Upload image
       </label>
-      <input type="file" id="file" accept=".png,.jpg" />
+      <input (change)="imgUploadService.uploadImage($event)" type="file" id="file" accept=".png,.jpg" />
     </div>
   </div>
 </div>

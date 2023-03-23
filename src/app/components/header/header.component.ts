@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { getAuth } from 'firebase/auth';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ChannelService } from 'src/app/shared/services/channel.service';
+import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { HomeComponent } from '../home/home.component';
@@ -28,7 +29,8 @@ export class HeaderComponent implements OnInit {
     public dialog: MatDialog,
     public home: HomeComponent,
     public channelService: ChannelService,
-    public usersService: UsersService
+    public usersService: UsersService,
+    public imgUploadService: ImageUploadService
   ) {}
 
   ngOnInit() {}
