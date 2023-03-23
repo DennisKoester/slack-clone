@@ -3,6 +3,7 @@ import { collectionData } from '@angular/fire/firestore';
 import { collection, Firestore } from '@angular/fire/firestore';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { BehaviorSubject } from 'rxjs';
+import { getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UsersService {
   public usersCollListener = new BehaviorSubject<any>({ users: [] });
   users: any = [];
+  currentUser;
 
   constructor(private firestore: Firestore) {}
 
@@ -34,5 +36,10 @@ export class UsersService {
         return 0;
       }
     });
+  }
+
+  getCurrentUser() {
+    const auth = getAuth();
+    this.currentUser = auth.currentUser;
   }
 }

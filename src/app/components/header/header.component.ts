@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { getAuth } from 'firebase/auth';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ChannelService } from 'src/app/shared/services/channel.service';
+import { UsersService } from 'src/app/shared/services/users.service';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { HomeComponent } from '../home/home.component';
 
@@ -10,8 +12,11 @@ import { HomeComponent } from '../home/home.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  currentUser;
+  currentUserId: string;
   status: boolean = false;
+  photoURL: string;
   // searchValue: string;
 
   openProfile(): void {
@@ -22,8 +27,11 @@ export class HeaderComponent {
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
     public home: HomeComponent,
-    public channelService: ChannelService
+    public channelService: ChannelService,
+    public usersService: UsersService
   ) {}
+
+  ngOnInit() {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogEditUserComponent);
@@ -32,4 +40,18 @@ export class HeaderComponent {
   resetSearch() {
     this.channelService.searchValue = '';
   }
+
+  // getURL() {
+  //   this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+  //   this.usersService.usersCollListener.subscribe({
+  //     next: (users) => null,
+  //   });
+
+  //   const currentUserData =
+  //     this.usersService.usersCollListener.value.users.find(
+  //       (user) => this.currentUserId == user.uid
+  //     );
+  //   this.photoURL = currentUserData.photoURL;
+  //   console.log('userimage', currentUserData);
+  // }
 }

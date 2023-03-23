@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import {
   collection,
   collectionData,
@@ -8,7 +9,10 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { doc } from '@firebase/firestore';
+import { getAuth, updateProfile } from 'firebase/auth';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -16,17 +20,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dialog-edit-user.component.scss'],
 })
 export class DialogEditUserComponent implements OnInit {
-  static PhotoUrl() {
-    throw new Error('Method not implemented.');
-  }
-  // user$: Observable<any>;
   currentUserId = '';
   name: String;
   email: String;
   emailVerified: boolean;
   photoURL: String;
 
-  constructor(private firestore: Firestore) {}
+  constructor(
+    private firestore: Firestore,
+    public usersService: UsersService
+  ) {}
 
   async ngOnInit() {
     this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
@@ -51,4 +54,23 @@ export class DialogEditUserComponent implements OnInit {
       uid: this.currentUserId,
     });
   }
+
+  // updateUserProfile() {
+  //  const auth = getAuth()
+  //   updateProfile(this.usersService.currentUser, {
+  //     displayName: 'Walter Hannes',
+  //     photoURL:
+  //       'https://ca.slack-edge.com/T01CDQFUXFE-U03P4F496MS-75a80f5ff200-512',
+  //   })
+  //     .then(() => {
+  //       console.log('PhotoURL AUTH', auth.currentUser.photoURL);
+  //       console.log('User Firebase DOC', auth.currentUser);
+
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       // An error occurred
+  //       // ...
+  //     });
+  // }
 }

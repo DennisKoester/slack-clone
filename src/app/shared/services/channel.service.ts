@@ -47,7 +47,7 @@ export class ChannelService {
     private threadService: ThreadService
   ) {
     this.usersService.usersCollListener.subscribe({
-      next: (users) => null,
+      next: (users) => null
     });
   }
 

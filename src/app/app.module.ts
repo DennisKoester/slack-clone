@@ -34,7 +34,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
-import {MatTooltip, MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 
 //components
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -112,7 +112,7 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     FormsModule,
     QuillModule.forRoot(),
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
