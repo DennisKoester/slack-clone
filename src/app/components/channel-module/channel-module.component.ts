@@ -22,7 +22,7 @@ import { MainComponent } from '../main/main.component';
   templateUrl: './channel-module.component.html',
   styleUrls: ['./channel-module.component.scss'],
 })
-export class ChannelModuleComponent {
+export class ChannelModuleComponent implements OnInit{
   // messages = [];
   // channelId = '';
   // sendedPostID = '';
@@ -30,13 +30,14 @@ export class ChannelModuleComponent {
   // threadsId = '';
   // threads: Array<any> = [];
   // menuCollapsed = false;
-
   constructor(
     public channelService: ChannelService,
     public navFunction: MainComponent
   ) {}
 
 
+ngOnInit(): void {
+}
 
   // @HostListener('window:resize', ['$event'])
   // onResize(e) {
