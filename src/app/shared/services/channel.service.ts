@@ -40,6 +40,8 @@ export class ChannelService {
   threadId;
   editorRef: string = 'channel';
   channelIdOpenedThread;
+  test: any = [];
+
 
   constructor(
     private firestore: Firestore,
