@@ -51,6 +51,7 @@ export class TextEditorComponent implements OnInit {
   threadId;
   thread;
   quill;
+  errorMessage: boolean = false;
   config = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
@@ -73,7 +74,6 @@ export class TextEditorComponent implements OnInit {
   getContent(event: EditorChangeContent | EditorChangeSelection) {
     if (event.event === 'text-change') {
       this.event = event.html;
-      if (this.event) console.log(this.event.length);
     }
   }
 
@@ -86,11 +86,13 @@ export class TextEditorComponent implements OnInit {
         this.createMessage();
       } else if (this.channelService.editorRef == 'chat') {
       }
-    this.event = '';
-  } else {
-    window.alert('please choose an image with a maxiumum of 1600px x 1600px!')
-  }
-   
+      this.event = '';
+    } else if (this.event.length >= 1000000){
+      this.errorMessage = true;
+      setTimeout(() => {
+        this.errorMessage = false;
+      }, 4000);
+    }
   }
 
 

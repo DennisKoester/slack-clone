@@ -24,3 +24,29 @@
     cursor: pointer;
   }
 }
+
+.errorMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: calc(50% - 110px);
+  top: calc(60% - 20px);
+  height: 40px;
+  width: 220px;
+  padding: 5px;
+  background-color: #ffffffcb;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  z-index: 1200;
+  text-align: center;
+  border-radius: 5px;
+  animation: errorMessage 4.1s ease-in-out;
+}
+
+@keyframes errorMessage {
+  0% {opacity: 0; transform: scale(0)};
+  5% {opacity: 1; transform: scale(1)};
+  95% {opacity: 1; transform: scale(1)};
+  100% {opacity: 0; transform: scale(0)};
+}
