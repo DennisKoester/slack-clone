@@ -73,20 +73,24 @@ export class TextEditorComponent implements OnInit {
   getContent(event: EditorChangeContent | EditorChangeSelection) {
     if (event.event === 'text-change') {
       this.event = event.html;
-      console.log(this.event);
+      if (this.event) console.log(this.event.length);
     }
   }
 
 
   async sendMessage() {
-    if (this.channelService.editorRef == 'channel') {
-      this.createThread();
-    } else if (this.channelService.editorRef == 'thread') {
-      this.createMessage();
-    } else if (this.channelService.editorRef == 'chat') {
-
-    }
+    if (this.event && this.event.length < 1000000) {
+      if (this.channelService.editorRef == 'channel') {
+        this.createThread();
+      } else if (this.channelService.editorRef == 'thread') {
+        this.createMessage();
+      } else if (this.channelService.editorRef == 'chat') {
+      }
     this.event = '';
+  } else {
+    window.alert('please choose an image with a maxiumum of 1600px x 1600px!')
+  }
+   
   }
 
 
