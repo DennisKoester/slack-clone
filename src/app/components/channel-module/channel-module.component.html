@@ -24,7 +24,6 @@
       [author]="thread['MESSAGES'][0]['author']"
       [message]="thread['MESSAGES'][0]['content']"
       [timestamp]="thread['MESSAGES'][0]['timestamp']['seconds'] * 1000"
-      (click)="channelService.openThread(i)"
       [class.d-none]="
         !thread['MESSAGES'][0]['content']
           .toLowerCase()
@@ -34,7 +33,7 @@
           .includes(channelService.searchValue.toLowerCase())
       "
     >
-      ></app-thread-card
+    </app-thread-card
     >
   </div>
   <app-text-editor class="editor-channel"></app-text-editor>
