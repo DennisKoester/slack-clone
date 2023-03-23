@@ -86,7 +86,7 @@ export class DirectMessagesSectionComponent {
     chats.forEach(chat => {
       for (let u = 0; u < chat['USERS'].length; u++) {
         // console.log(`Processing chatUser: ${chat['USERS'][u]}`);
-        chat['USERS'][u] = this.getUserMetaData(chat['USERS'][u]);
+        chat['USERS'][u] = this.chatService.getUserMetaData(chat['USERS'][u]);
 
         // 
         // ***TODO: Implement user image *****************
@@ -106,20 +106,5 @@ export class DirectMessagesSectionComponent {
     });
     // console.log('Metadata implemented: ', chats);
     return chats;
-  }
-
-
-  /**
-   * Reads 
-   * @param _user The user whose metadata should be read
-   * @returns JSON
-   */
-  getUserMetaData(_user: string) {
-    const userName = this.usersService.usersCollListener.value.users.find(user => _user == user.uid);
-    const userImg = ''; // TODO: UserImg auslesen, wenn implementiert
-    return {
-      'userName': userName.displayName,
-      'userImg': userImg
-    };
   }
 }
