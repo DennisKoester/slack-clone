@@ -25,9 +25,13 @@ body {
   max-height: 200px;
   object-fit: cover;
 
+  &:hover {
+    filter: invert(0.1);
+  }
+
   &:active {
     max-width: 100%;
-    max-height: 100%; 
+    max-height: 100%;
   }
 }
 

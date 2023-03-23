@@ -9,7 +9,7 @@
           {{ timestamp | date : "HH:mm" }}
         </div>
       </div>
-      <div (click)="channelService.openThread(index)">OPEN IN THREAD</div>
+      <div *ngIf="thread" (click)="channelService.openThread(index)">OPEN IN THREAD</div>
       <div [innerHTML]="message"></div>
       <div *ngIf="thread && amountAnswers > 0" class="infoAnswers">
         <span class="amountAnswers">
