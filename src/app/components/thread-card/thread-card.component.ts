@@ -17,15 +17,12 @@ export class ThreadCardComponent implements OnInit {
   @Input() lastAnswer;
   test: any = [];
 
-
   constructor(public channelService: ChannelService, public threadService: ThreadService) {}
 
   async ngOnInit()  {
     await this.sendIndex();
     await this.convert();
     this.resizeImg();
-    
-   
   }
 
   sendIndex() {
@@ -41,9 +38,8 @@ export class ThreadCardComponent implements OnInit {
   resizeImg() {
     this.test = document.querySelectorAll('.card-header p img');
     for (let i = 0; i < this.test.length; i++) {
-      this.test[i].style.maxHeight = "400px";
-      this.test[i].style.maxWidth = "400px";
-      this.test[i].style.objectfit = "cover";
+      this.test[i].classList.add('resizeImg');
+      // this.test[i].parentNode.classList.add('resizeImg');
     }
     // console.log(this.test);
   }

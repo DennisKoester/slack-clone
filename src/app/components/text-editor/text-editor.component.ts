@@ -74,6 +74,7 @@ export class TextEditorComponent implements OnInit {
   getContent(event: EditorChangeContent | EditorChangeSelection) {
     if (event.event === 'text-change') {
       this.event = event.html;
+      console.log(this.event);
     }
   }
 

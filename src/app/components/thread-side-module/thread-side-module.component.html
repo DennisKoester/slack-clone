@@ -12,7 +12,7 @@
     </div>
   </div>
 </mat-toolbar-row>
-<div class="rightContent" (click)="channelService.editorRef = 'thread'">
+<div class="rightContent" (click)="channelService.editorRef = 'thread'" >
   <div *ngIf="threadService.thread">
     <app-thread-card
       *ngFor="let message of threadService.thread['MESSAGES']; index as i"
