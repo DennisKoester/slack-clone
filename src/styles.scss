@@ -24,6 +24,7 @@ body {
   max-width: 200px;
   max-height: 200px;
   object-fit: cover;
+  cursor: pointer;
 
   &:hover {
     filter: invert(0.1);

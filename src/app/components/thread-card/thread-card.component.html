@@ -8,11 +8,12 @@
           {{ timestamp | date : "EEE, dd. MMMM yy" }} |
           {{ timestamp | date : "HH:mm" }}
         </div>
+        <div *ngIf="thread" (click)="channelService.openThread(index)" class="chatBubble"><mat-icon fontIcon="chat bubble" matTooltip="answer in thread"></mat-icon></div>
       </div>
-      <div *ngIf="thread" (click)="channelService.openThread(index)">OPEN IN THREAD</div>
+      
       <div [innerHTML]="message"></div>
       <div *ngIf="thread && amountAnswers > 0" class="infoAnswers">
-        <span class="amountAnswers">
+        <span class="amountAnswers" (click)="channelService.openThread(index)">
           {{ amountAnswers }}
           {{ amountAnswers > 1 ? "answers" : "answer" }}</span
         >
