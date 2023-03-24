@@ -75,8 +75,8 @@ export class ChatService {
    * @returns JSON
    */
   getUserMetaData(_user: string) {
-    const userName = this.usersService.usersCollListener.value.users.find(user => _user == user.uid);
-    const userImg = ''; // TODO: UserImg auslesen, wenn implementiert
+    const userName = this.usersService.usersCollListener.value.users.find(user => _user == user.uid); // TODO: Variable ändern in userData
+    const userImg = ''; // PLATZHALTER -- TODO: UserImg auslesen, wenn implementiert
     return {
       'userName': userName.displayName,
       'userImg': userImg
