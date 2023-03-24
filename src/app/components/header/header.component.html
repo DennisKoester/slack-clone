@@ -66,7 +66,9 @@
       <button mat-button [matMenuTriggerFor]="menu">
         <div class="profile-img">
           <a class="logout">
-            <img src="{{ imgUploadService.photoURL }}" />
+            <img
+              src="{{ imgUploadService.currentUser.photoURL ?? '../assets/img/logo.png' }}"
+            />
             <div class="status-dot"></div>
           </a>
         </div>
