@@ -43,7 +43,9 @@ export class DirectMessagesSectionComponent {
     this.chatsCollection = collection(this.firestore, GLOBAL_VAR.COLL_CHATS);
     this.chats$ = collectionData(this.chatsCollection, {idField: 'chatId'});
     this.chats$.subscribe((chatsData) => {
-      // console.log('All chats', chatsData);
+
+      console.log('All chats', chatsData);
+
       this.chats = this.filterChats(chatsData);
     });
   }
@@ -56,7 +58,9 @@ export class DirectMessagesSectionComponent {
    */
   filterChats(chatsData: Array<any>) {
     let chats = chatsData.filter(chat => chat['USERS'].includes(this.currentUserId));
-    // console.log(`Privat chats for ${this.currentUserId}`, chats);
+
+    console.log(`Private chats for ${this.currentUserId}`, JSON.stringify(chats));
+
     chats = this.cleanUpUserLists(chats);
     chats = this.getUserNamesAndImages(chats);
     return chats;
@@ -72,20 +76,24 @@ export class DirectMessagesSectionComponent {
     chats.forEach((chat) => {
       chat['USERS'] = chat['USERS'].filter(user => user != this.currentUserId);
     });
-    // console.log('Filtered chat list: ', chats);
+
+    console.log('Filtered chat list: ', chats);
+
     return chats;
   }
 
 
   /**
-   * 
+   * Reads the user metadata of the chat members (excluding logged-in user)
    * @param chats The chats of the logged-in user
    * @returns Array
    */
   getUserNamesAndImages(chats: Array<any>) {
     chats.forEach(chat => {
       for (let u = 0; u < chat['USERS'].length; u++) {
-        // console.log(`Processing chatUser: ${chat['USERS'][u]}`);
+
+        console.log(`Processing chatUser: ${chat['USERS'][u]}`);
+
         chat['USERS'][u] = this.chatService.getUserMetaData(chat['USERS'][u]);
 
         // 
