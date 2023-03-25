@@ -13,6 +13,7 @@ import { TextEditorComponent } from './components/text-editor/text-editor.compon
 import { ChatModuleComponent } from './components/chat-module/chat-module.component';
 import { ThreadSideModuleComponent } from './components/thread-side-module/thread-side-module.component';
 import { UserModuleComponent } from './components/user-module/user-module.component';
+import { NewChatComponent } from './components/new-chat/new-chat.component';
 
 const routes: Routes = [
   // {path: '', component: AppComponent},
@@ -27,10 +28,8 @@ const routes: Routes = [
     children: [
       { path: 'user-list', component: UserModuleComponent },
       { path: 'channel/:id', component: ChannelModuleComponent },
-      {
-        path: 'chat/:id',
-        component: ChatModuleComponent,
-      },
+      { path: 'chat/:id', component: ChatModuleComponent },
+      { path: 'chat/new', component: NewChatComponent}
     ],
   },
 ];

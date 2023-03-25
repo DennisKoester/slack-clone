@@ -35,6 +35,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 
 //components
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -60,6 +61,7 @@ import { ChatModuleComponent } from './components/chat-module/chat-module.compon
 import { UserModuleComponent } from './components/user-module/user-module.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { SelectChatUsersComponent } from './components/select-chat-users/select-chat-users.component';
+import { NewChatComponent } from './components/new-chat/new-chat.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,7 @@ import { SelectChatUsersComponent } from './components/select-chat-users/select-
     UserModuleComponent,
     UserCardComponent,
     SelectChatUsersComponent,
+    NewChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +118,7 @@ import { SelectChatUsersComponent } from './components/select-chat-users/select-
     QuillModule.forRoot(),
     MatMenuModule,
     MatTooltipModule,
+    MatSelectModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],

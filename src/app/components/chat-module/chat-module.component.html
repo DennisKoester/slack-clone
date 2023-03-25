@@ -4,7 +4,8 @@
       <span>{{ member.userName }}</span>
       <span *ngIf="chatService.chatMembers.length > 1 && i < chatService.chatMembers.length - 1">,&nbsp;</span>
     </div>
-    <mat-icon id="add-user" class="add-item" matTooltip="Add a user to this chat">add</mat-icon>
+    <!-- <app-select-chat-users></app-select-chat-users> -->
+    <!-- <mat-icon id="add-user" class="add-item" matTooltip="Add a user to this chat">add</mat-icon> -->
   </div>
 </mat-toolbar-row>
 <div class="leftContent" [routerLink]="['/home/chat/' + chatService.chatId]"
