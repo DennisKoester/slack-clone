@@ -1,21 +1,17 @@
 <mat-toolbar-row class="channel-toolbar">
   <div class="flex-ac">
-    <mat-icon id="add-user" title="Add a user to this chat">add</mat-icon>
-    <!-- <div id="members-list"> -->
-      <div *ngFor="let member of chatService.chatMembers; let i = index">
-        <span>{{ member.userName }}</span>
-        <span *ngIf="chatService.chatMembers.length > 1 && i < chatService.chatMembers.length - 1">,&nbsp;</span>
-      </div>
-    <!-- </div> -->
+    <div *ngFor="let member of chatService.chatMembers; let i = index">
+      <span>{{ member.userName }}</span>
+      <span *ngIf="chatService.chatMembers.length > 1 && i < chatService.chatMembers.length - 1">,&nbsp;</span>
+    </div>
+    <mat-icon id="add-user" class="add-item" matTooltip="Add a user to this chat">add</mat-icon>
   </div>
 </mat-toolbar-row>
-<div class="leftContent" [routerLink]="['/home/chat/' + chatService.chatId]" (click)="channelService.editorRef = 'chat'">
+<div class="leftContent" [routerLink]="['/home/chat/' + chatService.chatId]"
+  (click)="channelService.editorRef = 'chat'">
   <div class="scroll-container">
-    <app-thread-card
-      class="threadCard"
-      *ngFor="let message of chatService.chatMessages; index as i"
-      [author]="chatService.chatMessages[i]['author']['userName']"
-      [message]="chatService.chatMessages[i]['content']"
+    <app-thread-card class="threadCard" *ngFor="let message of chatService.chatMessages; index as i"
+      [author]="chatService.chatMessages[i]['author']['userName']" [message]="chatService.chatMessages[i]['content']"
       [timestamp]="chatService.chatMessages[i]['timestamp']['seconds'] * 1000">
     </app-thread-card>
   </div>

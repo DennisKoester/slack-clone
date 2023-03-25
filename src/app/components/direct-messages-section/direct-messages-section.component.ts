@@ -98,13 +98,11 @@ export class DirectMessagesSectionComponent {
       // 
       // ***TODO: Implement in rendering of chat messages
       // 
-      // chat['MESSAGES'].forEach(chatMessage => {
-      //   chatMessage['author'] = this.getUserMetaData(chatMessage['author']);
-      // });
-      // 
-      // 
     });
     // console.log('Metadata implemented: ', chats);
     return chats;
   }
+
+
+  newChat() {}
 }
