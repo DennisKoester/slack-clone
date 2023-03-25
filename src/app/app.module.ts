@@ -59,6 +59,7 @@ import { ChatlistItemComponent } from './components/chatlist-item/chatlist-item.
 import { ChatModuleComponent } from './components/chat-module/chat-module.component';
 import { UserModuleComponent } from './components/user-module/user-module.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
+import { SelectChatUsersComponent } from './components/select-chat-users/select-chat-users.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     ChatModuleComponent,
     UserModuleComponent,
     UserCardComponent,
+    SelectChatUsersComponent,
   ],
   imports: [
     BrowserModule,
