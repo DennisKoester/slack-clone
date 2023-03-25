@@ -6,12 +6,11 @@
   z-index: 999;
 
   quill-editor {
-    height: 100px;
     width: 100%;
     z-index: 999;
     white-space: pre-wrap !important;
   }
-  
+
   .send-btn {
     position: absolute;
     right: 15px;
@@ -45,8 +44,20 @@
 }
 
 @keyframes errorMessage {
-  0% {opacity: 0; transform: scale(0)};
-  5% {opacity: 1; transform: scale(1)};
-  95% {opacity: 1; transform: scale(1)};
-  100% {opacity: 0; transform: scale(0)};
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  5% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  95% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
 }

@@ -70,16 +70,18 @@ export class ChatService {
 
 
   /**
-   * Reads 
+   * Reads the metadata of the user
    * @param _user The user whose metadata should be read
    * @returns JSON
    */
   getUserMetaData(_user: string) {
-    const userName = this.usersService.usersCollListener.value.users.find(user => _user == user.uid);
-    const userImg = ''; // TODO: UserImg auslesen, wenn implementiert
+    const userData = this.usersService.usersCollListener.value.users.find(user => _user == user.uid);
+
+    console.log('userData in getUserMetaData: ', )
+
     return {
-      'userName': userName.displayName,
-      'userImg': userImg
+      'userName': userData.displayName,
+      'userImg': '' // TODO: read userImg
     };
   }
 }

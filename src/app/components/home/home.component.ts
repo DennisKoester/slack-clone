@@ -9,18 +9,17 @@ import { UsersService } from 'src/app/shared/services/users.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   constructor(
     public authenticationService: AuthenticationService,
     public usersService: UsersService,
-    public channelService: ChannelService,
+    public channelService: ChannelService
   ) {
-    this.usersService.getUsers();
-    this.usersService.getCurrentUser();
-    
+   
   }
 
-
-
-
+  ngOnInit(){
+     this.usersService.getUsers();
+     this.usersService.getCurrentUser();
+  }
 }

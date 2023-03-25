@@ -11,7 +11,7 @@ import { getAuth } from 'firebase/auth';
 export class UsersService {
   public usersCollListener = new BehaviorSubject<any>({ users: [] });
   users: any = [];
-  currentUser;
+  public currentUserListener = new BehaviorSubject<any>({ currentUser: {} });
 
   constructor(private firestore: Firestore) {}
 
@@ -40,6 +40,8 @@ export class UsersService {
 
   getCurrentUser() {
     const auth = getAuth();
-    this.currentUser = auth.currentUser;
+    this.currentUserListener.next({ currentUser: auth.currentUser });
+    console.log(this.currentUserListener);
+    // console.log(this.currentUserListener.value.currentUser.photoURL);
   }
 }

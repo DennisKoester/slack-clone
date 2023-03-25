@@ -36,8 +36,6 @@ body {
   }
 }
 
-
-
 p {
   margin: 0 !important;
 }
@@ -172,6 +170,19 @@ p {
 
 .ql-editor.ql-blank::before {
   color: rgba(255, 255, 255, 0.726);
+}
+
+.ql-snow .ql-editor img {
+  max-width: 200px !important;
+}
+
+.ql-editor {
+  max-height: 250px;
+  min-height: 80px;
+}
+
+.editor[_ngcontent-bbk-c150] quill-editor[_ngcontent-bbk-c150] {
+  height: unset !important;
 }
 
 // Material Design Changes //

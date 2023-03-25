@@ -56,7 +56,7 @@ export class DirectMessagesSectionComponent {
    */
   filterChats(chatsData: Array<any>) {
     let chats = chatsData.filter(chat => chat['USERS'].includes(this.currentUserId));
-    // console.log(`Privat chats for ${this.currentUserId}`, chats);
+    // console.log(`Private chats for ${this.currentUserId}`, JSON.stringify(chats));
     chats = this.cleanUpUserLists(chats);
     chats = this.getUserNamesAndImages(chats);
     return chats;
@@ -78,7 +78,7 @@ export class DirectMessagesSectionComponent {
 
 
   /**
-   * 
+   * Reads the user metadata of the chat members (excluding logged-in user)
    * @param chats The chats of the logged-in user
    * @returns Array
    */
@@ -98,13 +98,11 @@ export class DirectMessagesSectionComponent {
       // 
       // ***TODO: Implement in rendering of chat messages
       // 
-      // chat['MESSAGES'].forEach(chatMessage => {
-      //   chatMessage['author'] = this.getUserMetaData(chatMessage['author']);
-      // });
-      // 
-      // 
     });
     // console.log('Metadata implemented: ', chats);
     return chats;
   }
+
+
+  newChat() {}
 }

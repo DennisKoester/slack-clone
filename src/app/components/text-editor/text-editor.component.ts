@@ -22,6 +22,7 @@ import { getAuth } from 'firebase/auth';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ThreadService } from 'src/app/shared/services/thread.service';
+import { ChatService } from 'src/app/shared/services/chat.service';
 import Quill from 'quill';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
@@ -40,7 +41,8 @@ export class TextEditorComponent implements OnInit {
     private firestore: Firestore,
     public authenticationService: AuthenticationService,
     public channelService: ChannelService,
-    public threadService: ThreadService
+    public threadService: ThreadService,
+    public chatService: ChatService
   ) { }
 
 
@@ -83,8 +85,9 @@ export class TextEditorComponent implements OnInit {
       if (this.channelService.editorRef == 'channel') {
         this.createThread();
       } else if (this.channelService.editorRef == 'thread') {
-        this.createMessage();
+        this.createMessage('thread');
       } else if (this.channelService.editorRef == 'chat') {
+        this.createMessage('chat');
       }
       this.event = '';
     } else if (this.event.length >= 1000000){
@@ -133,19 +136,25 @@ export class TextEditorComponent implements OnInit {
   }
 
 
-  async createMessage() {
+  async createMessage(type: string) {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
     if (this.event) {
-      this.updateDocument(timestamp, currentUserId);
+      this.updateDocument(type, timestamp, currentUserId);
     }
     document.querySelector('.rightContent #editor .ql-editor').innerHTML = '';
   }
 
 
-  async updateDocument(timestamp, currentUserId) {
-    const thread = doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.threadService.channelId, GLOBAL_VAR.COLL_THREADS, this.threadService.threadId);
-    await updateDoc(thread, {
+  async updateDocument(type: string, timestamp: any, currentUserId: string) {
+    let currDoc;
+    if (type == 'thread') {
+      currDoc = doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.threadService.channelId, GLOBAL_VAR.COLL_THREADS, this.threadService.threadId);
+    }
+    else if (type == 'chat') {
+      currDoc = doc(this.firestore, GLOBAL_VAR.COLL_CHATS, this.chatService.chatId);
+    }
+    await updateDoc(currDoc, {
       MESSAGES: arrayUnion(
         {
           timestamp: timestamp,
