@@ -63,7 +63,6 @@ export class TextEditorComponent implements OnInit {
     "emoji-toolbar": true,
     "emoji-textarea": false,
     "emoji-shortname": true,
-
   };
 
 

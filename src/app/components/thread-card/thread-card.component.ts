@@ -36,10 +36,11 @@ export class ThreadCardComponent implements OnInit {
 
 
   resizeImg() {
-    this.channelService.test = document.querySelectorAll('.card-header p img');
-    for (let i = 0; i <  this.channelService.test.length; i++) {
-      this.channelService.test[i].classList.add('resizeImg');   
+    this.test = document.querySelectorAll('.card-header p img');
+    for (let i = 0; i <  this.test.length; i++) {
+      this.test[i].classList.add('resizeImg');   
     }
+    console.log(this.test); 
   }
 
 }
