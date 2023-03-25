@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { collectionData } from '@angular/fire/firestore';
 import { collection, Firestore } from '@angular/fire/firestore';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { getAuth } from 'firebase/auth';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { getAuth } from 'firebase/auth';
 export class UsersService {
   public usersCollListener = new BehaviorSubject<any>({ users: [] });
   users: any = [];
-  public currentUserListener = new BehaviorSubject<any>({ currentUser: {} });
+  public currentUserListener = new Subject<any>();
 
   constructor(private firestore: Firestore) {}
 

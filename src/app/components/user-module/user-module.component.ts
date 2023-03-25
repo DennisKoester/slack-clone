@@ -10,6 +10,6 @@ import { UsersService } from 'src/app/shared/services/users.service';
 export class UserModuleComponent {
   constructor(
     public usersService: UsersService,
-    public channelService: ChannelService
+    public channelService: ChannelService,
   ) {}
 }

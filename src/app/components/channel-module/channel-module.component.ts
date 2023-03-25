@@ -23,13 +23,7 @@ import { MainComponent } from '../main/main.component';
   styleUrls: ['./channel-module.component.scss'],
 })
 export class ChannelModuleComponent implements OnInit{
-  // messages = [];
-  // channelId = '';
-  // sendedPostID = '';
-  // threads$: Observable<DocumentData[]>;
-  // threadsId = '';
-  // threads: Array<any> = [];
-  // menuCollapsed = false;
+
   constructor(
     public channelService: ChannelService,
     public navFunction: MainComponent
@@ -39,21 +33,4 @@ export class ChannelModuleComponent implements OnInit{
 ngOnInit(): void {
 }
 
-  // @HostListener('window:resize', ['$event'])
-  // onResize(e) {
-  //   e.target.innerWidth;
-  //   console.log('IS WORKING');
-    
-  //   if (
-  //     innerWidth <= 620 &&
-  //     this.channelService.threadIsOpen === true &&
-  //     this.channelService.channelIsOpen === true
-  //   ) {
-  //     this.channelService.channelIsOpen = false;
-  //   } else if (innerWidth > 620 && this.channelService.threadIsOpen === true) {
-  //     this.channelService.channelIsOpen = true;
-  //     // console.log(this.channelService.channelIsOpen);
-  //   }
-  //   console.log(this.channelService.threadIsOpen);
-  // }
 }

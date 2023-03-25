@@ -14,12 +14,10 @@ export class HomeComponent implements OnInit {
     public authenticationService: AuthenticationService,
     public usersService: UsersService,
     public channelService: ChannelService
-  ) {
-   
-  }
+  ) {}
 
-  ngOnInit(){
-     this.usersService.getUsers();
-     this.usersService.getCurrentUser();
+  ngOnInit() {
+    this.usersService.getUsers();
+    this.usersService.getCurrentUser();
   }
 }

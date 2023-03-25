@@ -17,9 +17,9 @@ export class ImageUploadService implements OnInit {
   photoURL: any;
   constructor(private afStorage: AngularFireStorage, private usersService: UsersService) {
       this.usersService.currentUserListener.subscribe({
-        next: (currentUser) => null,
+        next: (currentUser) => {this.currentUser = currentUser;},
       });
-      this.currentUser = this.usersService.currentUserListener.value.currentUser;
+      ;
   }
 
   ngOnInit() {}
