@@ -27,6 +27,7 @@
 
 .scroll-container {
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .right {
@@ -86,7 +87,6 @@ span {
 //     display: none;
 //   }
 // }
-
 
 @media screen and (max-width: 620px) {
   .right {

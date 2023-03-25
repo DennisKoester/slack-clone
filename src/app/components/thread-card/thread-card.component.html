@@ -8,9 +8,18 @@
           {{ timestamp | date : "EEE, dd. MMMM yy" }} |
           {{ timestamp | date : "HH:mm" }}
         </div>
-        <div *ngIf="thread" (click)="channelService.openThread(index)" class="chatBubble"><mat-icon fontIcon="chat bubble" matTooltip="answer in thread"></mat-icon></div>
+        <div
+          *ngIf="thread"
+          (click)="channelService.openThread(index)"
+          class="chatBubble"
+        >
+          <mat-icon
+            fontIcon="chat bubble"
+            matTooltip="answer in thread"
+          ></mat-icon>
+        </div>
       </div>
-      
+
       <div [innerHTML]="message"></div>
       <div *ngIf="thread && amountAnswers > 0" class="infoAnswers">
         <span class="amountAnswers" (click)="channelService.openThread(index)">
@@ -21,9 +30,7 @@
           >last answer: {{ lastAnswer | date : "EEE, dd. MMMM yy" }}
           {{ lastAnswer | date : "HH:mm" }}</span
         >
-        
       </div>
-      
     </div>
   </div>
 </mat-card>

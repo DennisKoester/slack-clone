@@ -42,14 +42,13 @@ export class ChannelService {
   channelIdOpenedThread;
   test: any = [];
 
-
   constructor(
     private firestore: Firestore,
     private usersService: UsersService,
     private threadService: ThreadService
   ) {
     this.usersService.usersCollListener.subscribe({
-      next: (users) => null
+      next: (users) => null,
     });
   }
 
@@ -69,6 +68,9 @@ export class ChannelService {
       this.getThreads(channelId);
       this.openedChannel = false;
     }
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 500);
   }
 
   async showChannelName(channelId: string) {
@@ -134,5 +136,13 @@ export class ChannelService {
     if (innerWidth > 620 && this.threadIsOpen === true) {
       this.threadIsOpen = false;
     }
+  }
+
+  scrollToBottom(): void {
+    const scrollContainer = document.getElementById('scrollContainer');
+    try {
+      console.log('scrollBottom');
+      scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    } catch (err) {}
   }
 }

@@ -58,10 +58,11 @@ import { ThreadSideModuleComponent } from './components/thread-side-module/threa
 import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
 import { ChatlistItemComponent } from './components/chatlist-item/chatlist-item.component';
 import { ChatModuleComponent } from './components/chat-module/chat-module.component';
-import { UserModuleComponent } from './components/user-module/user-module.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { SelectChatUsersComponent } from './components/select-chat-users/select-chat-users.component';
 import { NewChatComponent } from './components/new-chat/new-chat.component';
+import { ThreadsListComponent } from './components/threads-list/threads-list.component';
 
 @NgModule({
   declarations: [
@@ -86,10 +87,11 @@ import { NewChatComponent } from './components/new-chat/new-chat.component';
     DialogEditUserComponent,
     ChatlistItemComponent,
     ChatModuleComponent,
-    UserModuleComponent,
+    UserListComponent,
     UserCardComponent,
     SelectChatUsersComponent,
     NewChatComponent,
+    ThreadsListComponent,
   ],
   imports: [
     BrowserModule,

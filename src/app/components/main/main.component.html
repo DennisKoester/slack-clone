@@ -10,7 +10,11 @@
       </div>
     </div>
     <div class="navigation">
-      <div class="nav-hl flex-ac">
+      <div
+        (click)="closeMenu()"
+        [routerLink]="['/home/threads-list']"
+        class="nav-hl flex-ac"
+      >
         <mat-icon font-icon>comment</mat-icon>
         <p>Threads</p>
       </div>

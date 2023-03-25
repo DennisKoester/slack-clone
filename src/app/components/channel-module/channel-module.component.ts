@@ -1,4 +1,11 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   collection,
   Firestore,
@@ -22,15 +29,23 @@ import { MainComponent } from '../main/main.component';
   templateUrl: './channel-module.component.html',
   styleUrls: ['./channel-module.component.scss'],
 })
-export class ChannelModuleComponent implements OnInit{
-
+export class ChannelModuleComponent implements OnInit {
+  @ViewChild('scrollContainer') scrollContainer: ElementRef;
   constructor(
     public channelService: ChannelService,
     public navFunction: MainComponent
   ) {}
 
+  ngOnInit(): void {}
 
-ngOnInit(): void {
-}
+  ngAfterViewChecked() {}
 
+  // scrollToBottom(): void {
+  //   try {
+  //     console.log('scrollBottom');
+
+  //     this.scrollContainer.nativeElement.scrollTop =
+  //       this.scrollContainer.nativeElement.scrollHeight;
+  //   } catch (err) {}
+  // }
 }

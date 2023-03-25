@@ -54,8 +54,6 @@ export class ImageUploadService implements OnInit {
           // An error occurred
           // ...
         });
-
-      // TODO unique id for file.name because it's not possible to upload same picture name
     }
   }
 }

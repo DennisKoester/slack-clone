@@ -11,7 +11,7 @@
   [routerLink]="['/home/channel/' + channelService.channelId]"
   (click)="channelService.editorRef = 'channel'"
 >
-  <div class="scroll-container">
+  <div #scrollContainer id="scrollContainer" class="scroll-container">
     <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
 
     <app-thread-card

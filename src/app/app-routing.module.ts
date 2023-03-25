@@ -12,8 +12,9 @@ import { ChannelModuleComponent } from './components/channel-module/channel-modu
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { ChatModuleComponent } from './components/chat-module/chat-module.component';
 import { ThreadSideModuleComponent } from './components/thread-side-module/thread-side-module.component';
-import { UserModuleComponent } from './components/user-module/user-module.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 import { NewChatComponent } from './components/new-chat/new-chat.component';
+import { ThreadsListComponent } from './components/threads-list/threads-list.component';
 
 const routes: Routes = [
   // {path: '', component: AppComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'user-list', component: UserModuleComponent },
+      { path: 'threads-list', component: ThreadsListComponent},
+      { path: 'user-list', component: UserListComponent },
       { path: 'channel/:id', component: ChannelModuleComponent },
       { path: 'chat/:id', component: ChatModuleComponent },
       { path: 'chat/new', component: NewChatComponent}
