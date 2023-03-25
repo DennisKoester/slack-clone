@@ -90,7 +90,7 @@ export class TextEditorComponent implements OnInit {
         this.createMessage('chat');
       }
       this.event = '';
-    } else if (this.event.length >= 1000000){
+    } else if (this.event && this.event.length >= 1000000){
       this.errorMessage = true;
       setTimeout(() => {
         this.errorMessage = false;
