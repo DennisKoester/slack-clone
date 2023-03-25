@@ -10,13 +10,15 @@
     - Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
 - Neuen Chat (persönliche Nachrichten) starten
     - Button "New Chat" unter Chatliste (wie bei Channels)
+- Weiteren Empfänger zu Chat hinzufügen
 - [in Arbeit] Chats auflisten
     - "[+x]" anzeigen bei mehr als zwei Usern
-- [in Arbeit] Chatnachrichten anzeigen
 - [in Arbeit] Datei (oder nur IMG) in Nachricht hochladen?
 - [in Arbeit] Profil bearbeiten?
     - Avatarbild hochladen
     - E-Mail bearbeiten --> auch in Authentifizierung ändern
+- [OK] Neue Nachricht in Chat schreiben
+- [OK] Chatnachrichten anzeigen
 - [OK] Neue Nachricht in Channel schreiben (eröffnet neuen Thread)
 - [OK] In Threadliste ergänzen:
     - "Letzte Nachricht am {Datum} um {Uhrzeit}"
