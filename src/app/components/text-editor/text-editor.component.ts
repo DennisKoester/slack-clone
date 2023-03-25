@@ -45,10 +45,12 @@ export class TextEditorComponent implements OnInit {
     public chatService: ChatService
   ) { }
 
+  textToUpload;
+  imageToUpload;
 
   editorAuthor = '';
   channelId;
-  event = '';
+  event:any = [];
   threads;
   threadId;
   thread;
@@ -66,7 +68,9 @@ export class TextEditorComponent implements OnInit {
     "emoji-textarea": false,
     "emoji-shortname": true,
   };
-
+newImage
+base64Str;
+content;
 
   ngOnInit() {
   }
@@ -74,14 +78,43 @@ export class TextEditorComponent implements OnInit {
 
   getContent(event: EditorChangeContent | EditorChangeSelection) {
     if (event.event === 'text-change') {
-      this.event = event.html;
-      console.log(this.event);
+      for (let i = 0; i < event['content']['ops'].length; i++) {
+        const element = event['content']['ops'][i];
+       
+        if(element['insert']['image']) {
+          this.base64Str = element['insert']['image'];
+          this.newImage = new Image();
+          this.newImage.src = this.base64Str;
+          let canvas = document.createElement('canvas'),
+          ctx = canvas.getContext('2d');
+          canvas.width = 100;
+          canvas.height = 100;
+          canvas.style.objectFit = "cover";
+          ctx.drawImage(this.newImage, 0, 0, 100, 100);
+          this.newImage = canvas.toDataURL();
+        }
+      }
+
+      for (let i = 0; i < event['content']['ops'].length; i++) {
+        const element = event['content']['ops'][i];
+        if(element['insert']['image']) {
+          element['insert']['image'] = this.newImage;
+        }
+      }
+     
+      this.textToUpload = `<p>${event['text']}</p>`;
+      for (let i = 0; i < event['content']['ops'].length; i++) {
+        const element = event['content']['ops'][i];
+        if (element['insert']['image']) {
+          this.imageToUpload = `<img src="${element['insert']['image']}">`;
+        }
+      }
     }
   }
 
 
   async sendMessage() {
-    if (this.event && this.event.length < 1000000) {
+    if (this.textToUpload || this.imageToUpload) {
       if (this.channelService.editorRef == 'channel') {
         this.createThread();
       } else if (this.channelService.editorRef == 'thread') {
@@ -89,12 +122,12 @@ export class TextEditorComponent implements OnInit {
       } else if (this.channelService.editorRef == 'chat') {
         this.createMessage('chat');
       }
-      this.event = '';
-    } else if (this.event && this.event.length >= 1000000){
-      this.errorMessage = true;
-      setTimeout(() => {
-        this.errorMessage = false;
-      }, 4000);
+      // this.event = '';
+    // } else if (this.event && this.event.length >= 1000000){
+    //   this.errorMessage = true;
+    //   setTimeout(() => {
+    //     this.errorMessage = false;
+    //   }, 4000);
     }
   }
 
@@ -106,7 +139,7 @@ export class TextEditorComponent implements OnInit {
       this.channelId = paramMap.get('id');
       this.getCollection();
     });
-    if (this.event) {
+    if (this.textToUpload || this.imageToUpload) {
       this.addDocument(timestamp, currentUserId);
     }
     document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
@@ -129,7 +162,7 @@ export class TextEditorComponent implements OnInit {
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.event,
+          content: this.textToUpload,
         },
       ],
     });
@@ -139,7 +172,7 @@ export class TextEditorComponent implements OnInit {
   async createMessage(type: string) {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-    if (this.event) {
+    if (this.textToUpload || this.imageToUpload) {
       this.updateDocument(type, timestamp, currentUserId);
     }
     document.querySelector('.rightContent #editor .ql-editor').innerHTML = '';
@@ -159,10 +192,27 @@ export class TextEditorComponent implements OnInit {
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.event
+          content: this.textToUpload,
         })
     })
   }
+
+
+
+  resizeImg() {
+    // this.test = document.querySelectorAll('.card-header p img');
+    // for (let i = 0; i <  this.test.length; i++) {
+    //   this.test[i].classList.add('resizeImg');
+    //   var canvas = document.createElement('canvas'),
+    //     ctx = canvas.getContext('2d');
+    //   canvas.width = 200;
+    //   canvas.height = 200;
+    //   ctx.drawImage(this.test[i], 0, 0, 100, 100);
+    //   // return canvas.toDataURL();
+    //   console.log('canvasURL',canvas.toDataURL());
+    //   console.log(this.test)
+  }
+
 
 
 }
