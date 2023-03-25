@@ -70,7 +70,7 @@ export class ChatService {
 
 
   /**
-   * Reads 
+   * Reads the metadata of the user
    * @param _user The user whose metadata should be read
    * @returns JSON
    */

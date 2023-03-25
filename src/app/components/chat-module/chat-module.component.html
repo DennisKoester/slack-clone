@@ -14,7 +14,9 @@
     <app-thread-card
       class="threadCard"
       *ngFor="let message of chatService.chatMessages; index as i"
-      {{ ... INPUT VARIABLES ... }}>
+      [author]="chatService.chatMessages[i]['author']['userName']"
+      [message]="chatService.chatMessages[i]['content']"
+      [timestamp]="chatService.chatMessages[i]['timestamp']['seconds']">
     </app-thread-card>
   </div>
   <app-text-editor class="editor-channel"></app-text-editor>
