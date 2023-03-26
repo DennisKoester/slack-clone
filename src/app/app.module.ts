@@ -60,7 +60,6 @@ import { ChatlistItemComponent } from './components/chatlist-item/chatlist-item.
 import { ChatModuleComponent } from './components/chat-module/chat-module.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
-import { SelectChatUsersComponent } from './components/select-chat-users/select-chat-users.component';
 import { NewChatComponent } from './components/new-chat/new-chat.component';
 import { ThreadsListComponent } from './components/threads-list/threads-list.component';
 
@@ -89,7 +88,6 @@ import { ThreadsListComponent } from './components/threads-list/threads-list.com
     ChatModuleComponent,
     UserListComponent,
     UserCardComponent,
-    SelectChatUsersComponent,
     NewChatComponent,
     ThreadsListComponent,
   ],
