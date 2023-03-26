@@ -20,15 +20,9 @@ mat-toolbar-row {
 .header-toolbar {
   border-bottom: 1px solid rgb(87, 87, 87);
 
-  div {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-
-    img {
-      height: 40px;
-      width: 40px;
-    }
+  img {
+    height: 40px;
+    width: 40px;
   }
 }
 
@@ -40,6 +34,9 @@ mat-toolbar-row {
 }
 
 .searchbar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   justify-content: space-between;
   height: 30px;
   width: 50%;
