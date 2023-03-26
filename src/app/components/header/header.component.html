@@ -68,8 +68,8 @@
           <a class="logout">
             <img
               src="{{
-                usersService.currentUserData.photoURL ??
-                  '../assets/img/logo.png'
+                usersService.currentUserData?.photoURL ??
+                  '../assets/img/profile_icon.png'
               }}"
             />
             <div class="status-dot"></div>

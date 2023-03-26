@@ -40,18 +40,9 @@ export class DialogEditUserComponent implements OnInit {
     const currentUser = this.usersService.currentUserData;
     this.name = currentUser.displayName;
     this.email = currentUser.email;
-    this.photoURL = currentUser.photoURL;
+    this.currentUserId = currentUser.uid;
+    this.imgUploadService.newPhotoURL = currentUser.photoURL;
   }
-
-  // async updateUser() {
-  //   let docRef = doc(this.firestore, 'users', this.currentUserId);
-  //   updateDoc(docRef, {
-  //     displayName: this.name,
-  //     email: this.email,
-  //     emailVerified: this.emailVerified,
-  //     photoURL: this.photoURL,
-  //     uid: this.currentUserId,
-  //   });
 
   updateUser() {
     const currentUser = this.usersService.currentUserData;
@@ -61,7 +52,6 @@ export class DialogEditUserComponent implements OnInit {
     })
       .then(() => {
         console.log('Profile updated', this.name);
-        console.log('Profile updated', this.imgUploadService.newPhotoURL);
         console.log(currentUser);
       })
       .catch((error) => {
@@ -69,6 +59,8 @@ export class DialogEditUserComponent implements OnInit {
         // ...
       });
     this.updateUserEmail();
+    this.updateUserDoc();
+    this.imgUploadService.deleteProfilePhoto();
   }
 
   updateUserEmail() {
@@ -80,8 +72,20 @@ export class DialogEditUserComponent implements OnInit {
         console.log(currentUser);
       })
       .catch((error) => {
+        console.log(error); //TODO catch POST ERROR
         console.log('Email is NOT updated', this.email);
       });
+  }
+
+  updateUserDoc() {
+    let docRef = doc(this.firestore, 'users', this.currentUserId);
+    updateDoc(docRef, {
+      displayName: this.name,
+      email: this.email,
+      photoURL: this.imgUploadService.newPhotoURL,
+      uid: this.currentUserId,
+    });
+    console.log('docRef', docRef);
   }
 
   // reAuthCurrentUser() {
@@ -101,9 +105,5 @@ export class DialogEditUserComponent implements OnInit {
 
   // promptForCredentials(){
   //   // TODO resign in
-  // }
-
-  // resetUpload() {
-  //   this.imgUploadService.newPhotoURL = '';
   // }
 }

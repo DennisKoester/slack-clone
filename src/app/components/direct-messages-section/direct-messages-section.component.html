@@ -14,12 +14,12 @@
       [name]="chat['USERS'][0].userName"
       [routerLink]="['/home/chat/' + chat.chatId]"
       routerLinkActive="activeLink"
-      (click)="chatService.openChat(chat.chatId)"></app-chatlist-item>
+      (click)="chatService.openChat(chat.chatId)"
+    ></app-chatlist-item>
 
-      <div (click)="newChat()" class="channelitem channel flex-ac">
-        <mat-icon class="add-item" fontIcon="add"></mat-icon>
-        <p>Create new chat</p>
-      </div>
+    <div (click)="newChat()" class="channelitem channel flex-ac">
+      <mat-icon class="add-item" fontIcon="add"></mat-icon>
+      <p>Create new chat</p>
+    </div>
   </div>
-
 </div>
