@@ -7,6 +7,7 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
+import { UsersService } from 'src/app/shared/services/users.service';
 import * as GLOBAL_VAR from '../../shared/services/globals';
 
 @Component({
@@ -17,7 +18,10 @@ import * as GLOBAL_VAR from '../../shared/services/globals';
 export class ThreadsListComponent {
   ownThreads = [];
 
-  constructor(private firestore: Firestore) {}
+  constructor(
+    private firestore: Firestore,
+    private usersService: UsersService
+  ) {}
 
   //TODO Getting all threads with on uid
 
@@ -41,11 +45,20 @@ export class ThreadsListComponent {
   // }
 
   async getAllThreads() {
+    const currentUser = this.usersService.currentUserData;
+
     const threads = query(collectionGroup(this.firestore, 'THREADS'));
     const querySnapshot = await getDocs(threads);
-    querySnapshot.forEach((doc) => {
-      const threadData = doc.data();
-      console.log(threadData['MESSAGES'][0]['author']);
+    querySnapshot.forEach((thread) => {
+      const threadData = thread.data();
+      const threadOpener = threadData['MESSAGES'][0]['author'];
+
+      console.log('CurrentUserUID', currentUser.uid);
+
+      console.log('ThreadData is', threadData);
+
+      console.log('ThreadOpener is', threadOpener);
+
       // let thread = {
 
       //   author:,
