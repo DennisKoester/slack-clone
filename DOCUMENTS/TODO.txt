@@ -1,3 +1,4 @@
+- currentUser überall aus usersService.currentUser auslesen
 - User-Liste
     - Button "New Chat" zu jedem User hinzufügen
     - Logged-in User nicht in Liste zeigen
