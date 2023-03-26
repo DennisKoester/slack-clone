@@ -1,0 +1,14 @@
+@import 'src/app/components/channel-module/channel-module.component.scss';
+@import 'src/app/components/header/header.component.scss';
+
+#new-chat-command-line {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: unset;
+}
+
+#new-chat-header {
+    width: 100%;
+    justify-content: space-between;
+}

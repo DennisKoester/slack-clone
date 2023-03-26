@@ -23,6 +23,8 @@ export class ChatService {
   chatId: string;
   chatMessages: Array<any> = [];
   chatMembers: Array<any> = [];
+  selectedUsers: Array<string> = [];
+  searchUser: string = '';
   unsubscribe: Unsubscribe;
 
   constructor(

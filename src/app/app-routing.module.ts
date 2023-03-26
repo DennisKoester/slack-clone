@@ -31,7 +31,7 @@ const routes: Routes = [
       { path: 'user-list', component: UserListComponent },
       { path: 'channel/:id', component: ChannelModuleComponent },
       { path: 'chat/:id', component: ChatModuleComponent },
-      { path: 'chat/new', component: NewChatComponent}
+      { path: 'new-chat', component: NewChatComponent}
     ],
   },
 ];
