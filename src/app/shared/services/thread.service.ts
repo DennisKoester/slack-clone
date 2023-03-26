@@ -15,7 +15,7 @@ import * as GLOBAL_VAR from './globals';
 import { UsersService } from './users.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThreadService {
   channelId: string;
@@ -24,8 +24,10 @@ export class ThreadService {
   unsubscribe: Unsubscribe;
   channelName: string;
 
-  constructor(private firestore: Firestore, private usersService: UsersService) { }
-
+  constructor(
+    private firestore: Firestore,
+    private usersService: UsersService
+  ) {}
 
   async getThreadMessages(channelId, threadId) {
     if (this.unsubscribe) this.unsubscribe();
@@ -35,19 +37,21 @@ export class ThreadService {
     this.showChannelName();
   }
 
-
   getData(threadId) {
-    this.unsubscribe = onSnapshot(doc(
-      this.firestore,
-      GLOBAL_VAR.COLL_CHANNELS,
-      this.channelId,
-      GLOBAL_VAR.COLL_THREADS,
-      threadId), (doc) => { 
+    this.unsubscribe = onSnapshot(
+      doc(
+        this.firestore,
+        GLOBAL_VAR.COLL_CHANNELS,
+        this.channelId,
+        GLOBAL_VAR.COLL_THREADS,
+        threadId
+      ),
+      (doc) => {
         this.thread = doc.data();
         this.getUserNamesThread();
-      });
+      }
+    );
   }
-
 
   async showChannelName() {
     const channelCollection = getDoc(
@@ -57,16 +61,16 @@ export class ThreadService {
     this.channelName = channelData['name'];
   }
 
-
   getUserNamesThread() {
     this.thread['MESSAGES'].forEach((message: string) => {
       const uid = message['author'];
       const user = this.usersService.usersCollListener.value.users.find(
         (user: any) => user.uid == uid
       );
-      message['author'] = user.displayName;
+      message['author'] = {
+        author: user.displayName,
+        userImage: user.photoURL,
+      };
     });
   }
-
-  
 }

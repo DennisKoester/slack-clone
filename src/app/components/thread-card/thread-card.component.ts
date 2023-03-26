@@ -16,6 +16,7 @@ export class ThreadCardComponent implements OnInit {
   @Input() thread: boolean = false;
   @Input() amountAnswers: number;
   @Input() lastAnswer;
+  @Input() userImage;
   test: any = [];
 
   constructor(

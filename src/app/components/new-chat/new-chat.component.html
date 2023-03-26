@@ -23,22 +23,20 @@
   </div>
 </mat-toolbar-row>
 
-<div class="leftContent">
-  <div id="scrollContainer" class="scroll-container">
-    <app-user-card
-      class="userCard"
-      *ngFor="let user of usersService.users"
-      [userName]="user['displayName']"
-      [email]="user['email']"
-      [userImage]="user['photoURL']"
-      [class.d-none]="
-        !user['displayName']
-          .toLowerCase()
-          .includes(chatService.searchUser.toLowerCase()) &&
-        !user['email']
-          .toLowerCase()
-          .includes(chatService.searchUser.toLowerCase())
-      "
-    ></app-user-card>
-  </div>
+<div id="scrollContainer" class="scroll-container">
+  <app-user-card
+    class="userCard"
+    *ngFor="let user of usersService.users"
+    [userName]="user['displayName']"
+    [email]="user['email']"
+    [userImage]="user['photoURL']"
+    [class.d-none]="
+      !user['displayName']
+        .toLowerCase()
+        .includes(chatService.searchUser.toLowerCase()) &&
+      !user['email']
+        .toLowerCase()
+        .includes(chatService.searchUser.toLowerCase())
+    "
+  ></app-user-card>
 </div>

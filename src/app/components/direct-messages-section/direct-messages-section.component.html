@@ -10,6 +10,7 @@
 
   <div *ngIf="!collapsed">
     <app-chatlist-item
+      class="channelitem flex-ac"
       *ngFor="let chat of chats"
       [name]="chat['USERS'][0].userName"
       [routerLink]="['/home/chat/' + chat.chatId]"
@@ -17,7 +18,11 @@
       (click)="chatService.openChat(chat.chatId)"
     ></app-chatlist-item>
 
-    <div [routerLink]="['/home/new-chat']" class="channelitem channel flex-ac">
+    <div
+      (click)="chatService.closeMenu()"
+      [routerLink]="['/home/new-chat']"
+      class="channelitem channel flex-ac"
+    >
       <mat-icon class="add-item" fontIcon="add"></mat-icon>
       <p>Create new chat</p>
     </div>

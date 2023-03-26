@@ -19,9 +19,14 @@
       class="threadCard"
       *ngFor="let thread of channelService.threads; index as i"
       [index]="i"
-      [amountAnswers]="thread['MESSAGES'].length-1"
-      [lastAnswer]="thread['MESSAGES'][thread['MESSAGES'].length-1]['timestamp']['seconds']* 1000"
-      [author]="thread['MESSAGES'][0]['author']"
+      [amountAnswers]="thread['MESSAGES'].length - 1"
+      [lastAnswer]="
+        thread['MESSAGES'][thread['MESSAGES'].length - 1]['timestamp'][
+          'seconds'
+        ] * 1000
+      "
+      [author]="thread['MESSAGES'][0]['author']['author']"
+      [userImage]="thread['MESSAGES'][0]['author']['userImage']"
       [message]="thread['MESSAGES'][0]['content']"
       [timestamp]="thread['MESSAGES'][0]['timestamp']['seconds'] * 1000"
       [class.d-none]="
@@ -33,8 +38,7 @@
           .includes(channelService.searchValue.toLowerCase())
       "
     >
-    </app-thread-card
-    >
+    </app-thread-card>
   </div>
   <app-text-editor class="editor-channel"></app-text-editor>
 </div>

@@ -113,7 +113,11 @@ export class ChannelService {
       const user = this.usersService.usersCollListener.value.users.find(
         (user: any) => user.uid == uid
       );
-      thread['MESSAGES'][0]['author'] = user.displayName;
+      // thread['MESSAGES'][0]['author'] = user.displayName;
+      thread['MESSAGES'][0]['author'] = {
+        author: user.displayName,
+        userImage: user.photoURL
+      };
     });
   }
 

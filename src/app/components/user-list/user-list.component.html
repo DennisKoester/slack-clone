@@ -8,11 +8,14 @@
   [email]="user['email']"
   [userImage]="user['photoURL']"
   [class.d-none]="
-    !user['displayName']
+    (!user['displayName']
       .toLowerCase()
       .includes(channelService.searchValue.toLowerCase()) &&
-    !user['email']
+      !user['email']
+        .toLowerCase()
+        .includes(channelService.searchValue.toLowerCase())) ||
+    user['displayName']
       .toLowerCase()
-      .includes(channelService.searchValue.toLowerCase())
+      .includes(usersService.currentUserData.displayName.toLowerCase())
   "
 ></app-user-card>
