@@ -34,6 +34,8 @@ export class ImageUploadService implements OnInit {
   deleteProfilePhoto() {
     const currentUser = this.usersService.currentUserData;
     const oldPhotoURL = currentUser.photoURL;
-    this.afStorage.refFromURL(oldPhotoURL).delete();
+    if (oldPhotoURL) {
+      this.afStorage.refFromURL(oldPhotoURL).delete();
+    }
   }
 }

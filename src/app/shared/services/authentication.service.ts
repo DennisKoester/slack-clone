@@ -14,8 +14,6 @@ import { getAuth } from 'firebase/auth';
   providedIn: 'root',
 })
 export class AuthenticationService {
-
-
   resetPw = false;
   signUpError = false;
   signUpErrorMessage;
@@ -151,7 +149,6 @@ export class AuthenticationService {
       email: user.email,
       displayName: user.email.split('@')[0],
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
     };
 
     return userRef.set(userData, {

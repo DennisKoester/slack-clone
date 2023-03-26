@@ -14,7 +14,8 @@
   <div class="dialog-right">
     <div class="profilePic">
       <div>
-        <img src="{{ imgUploadService.newPhotoURL }}" class="profile_image" />
+        <img src="{{ imgUploadService.newPhotoURL ??
+                  '../assets/img/profile_icon.png' }}" class="profile_image" />
       </div>
       <!-- <div *ngIf="downloadURL | async; let url"> -->
       <!-- <img [src]="url" class="picture" /> -->

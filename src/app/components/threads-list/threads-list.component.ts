@@ -52,7 +52,10 @@ export class ThreadsListComponent {
     querySnapshot.forEach((thread) => {
       const threadData = thread.data();
       const threadOpener = threadData['MESSAGES'][0]['author'];
-
+      // const ownThreads = threadData['MESSAGES'][0].find(
+      //   (elem) => elem === currentUser.uid
+      // );
+      console.log('Thread is', thread);
       console.log('CurrentUserUID', currentUser.uid);
 
       console.log('ThreadData is', threadData);
