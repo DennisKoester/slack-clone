@@ -1,30 +1,44 @@
 <mat-toolbar-row class="channel-toolbar" id="new-chat-command-line">
-    <div id="new-chat-header" class="flex-ac">
-        <div>
-            <span>To:&nbsp;</span>
-            <span>// HERE COME THE USER NAMES //</span>
-        </div>
-        <button mat-raised-button color="primary">Create chat</button>
+  <div id="new-chat-header" class="flex-ac">
+    <div>
+      <span>To:&nbsp;</span>
+      <span>// HERE COME THE USER NAMES //</span>
     </div>
-    <div class="searchbar">
-        <input type="text" placeholder="Search user..." [(ngModel)]="chatService.searchUser" />
+    <button mat-raised-button color="primary">Create chat</button>
+  </div>
+  <div class="searchbar">
+    <input
+      type="text"
+      placeholder="Search user..."
+      [(ngModel)]="chatService.searchUser"
+    />
 
-        <mat-icon class="delete" fontIcon="delete" (click)="resetSearchUser()"
-            *ngIf="chatService.searchUser"></mat-icon>
-        <mat-icon class="search" fontIcon="search"></mat-icon>
-    </div>
+    <mat-icon
+      class="delete"
+      fontIcon="delete"
+      (click)="resetSearchUser()"
+      *ngIf="chatService.searchUser"
+    ></mat-icon>
+    <mat-icon class="search" fontIcon="search"></mat-icon>
+  </div>
 </mat-toolbar-row>
 
 <div class="leftContent">
-    <div id="scrollContainer" class="scroll-container">
-        <app-user-card class="userCard" *ngFor="let user of usersService.users" [userName]="user['displayName']"
-            [email]="user['email']" [userImage]="user['photoURL']" [class.d-none]="
-    !user['displayName']
-      .toLowerCase()
-      .includes(chatService.searchUser.toLowerCase()) &&
-    !user['displayName']
-      .toLowerCase()
-      .includes(chatService.searchUser.toLowerCase())
-  "></app-user-card>
-    </div>
+  <div id="scrollContainer" class="scroll-container">
+    <app-user-card
+      class="userCard"
+      *ngFor="let user of usersService.users"
+      [userName]="user['displayName']"
+      [email]="user['email']"
+      [userImage]="user['photoURL']"
+      [class.d-none]="
+        !user['displayName']
+          .toLowerCase()
+          .includes(chatService.searchUser.toLowerCase()) &&
+        !user['email']
+          .toLowerCase()
+          .includes(chatService.searchUser.toLowerCase())
+      "
+    ></app-user-card>
+  </div>
 </div>
