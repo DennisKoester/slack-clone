@@ -9,12 +9,14 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { doc } from '@firebase/firestore';
-import { getAuth, updateProfile } from 'firebase/auth';
+import {
+  reauthenticateWithCredential,
+  updateEmail,
+  updateProfile,
+} from 'firebase/auth';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 import { UsersService } from 'src/app/shared/services/users.service';
-
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -23,10 +25,10 @@ import { UsersService } from 'src/app/shared/services/users.service';
 })
 export class DialogEditUserComponent implements OnInit {
   currentUserId = '';
-  name: String;
-  email: String;
+  name: any;
+  email: any;
   emailVerified: boolean;
-  photoURL: String;
+  photoURL: any;
 
   constructor(
     private firestore: Firestore,
@@ -35,45 +37,73 @@ export class DialogEditUserComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-
-    let docRef = doc(this.firestore, 'users', this.currentUserId);
-    let docSnap = await getDoc(docRef);
-    let data = await docSnap.data();
-    console.log(data);
-    this.name = data['displayName'];
-    this.email = data['email'];
-    this.emailVerified = data['emailVerified'];
-    this.photoURL = data['photoURL'];
+    const currentUser = this.usersService.currentUserData;
+    this.name = currentUser.displayName;
+    this.email = currentUser.email;
+    this.photoURL = currentUser.photoURL;
   }
 
-  async updateUser() {
-    let docRef = doc(this.firestore, 'users', this.currentUserId);
-    updateDoc(docRef, {
+  // async updateUser() {
+  //   let docRef = doc(this.firestore, 'users', this.currentUserId);
+  //   updateDoc(docRef, {
+  //     displayName: this.name,
+  //     email: this.email,
+  //     emailVerified: this.emailVerified,
+  //     photoURL: this.photoURL,
+  //     uid: this.currentUserId,
+  //   });
+
+  updateUser() {
+    const currentUser = this.usersService.currentUserData;
+    updateProfile(currentUser, {
       displayName: this.name,
-      email: this.email,
-      emailVerified: this.emailVerified,
-      photoURL: this.photoURL,
-      uid: this.currentUserId,
-    });
+      photoURL: this.imgUploadService.newPhotoURL,
+    })
+      .then(() => {
+        console.log('Profile updated', this.name);
+        console.log('Profile updated', this.imgUploadService.newPhotoURL);
+        console.log(currentUser);
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+      });
+    this.updateUserEmail();
   }
 
-  // updateUserProfile() {
-  //  const auth = getAuth()
-  //   updateProfile(this.usersService.currentUser, {
-  //     displayName: 'Walter Hannes',
-  //     photoURL:
-  //       'https://ca.slack-edge.com/T01CDQFUXFE-U03P4F496MS-75a80f5ff200-512',
-  //   })
-  //     .then(() => {
-  //       console.log('PhotoURL AUTH', auth.currentUser.photoURL);
-  //       console.log('User Firebase DOC', auth.currentUser);
+  updateUserEmail() {
+    const currentUser = this.usersService.currentUserData;
 
-  //       // ...
+    updateEmail(currentUser, this.email)
+      .then(() => {
+        console.log('Email is updated', this.email);
+        console.log(currentUser);
+      })
+      .catch((error) => {
+        console.log('Email is NOT updated', this.email);
+      });
+  }
+
+  // reAuthCurrentUser() {
+  //   const currentUser = this.usersService.currentUserData;
+
+  //   const credential = this.promptForCredentials();
+
+  //   reauthenticateWithCredential(currentUser, credential)
+  //     .then(() => {
+  //       // User re-authenticated.
   //     })
   //     .catch((error) => {
-  //       // An error occurred
+  //       // An error ocurred
   //       // ...
   //     });
+  // }
+
+  // promptForCredentials(){
+  //   // TODO resign in
+  // }
+
+  // resetUpload() {
+  //   this.imgUploadService.newPhotoURL = '';
   // }
 }

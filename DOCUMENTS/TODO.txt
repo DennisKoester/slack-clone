@@ -5,7 +5,7 @@
 - Bei Auswahl von Channel/Chat: Auswahl und "subscribe" in jeweils anderer Sektion aufheben/löschen
 - "subscribe" auf Thread löschen beim Schließen des Threads
 - Einloggen als Testuser
-- Eigene Threads anzeigen (Auflistung)
+- [in Arbeit] Eigene Threads anzeigen (Auflistung)
 - Channel privat/öffentlich?
     - Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
 - Neuen Chat (persönliche Nachrichten) starten
@@ -25,7 +25,7 @@
         - Anzahl der Antworten anzeigen
 - [OK] Thread anzeigen
 - [OK] Thread bleibt offen bei Channelwechsel
- - [OK] zugehöriger Channelname wird auch nach Channelwechsel noch korrekt angezeigt
+- [OK] zugehöriger Channelname wird auch nach Channelwechsel noch korrekt angezeigt
 - [OK] Nachricht in Thread schreiben
 - [OK] Channel anlegen
 - [OK] Ein-/Ausloggen

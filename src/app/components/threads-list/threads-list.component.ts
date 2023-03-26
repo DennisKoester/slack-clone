@@ -46,10 +46,16 @@ export class ThreadsListComponent {
     querySnapshot.forEach((doc) => {
       const threadData = doc.data();
       console.log(threadData['MESSAGES'][0]['author']);
+      // let thread = {
 
-      //TODO find function for currentUserId
+      //   author:,
+      //   content:,
+      //   timestamp:
+      // }
 
-      console.log(doc.id, ' => ', doc.data());
+      //TODO find function for currentUserId find or where
+
+      // console.log(doc.id, ' => ', doc.data());
     });
   }
 }

@@ -3,7 +3,7 @@ import { collectionData } from '@angular/fire/firestore';
 import { collection, Firestore } from '@angular/fire/firestore';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,7 @@ export class UsersService {
   public usersCollListener = new BehaviorSubject<any>({ users: [] });
   users: any = [];
   public currentUserListener = new Subject<any>();
+  currentUserData: any;
 
   constructor(private firestore: Firestore) {}
 
@@ -38,10 +39,22 @@ export class UsersService {
     });
   }
 
-  getCurrentUser() {
+  // getCurrentUser() {
+  //   const auth = getAuth();
+  //   this.currentUserListener.next({ currentUser: auth.currentUser });
+  //   console.log(this.currentUserListener);
+  //   // console.log(this.currentUserListener.value.currentUser.photoURL);
+  // }
+
+  async getCurrentUser() {
     const auth = getAuth();
-    this.currentUserListener.next({ currentUser: auth.currentUser });
-    console.log(this.currentUserListener);
-    // console.log(this.currentUserListener.value.currentUser.photoURL);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.currentUserData = user;
+        console.log('AUTH USER IS', this.currentUserData);
+      } else {
+        console.log('user is signed out');
+      }
+    });
   }
 }
