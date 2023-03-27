@@ -83,14 +83,26 @@ content;
        
         if(element['insert']['image']) {
           this.base64Str = element['insert']['image'];
-          this.newImage = new Image();
-          this.newImage.src = this.base64Str;
+         
+          
           let canvas = document.createElement('canvas'),
           ctx = canvas.getContext('2d');
-          canvas.width = 100;
-          canvas.height = 100;
-          canvas.style.objectFit = "cover";
-          ctx.drawImage(this.newImage, 0, 0, 100, 100);
+          canvas.width = 200;
+          canvas.height = 200;
+          let cw = canvas.width;
+          let ch = canvas.height;
+          let maxW = 300;
+          let maxH = 300;
+          this.newImage = new Image();
+          this.newImage.src = this.base64Str;
+          let iw = this.newImage.width;
+          let ih = this.newImage.height;
+          let scale = Math.min((maxW/iw), (maxH/ih));
+          let iwScaled = iw*scale;
+          let ihScaled = ih*scale;
+          canvas.width = iwScaled;
+          canvas.height = ihScaled;
+          ctx.drawImage(this.newImage, 0, 0, iwScaled, ihScaled);
           this.newImage = canvas.toDataURL();
         }
       }
@@ -103,6 +115,7 @@ content;
       }
      
       this.textToUpload = `<p>${event['text']}</p>`;
+
       for (let i = 0; i < event['content']['ops'].length; i++) {
         const element = event['content']['ops'][i];
         if (element['insert']['image']) {
@@ -162,7 +175,7 @@ content;
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.textToUpload,
+          content: this.imageToUpload,
         },
       ],
     });
@@ -192,7 +205,7 @@ content;
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.textToUpload,
+          content: this.imageToUpload,
         })
     })
   }
