@@ -92,7 +92,7 @@ status: boolean = false;
       this.getText(event);
       this.getUpload();
     }
-    console.log('adsfasdf', this.upload);
+ 
   }
 
   async scaleImage(event) {
@@ -103,11 +103,16 @@ status: boolean = false;
         await this.createCanvas();
         await this.drawScaledImage();
         element['insert']['image'] = `${this.canvas.toDataURL()}`;
-        this.imagesInEditor.push(`<br><img src="${element['insert']['image']}"><br>`);
+        this.imagesInEditor.push(`<br><img class="imageInMessage" src="${element['insert']['image']}"><br>`);
+        
       }
     }
   }
     
+
+  openImg() {
+    console.log('HALLO');
+  }
 
   createCanvas() {
     this.canvas = document.createElement('canvas'),

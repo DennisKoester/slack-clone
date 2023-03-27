@@ -28,6 +28,8 @@ export class ThreadCardComponent implements OnInit {
   async ngOnInit() {
     await this.sendIndex();
     await this.convert();
+    // let image = document.querySelectorAll('.imageInMessage');
+    // console.log('imaaageeee',image);
   }
 
   sendIndex() {
@@ -38,5 +40,7 @@ export class ThreadCardComponent implements OnInit {
     const parser = new DOMParser();
     const document = parser.parseFromString(this.message, 'text/html');
   }
+
+  
 
 }
