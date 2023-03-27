@@ -46,7 +46,7 @@ export class TextEditorComponent implements OnInit {
   ) { }
 
   textToUpload;
-  imageToUpload;
+  imagesToUpload;
 
   editorAuthor = '';
   channelId;
@@ -68,66 +68,91 @@ export class TextEditorComponent implements OnInit {
     "emoji-textarea": false,
     "emoji-shortname": true,
   };
-newImage
+newImage;
+imagesInEditor;
 base64Str;
-content;
+canvas;
+maxW;
+maxH;
+ctx;
+imagesString;
+upload;
+status: boolean = false;
 
   ngOnInit() {
   }
 
 
-  getContent(event: EditorChangeContent | EditorChangeSelection) {
-    if (event.event === 'text-change') {
-      for (let i = 0; i < event['content']['ops'].length; i++) {
-        const element = event['content']['ops'][i];
-       
-        if(element['insert']['image']) {
-          this.base64Str = element['insert']['image'];
-         
-          
-          let canvas = document.createElement('canvas'),
-          ctx = canvas.getContext('2d');
-          canvas.width = 200;
-          canvas.height = 200;
-          let cw = canvas.width;
-          let ch = canvas.height;
-          let maxW = 300;
-          let maxH = 300;
-          this.newImage = new Image();
-          this.newImage.src = this.base64Str;
-          let iw = this.newImage.width;
-          let ih = this.newImage.height;
-          let scale = Math.min((maxW/iw), (maxH/ih));
-          let iwScaled = iw*scale;
-          let ihScaled = ih*scale;
-          canvas.width = iwScaled;
-          canvas.height = ihScaled;
-          ctx.drawImage(this.newImage, 0, 0, iwScaled, ihScaled);
-          this.newImage = canvas.toDataURL();
-        }
-      }
+  async getContent(event: EditorChangeContent | EditorChangeSelection) {
+      if (event.event === 'text-change') {
+      this.imagesInEditor = [];
+      this.imagesString = '';
+      this.upload = '';
+      await this.scaleImage(event);
+      this.getText(event);
+      this.getUpload();
+    }
+    console.log('adsfasdf', this.upload);
+  }
 
-      for (let i = 0; i < event['content']['ops'].length; i++) {
-        const element = event['content']['ops'][i];
-        if(element['insert']['image']) {
-          element['insert']['image'] = this.newImage;
-        }
+  async scaleImage(event) {
+    for (let i = 0; i < event['content']['ops'].length; i++) {
+      const element = event['content']['ops'][i];
+      if(element['insert']['image']) {
+        this.base64Str = element['insert']['image'];
+        await this.createCanvas();
+        await this.drawScaledImage();
+        element['insert']['image'] = `${this.canvas.toDataURL()}`;
+        this.imagesInEditor.push(`<br><img src="${element['insert']['image']}"><br>`);
       }
-     
-      this.textToUpload = `<p>${event['text']}</p>`;
+    }
+  }
+    
 
-      for (let i = 0; i < event['content']['ops'].length; i++) {
-        const element = event['content']['ops'][i];
-        if (element['insert']['image']) {
-          this.imageToUpload = `<img src="${element['insert']['image']}">`;
-        }
-      }
+  createCanvas() {
+    this.canvas = document.createElement('canvas'),
+    this.ctx = this.canvas.getContext('2d');
+    this.canvas.width = 200;
+    this.canvas.height = 200;
+    this.maxW = 200;
+    this.maxH = 200;
+  }
+
+
+  drawScaledImage() {
+    this.newImage = new Image();
+    this.newImage.src = this.base64Str;
+    let iw = this.newImage.width;
+    let ih = this.newImage.height;
+    let scale = Math.min((this.maxW/iw), (this.maxH/ih));
+    let iwScaled = iw*scale;
+    let ihScaled = ih*scale;
+    this.canvas.width = iwScaled;
+    this.canvas.height = ihScaled;
+    this.ctx.drawImage(this.newImage, 0, 0, iwScaled, ihScaled);
+  }
+
+  getText(event) {
+    this.textToUpload = event.html;
+    if (this.textToUpload) {
+      this.textToUpload = this.textToUpload.replace(/<img[^>]*>/g," ");
+      this.upload = this.textToUpload;
+    }
+  }
+
+
+  getUpload() {
+    if (this.imagesInEditor) {
+      this.imagesInEditor.forEach(element => {
+        this.imagesString += element;
+      });
+      this.upload += this.imagesString;
     }
   }
 
 
   async sendMessage() {
-    if (this.textToUpload || this.imageToUpload) {
+    if (this.textToUpload || this.imagesInEditor) {
       if (this.channelService.editorRef == 'channel') {
         this.createThread();
       } else if (this.channelService.editorRef == 'thread') {
@@ -135,12 +160,6 @@ content;
       } else if (this.channelService.editorRef == 'chat') {
         this.createMessage('chat');
       }
-      // this.event = '';
-    // } else if (this.event && this.event.length >= 1000000){
-    //   this.errorMessage = true;
-    //   setTimeout(() => {
-    //     this.errorMessage = false;
-    //   }, 4000);
     }
   }
 
@@ -152,7 +171,7 @@ content;
       this.channelId = paramMap.get('id');
       this.getCollection();
     });
-    if (this.textToUpload || this.imageToUpload) {
+    if (this.textToUpload || this.imagesInEditor) {
       this.addDocument(timestamp, currentUserId);
     }
     document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
@@ -175,7 +194,7 @@ content;
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.imageToUpload,
+          content: this.upload,
         },
       ],
     });
@@ -185,7 +204,7 @@ content;
   async createMessage(type: string) {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-    if (this.textToUpload || this.imageToUpload) {
+    if (this.textToUpload || this.imagesInEditor) {
       this.updateDocument(type, timestamp, currentUserId);
     }
     document.querySelector('.rightContent #editor .ql-editor').innerHTML = '';
@@ -205,27 +224,8 @@ content;
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.imageToUpload,
+          content: this.upload,
         })
     })
   }
-
-
-
-  resizeImg() {
-    // this.test = document.querySelectorAll('.card-header p img');
-    // for (let i = 0; i <  this.test.length; i++) {
-    //   this.test[i].classList.add('resizeImg');
-    //   var canvas = document.createElement('canvas'),
-    //     ctx = canvas.getContext('2d');
-    //   canvas.width = 200;
-    //   canvas.height = 200;
-    //   ctx.drawImage(this.test[i], 0, 0, 100, 100);
-    //   // return canvas.toDataURL();
-    //   console.log('canvasURL',canvas.toDataURL());
-    //   console.log(this.test)
-  }
-
-
-
 }

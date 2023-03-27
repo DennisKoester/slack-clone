@@ -173,7 +173,7 @@ p {
 }
 
 .ql-snow .ql-editor img {
-  max-width: 200px !important;
+  max-width: 130px !important;
 }
 
 .ql-editor {
@@ -241,4 +241,8 @@ p {
 
 .cdk-global-scrollblock {
   overflow: hidden !important;
+}
+
+.big {
+  transform: scale(2);
 }
