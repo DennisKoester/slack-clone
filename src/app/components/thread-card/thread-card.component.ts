@@ -19,18 +19,33 @@ export class ThreadCardComponent implements OnInit {
   @Input() userImage;
   test: any = [];
 
+
+
   constructor(
     public channelService: ChannelService,
     public threadService: ThreadService,
     public usersService: UsersService
   ) {}
 
+
   async ngOnInit() {
     await this.sendIndex();
     await this.convert();
-    // let image = document.querySelectorAll('.imageInMessage');
-    // console.log('imaaageeee',image);
+    // let images = document.querySelectorAll('.imageInMessage');
+    // debugger;
+
+    // for (let i = 0; i < images.length; i++) {
+
+    //   const element = images[i];
+    //   if (!element.getAttribute('listener')) {
+    //       element.addEventListener('click', function () {
+    //       element.setAttribute('listener', 'true');
+    //       console.log('elemeenet', element.getAttribute('listener'));
+    //     })
+    //   }
+    // }
   }
+   
 
   sendIndex() {
     this.channelService.setValue(this.index);

@@ -37,10 +37,11 @@ export class ChannelModuleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('hi');
+
   }
 
   ngAfterViewChecked() {}
+
 
   // scrollToBottom(): void {
   //   try {

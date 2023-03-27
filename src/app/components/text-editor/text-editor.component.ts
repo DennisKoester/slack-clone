@@ -103,17 +103,16 @@ status: boolean = false;
         await this.createCanvas();
         await this.drawScaledImage();
         element['insert']['image'] = `${this.canvas.toDataURL()}`;
-        this.imagesInEditor.push(`<br><img class="imageInMessage" src="${element['insert']['image']}"><br>`);
+        this.imagesInEditor.push(`<br><img class="imageInMessage" (click)="openImg()"src="${element['insert']['image']}"><br>`);
         
       }
     }
   }
     
-
   openImg() {
-    console.log('HALLO');
+    
   }
-
+  
   createCanvas() {
     this.canvas = document.createElement('canvas'),
     this.ctx = this.canvas.getContext('2d');
