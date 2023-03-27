@@ -27,7 +27,7 @@ export class DirectMessagesSectionComponent {
     this.usersService.usersCollListener.subscribe({
       next: (users) => null
     });
-    this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+    // this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
     this.getChatsFromDb();
   }
 
@@ -55,6 +55,7 @@ export class DirectMessagesSectionComponent {
    * @returns Array
    */
   filterChats(chatsData: Array<any>) {
+    this.currentUserId = this.usersService.currentUserData.uid;
     let chats = chatsData.filter(chat => chat['USERS'].includes(this.currentUserId));
     // console.log(`Private chats for ${this.currentUserId}`, JSON.stringify(chats));
     chats = this.cleanUpUserLists(chats);
@@ -87,22 +88,10 @@ export class DirectMessagesSectionComponent {
       for (let u = 0; u < chat['USERS'].length; u++) {
         // console.log(`Processing chatUser: ${chat['USERS'][u]}`);
         chat['USERS'][u] = this.chatService.getUserMetaData(chat['USERS'][u]);
-
-        // 
-        // ***TODO: Implement user image *****************
-        // 
-
         // console.log(`After processing chatUser: `, chat['USERS'][u]);
       }
-
-      // 
-      // ***TODO: Implement in rendering of chat messages
-      // 
     });
     // console.log('Metadata implemented: ', chats);
     return chats;
   }
-
-
-  newChat() {}
 }

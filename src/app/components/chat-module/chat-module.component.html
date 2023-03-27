@@ -24,6 +24,7 @@
       class="threadCard"
       *ngFor="let message of chatService.chatMessages; index as i"
       [author]="chatService.chatMessages[i]['author']['userName']"
+      [userImage]="chatService.chatMessages[i]['author']['userImg']"
       [message]="chatService.chatMessages[i]['content']"
       [timestamp]="chatService.chatMessages[i]['timestamp']['seconds'] * 1000"
     >

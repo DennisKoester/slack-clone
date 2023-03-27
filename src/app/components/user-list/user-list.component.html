@@ -14,8 +14,6 @@
       !user['email']
         .toLowerCase()
         .includes(channelService.searchValue.toLowerCase())) ||
-    user['displayName']
-      .toLowerCase()
-      .includes(usersService.currentUserData.displayName.toLowerCase())
+    user['uid'] == usersService.currentUserData.uid
   "
 ></app-user-card>

@@ -32,7 +32,7 @@ export class ChatService {
     private usersService: UsersService,
     private channelService: ChannelService
   ) {
-    this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+    // this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
     this.usersService.usersCollListener.subscribe({
       next: (users) => null,
     });
@@ -57,6 +57,7 @@ export class ChatService {
   }
 
   showChatMembers(chatMembers: Array<string>) {
+    this.currentUserId = this.usersService.currentUserData.uid;
     this.chatMembers = [];
     chatMembers.forEach((member: string) => {
       if (member != this.currentUserId) {
@@ -77,19 +78,19 @@ export class ChatService {
 
   /**
    * Reads the metadata of the user
-   * @param _user The user whose metadata should be read
+   * @param _user The user ID
    * @returns JSON
    */
   getUserMetaData(_user: string) {
     const userData = this.usersService.usersCollListener.value.users.find(
-      (user) => _user == user.uid
+      (user: any) => _user == user.uid
     );
 
-    console.log('userData in getUserMetaData: ');
+    console.log('userData in getUserMetaData: ', userData);
 
     return {
       userName: userData.displayName,
-      userImg: '', // TODO: read userImg
+      userImg: userData.photoURL
     };
   }
 
