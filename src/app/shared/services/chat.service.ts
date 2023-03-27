@@ -89,8 +89,8 @@ export class ChatService {
     console.log('userData in getUserMetaData: ', userData);
 
     return {
-      userName: userData.displayName,
-      userImg: userData.photoURL
+      displayName: userData.displayName,
+      userImage: userData.photoURL
     };
   }
 

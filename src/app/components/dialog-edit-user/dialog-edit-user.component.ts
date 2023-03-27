@@ -83,7 +83,6 @@ export class DialogEditUserComponent implements OnInit {
       displayName: this.name,
       email: this.email,
       photoURL: this.imgUploadService.newPhotoURL,
-      uid: this.currentUserId,
     });
     console.log('docRef', docRef);
   }

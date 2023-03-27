@@ -8,7 +8,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { TextEditorComponent } from 'src/app/components/text-editor/text-editor.component';
-import { getAuth } from 'firebase/auth';
+import { getAuth, updateProfile } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -51,8 +51,11 @@ export class AuthenticationService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SendVerificationMail();
+        updateProfile(result.user, {
+          displayName: result.user.email.split('@')[0],
+        });
         this.SetUserData(result.user);
+        this.router.navigate(['']);
       })
       .catch((error) => {
         this.signUpError = true;
@@ -145,7 +148,6 @@ export class AuthenticationService {
       `users/${user.uid}`
     );
     const userData: User = {
-      uid: user.uid,
       email: user.email,
       displayName: user.email.split('@')[0],
       photoURL: user.photoURL,

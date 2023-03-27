@@ -19,7 +19,6 @@ import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 
-
 @Component({
   selector: 'app-channels',
   templateUrl: './channels.component.html',
@@ -38,7 +37,9 @@ export class ChannelsComponent {
     public router: Router
   ) {
     this.channelsCollection = collection(firestore, GLOBAL_VAR.COLL_CHANNELS);
-    this.channels$ = collectionData(this.channelsCollection, {idField: 'channelId'});
+    this.channels$ = collectionData(this.channelsCollection, {
+      idField: 'channelId',
+    });
     this.channels$.subscribe((data) => {
       console.log(data);
       this.channels = data;
@@ -70,7 +71,7 @@ export class ChannelsComponent {
     dialogRef.afterClosed().subscribe(async (dialogData) => {
       if (dialogData.name) {
         await this.createChannel(dialogData);
-        
+
         console.log(
           `Channel '${dialogData.name}' created (private = ${dialogData.isPrivate}).`
         );
@@ -88,7 +89,7 @@ export class ChannelsComponent {
     await setDoc(channelRef, {
       name: data.name,
       isPrivate: data.isPrivate,
-      users: []
+      users: [],
     });
 
     this.navigateToCreatedChannel(channelRef);
@@ -98,6 +99,6 @@ export class ChannelsComponent {
     const createdChannelId = channelRef.id;
 
     this.router.navigate(['/home/channel/' + createdChannelId]);
-    this.channelService.showChannelName(createdChannelId);
+    this.channelService.openChannel(createdChannelId);
   }
 }

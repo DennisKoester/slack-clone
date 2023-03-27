@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { addDoc, collection, CollectionReference, Firestore } from '@angular/fire/firestore';
+import {
+  addDoc,
+  collection,
+  CollectionReference,
+  Firestore,
+} from '@angular/fire/firestore';
 import { ChatService } from 'src/app/shared/services/chat.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
@@ -8,7 +13,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-new-chat',
   templateUrl: './new-chat.component.html',
-  styleUrls: ['./new-chat.component.scss']
+  styleUrls: ['./new-chat.component.scss'],
 })
 export class NewChatComponent {
   selectedUserIds: Array<string> = [];
@@ -19,7 +24,8 @@ export class NewChatComponent {
     public chatService: ChatService,
     public usersService: UsersService,
     private firestore: Firestore,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   resetSearchUser() {
     this.chatService.searchUser = '';
@@ -39,13 +45,14 @@ export class NewChatComponent {
     this.chatsCollection = collection(this.firestore, GLOBAL_VAR.COLL_CHATS);
     const newChatId = await this.writeToDatabase();
     this.router.navigateByUrl(`home/chat/${newChatId}`);
+    this.chatService.openChat(newChatId);
   }
 
   async writeToDatabase() {
     const chatData = {
       USERS: [this.usersService.currentUserData.uid, ...this.selectedUserIds],
-      MESSAGES: []
-    }
+      MESSAGES: [],
+    };
 
     console.log('ChatData: ', chatData);
 

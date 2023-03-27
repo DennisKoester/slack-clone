@@ -25,7 +25,7 @@
           'seconds'
         ] * 1000
       "
-      [author]="thread['MESSAGES'][0]['author']['author']"
+      [author]="thread['MESSAGES'][0]['author']['displayName']"
       [userImage]="thread['MESSAGES'][0]['author']['userImage']"
       [message]="thread['MESSAGES'][0]['content']"
       [timestamp]="thread['MESSAGES'][0]['timestamp']['seconds'] * 1000"
@@ -33,7 +33,7 @@
         !thread['MESSAGES'][0]['content']
           .toLowerCase()
           .includes(channelService.searchValue.toLowerCase()) &&
-        !thread['MESSAGES'][0]['author']
+        !thread['MESSAGES'][0]['author']['displayName']
           .toLowerCase()
           .includes(channelService.searchValue.toLowerCase())
       "
