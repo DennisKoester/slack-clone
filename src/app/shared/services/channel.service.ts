@@ -94,7 +94,7 @@ export class ChannelService {
       this.sortThreads(threads);
       this.getUserNames(threads);
       this.threads = threads;
-      // console.log('THISTHREADS', this.threads);
+      console.log('THISTHREADS', this.threads);
     });
   }
 
