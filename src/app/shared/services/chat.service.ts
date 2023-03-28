@@ -25,6 +25,7 @@ export class ChatService {
   chatMembers: Array<any> = [];
   selectedUsers: Array<string> = [];
   searchUser: string = '';
+  activeChat: boolean = false;
   unsubscribe: Unsubscribe;
 
   constructor(

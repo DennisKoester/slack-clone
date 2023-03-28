@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ChatService } from 'src/app/shared/services/chat.service';
 
 @Component({
   selector: 'app-chatlist-item',
@@ -9,4 +10,11 @@ export class ChatlistItemComponent {
   @Input() name: string;
   @Input() image: string;
   @Input() membersCount: number;
+
+
+
+constructor(public chatService: ChatService) {}
+
+
 }
+
