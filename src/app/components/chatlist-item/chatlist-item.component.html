@@ -2,5 +2,4 @@
     <img src="{{ image ?? './assets/img/profile_icon.png' }}" />
     <p>{{ name }}</p>
     <div id="badge-more-users" *ngIf="membersCount > 1">+{{ membersCount - 1 }}</div>
-    <!-- TODO: Add badge to signal more than 4 chat members (e. g. "+2" if chat has 4 members overall: logged-in + 1 displayed + 2 signed ) -->
 </div>
