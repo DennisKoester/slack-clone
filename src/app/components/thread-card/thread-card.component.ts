@@ -56,6 +56,9 @@ export class ThreadCardComponent implements OnInit {
     const document = parser.parseFromString(this.message, 'text/html');
   }
 
+  openImg() {
+    console.log('opened something');
+  }
   
 
 }

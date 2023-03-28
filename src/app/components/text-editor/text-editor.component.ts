@@ -26,6 +26,7 @@ import { ChatService } from 'src/app/shared/services/chat.service';
 import Quill from 'quill';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 
 
@@ -42,7 +43,8 @@ export class TextEditorComponent implements OnInit {
     public authenticationService: AuthenticationService,
     public channelService: ChannelService,
     public threadService: ThreadService,
-    public chatService: ChatService
+    public chatService: ChatService,
+    public usersService: UsersService
   ) { }
 
   textToUpload;
@@ -91,7 +93,6 @@ status: boolean = false;
       await this.scaleImage(event);
       this.getText(event);
       this.getUpload();
-      console.log('upload',this.upload);
     }
   }
 
@@ -103,7 +104,7 @@ status: boolean = false;
         await this.createCanvas();
         await this.drawScaledImage();
         element['insert']['image'] = `${this.canvas.toDataURL()}`;
-        this.imagesInEditor.push(`<br><img class="imageInMessage" (click)=openImg() src="${element['insert']['image']}"><br>`);
+        this.imagesInEditor.push(`<br><img class="imageInMessage" id="dasIstEineId" src="${element['insert']['image']}"><br>`);
       }
     }
   }
@@ -134,6 +135,7 @@ status: boolean = false;
     this.canvas.height = ihScaled;
     this.ctx.drawImage(this.newImage, 0, 0, iwScaled, ihScaled);
   }
+
 
   getText(event) {
     this.textToUpload = event.html;
@@ -169,7 +171,7 @@ status: boolean = false;
 
   async createThread() {
     const timestamp = Timestamp.fromDate(new Date());
-    const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+    const currentUserId = this.usersService.currentUserData.uid;
     this.route.paramMap.subscribe(async (paramMap) => {
       this.channelId = paramMap.get('id');
       this.getCollection();
@@ -206,7 +208,7 @@ status: boolean = false;
 
   async createMessage(type: string) {
     const timestamp = Timestamp.fromDate(new Date());
-    const currentUserId = JSON.parse(localStorage.getItem('user')).uid;
+    const currentUserId = this.usersService.currentUserData.uid;
     if (this.textToUpload || this.imagesInEditor) {
       this.updateDocument(type, timestamp, currentUserId);
     }
@@ -218,8 +220,7 @@ status: boolean = false;
     let currDoc;
     if (type == 'thread') {
       currDoc = doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.threadService.channelId, GLOBAL_VAR.COLL_THREADS, this.threadService.threadId);
-    }
-    else if (type == 'chat') {
+    } else if (type == 'chat') {
       currDoc = doc(this.firestore, GLOBAL_VAR.COLL_CHATS, this.chatService.chatId);
     }
     await updateDoc(currDoc, {
