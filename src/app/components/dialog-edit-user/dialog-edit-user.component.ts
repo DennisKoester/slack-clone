@@ -17,6 +17,7 @@ import {
 import { Observable } from 'rxjs';
 import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 import { UsersService } from 'src/app/shared/services/users.service';
+import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -38,9 +39,7 @@ export class DialogEditUserComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    if (
-      this.usersService.currentUserData.uid == 'xfFoKv1etbTxOBDHL9vBlKzAmEG3'
-    ) {
+    if (this.usersService.currentUserData.uid == GLOBAL_VAR.guest) {
       this.guest = true;
       console.log('gast eingeloggt');
     }
