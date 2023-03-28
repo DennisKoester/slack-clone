@@ -5,14 +5,16 @@
 - Beim Aufrufen der Seite entweder eigene Threadliste zeigen oder einen Channel aktivieren
 - Bei Auswahl von Channel/Chat: Auswahl und "subscribe" in jeweils anderer Sektion aufheben/löschen
 - "subscribe" auf Thread löschen beim Schließen des Threads
-- Einloggen als Testuser
+- [OK] Einloggen als Testuser
+    - Settings für Testuser deaktivieren
+    - Globale Variable isGuestUser = true|false einrichten
 - [in Arbeit] Eigene Threads anzeigen (Auflistung) [Subscribe??????]
 - Channel privat/öffentlich?
     - Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
-- [in Arbeit] Neuen Chat (persönliche Nachrichten) starten
+- [OK] Neuen Chat (persönliche Nachrichten) starten
     - [OK] Button "New Chat" unter Chatliste (wie bei Channels)
-- [in Arbeit] Chats auflisten
-    - "[+x]" anzeigen bei mehr als zwei Usern
+- [OK] Chats auflisten
+    - [OK] "[+x]" anzeigen bei mehr als zwei Usern
 - [in Arbeit] Datei (oder nur IMG) in Nachricht hochladen?
 - [OK] Profil bearbeiten?
 - [OK] Avatarbild hochladen
