@@ -88,13 +88,13 @@ export class AuthenticationService {
   }
 
   // Send email verfificaiton when new user sign up
-  SendVerificationMail() {
-    return this.afAuth.currentUser
-      .then((u: any) => u.sendEmailVerification())
-      .then(() => {
-        this.router.navigate(['verify-email']);
-      });
-  }
+  // SendVerificationMail() {
+  //   return this.afAuth.currentUser
+  //     .then((u: any) => u.sendEmailVerification())
+  //     .then(() => {
+  //       this.router.navigate(['verify-email']);
+  //     });
+  // }
 
   // Reset Forggot password
   ForgotPassword(passwordResetEmail: string) {

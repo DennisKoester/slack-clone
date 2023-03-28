@@ -35,6 +35,7 @@
     </div>
 
     <button mat-stroked-button color="primary" (click)="authenticationService.GoogleAuth()">sign in with Google</button>
+    <button mat-stroked-button color="primary" (click)="authenticationService.SignIn('guest@login.at', 'guestlogin')">Guest login</button>
     <span class="forgotPassword" routerLink="/forgot-password">Forgot Password?</span>
     <span class="spanQuestion">Don't have an account?</span>
     <a routerLink="/sign-up" class="spanSignUp">Sign up!</a>

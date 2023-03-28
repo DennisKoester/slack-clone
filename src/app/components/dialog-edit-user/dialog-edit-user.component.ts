@@ -29,6 +29,7 @@ export class DialogEditUserComponent implements OnInit {
   email: any;
   emailVerified: boolean;
   photoURL: any;
+  guest: boolean = false;
 
   constructor(
     private firestore: Firestore,
@@ -37,6 +38,9 @@ export class DialogEditUserComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    if (this.usersService.currentUserData.uid = 'xfFoKv1etbTxOBDHL9vBlKzAmEG3') {
+      this.guest = true;
+    }
     const currentUser = this.usersService.currentUserData;
     this.name = currentUser.displayName;
     this.email = currentUser.email;

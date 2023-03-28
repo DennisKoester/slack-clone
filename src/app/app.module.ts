@@ -45,7 +45,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
 import { ChannelsComponent } from './components/channels/channels.component';
 import { DirectMessagesSectionComponent } from './components/direct-messages-section/direct-messages-section.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+// import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { SignFooterComponent } from './components/sign-footer/sign-footer.component';
 import { SignHeaderComponent } from './components/sign-header/sign-header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
@@ -73,7 +73,6 @@ import { ThreadsListComponent } from './components/threads-list/threads-list.com
     MainComponent,
     ChannelsComponent,
     DirectMessagesSectionComponent,
-    VerifyEmailComponent,
     SignFooterComponent,
     SignHeaderComponent,
     ForgotPasswordComponent,

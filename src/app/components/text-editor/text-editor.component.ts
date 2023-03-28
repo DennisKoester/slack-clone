@@ -104,7 +104,8 @@ button;
       this.imagesInEditor = '';
       await this.scaleImage(event);
       this.getText(event);
-      this.disableButton(); 
+      this.disableButton();
+      
     }
   }
 
@@ -126,7 +127,11 @@ button;
       const element = event['content']['ops'][i];
       if(element['insert']['image']) {
         this.base64Str = element['insert']['image'];
-        await this.createCanvas();
+        if (this.channelService.editorRef == 'channel') {
+          await this.createCanvas(600);
+        } else if (this.channelService.editorRef == 'thread' || this.channelService.editorRef == 'chat'){
+          await this.createCanvas(300);
+        }
         await this.drawScaledImage(); 
         element['insert']['image'] = `${this.canvas.toDataURL()}`;
         this.imagesInEditor = `<br><img class="imageInMessage" src="${element['insert']['image']}"><br>`;
@@ -135,13 +140,13 @@ button;
   }
 
 
-  createCanvas() {
+  createCanvas(size) {
     this.canvas = document.createElement('canvas'),
     this.ctx = this.canvas.getContext('2d');
-    this.canvas.width = 600;
-    this.canvas.height = 600;
-    this.maxW = 600;
-    this.maxH = 600;
+    this.canvas.width = size;
+    this.canvas.height = size;
+    this.maxW = size;
+    this.maxH = size;
   }
 
 
@@ -244,7 +249,6 @@ button;
           author: currentUserId,
           content: this.textToUpload,
           image: this.imagesInEditor,
-         
         })
     })
   }

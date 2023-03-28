@@ -14,4 +14,6 @@ export class SignUpComponent {
   nameFormControl = new FormControl('', [Validators.required]);
 
   constructor(public authenticationService: AuthenticationService) {}
+
+
 }
