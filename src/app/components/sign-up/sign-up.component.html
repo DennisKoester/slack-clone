@@ -28,7 +28,7 @@
       
     </form>
     
-    <button mat-raised-button color="warn"(click)="authenticationService.SignUp(userEmail.value, userPassword.value)">Sign Up</button>
+    <button mat-raised-button color="warn"(click)="authenticationService.SignUp(userEmail.value, userPassword.value)" id="buttonSignUp">Sign Up</button>
     <button mat-raised-button color="warn"(click)="authenticationService.SignIn('guest@login.at', 'guestlogin')">Guest login</button>
 
     <div class="horizontalContent">
