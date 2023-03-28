@@ -1,13 +1,13 @@
-<h1 mat-dialog-title>Settings</h1>
+<h1 mat-dialog-title>Settings <span *ngIf="guest">(disabled for guest-user)</span></h1>
 <div class="dialog-wrapper">
   <div class="dialog-left" mat-dialog-content id="dialog-content">
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="name" >
+      <input matInput [(ngModel)]="name" [disabled]="guest">
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="email" >
+      <input matInput [(ngModel)]="email" [disabled]="guest">
     </mat-form-field>
   </div>
 
@@ -29,6 +29,7 @@
         Upload image
       </label>
       <input
+        [disabled]="guest"
         (change)="imgUploadService.uploadImage($event)"
         type="file"
         id="file"

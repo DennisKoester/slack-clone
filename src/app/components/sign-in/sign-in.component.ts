@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../shared/services/authentication.service';
-
+import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,8 +12,9 @@ export class SignInComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required]);
 
+
   constructor(public authenticationService: AuthenticationService) {}
 
 
- 
-}
+
+  }
