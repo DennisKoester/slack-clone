@@ -38,7 +38,9 @@ export class DialogEditUserComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    if (this.usersService.currentUserData.uid == 'xfFoKv1etbTxOBDHL9vBlKzAmEG3') {
+    if (
+      this.usersService.currentUserData.uid == 'xfFoKv1etbTxOBDHL9vBlKzAmEG3'
+    ) {
       this.guest = true;
       console.log('gast eingeloggt');
     }
@@ -47,6 +49,7 @@ export class DialogEditUserComponent implements OnInit {
     this.email = currentUser.email;
     this.currentUserId = currentUser.uid;
     this.imgUploadService.newPhotoURL = currentUser.photoURL;
+    this.imgUploadService.newURLdefined = false;
   }
 
   updateUser() {

@@ -12,6 +12,7 @@ import { UsersService } from './users.service';
 export class ImageUploadService implements OnInit {
   auth: any;
   newPhotoURL: any;
+  newURLdefined: boolean = false;
 
   constructor(
     private afStorage: AngularFireStorage,
@@ -28,6 +29,13 @@ export class ImageUploadService implements OnInit {
       const uploadTask = await this.afStorage.upload(path, file);
       const url = await uploadTask.ref.getDownloadURL();
       this.newPhotoURL = url;
+      this.newURLdefined = true;
+    }
+  }
+
+  cancelUpload() {
+    if (this.newURLdefined) {
+      this.afStorage.refFromURL(this.newPhotoURL).delete();
     }
   }
 
@@ -39,7 +47,6 @@ export class ImageUploadService implements OnInit {
     }
   }
 
-
   async uploadImageEditor(event: any) {
     // const file = event.target.files[0];
     // if (file) {
@@ -50,6 +57,4 @@ export class ImageUploadService implements OnInit {
     //   this.newPhotoURL = url;
     // }
   }
-
-
 }

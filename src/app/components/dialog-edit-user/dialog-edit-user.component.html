@@ -40,7 +40,7 @@
 
 <div class="dialog-btns">
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close (click)="imgUploadService.cancelUpload()">Cancel</button>
     <button mat-button cdkFocusInitial (click)="updateUser()" mat-dialog-close>
       Save
     </button>
