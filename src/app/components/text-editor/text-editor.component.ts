@@ -28,7 +28,7 @@ import 'quill-emoji/dist/quill-emoji.js';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { query } from '@angular/animations';
-
+import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 
 
 
@@ -45,7 +45,8 @@ export class TextEditorComponent implements OnInit {
     public channelService: ChannelService,
     public threadService: ThreadService,
     public chatService: ChatService,
-    public usersService: UsersService
+    public usersService: UsersService,
+    public imgUploadService: ImageUploadService
   ) { }
 
   textToUpload;
@@ -218,7 +219,6 @@ button;
           author: currentUserId,
           content: this.textToUpload,
           image: this.imagesInEditor,
-          
         },
       ],
     });

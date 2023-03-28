@@ -38,8 +38,9 @@ export class DialogEditUserComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    if (this.usersService.currentUserData.uid = 'xfFoKv1etbTxOBDHL9vBlKzAmEG3') {
+    if (this.usersService.currentUserData.uid == 'xfFoKv1etbTxOBDHL9vBlKzAmEG3') {
       this.guest = true;
+      console.log('gast eingeloggt');
     }
     const currentUser = this.usersService.currentUserData;
     this.name = currentUser.displayName;

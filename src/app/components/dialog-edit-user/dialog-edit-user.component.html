@@ -3,11 +3,11 @@
   <div class="dialog-left" mat-dialog-content id="dialog-content">
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="name" [disabled]="guest">
+      <input matInput [(ngModel)]="name" >
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="email" [disabled]="guest">
+      <input matInput [(ngModel)]="email" >
     </mat-form-field>
   </div>
 
@@ -24,7 +24,7 @@
 
     <div class="button-upload">
      
-      <label for="file" class="upload-file" ng-disabled="guest">
+      <label for="file" class="upload-file">
         <i class="material-icons">cloud_upload</i>
         Upload image
       </label>
