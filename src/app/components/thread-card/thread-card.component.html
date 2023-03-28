@@ -20,7 +20,9 @@
         </div>
       </div>
 
-      <div [innerHTML]="message" (click)="openImg()"></div>
+      <div [innerHTML]="message"></div>
+      <div [innerHTML]="image" (click)="channelService.openImg(image)"></div>
+
       <div *ngIf="thread && amountAnswers > 0" class="infoAnswers">
         <span class="amountAnswers" (click)="channelService.openThread(index)">
           {{ amountAnswers }}

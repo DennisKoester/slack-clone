@@ -27,6 +27,7 @@ import Quill from 'quill';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { query } from '@angular/animations';
 
 
 
@@ -69,32 +70,56 @@ export class TextEditorComponent implements OnInit {
     "emoji-toolbar": true,
     "emoji-textarea": false,
     "emoji-shortname": true,
-  };
+  
+      keyboard: {
+        bindings: {
+          ctrl_enter: {
+            key: 13,
+            ctrlKey: true,
+            handler: () => {
+              this.sendMessage();
+            }
+          },
+      }
+    }
+};
+
+
 newImage;
-imagesInEditor;
+imagesInEditor = '';
 base64Str;
 canvas;
 maxW;
 maxH;
 ctx;
-imagesString;
-upload;
 status: boolean = false;
+button;
 
   ngOnInit() {
   }
 
 
   async getContent(event: EditorChangeContent | EditorChangeSelection) {
-      if (event.event === 'text-change') {
-      this.imagesInEditor = [];
-      this.imagesString = '';
-      this.upload = '';
+    if (event.event === 'text-change') {
+      this.imagesInEditor = '';
       await this.scaleImage(event);
       this.getText(event);
-      this.getUpload();
+      this.disableButton(); 
     }
   }
+
+
+  disableButton() {
+    const buttonId = document.querySelector('.ql-image').id = 'button';
+    const button =  document.getElementById('button');
+
+    if (this.imagesInEditor) {
+      button.setAttribute('disabled', 'disabled')
+    } else {
+      button.removeAttribute('disabled');
+    }
+  }
+
 
   async scaleImage(event) {
     for (let i = 0; i < event['content']['ops'].length; i++) {
@@ -102,24 +127,21 @@ status: boolean = false;
       if(element['insert']['image']) {
         this.base64Str = element['insert']['image'];
         await this.createCanvas();
-        await this.drawScaledImage();
+        await this.drawScaledImage(); 
         element['insert']['image'] = `${this.canvas.toDataURL()}`;
-        this.imagesInEditor.push(`<br><img class="imageInMessage" id="dasIstEineId" src="${element['insert']['image']}"><br>`);
+        this.imagesInEditor = `<br><img class="imageInMessage" src="${element['insert']['image']}"><br>`;
       }
     }
   }
-    
-  openImg() {
-    console.log('IMG OPENED!!!');
-  }
-  
+
+
   createCanvas() {
     this.canvas = document.createElement('canvas'),
     this.ctx = this.canvas.getContext('2d');
-    this.canvas.width = 200;
-    this.canvas.height = 200;
-    this.maxW = 200;
-    this.maxH = 200;
+    this.canvas.width = 600;
+    this.canvas.height = 600;
+    this.maxW = 600;
+    this.maxH = 600;
   }
 
 
@@ -141,23 +163,13 @@ status: boolean = false;
     this.textToUpload = event.html;
     if (this.textToUpload) {
       this.textToUpload = this.textToUpload.replace(/<img[^>]*>/g," ");
-      this.upload = this.textToUpload;
-    }
-  }
-
-
-  getUpload() {
-    if (this.imagesInEditor) {
-      this.imagesInEditor.forEach(element => {
-        this.imagesString += element;
-      });
-      this.upload += this.imagesString;
     }
   }
 
 
   async sendMessage() {
     if (this.textToUpload || this.imagesInEditor) {
+      
       if (this.channelService.editorRef == 'channel') {
         this.createThread();
       } else if (this.channelService.editorRef == 'thread') {
@@ -199,7 +211,9 @@ status: boolean = false;
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.upload,
+          content: this.textToUpload,
+          image: this.imagesInEditor,
+          
         },
       ],
     });
@@ -228,7 +242,9 @@ status: boolean = false;
         {
           timestamp: timestamp,
           author: currentUserId,
-          content: this.upload,
+          content: this.textToUpload,
+          image: this.imagesInEditor,
+         
         })
     })
   }

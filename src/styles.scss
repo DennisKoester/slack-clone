@@ -243,8 +243,46 @@ p {
   overflow: hidden !important;
 }
 
-.big {
-  height: 600px;
-  width: 600px;
-  
+// .big {
+//   height: 600px;
+//   width: 600px;
+// }
+
+.imageInMessage {
+  height: 150px;
+  width: auto;
+  object-fit: cover;
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(0.8);
+  }
+}
+
+.openedImgContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(19, 19, 20, 0.8);
+  z-index: 10000;
+}
+
+.openedImg img{
+  height:  calc(100%);
+  width: auto;
+  transform: scale(1.4);
+
+  &:hover {
+    cursor: unset;
+    filter: unset;
+  }
+}
+
+.d-none {
+  display: none;
 }

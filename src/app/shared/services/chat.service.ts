@@ -49,7 +49,7 @@ export class ChatService {
     this.unsubscribe = onSnapshot(
       doc(this.firestore, GLOBAL_VAR.COLL_CHATS, chatId),
       (chatData) => {
-        console.log('ChatData: ', chatData.data());
+        // console.log('ChatData: ', chatData.data());
         this.showChatMembers(chatData.data()['USERS']);
         this.showChatMessages(chatData.data()['MESSAGES']);
       }
@@ -64,7 +64,7 @@ export class ChatService {
         this.chatMembers.push(this.getUserMetaData(member));
       }
     });
-    console.log('ChatMembers: ', this.chatMembers);
+    // console.log('ChatMembers: ', this.chatMembers);
   }
 
   showChatMessages(chatMessages: Array<any>) {
@@ -73,7 +73,7 @@ export class ChatService {
       message['author'] = this.getUserMetaData(message['author']);
       this.chatMessages.push(message);
     });
-    console.log('ChatMessages: ', this.chatMessages);
+    // console.log('ChatMessages: ', this.chatMessages);
   }
 
   /**
@@ -86,7 +86,7 @@ export class ChatService {
       (user: any) => _user == user.uid
     );
 
-    console.log('userData in getUserMetaData: ', userData);
+    // console.log('userData in getUserMetaData: ', userData);
 
     return {
       displayName: userData.displayName,

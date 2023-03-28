@@ -1,18 +1,6 @@
 <app-header></app-header>
 <app-main></app-main>
 
-<!-- <div class="row" *ngIf="authenticationService.userData as user">
-  <div>
-    <div>
-      <span>Photo:<img src="{{(user.photoURL) ? user.photoURL : ''}}"></span>
-        alt="{{user.displayName}}">
-      <div class="media-body">
-        <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
-        <p>User ID: <strong>{{user.uid}}</strong></p>
-        <p>Email: <strong>{{user.email}}</strong></p>
-        <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
-      </div>
-    </div>
-  </div>
-</div> -->
-
+<div class="openedImgContainer" [ngClass]="channelService.status ? 'openedImgContainer' : 'd-none'" (click)="channelService.status = false">
+  <div class="openedImg" [innerHTML]="channelService.image"></div>
+</div>

@@ -41,6 +41,9 @@ export class ChannelService {
   editorRef: string = 'channel';
   channelIdOpenedThread;
   test: any = [];
+  imagesOriginal: any = [];
+  image; 
+  status: boolean = false;
 
   constructor(
     private firestore: Firestore,
@@ -94,7 +97,7 @@ export class ChannelService {
       this.sortThreads(threads);
       this.getUserNames(threads);
       this.threads = threads;
-      console.log('THISTHREADS', this.threads);
+      
     });
   }
 
@@ -149,4 +152,11 @@ export class ChannelService {
       scrollContainer.scrollTop = scrollContainer.scrollHeight;
     } catch (err) {}
   }
+
+  
+  openImg(image) {
+    this.image = image;
+    this.status = !this.status; 
+  }
 }
+
