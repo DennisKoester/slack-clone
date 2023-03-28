@@ -14,6 +14,7 @@ import { Observable, Subscription } from 'rxjs';
 import * as GLOBAL_VAR from './globals';
 import { UsersService } from './users.service';
 import { ThreadService } from './thread.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -68,8 +69,9 @@ export class ChannelService {
       }
       this.openedChannel = true;
       await this.showChannelName(channelId);
-      this.getThreads(channelId);
+      await this.getThreads(channelId);
       this.openedChannel = false;
+      this.scrollToBottom('channel'); // TODO not working
     }
   }
 
@@ -82,7 +84,7 @@ export class ChannelService {
     this.channelIsPrivate = channelData['isPrivate'];
   }
 
-  getThreads(channelID: string) {
+  async getThreads(channelID: string) {
     const threadsCollection = collection(
       this.firestore,
       GLOBAL_VAR.COLL_CHANNELS,
@@ -146,11 +148,9 @@ export class ChannelService {
     if (ref == 'chat' || ref == 'channel') {
       container = 'scrollContainer';
       console.log(ref);
-      
     } else if (ref == 'thread') {
       container = 'scrollContainerThread';
       console.log('threadcontainer');
-      
     }
     const scrollContainer = document.getElementById(container);
     try {

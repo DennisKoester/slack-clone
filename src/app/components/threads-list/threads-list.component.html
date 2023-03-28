@@ -7,4 +7,15 @@
   [userImage]="usersService.currentUserData.photoURL"
   [message]="thread['content']"
   [timestamp]="thread['timestamp']['seconds'] * 1000"
+  [class.d-none]="
+    !thread['content']
+      .toLowerCase()
+      .includes(channelService.searchValue.toLowerCase())
+  "
 ></app-thread-card>
+
+<!--  [amountAnswers]="thread['MESSAGES'].length - 1"
+  [lastAnswer]="
+    thread['MESSAGES'][thread['MESSAGES'].length - 1]['timestamp']['seconds'] *
+    1000
+  " -->

@@ -91,7 +91,7 @@ export class ChatService {
 
     return {
       displayName: userData.displayName,
-      userImage: userData.photoURL
+      userImage: userData.photoURL,
     };
   }
 

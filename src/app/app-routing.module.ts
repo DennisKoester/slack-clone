@@ -27,11 +27,11 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'threads-list', component: ThreadsListComponent},
+      { path: 'threads-list', component: ThreadsListComponent },
       { path: 'user-list', component: UserListComponent },
       { path: 'channel/:id', component: ChannelModuleComponent },
       { path: 'chat/:id', component: ChatModuleComponent },
-      { path: 'new-chat', component: NewChatComponent}
+      { path: 'new-chat', component: NewChatComponent },
     ],
   },
 ];

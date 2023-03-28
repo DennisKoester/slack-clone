@@ -33,19 +33,17 @@ export class ChannelModuleComponent implements OnInit {
   @ViewChild('scrollContainer') scrollContainer: ElementRef;
   constructor(
     public channelService: ChannelService,
-    public navFunction: MainComponent
+    public navFunction: MainComponent,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((paramMap) => {
+      this.channelService.channelId = paramMap.get('id');
+      this.channelService.openChannel(this.channelService.channelId);
+      console.log('This channelId is', this.channelService.channelId);
+    });
+  }
 
   ngAfterViewChecked() {}
-
-  // scrollToBottom(): void {
-  //   try {
-  //     console.log('scrollBottom');
-
-  //     this.scrollContainer.nativeElement.scrollTop =
-  //       this.scrollContainer.nativeElement.scrollHeight;
-  //   } catch (err) {}
-  // }
 }

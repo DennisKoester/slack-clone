@@ -32,7 +32,7 @@ export class ThreadsListComponent {
 
   async getAllThreads() {
     const currentUser = this.usersService.currentUserData;
-    this.ownThreads = [];
+    const allThreads = [];
     const threads = query(collectionGroup(this.firestore, 'THREADS'));
     const querySnapshot = await getDocs(threads);
 
@@ -40,7 +40,9 @@ export class ThreadsListComponent {
       const authorId = querySnapshot.docs[i].data()['MESSAGES'][0]['author'];
 
       if (authorId == currentUser.uid) {
-        this.ownThreads.push(querySnapshot.docs[i].data()['MESSAGES'][0]);
+        allThreads.push(querySnapshot.docs[i].data()['MESSAGES'][0]);
+        this.sortOwnThreads(allThreads);
+        this.ownThreads = allThreads;
       }
 
       console.log('allThreads is', this.ownThreads);
@@ -52,5 +54,14 @@ export class ThreadsListComponent {
       //   timestamp:
       // }
     }
+  }
+
+  sortOwnThreads(threads) {
+    threads.sort((thread_1: any, thread_2: any) => {
+      return (
+        parseFloat(thread_2['timestamp']['seconds']) -
+        parseFloat(thread_1['timestamp']['seconds'])
+      );
+    });
   }
 }
