@@ -17,7 +17,7 @@ export class UsersService {
 
   getUsers() {
     const usersCollection = collection(this.firestore, GLOBAL_VAR.COLL_USERS);
-    const users$ = collectionData(usersCollection, {idField: 'uid'});
+    const users$ = collectionData(usersCollection, { idField: 'uid' });
     users$.subscribe((_users) => {
       console.log(`Users:`, _users);
       this.usersCollListener.next({ users: _users });
@@ -38,7 +38,7 @@ export class UsersService {
     });
   }
 
-  async getCurrentUser() {
+  getCurrentUser() {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {

@@ -42,7 +42,7 @@ export class ChannelService {
   channelIdOpenedThread;
   test: any = [];
   imagesOriginal: any = [];
-  image; 
+  image;
   status: boolean = false;
 
   constructor(
@@ -71,9 +71,6 @@ export class ChannelService {
       this.getThreads(channelId);
       this.openedChannel = false;
     }
-    setTimeout(() => {
-      this.scrollToBottom();
-    }, 500);
   }
 
   async showChannelName(channelId: string) {
@@ -97,7 +94,6 @@ export class ChannelService {
       this.sortThreads(threads);
       this.getUserNames(threads);
       this.threads = threads;
-      
     });
   }
 
@@ -145,18 +141,26 @@ export class ChannelService {
     }
   }
 
-  scrollToBottom(): void {
-    const scrollContainer = document.getElementById('scrollContainer');
+  scrollToBottom(ref): void {
+    let container = '';
+    if (ref == 'chat' || ref == 'channel') {
+      container = 'scrollContainer';
+      console.log(ref);
+      
+    } else if (ref == 'thread') {
+      container = 'scrollContainerThread';
+      console.log('threadcontainer');
+      
+    }
+    const scrollContainer = document.getElementById(container);
     try {
       console.log('scrollBottom');
       scrollContainer.scrollTop = scrollContainer.scrollHeight;
     } catch (err) {}
   }
 
-  
   openImg(image) {
     this.image = image;
-    this.status = !this.status; 
+    this.status = !this.status;
   }
 }
-

@@ -19,7 +19,7 @@
   [routerLink]="['/home/chat/' + chatService.chatId]"
   (click)="channelService.editorRef = 'chat'"
 >
-  <div class="scroll-container">
+  <div id="scrollContainer" class="scroll-container">
     <app-thread-card
       class="threadCard"
       *ngFor="let message of chatService.chatMessages; index as i"

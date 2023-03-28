@@ -1,4 +1,10 @@
 <mat-toolbar-row class="channel-toolbar">
   <div class="flex-ac">Threads List</div>
 </mat-toolbar-row>
-<app-thread-card></app-thread-card>
+<app-thread-card
+  *ngFor="let thread of this.ownThreads"
+  [author]="usersService.currentUserData.displayName"
+  [userImage]="usersService.currentUserData.photoURL"
+  [message]="thread['content']"
+  [timestamp]="thread['timestamp']['seconds'] * 1000"
+></app-thread-card>

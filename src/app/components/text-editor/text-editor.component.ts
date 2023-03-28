@@ -167,27 +167,27 @@ export class TextEditorComponent implements OnInit {
   async sendMessage() {
     if (this.textToUpload || this.imagesInEditor) {
       if (this.channelService.editorRef == 'channel') {
-         this.createThread();
+        await this.createThread();
       } else if (this.channelService.editorRef == 'thread') {
-         this.createMessage('thread');
+        await this.createMessage('thread');
       } else if (this.channelService.editorRef == 'chat') {
-         this.createMessage('chat');
+        await this.createMessage('chat');
       }
-      this.channelService.scrollToBottom();
+      this.channelService.scrollToBottom(this.channelService.editorRef);
     }
   }
 
   async createThread() {
-      const timestamp = Timestamp.fromDate(new Date());
-      const currentUserId = this.usersService.currentUserData.uid;
-      this.route.paramMap.subscribe(async (paramMap) => {
-        this.channelId = paramMap.get('id');
-        this.getCollection();
-      });
-      if (this.textToUpload || this.imagesInEditor) {
-        this.addDocument(timestamp, currentUserId);
-      }
-      document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
+    const timestamp = Timestamp.fromDate(new Date());
+    const currentUserId = this.usersService.currentUserData.uid;
+    this.route.paramMap.subscribe(async (paramMap) => {
+      this.channelId = paramMap.get('id');
+      this.getCollection();
+    });
+    if (this.textToUpload || this.imagesInEditor) {
+      await this.addDocument(timestamp, currentUserId);
+    }
+    document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
   }
 
   getCollection() {
@@ -210,18 +210,22 @@ export class TextEditorComponent implements OnInit {
         },
       ],
     });
-    this.channelService.scrollToBottom();
+    // this.channelService.scrollToBottom();
   }
 
   async createMessage(type: string) {
-    
+    let selector = '';
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = this.usersService.currentUserData.uid;
     if (this.textToUpload || this.imagesInEditor) {
-      this.updateDocument(type, timestamp, currentUserId);
+      await this.updateDocument(type, timestamp, currentUserId);
     }
-    document.querySelector('.rightContent #editor .ql-editor').innerHTML = '';
-   
+    if (type == 'chat') {
+      selector = '.leftContent #editor .ql-editor';
+    } else if (type == 'thread') {
+      selector = '.rightContent #editor .ql-editor';
+    }
+    document.querySelector(selector).innerHTML = '';
   }
 
   async updateDocument(type: string, timestamp: any, currentUserId: string) {
