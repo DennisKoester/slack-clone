@@ -11,14 +11,13 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 export class UsersService {
   public usersCollListener = new BehaviorSubject<any>({ users: [] });
   users: any = [];
-  public currentUserListener = new Subject<any>();
   currentUserData: any;
 
   constructor(private firestore: Firestore) {}
 
   getUsers() {
     const usersCollection = collection(this.firestore, GLOBAL_VAR.COLL_USERS);
-    const users$ = collectionData(usersCollection);
+    const users$ = collectionData(usersCollection, {idField: 'uid'});
     users$.subscribe((_users) => {
       console.log(`Users:`, _users);
       this.usersCollListener.next({ users: _users });
@@ -38,13 +37,6 @@ export class UsersService {
       }
     });
   }
-
-  // getCurrentUser() {
-  //   const auth = getAuth();
-  //   this.currentUserListener.next({ currentUser: auth.currentUser });
-  //   console.log(this.currentUserListener);
-  //   // console.log(this.currentUserListener.value.currentUser.photoURL);
-  // }
 
   async getCurrentUser() {
     const auth = getAuth();

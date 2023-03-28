@@ -68,7 +68,7 @@ export class ThreadService {
         (user: any) => user.uid == uid
       );
       message['author'] = {
-        author: user.displayName,
+        displayName: user.displayName,
         userImage: user.photoURL,
       };
     });

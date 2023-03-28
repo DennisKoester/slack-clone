@@ -36,12 +36,9 @@ export class ChannelModuleComponent implements OnInit {
     public navFunction: MainComponent
   ) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngAfterViewChecked() {}
-
 
   // scrollToBottom(): void {
   //   try {

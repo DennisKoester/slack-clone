@@ -16,7 +16,7 @@
   <div *ngIf="threadService.thread">
     <app-thread-card
       *ngFor="let message of threadService.thread['MESSAGES']; index as i"
-      [author]="message['author']['author']"
+      [author]="message['author']['displayName']"
       [userImage]="message['author']['userImage']"
       [message]="message['content']"
       [timestamp]="message['timestamp']['seconds'] * 1000"
@@ -24,7 +24,7 @@
         !message['content']
           .toLowerCase()
           .includes(channelService.searchValue.toLowerCase()) &&
-        !message['author']
+        !message['author']['displayName']
           .toLowerCase()
           .includes(channelService.searchValue.toLowerCase())
       "

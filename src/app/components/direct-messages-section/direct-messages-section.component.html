@@ -12,7 +12,7 @@
     <app-chatlist-item
       class="channelitem flex-ac"
       *ngFor="let chat of chats"
-      [name]="chat['USERS'][0].userName"
+      [name]="chat['USERS'][0].displayName"
       [routerLink]="['/home/chat/' + chat.chatId]"
       routerLinkActive="activeLink"
       (click)="chatService.openChat(chat.chatId)"

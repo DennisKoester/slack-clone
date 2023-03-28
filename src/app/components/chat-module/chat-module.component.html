@@ -1,7 +1,7 @@
 <mat-toolbar-row class="channel-toolbar">
   <div class="flex-ac">
     <div *ngFor="let member of chatService.chatMembers; let i = index">
-      <span>{{ member.userName }}</span>
+      <span>{{ member.displayName }}</span>
       <span
         *ngIf="
           chatService.chatMembers.length > 1 &&
@@ -23,10 +23,18 @@
     <app-thread-card
       class="threadCard"
       *ngFor="let message of chatService.chatMessages; index as i"
-      [author]="chatService.chatMessages[i]['author']['userName']"
-      [userImage]="chatService.chatMessages[i]['author']['userImg']"
-      [message]="chatService.chatMessages[i]['content']"
-      [timestamp]="chatService.chatMessages[i]['timestamp']['seconds'] * 1000"
+      [author]="message['author']['displayName']"
+      [userImage]="message['author']['userImage']"
+      [message]="message['content']"
+      [timestamp]="message['timestamp']['seconds'] * 1000"
+      [class.d-none]="
+        !message['content']
+          .toLowerCase()
+          .includes(channelService.searchValue.toLowerCase()) &&
+        !message['author']['displayName']
+          .toLowerCase()
+          .includes(channelService.searchValue.toLowerCase())
+      "
     >
     </app-thread-card>
   </div>

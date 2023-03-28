@@ -23,44 +23,27 @@ export class ThreadsListComponent {
     private usersService: UsersService
   ) {}
 
-  //TODO Getting all threads with on uid
-
   ngOnInit() {
     this.getAllThreads();
   }
 
-  // async getAllThreads() {
-  //   const channelsCollection = query(
-  //     collection(this.firestore, GLOBAL_VAR.COLL_CHANNELS)
-  //   );
-  //   const channelSnap = await getDocs(channelsCollection);
-  //   channelSnap.forEach((doc) => {
-  //     console.log(doc.id);
-  //     const threadsCollection = query(collection(GLOBAL_VAR.COLL_THREADS));
-  //     const threadSnap = await getDocs(threadsCollection);
-  //     threadSnap.forEach((doc2) => {
-  //       console.log(doc1);
-  //     });
-  //   });
-  // }
-
   async getAllThreads() {
     const currentUser = this.usersService.currentUserData;
-
+    const allThreads = [];
     const threads = query(collectionGroup(this.firestore, 'THREADS'));
     const querySnapshot = await getDocs(threads);
-    querySnapshot.forEach((thread) => {
-      const threadData = thread.data();
-      const threadOpener = threadData['MESSAGES'][0]['author'];
-      // const ownThreads = threadData['MESSAGES'][0].find(
-      //   (elem) => elem === currentUser.uid
-      // );
-      console.log('Thread is', thread);
-      console.log('CurrentUserUID', currentUser.uid);
 
-      console.log('ThreadData is', threadData);
+    for (let i = 0; i < querySnapshot.docs.length; i++) {
+      const authorId = querySnapshot.docs[i].data()['MESSAGES'][0]['author'];
+      console.log(querySnapshot.docs[i].data());
 
-      console.log('ThreadOpener is', threadOpener);
+      if (authorId == currentUser.uid) {
+        allThreads.push(querySnapshot.docs[i].data()['MESSAGES'][0]);
+      }
+
+      console.log('allThreads is', allThreads);
+
+      console.log('querySnapshot is', querySnapshot.docs);
 
       // let thread = {
 
@@ -68,10 +51,6 @@ export class ThreadsListComponent {
       //   content:,
       //   timestamp:
       // }
-
-      //TODO find function for currentUserId find or where
-
-      // console.log(doc.id, ' => ', doc.data());
-    });
+    }
   }
 }

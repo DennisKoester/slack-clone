@@ -1,4 +1,4 @@
-- currentUser überall aus usersService.currentUser auslesen
+- [OK] currentUser überall aus usersService.currentUser auslesen
 - User-Liste
     - Button "New Chat" zu jedem User hinzufügen
     - [OK] Logged-in User nicht in Liste zeigen
@@ -6,7 +6,7 @@
 - Bei Auswahl von Channel/Chat: Auswahl und "subscribe" in jeweils anderer Sektion aufheben/löschen
 - "subscribe" auf Thread löschen beim Schließen des Threads
 - Einloggen als Testuser
-- [in Arbeit] Eigene Threads anzeigen (Auflistung)
+- [in Arbeit] Eigene Threads anzeigen (Auflistung) [Subscribe??????]
 - Channel privat/öffentlich?
     - Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
 - [in Arbeit] Neuen Chat (persönliche Nachrichten) starten
@@ -16,7 +16,7 @@
 - [in Arbeit] Datei (oder nur IMG) in Nachricht hochladen?
 - [OK] Profil bearbeiten?
 - [OK] Avatarbild hochladen
-    - E-Mail bearbeiten --> auch in Authentifizierung ändern
+- [OK] E-Mail bearbeiten --> auch in Authentifizierung ändern
 - [OK] Neue Nachricht in Chat schreiben
 - [OK] Chatnachrichten anzeigen
 - [OK] Neue Nachricht in Channel schreiben (eröffnet neuen Thread)

@@ -24,7 +24,7 @@ export class ImageUploadService implements OnInit {
     const file = event.target.files[0];
     if (file) {
       const randomId = Math.random().toString(36).substring(2);
-      const path = `profileImages/${randomId}`;
+      const path = `profileImages/${file.name + randomId}`;
       const uploadTask = await this.afStorage.upload(path, file);
       const url = await uploadTask.ref.getDownloadURL();
       this.newPhotoURL = url;

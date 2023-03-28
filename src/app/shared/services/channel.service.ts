@@ -115,8 +115,8 @@ export class ChannelService {
       );
       // thread['MESSAGES'][0]['author'] = user.displayName;
       thread['MESSAGES'][0]['author'] = {
-        author: user.displayName,
-        userImage: user.photoURL
+        displayName: user.displayName,
+        userImage: user.photoURL,
       };
     });
   }
