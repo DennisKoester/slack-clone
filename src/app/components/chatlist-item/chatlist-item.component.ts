@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class ChatlistItemComponent {
   @Input() name: string;
+  @Input() image: string;
+  @Input() membersCount: number;
 }

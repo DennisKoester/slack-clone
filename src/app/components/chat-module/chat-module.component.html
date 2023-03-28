@@ -1,5 +1,5 @@
 <mat-toolbar-row class="channel-toolbar">
-  <div class="flex-ac">
+  <div id="members-list" class="flex-ac">
     <div *ngFor="let member of chatService.chatMembers; let i = index">
       <span>{{ member.displayName }}</span>
       <span

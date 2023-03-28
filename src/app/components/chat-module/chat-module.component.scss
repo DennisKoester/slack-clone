@@ -9,6 +9,8 @@
 //     font-size: 24px;
 // }
 
-// #members-list {
-//     display: flex;
-// }
+#members-list {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
