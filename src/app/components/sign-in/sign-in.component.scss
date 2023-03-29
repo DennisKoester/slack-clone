@@ -112,6 +112,20 @@
   }
 }
 
+.showPassword {
+  position: absolute;
+  right: 0;
+  top: calc(50% - 10px);
+  height: 20px;
+  z-index: 2000;
+  cursor: pointer;
+  filter: invert(0.1);
+
+  &:hover {
+    filter: invert(0);
+  }
+}
+
 @media (max-width: 650px) {
   .mainContent h1 {
     padding-left: 20px;

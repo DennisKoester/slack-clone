@@ -12,7 +12,8 @@ export class SignInComponent implements OnInit{
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required]);
-
+  password: boolean = true;
+  
   constructor(public authenticationService: AuthenticationService) {}
 
 
@@ -25,8 +26,9 @@ export class SignInComponent implements OnInit{
   }
 
 
-
-
+  showPassword() {
+    this.password = !this.password;
+  }
 
 
 

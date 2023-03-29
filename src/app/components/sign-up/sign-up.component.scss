@@ -104,6 +104,20 @@
   animation: signUpError 4s ease-in-out;
 }
 
+.showPassword {
+  position: absolute;
+  right: 0;
+  top: calc(50% - 10px);
+  height: 20px;
+  z-index: 2000;
+  cursor: pointer;
+  filter: invert(0.1);
+
+  &:hover {
+    filter: invert(0);
+  }
+}
+
 @keyframes signUpError {
   0% {opacity: 0; transform: scale(0)};
   5% {opacity: 1; transform: scale(1)};

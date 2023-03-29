@@ -31,16 +31,20 @@
         <mat-form-field class="inputEmail">
           <mat-label>Password</mat-label>
           <input
-            type="password"
+            [type]="password ? 'password' : 'text'"
             matInput
             [formControl]="passwordFormControl"
             placeholder="password"
             #userPassword
+            id="userPassword"
           />
+          <img src="assets/img/eye.svg" (click)="showPassword()" class="showPassword">
           <mat-error *ngIf="passwordFormControl.hasError('required')">
             Password is <strong>required</strong>
           </mat-error>
+          
         </mat-form-field>
+        
       </form>
 
       <button

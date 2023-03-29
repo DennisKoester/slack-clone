@@ -12,7 +12,8 @@ export class SignUpComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required]);
   nameFormControl = new FormControl('', [Validators.required]);
-
+  password: boolean = true;
+  
   constructor(public authenticationService: AuthenticationService) {}
 
   ngOnInit() {
@@ -21,6 +22,11 @@ export class SignUpComponent {
        document.getElementById('buttonSignUp').click();
       }
     })
+  }
+
+
+  showPassword() {
+    this.password = !this.password;
   }
 
 }
