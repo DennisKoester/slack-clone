@@ -62,12 +62,10 @@ export class ThreadsListComponent {
         this.ownThreads = allThreads;
       }
 
-      console.log('ownThreads is', this.ownThreads);
-      console.log('allThreads is', allThreads);
-      // console.log(
-      // 'threads is',
-      // querySnapshot.docs[i].data()['MESSAGES'].length
-      // );
+      console.log(
+        'threads is',
+        querySnapshot.docs[i].data()['MESSAGES'].length
+      );
 
       // let thread = {
 
@@ -76,6 +74,7 @@ export class ThreadsListComponent {
       //   timestamp:
       // }
     }
+    console.log('allThreads is', allThreads);
   }
 
   sortOwnThreads(threads) {
