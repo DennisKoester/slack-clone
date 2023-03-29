@@ -27,10 +27,8 @@ export class ThreadSideModuleComponent{
 
 changeRef() {
   this.channelService.editorRef = 'thread';
-  console.log(this.channelService.editorRef);
   setTimeout(() => {
     this.channelService.editorRef = 'thread';
-    console.log(this.channelService.editorRef);
   }, 100);
 }
 

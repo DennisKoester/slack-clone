@@ -106,8 +106,6 @@ currDoc;
 
   async sendMessage() {
     if (this.textToUpload || this.imgUploadService.imageURL) {
-      console.log(this.imgUploadService.imageURL);
-      console.log(this.textToUpload);
       if (this.channelService.editorRef == 'channel') {
         await this.createThread();
         this.emptyImgContainerChannel();
@@ -120,8 +118,19 @@ currDoc;
       }
       this.channelService.scrollToBottom(this.channelService.editorRef);
       this.resetVariables();
+      this.removeStyleToEditor();
     }
   }
+
+
+  removeStyleToEditor() {
+    let editor = document.querySelectorAll('.ql-editor');
+    for (let i = 0; i < editor.length; i++) {
+      const element = editor[i] as HTMLElement;
+      element.style.padding = '12px 15px 12px 15px';
+    }
+  }
+
 
 //CREATE THREAD
   async createThread() {
@@ -237,7 +246,7 @@ currDoc;
     }
   }
 
-  
+
   resetVariables() {
     this.imgUploadService.imageURL = [];
     this.imgUploadService.imgContainerChannel = false;

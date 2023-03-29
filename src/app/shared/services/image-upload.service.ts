@@ -18,7 +18,7 @@ export class ImageUploadService implements OnInit {
   imgContainerChannel: boolean = false;
   imgContainerThread: boolean = false;
   imgContainerChat: boolean = false;
-
+  imgInEditor: boolean = false;
 
   constructor(
     private afStorage: AngularFireStorage,
@@ -58,53 +58,39 @@ export class ImageUploadService implements OnInit {
   async uploadImageEditor(event: any) {
     const file = event.target.files[0];
     if (file) {
+      this.imgInEditor = true;
       const randomId = Math.random().toString(36).substring(2);
       const path = `imagesEditor/${file.name + randomId}`;
       const uploadTask = await this.afStorage.upload(path, file);
       const url = await uploadTask.ref.getDownloadURL();
-      let editor = document.querySelectorAll('.ql-editor');
-      for (let i = 0; i < editor.length; i++) {
-        const element = editor[i] as HTMLElement;
-        element.style.padding = '12px 15px 50px 15px';
-      }
-      
+      this.addStyleToEditor();
       this.imageURL.push(`<img class="imageInMessage" src="${url}">`);
-      let image = this.imageURL[this.imageURL.length-1];
-      if (this.channelService.editorRef == 'channel') {
-        this.imagesChannelEditor(image);
-      } else if (this.channelService.editorRef == 'thread') {
-        this.imagesThreadEditor(image);
-      } else if (this.channelService.editorRef == 'chat') {
-        this.imagesChatEditor(image);
-      }
+      this.addImagesToEditor();
     }
   }
 
 
+  addStyleToEditor() {
+    let editor = document.querySelectorAll('.ql-editor');
+    for (let i = 0; i < editor.length; i++) {
+      const element = editor[i] as HTMLElement;
+      element.style.padding = '12px 15px 50px 15px';
+    }
+  }
 
 
-  imagesChannelEditor(image) {
-    this.imgContainerChannel = true;
-    setTimeout(() => {
+  addImagesToEditor() {
+    let image = this.imageURL[this.imageURL.length-1];
+    if (this.channelService.editorRef == 'channel') {
       document.querySelector('#imagesChannel').innerHTML += image;
-    }, 400);
-  }
-
-
-  imagesThreadEditor(image) {
-    this.imgContainerThread = true;
-    setTimeout(() => {
+    } else if (this.channelService.editorRef == 'thread') {
       document.querySelector('#imagesThread').innerHTML += image;
-    }, 400);
+    } else if (this.channelService.editorRef == 'chat') {
+      document.querySelector('#imagesChat').innerHTML += image;
+    }
   }
 
-  
-  imagesChatEditor(image) {
-    this.imgContainerChat = true;
-    setTimeout(() => {
-      document.querySelector('#imagesChat').innerHTML += image;
-    }, 400);
-  }
+
 
 
 }
