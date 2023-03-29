@@ -36,14 +36,15 @@
     [email]="user['email']"
     [userImage]="user['photoURL']"
     [class.d-none]="
-      !user['displayName']
+      (!user['displayName']
         .toLowerCase()
         .includes(chatService.searchUser.toLowerCase()) &&
       !user['email']
         .toLowerCase()
-        .includes(chatService.searchUser.toLowerCase()) ||
+        .includes(chatService.searchUser.toLowerCase())) ||
       selectedUserIds.includes(user['uid']) ||
-      user['uid'] == usersService.currentUserData.uid
+      user['uid'] == usersService.currentUserData.uid ||
+      user['uid'] == guestId
     "
     (click)="selectUser(user['uid'], user['displayName'])"
     matTooltip="Click to select this user"

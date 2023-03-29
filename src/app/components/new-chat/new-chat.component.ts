@@ -19,6 +19,7 @@ export class NewChatComponent {
   selectedUserIds: Array<string> = [];
   selectedUserNames: Array<string> = [];
   chatsCollection: CollectionReference;
+  guestId = GLOBAL_VAR.guest;
 
   constructor(
     public chatService: ChatService,
