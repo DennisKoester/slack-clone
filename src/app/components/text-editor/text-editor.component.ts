@@ -11,6 +11,7 @@ import {
   arrayUnion,
   collectionData,
   doc,
+  documentId,
   Firestore,
   getDoc,
   Timestamp,
@@ -91,6 +92,7 @@ base64Str;
   ctx;
   status: boolean = false;
   button;
+currDoc;
 
   ngOnInit() {}
 
@@ -108,20 +110,20 @@ base64Str;
       console.log(this.textToUpload);
       if (this.channelService.editorRef == 'channel') {
         await this.createThread();
-        document.getElementById('imagesChannel').innerHTML = '';
+        this.emptyImgContainerChannel();
       } else if (this.channelService.editorRef == 'thread') {
         await this.createMessage('thread');
-        document.getElementById('imagesThread').innerHTML = '';
+        this.emptyImgContainerThread();
       } else if (this.channelService.editorRef == 'chat') {
         await this.createMessage('chat');
-        document.getElementById('imagesChat').innerHTML = '';
+        this.emptyImgContainerChat();
       }
       this.channelService.scrollToBottom(this.channelService.editorRef);
       this.resetVariables();
     }
   }
 
-
+//CREATE THREAD
   async createThread() {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = this.usersService.currentUserData.uid;
@@ -160,6 +162,14 @@ base64Str;
   }
 
 
+  emptyImgContainerChannel() {
+    if (document.getElementById('imagesChannel')) {
+      document.getElementById('imagesChannel').innerHTML = '';
+    }
+  }
+
+
+//CREATE MESSAGE IN THREAD
   async createMessage(type: string) {
     let selector = '';
     const timestamp = Timestamp.fromDate(new Date());
@@ -177,13 +187,12 @@ base64Str;
 
 
   async updateDocument(type: string, timestamp: any, currentUserId: string) {
-    let currDoc;
     if (type == 'thread') {
-      this.updateThread(currDoc);
+      this.updateThread();
     } else if (type == 'chat') {
-      this.updateChat(currDoc);
+      this.updateChat();
     }
-    await updateDoc(currDoc, {
+    await updateDoc(this.currDoc, {
       MESSAGES: arrayUnion({
         timestamp: timestamp,
         author: currentUserId,
@@ -194,8 +203,8 @@ base64Str;
   }
 
 
-  updateThread(currDoc) {
-    currDoc = doc(
+  updateThread() {
+    this.currDoc = doc(
       this.firestore,
       GLOBAL_VAR.COLL_CHANNELS,
       this.threadService.channelId,
@@ -205,12 +214,27 @@ base64Str;
   }
 
 
-  updateChat(currDoc) {
-    currDoc = doc(
+  emptyImgContainerThread() {
+    if (document.getElementById('imagesThread')) {
+      document.getElementById('imagesThread').innerHTML = '';
+    }
+  }
+
+
+//CREATE MESSAGE IN CHAT
+  updateChat() {
+    this.currDoc = doc(
       this.firestore,
       GLOBAL_VAR.COLL_CHATS,
       this.chatService.chatId
     );
+  }
+
+ 
+  emptyImgContainerChat() {
+    if (document.getElementById('imagesChat')) {
+      document.getElementById('imagesChat').innerHTML = '';
+    }
   }
 
   

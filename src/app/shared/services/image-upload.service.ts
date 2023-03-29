@@ -15,7 +15,7 @@ export class ImageUploadService implements OnInit {
   newPhotoURL: any;
   newURLdefined: boolean = false;
   imageURL: any = [];
-  imgContainerChannel: boolean = true;
+  imgContainerChannel: boolean = false;
   imgContainerThread: boolean = false;
   imgContainerChat: boolean = false;
 
@@ -62,7 +62,12 @@ export class ImageUploadService implements OnInit {
       const path = `imagesEditor/${file.name + randomId}`;
       const uploadTask = await this.afStorage.upload(path, file);
       const url = await uploadTask.ref.getDownloadURL();
-
+      let editor = document.querySelectorAll('.ql-editor');
+      for (let i = 0; i < editor.length; i++) {
+        const element = editor[i] as HTMLElement;
+        element.style.padding = '12px 15px 50px 15px';
+      }
+      
       this.imageURL.push(`<img class="imageInMessage" src="${url}">`);
       let image = this.imageURL[this.imageURL.length-1];
       if (this.channelService.editorRef == 'channel') {
@@ -74,6 +79,8 @@ export class ImageUploadService implements OnInit {
       }
     }
   }
+
+
 
 
   imagesChannelEditor(image) {
