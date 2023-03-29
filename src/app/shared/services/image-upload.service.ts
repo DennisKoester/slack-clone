@@ -66,7 +66,7 @@ export class ImageUploadService implements OnInit {
       const uploadTask = await this.afStorage.upload(path, file);
       const url = await uploadTask.ref.getDownloadURL();
       this.addStyleToEditor();
-      this.imageURL.push(`<img class="imageInMessage" id=${url} src="${url}">`);
+      this.imageURL.push(`<img class="imageInMessage" (click)="this.imgUploadService.delete()" id=${url} src="${url}">`);
       await this.addImagesToEditor();
       console.log('image loaded');
       this.loading = false;
