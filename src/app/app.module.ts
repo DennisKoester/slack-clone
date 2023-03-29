@@ -37,6 +37,7 @@ import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 //components
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -119,7 +120,8 @@ import { ThreadsListComponent } from './components/threads-list/threads-list.com
     MatMenuModule,
     MatTooltipModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],

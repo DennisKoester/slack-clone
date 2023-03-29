@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-    <button mat-raised-button color="primary" (click)="createChat()">Create chat</button>
+    <button mat-raised-button color="primary" (click)="createChat()" [disabled]="selectedUserIds.length == 0">Create chat</button>
   </div>
   <div class="searchbar">
     <input

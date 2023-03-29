@@ -9,6 +9,7 @@ import { ChatService } from 'src/app/shared/services/chat.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-chat',
@@ -25,7 +26,8 @@ export class NewChatComponent {
     public chatService: ChatService,
     public usersService: UsersService,
     private firestore: Firestore,
-    private router: Router
+    private router: Router,
+    private infoMaxMembersReached: MatSnackBar
   ) {}
 
   resetSearchUser() {
@@ -33,6 +35,10 @@ export class NewChatComponent {
   }
 
   selectUser(uid: string, name: string) {
+    if (this.selectedUserIds.length >= 5) {
+      this.infoMaxMembersReached.open('Maximum of 5 chat members reached.', 'OK', {duration: 4000});
+      return;
+    }
     this.selectedUserIds.push(uid);
     this.selectedUserNames.push(name);
   }
