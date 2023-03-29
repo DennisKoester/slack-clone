@@ -66,11 +66,16 @@ export class ImageUploadService implements OnInit {
       const uploadTask = await this.afStorage.upload(path, file);
       const url = await uploadTask.ref.getDownloadURL();
       this.addStyleToEditor();
-      this.imageURL.push(`<img class="imageInMessage" src="${url}">`);
+      this.imageURL.push(`<img class="imageInMessage" id=${url} src="${url}">`);
       await this.addImagesToEditor();
-      console.log('test');
+      console.log('image loaded');
       this.loading = false;
     }
+  }
+
+
+  delete() {
+    console.log('delete');
   }
 
 
@@ -78,7 +83,7 @@ export class ImageUploadService implements OnInit {
     let editor = document.querySelectorAll('.ql-editor');
     for (let i = 0; i < editor.length; i++) {
       const element = editor[i] as HTMLElement;
-      element.style.padding = '12px 15px 50px 15px';
+      element.style.padding = '12px 15px 70px 15px';
     }
   }
 

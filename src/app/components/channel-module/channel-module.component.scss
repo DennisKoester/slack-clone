@@ -81,12 +81,6 @@ span {
   display: none;
 }
 
-// @media screen and (max-width: 1100px) {
-//   .left {
-//     display: none;
-//   }
-// }
-
 @media screen and (max-width: 620px) {
   .right {
     border-left: unset !important;
@@ -100,7 +94,8 @@ span {
   bottom: 35px;
   left: 30px;
   right: 80px;
-  height: 40px;
+  height: 60px;
   background-color: rgba(255, 192, 203, 0.37);
   z-index: 300000;
 }
+

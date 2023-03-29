@@ -48,6 +48,5 @@ export class ChannelModuleComponent implements OnInit {
   }
 
   ngAfterViewChecked() {}
-
   
 }
