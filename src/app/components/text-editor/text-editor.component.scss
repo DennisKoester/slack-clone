@@ -64,7 +64,21 @@
 
 .uploadImageEditor {
   position: absolute;
-  right: 20px;
-  top: 0px;
-  width: 400px;
+  top: 12px;
+  right: 15px;
+  width: auto;
+}
+
+
+input[type="file"] {
+  display: none;
+}
+
+.imageEditor {
+  font-size: 18px;
+  cursor: pointer;
+
+  &:hover {
+    filter: invert(1);
+  }
 }

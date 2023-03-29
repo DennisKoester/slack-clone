@@ -64,7 +64,6 @@ export class TextEditorComponent implements OnInit {
       ['code-block'],
       [{ list: 'ordered' }, { list: 'bullet' }],
       ['emoji'],
-      ['image'],
     ],
     'emoji-toolbar': true,
     'emoji-textarea': false,
