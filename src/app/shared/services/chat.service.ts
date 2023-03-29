@@ -98,6 +98,7 @@ export class ChatService {
   closeMenu() {
     if (innerWidth < 620) {
       this.channelService.toggleMenu();
+      console.log('menu closed');
     }
   }
 }
