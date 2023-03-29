@@ -36,7 +36,7 @@
 - [CANCELLED] Weiteren Empfänger zu Chat hinzufügen
 - Dateigröße in mb und pixel begrenzen
 - Fehlermeldungen abfangen wenn man falsches PW bei Sign In oder schon benutzte Email bei Sign Up eingibt.
-- Thread aus der Thread-List im side module öffnen. (Nur side module oder komplett in den channel inkl side module?!)
+- [OK] Thread aus der Thread-List im side module öffnen. (Nur side module oder komplett in den channel inkl side module?!)
     - Anzahl der Antworten anzeigen
     - Eventuell timestamp von der letzten Antwort (sort function passt noch?)
     - Click function zum öffen auf der ganzen card?!
