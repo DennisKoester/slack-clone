@@ -270,12 +270,12 @@ p {
 }
 
 .imageUploaded {
-  max-width: 130px;
-}
+ 
 
-.imageUploaded img {
-  width: 100%;
-  height: auto;
+  img {
+    height: 100px;
+    margin: 5px;
+  }
 }
 
 .openedImgContainer {

@@ -10,7 +10,7 @@ mat-card {
 
   .card-header {
     display: flex;
-
+   
     img {
       margin: 0 10px 0 0;
       height: 50px;
@@ -67,3 +67,7 @@ mat-card {
 }
 
 
+.imagesContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
