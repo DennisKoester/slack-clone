@@ -1,1 +1,10 @@
 @import "../thread-card/thread-card.component.scss";
+
+.email {
+  text-decoration: none;
+  color: white;
+
+  &:hover {
+    color: rgb(155, 155, 155);
+  }
+}

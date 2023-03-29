@@ -1,18 +1,29 @@
 <mat-toolbar-row class="channel-toolbar">
   <div class="flex-ac">Threads List</div>
 </mat-toolbar-row>
-<app-thread-card
-  *ngFor="let thread of this.ownThreads"
-  [author]="usersService.currentUserData.displayName"
-  [userImage]="usersService.currentUserData.photoURL"
-  [message]="thread['content']"
-  [timestamp]="thread['timestamp']['seconds'] * 1000"
-  [class.d-none]="
-    !thread['content']
-      .toLowerCase()
-      .includes(channelService.searchValue.toLowerCase())
-  "
-></app-thread-card>
+<div *ngIf="this.ownThreads.length == 0" class="wrapper-msg">
+  <div class="welcome-msg">
+    <h1>Welcome to Slack!</h1>
+    <br /><br />
+    <p>Create your first thread to see it in this list.</p>
+  </div>
+</div>
+<div class="leftContent">
+  <div class="scroll-container">
+    <app-thread-card
+      *ngFor="let thread of this.ownThreads"
+      [author]="usersService.currentUserData.displayName"
+      [userImage]="usersService.currentUserData.photoURL"
+      [message]="thread['content']"
+      [timestamp]="thread['timestamp']['seconds'] * 1000"
+      [class.d-none]="
+        !thread['content']
+          .toLowerCase()
+          .includes(channelService.searchValue.toLowerCase())
+      "
+    ></app-thread-card>
+  </div>
+</div>
 
 <!--  [amountAnswers]="thread['MESSAGES'].length - 1"
   [lastAnswer]="

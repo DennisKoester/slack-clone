@@ -12,14 +12,14 @@ export class UserCardComponent {
   @Input() userImage: any;
   constructor(public sanitizer: DomSanitizer) {}
 
-  getSanitizedUrl() {
-    if (this.userImage) {
-      this.sanitizer.bypassSecurityTrustUrl(this.userImage);
-      // console.log('image', this.userImage);
-    } else {
-      this.userImage =
-        'https://material.angular.io/assets/img/examples/shiba2.jpg';
-    }
-    return this.userImage;
-  }
+  // getSanitizedUrl() {
+  //   if (this.userImage) {
+  //     this.sanitizer.bypassSecurityTrustUrl(this.userImage);
+  //     // console.log('image', this.userImage);
+  //   } else {
+  //     this.userImage =
+  //       'https://material.angular.io/assets/img/examples/shiba2.jpg';
+  //   }
+  //   return this.userImage;
+  // }
 }

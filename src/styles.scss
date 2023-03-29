@@ -252,6 +252,19 @@ p {
   overflow: hidden !important;
 }
 
+::-webkit-scrollbar-thumb {
+  background: #ababad;
+  -webkit-border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 // .big {
 //   height: 600px;
 //   width: 600px;
@@ -271,8 +284,6 @@ p {
 }
 
 .imageUploaded {
- 
-
   img {
     height: 100px;
     margin: 5px;

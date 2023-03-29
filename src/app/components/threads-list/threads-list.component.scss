@@ -1,1 +1,23 @@
 @import "../channel-module/channel-module.component.scss";
+
+.wrapper-msg {
+  width: 100%;
+  position: absolute;
+  top: 96px;
+}
+
+.welcome-msg {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 34px;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 34px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}

@@ -74,7 +74,7 @@ export class AuthenticationService {
         // this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            this.router.navigate(['home']);
+            this.router.navigate(['home/threads-list']);
           }
         });
       })
@@ -124,7 +124,7 @@ export class AuthenticationService {
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['home']);
+      this.router.navigate(['home/threads-list']);
     });
   }
 
@@ -132,7 +132,7 @@ export class AuthenticationService {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
-        this.router.navigate(['home']);
+        this.router.navigate(['home/threads-list']);
         this.SetUserData(result.user);
       })
       .catch((error) => {

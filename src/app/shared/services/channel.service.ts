@@ -140,7 +140,7 @@ export class ChannelService {
 
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
-    if (innerWidth > 620 && this.threadIsOpen === true) {
+    if (innerWidth < 800 && this.threadIsOpen === true) {
       this.threadIsOpen = false;
     }
   }

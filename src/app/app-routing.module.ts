@@ -15,6 +15,8 @@ import { ThreadSideModuleComponent } from './components/thread-side-module/threa
 import { UserListComponent } from './components/user-list/user-list.component';
 import { NewChatComponent } from './components/new-chat/new-chat.component';
 import { ThreadsListComponent } from './components/threads-list/threads-list.component';
+import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
+
 
 const routes: Routes = [
   // {path: '', component: AppComponent},
@@ -25,13 +27,33 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AngularFireAuthGuard],
     children: [
-      { path: 'threads-list', component: ThreadsListComponent },
-      { path: 'user-list', component: UserListComponent },
-      { path: 'channel/:id', component: ChannelModuleComponent },
-      { path: 'chat/:id', component: ChatModuleComponent },
-      { path: 'new-chat', component: NewChatComponent },
+      {
+        path: 'threads-list',
+        component: ThreadsListComponent,
+        canActivate: [AngularFireAuthGuard],
+      },
+      {
+        path: 'user-list',
+        component: UserListComponent,
+        canActivate: [AngularFireAuthGuard],
+      },
+      {
+        path: 'channel/:id',
+        component: ChannelModuleComponent,
+        canActivate: [AngularFireAuthGuard],
+      },
+      {
+        path: 'chat/:id',
+        component: ChatModuleComponent,
+        canActivate: [AngularFireAuthGuard],
+      },
+      {
+        path: 'new-chat',
+        component: NewChatComponent,
+        canActivate: [AngularFireAuthGuard],
+      },
     ],
   },
 ];

@@ -1,20 +1,25 @@
 <mat-toolbar-row class="channel-toolbar">
   <div class="flex-ac">User List</div>
 </mat-toolbar-row>
-<app-user-card
-  class="userCard"
-  *ngFor="let user of usersService.users"
-  [userName]="user['displayName']"
-  [email]="user['email']"
-  [userImage]="user['photoURL']"
-  [class.d-none]="
-    (!user['displayName']
-      .toLowerCase()
-      .includes(channelService.searchValue.toLowerCase()) &&
-      !user['email']
-        .toLowerCase()
-        .includes(channelService.searchValue.toLowerCase())) ||
-    user['uid'] == usersService.currentUserData.uid ||
-    user['uid'] == guestId
-  "
-></app-user-card>
+
+<div class="leftContent">
+  <div class="scroll-container">
+    <app-user-card
+      class="userCard"
+      *ngFor="let user of usersService.users"
+      [userName]="user['displayName']"
+      [email]="user['email']"
+      [userImage]="user['photoURL']"
+      [class.d-none]="
+        (!user['displayName']
+          .toLowerCase()
+          .includes(channelService.searchValue.toLowerCase()) &&
+          !user['email']
+            .toLowerCase()
+            .includes(channelService.searchValue.toLowerCase())) ||
+        user['uid'] == usersService.currentUserData.uid ||
+        user['uid'] == guestId
+      "
+    ></app-user-card>
+  </div>
+</div>

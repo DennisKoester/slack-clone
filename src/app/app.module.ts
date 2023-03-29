@@ -8,6 +8,7 @@ import { QuillModule } from 'ngx-quill';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
 //firebase neu
 // import { environment } from '../environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -17,6 +18,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 //firebase alt
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard'; 
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
@@ -121,7 +123,8 @@ import { ThreadsListComponent } from './components/threads-list/threads-list.com
     MatTooltipModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AngularFireAuthGuardModule,
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],

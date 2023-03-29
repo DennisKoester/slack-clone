@@ -60,19 +60,6 @@ span {
 //   scrollbar-width: none;
 // }
 
-::-webkit-scrollbar-thumb {
-  background: #ababad;
-  -webkit-border-radius: 5px;
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
 .open {
   display: block;
 }
@@ -98,4 +85,3 @@ span {
   background-color: rgba(255, 192, 203, 0.37);
   z-index: 300000;
 }
-

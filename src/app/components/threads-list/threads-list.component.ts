@@ -7,6 +7,7 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import * as GLOBAL_VAR from '../../shared/services/globals';
@@ -18,6 +19,7 @@ import * as GLOBAL_VAR from '../../shared/services/globals';
 })
 export class ThreadsListComponent {
   ownThreads = [];
+  currentUserData: any;
 
   constructor(
     private firestore: Firestore,
@@ -26,12 +28,18 @@ export class ThreadsListComponent {
   ) {}
 
   ngOnInit() {
-    this.getAllThreads();
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.currentUserData = user;
+        this.getAllThreads();
+      }
+    });
     this.usersService.getUsers();
   }
 
   async getAllThreads() {
-    const currentUser = this.usersService.currentUserData;
+    const currentUser = this.currentUserData;
     const allThreads = [];
     const threads = query(collectionGroup(this.firestore, 'THREADS'));
     const querySnapshot = await getDocs(threads);
@@ -54,11 +62,12 @@ export class ThreadsListComponent {
         this.ownThreads = allThreads;
       }
 
-      console.log('allThreads is', this.ownThreads);
-      console.log(
-        'threads is',
-        querySnapshot.docs[i].data()['MESSAGES'].length
-      );
+      console.log('ownThreads is', this.ownThreads);
+      console.log('allThreads is', allThreads);
+      // console.log(
+      // 'threads is',
+      // querySnapshot.docs[i].data()['MESSAGES'].length
+      // );
 
       // let thread = {
 
