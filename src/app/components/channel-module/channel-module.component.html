@@ -9,7 +9,8 @@
 <div
   class="leftContent"
   [routerLink]="['/home/channel/' + channelService.channelId]"
-  (click)="channelService.editorRef = 'channel'"
+  
+  (click)="channelService.showRef()"
 >
   <div #scrollContainer id="scrollContainer" class="scroll-container">
     <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
@@ -41,5 +42,8 @@
     >
     </app-thread-card>
   </div>
-  <app-text-editor class="editor-channel"></app-text-editor>
+  <div class="containerEditor" (click)="channelService.editorRef = 'channel'">
+    <app-text-editor></app-text-editor>
+    <div class="imagesContainerChannel" id="imagesChannel" *ngIf="imgUploadService.imgContainerChannel"></div>
+  </div>
 </div>

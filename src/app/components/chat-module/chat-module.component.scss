@@ -14,3 +14,15 @@
     overflow-x: auto;
     overflow-y: hidden;
 }
+
+.imagesContainerChat {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 35px;
+    left: 30px;
+    right: 80px;
+    height: 30px;
+    background-color: rgba(255, 192, 203, 0.37);
+    z-index: 300000;
+  }

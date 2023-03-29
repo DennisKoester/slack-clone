@@ -18,6 +18,7 @@
   class="leftContent"
   [routerLink]="['/home/chat/' + chatService.chatId]"
   (click)="channelService.editorRef = 'chat'"
+  (click)="channelService.showRef()"
 >
   <div id="scrollContainer" class="scroll-container">
     <app-thread-card
@@ -38,5 +39,8 @@
     >
     </app-thread-card>
   </div>
-  <app-text-editor class="editor-channel"></app-text-editor>
+  <div class="containerEditor">
+    <app-text-editor></app-text-editor>
+    <div class="imagesContainerChat" id="imagesChat" *ngIf="imgUploadService.imgContainerChat"></div>
+  </div>
 </div>

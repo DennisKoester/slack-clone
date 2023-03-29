@@ -249,7 +249,9 @@ p {
 // }
 
 .imageInMessage {
-  height: 150px;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 40px;
   width: auto;
   object-fit: cover;
 
@@ -285,4 +287,8 @@ p {
 
 .d-none {
   display: none;
+}
+
+.containerEditor {
+  position: relative;
 }

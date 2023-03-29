@@ -15,7 +15,8 @@
 <div
   id="scrollContainerThread"
   class="rightContent"
-  (click)="channelService.editorRef = 'thread'"
+  
+  (click)="channelService.showRef()"
 >
   <div *ngIf="threadService.thread">
     <app-thread-card
@@ -35,6 +36,10 @@
       "
     >
     </app-thread-card>
+    
   </div>
-  <app-text-editor></app-text-editor>
+  <div class="containerEditor" id="editorThread" (click)="changeRef()">
+    <app-text-editor></app-text-editor>
+    <div class="imagesContainerThread" id="imagesThread" *ngIf="imgUploadService.imgContainerThread"></div>
+  </div>
 </div>

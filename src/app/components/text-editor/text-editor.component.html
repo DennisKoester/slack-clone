@@ -1,10 +1,11 @@
 <div class="editor">
+
   <quill-editor (onEditorChanged)="getContent($event)" id="editor" [modules]="config"></quill-editor>
   <button class="send-btn" (click)="sendMessage()">
     <mat-icon matTooltip="send">send</mat-icon>
   </button>
   <div class="uploadImageEditor">
-    <label for="file" class="upload-file">
+    <label for="file" class="upload-file" >
       <i class="material-icons imageEditor">image</i>
     </label>
     <input
@@ -13,6 +14,7 @@
       id="file"
       accept=".png,.jpg"
     />
-</div>
+  </div>
+  
 </div>
 

@@ -23,6 +23,7 @@ import Quill from 'quill';
 import { Observable } from 'rxjs';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { MainComponent } from '../main/main.component';
+import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 
 @Component({
   selector: 'app-channel-module',
@@ -34,7 +35,8 @@ export class ChannelModuleComponent implements OnInit {
   constructor(
     public channelService: ChannelService,
     public navFunction: MainComponent,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public imgUploadService: ImageUploadService
   ) {}
 
   ngOnInit(): void {
@@ -46,4 +48,6 @@ export class ChannelModuleComponent implements OnInit {
   }
 
   ngAfterViewChecked() {}
+
+  
 }

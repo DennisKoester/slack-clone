@@ -1,7 +1,6 @@
 @import "../channel-module/channel-module.component.scss";
 
 .rightContent {
-  //   min-width: 350px;
   height: calc(100vh - 125px);
   overflow: auto;
 }
@@ -10,6 +9,14 @@
   cursor: pointer;
 }
 
-// .d-none {
-//   display: none;
-// }
+.imagesContainerThread {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 15px;
+  left: 30px;
+  right: 80px;
+  height: 30px;
+  background-color: rgba(255, 192, 203, 0.37);
+  z-index: 300000;
+}

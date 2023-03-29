@@ -163,4 +163,9 @@ export class ChannelService {
     this.image = image;
     this.status = !this.status;
   }
+
+
+  showRef() {
+    console.log(this.editorRef);
+  }
 }
