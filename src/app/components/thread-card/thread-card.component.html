@@ -21,7 +21,7 @@
       </div>
 
       <div [innerHTML]="message"></div>
-      <div [innerHTML]="image" (click)="channelService.openImg(image)"></div>
+      <div [innerHTML]="img" *ngFor="let img of image" (click)="channelService.openImg(img)"></div>
 
       <div *ngIf="thread && amountAnswers > 0" class="infoAnswers">
         <span class="amountAnswers" (click)="channelService.openThread(index)">
