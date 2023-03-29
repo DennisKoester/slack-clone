@@ -2,7 +2,6 @@
   position: relative;
   margin: 0 20px 20px;
   color: white;
-  background-color: rgb(31, 33, 37);
   z-index: 999;
 
   quill-editor {
@@ -68,7 +67,6 @@
   right: 15px;
   width: auto;
 }
-
 
 input[type="file"] {
   display: none;

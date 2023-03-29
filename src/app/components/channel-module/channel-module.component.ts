@@ -1,26 +1,5 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import {
-  collection,
-  Firestore,
-  orderBy,
-  onSnapshot,
-  query,
-  collectionData,
-  getFirestore,
-  DocumentData,
-  where,
-} from '@angular/fire/firestore';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
-import Quill from 'quill';
-import { Observable } from 'rxjs';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { MainComponent } from '../main/main.component';
 import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
@@ -30,24 +9,11 @@ import { ImageUploadService } from 'src/app/shared/services/image-upload.service
   templateUrl: './channel-module.component.html',
   styleUrls: ['./channel-module.component.scss'],
 })
-export class ChannelModuleComponent implements OnInit {
+export class ChannelModuleComponent {
   @ViewChild('scrollContainer') scrollContainer: ElementRef;
   constructor(
     public channelService: ChannelService,
     public navFunction: MainComponent,
-    private route: ActivatedRoute,
     public imgUploadService: ImageUploadService
   ) {}
-
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap) => {
-      this.channelService.channelId = paramMap.get('id');
-      this.channelService.openChannel(this.channelService.channelId);
-      console.log('This channelId is', this.channelService.channelId);
-    });
-  }
-
-  ngAfterViewChecked() {}
-
-  
 }

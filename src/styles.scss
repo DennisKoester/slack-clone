@@ -91,6 +91,14 @@ p {
   border-bottom-right-radius: 8px;
 }
 
+.ql-toolbar.ql-snow {
+  background-color: rgb(31, 33, 37);
+}
+
+.ng-star-inserted.ql-container.ql-snow {
+  background-color: rgb(31, 33, 37);
+}
+
 .ql-snow.ql-toolbar button:hover,
 .ql-snow .ql-toolbar button:hover,
 .ql-snow.ql-toolbar button:focus,
@@ -283,11 +291,11 @@ p {
   z-index: 10000;
 }
 
-.openedImg img{
+.openedImg img {
   height: 100%;
   width: 100%;
-  max-height: calc(100vH - 50px);
-  max-width: calc(100vW - 50px);
+  max-height: calc(100vh - 50px);
+  max-width: calc(100vw - 50px);
   &:hover {
     cursor: unset;
     filter: unset;

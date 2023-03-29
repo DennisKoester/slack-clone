@@ -13,15 +13,6 @@ export class ChatModuleComponent {
   constructor(
     public chatService: ChatService,
     public channelService: ChannelService,
-    private route: ActivatedRoute,
     public imgUploadService: ImageUploadService
   ) {}
-
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap) => {
-      this.chatService.chatId = paramMap.get('id');
-      this.chatService.openChat(this.chatService.chatId);
-      console.log('This channelId is', this.chatService.chatId);
-    });
-  }
 }

@@ -17,7 +17,6 @@
       [membersCount]="chat['USERS'].length"
       [routerLink]="['/home/chat/' + chat.chatId]"
       routerLinkActive="activeLink"
-    
       (click)="chatService.openChat(chat.chatId)"
     ></app-chatlist-item>
 
