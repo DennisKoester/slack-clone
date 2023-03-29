@@ -37,15 +37,28 @@ export class ThreadsListComponent {
     const querySnapshot = await getDocs(threads);
 
     for (let i = 0; i < querySnapshot.docs.length; i++) {
-      const authorId = querySnapshot.docs[i].data()['MESSAGES'][0]['author'];
+      // const authorId = querySnapshot.docs[i].data()['MESSAGES'][0]['author'];
 
-      if (authorId == currentUser.uid) {
-        allThreads.push(querySnapshot.docs[i].data()['MESSAGES'][0]);
+      for (
+        let j = 0;
+        j < querySnapshot.docs[i].data()['MESSAGES'].length;
+        j++
+      ) {
+        if (
+          querySnapshot.docs[i].data()['MESSAGES'][j]['author'] ==
+          currentUser.uid
+        ) {
+          allThreads.push(querySnapshot.docs[i].data()['MESSAGES'][0]);
+        }
         this.sortOwnThreads(allThreads);
         this.ownThreads = allThreads;
       }
 
       console.log('allThreads is', this.ownThreads);
+      console.log(
+        'threads is',
+        querySnapshot.docs[i].data()['MESSAGES'].length
+      );
 
       // let thread = {
 

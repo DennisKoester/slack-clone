@@ -1,29 +1,31 @@
-<h1 mat-dialog-title>Settings <span *ngIf="guest">(disabled for guest-user)</span></h1>
+<h1 mat-dialog-title>
+  Settings <span *ngIf="guest">(disabled for guest-user)</span>
+</h1>
 <div class="dialog-wrapper">
   <div class="dialog-left" mat-dialog-content id="dialog-content">
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="name" [disabled]="guest">
+      <input matInput [(ngModel)]="name" [disabled]="guest" />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="email" [disabled]="guest">
+      <input matInput [(ngModel)]="email" [disabled]="guest" />
     </mat-form-field>
   </div>
 
   <div class="dialog-right">
     <div class="profilePic">
       <div>
-        <img src="{{ imgUploadService.newPhotoURL ??
-                  '../assets/img/profile_icon.png' }}" class="profile_image" />
+        <img
+          src="{{
+            imgUploadService.newPhotoURL ?? '../assets/img/profile_icon.png'
+          }}"
+          class="profile_image"
+        />
       </div>
-      <!-- <div *ngIf="downloadURL | async; let url"> -->
-      <!-- <img [src]="url" class="picture" /> -->
-      <!-- </div> -->
     </div>
 
     <div class="button-upload">
-     
       <label for="file" class="upload-file">
         <i class="material-icons">cloud_upload</i>
         Upload image
@@ -33,7 +35,7 @@
         (change)="imgUploadService.uploadImage($event)"
         type="file"
         id="file"
-        accept=".png,.jpg"
+        accept=".png,.jpg,.jpeg,.svg"
       />
     </div>
   </div>
@@ -41,7 +43,13 @@
 
 <div class="dialog-btns">
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close (click)="imgUploadService.cancelUpload()">Cancel</button>
+    <button
+      mat-button
+      mat-dialog-close
+      (click)="imgUploadService.cancelUpload()"
+    >
+      Cancel
+    </button>
     <button mat-button cdkFocusInitial (click)="updateUser()" mat-dialog-close>
       Save
     </button>

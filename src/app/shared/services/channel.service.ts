@@ -45,6 +45,7 @@ export class ChannelService {
   imagesOriginal: any = [];
   image;
   status: boolean = false;
+  scrollCounter = 0;
 
   constructor(
     private firestore: Firestore,
@@ -57,6 +58,7 @@ export class ChannelService {
   }
 
   async openChannel(channelId: string) {
+    this.scrollCounter = 0;
     this.channelId = channelId;
     if (this.openedChannel == false) {
       if (this.unsubChannel) {
@@ -71,7 +73,7 @@ export class ChannelService {
       await this.showChannelName(channelId);
       await this.getThreads(channelId);
       this.openedChannel = false;
-      this.scrollToBottom('channel'); // TODO not working
+      // this.scrollToBottom('channel'); // TODO not working
     }
   }
 
@@ -163,7 +165,6 @@ export class ChannelService {
     this.image = image;
     this.status = !this.status;
   }
-
 
   showRef() {
     console.log(this.editorRef);

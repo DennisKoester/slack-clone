@@ -116,7 +116,7 @@ currDoc;
         await this.createMessage('chat');
         this.emptyImgContainerChat();
       }
-      this.channelService.scrollToBottom(this.channelService.editorRef);
+      // this.channelService.scrollToBottom(this.channelService.editorRef);
       this.resetVariables();
       this.removeStyleToEditor();
     }
