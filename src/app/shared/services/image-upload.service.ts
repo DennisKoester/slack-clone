@@ -19,7 +19,8 @@ export class ImageUploadService implements OnInit {
   imgContainerThread: boolean = false;
   imgContainerChat: boolean = false;
   imgInEditor: boolean = false;
-
+  loading: boolean = false;
+  
   constructor(
     private afStorage: AngularFireStorage,
     private usersService: UsersService,
@@ -58,6 +59,7 @@ export class ImageUploadService implements OnInit {
   async uploadImageEditor(event: any) {
     const file = event.target.files[0];
     if (file) {
+      this.loading = true;
       this.imgInEditor = true;
       const randomId = Math.random().toString(36).substring(2);
       const path = `imagesEditor/${file.name + randomId}`;
@@ -65,7 +67,9 @@ export class ImageUploadService implements OnInit {
       const url = await uploadTask.ref.getDownloadURL();
       this.addStyleToEditor();
       this.imageURL.push(`<img class="imageInMessage" src="${url}">`);
-      this.addImagesToEditor();
+      await this.addImagesToEditor();
+      console.log('test');
+      this.loading = false;
     }
   }
 

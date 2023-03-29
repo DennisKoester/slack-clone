@@ -36,6 +36,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 //components
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -117,7 +118,8 @@ import { ThreadsListComponent } from './components/threads-list/threads-list.com
     QuillModule.forRoot(),
     MatMenuModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
