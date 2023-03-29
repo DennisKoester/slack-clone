@@ -261,6 +261,11 @@ p {
   }
 }
 
+.imageUploaded img{
+  width: 130px !important;
+  height: auto;
+}
+
 .openedImgContainer {
   position: absolute;
   left: 0;
@@ -275,10 +280,10 @@ p {
 }
 
 .openedImg img{
-  height:  600px;
-  width: auto;
-  
-
+  height: 100%;
+  width: 100%;
+  max-height: calc(100vH - 50px);
+  max-width: calc(100vW - 50px);
   &:hover {
     cursor: unset;
     filter: unset;
@@ -291,4 +296,14 @@ p {
 
 .containerEditor {
   position: relative;
+}
+
+@media (max-width: 1000px) {
+
+  .openedImg img{
+    height: 100%;
+    width: 100%;
+    
+}
+
 }

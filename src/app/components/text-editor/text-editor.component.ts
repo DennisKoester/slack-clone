@@ -206,7 +206,7 @@ currDoc;
         timestamp: timestamp,
         author: currentUserId,
         content: this.textToUpload ?? '',
-        image: this.imgUploadService.imageURL ?? '',
+        image: this.imgUploadService.imageURL ?? ''
       }),
     });
   }
