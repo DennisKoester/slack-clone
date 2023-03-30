@@ -3,13 +3,13 @@
     <div id="select-chatmembers">
       <span>To:&nbsp;</span>
       <div id="sel-user-container">
-        <div class="sel-user-item" *ngFor="let name of selectedUserNames; let i = index">
+        <div class="sel-user-item" *ngFor="let name of chatService.selectedUserNames; let i = index">
           <span>{{ name }}</span>
           <mat-icon class="sel-user-close" fontIcon="close" (click)="deselectUser(i)"></mat-icon>
         </div>
       </div>
     </div>
-    <button mat-raised-button color="primary" (click)="createChat()" [disabled]="selectedUserIds.length == 0">Create chat</button>
+    <button mat-raised-button color="primary" (click)="createChat()" [disabled]="chatService.selectedUserIds.length == 0">Create chat</button>
   </div>
   <div class="searchbar">
     <input
@@ -42,7 +42,7 @@
       !user['email']
         .toLowerCase()
         .includes(chatService.searchUser.toLowerCase())) ||
-      selectedUserIds.includes(user['uid']) ||
+      chatService.selectedUserIds.includes(user['uid']) ||
       user['uid'] == usersService.currentUserData.uid ||
       user['uid'] == guestId
     "

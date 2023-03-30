@@ -17,8 +17,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./new-chat.component.scss'],
 })
 export class NewChatComponent {
-  selectedUserIds: Array<string> = [];
-  selectedUserNames: Array<string> = [];
+  // selectedUserIds: Array<string> = [];
+  // selectedUserNames: Array<string> = [];
   chatsCollection: CollectionReference;
   guestId = GLOBAL_VAR.guest;
 
@@ -35,17 +35,17 @@ export class NewChatComponent {
   }
 
   selectUser(uid: string, name: string) {
-    if (this.selectedUserIds.length >= 5) {
+    if (this.chatService.selectedUserIds.length >= 5) {
       this.infoMaxMembersReached.open('Maximum of 5 chat members reached.', 'OK', {duration: 4000});
       return;
     }
-    this.selectedUserIds.push(uid);
-    this.selectedUserNames.push(name);
+    this.chatService.selectedUserIds.push(uid);
+    this.chatService.selectedUserNames.push(name);
   }
 
   deselectUser(index: number) {
-    this.selectedUserIds.splice(index, 1);
-    this.selectedUserNames.splice(index, 1);
+    this.chatService.selectedUserIds.splice(index, 1);
+    this.chatService.selectedUserNames.splice(index, 1);
   }
 
   async createChat() {
@@ -57,7 +57,7 @@ export class NewChatComponent {
 
   async writeToDatabase() {
     const chatData = {
-      USERS: [this.usersService.currentUserData.uid, ...this.selectedUserIds],
+      USERS: [this.usersService.currentUserData.uid, ...this.chatService.selectedUserIds],
       MESSAGES: [],
     };
 
@@ -67,6 +67,8 @@ export class NewChatComponent {
 
     console.log('New Chat: ', chatDoc.id);
 
+    this.chatService.selectedUserIds = [];
+    this.chatService.selectedUserNames = [];
     return chatDoc.id;
   }
 }

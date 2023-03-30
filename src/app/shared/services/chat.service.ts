@@ -27,6 +27,8 @@ export class ChatService {
   searchUser: string = '';
   activeChat: boolean = false;
   unsubscribe: Unsubscribe;
+  selectedUserIds: Array<string> = [];
+  selectedUserNames: Array<string> = [];
 
   constructor(
     private firestore: Firestore,
@@ -100,5 +102,12 @@ export class ChatService {
       this.channelService.toggleMenu();
       console.log('menu closed');
     }
+  }
+
+  selectUserForChat(uid: string, displayName: string) {
+    this.selectedUserIds = [];
+    this.selectedUserNames = [];
+    this.selectedUserIds.push(uid);
+    this.selectedUserNames.push(displayName);
   }
 }
