@@ -284,6 +284,10 @@ p {
   border-radius: 15px;
   border: 1px solid #575757;
   cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.15);
+  }
 }
 
 // .deleteImageInMessage {
@@ -308,11 +312,12 @@ p {
 
 .imageUploaded {
   img {
- 
     height: 100px;
     width: auto;
     margin: 5px;
+   
   }
+
 }
 
 .openedImgContainer {

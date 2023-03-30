@@ -65,6 +65,7 @@ export class ImageUploadService implements OnInit {
       const url = await uploadTask.ref.getDownloadURL();
       this.addStyleToEditor();
       this.imageURL.push(`<img class="imageInMessage" src="${url}">`);
+      console.log(this.imageURL);
       await this.showImagesContainer();
       this.loading = false;
     }
