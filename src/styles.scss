@@ -270,16 +270,17 @@ p {
 //   width: 600px;
 // }
 
-.imageInMessageContainer {
-  position: relative;
-  height: 58px;
-  width: 58px;
-  margin: 2px;
-}
+// .imageInMessageContainer {
+//   position: relative;
+//   height: 58px;
+//   width: 58px;
+//   margin: 5px;
+// }
 
 .imageInMessage {
   height: 58px;
   width: 58px;
+  margin: 2px;
   object-fit: cover;
   border-radius: 15px;
   border: 1px solid #575757;
