@@ -75,13 +75,13 @@ export class ImageUploadService implements OnInit {
   addStyleToEditor() {
     if (this.channelService.editorRef == 'channel') {
       let editor = document.querySelector('#editorChannel .ql-editor') as HTMLElement;
-      editor.style.padding = '12px 15px 90px 15px';
+      editor.style.padding = '12px 15px 100px 15px';
     } else if (this.channelService.editorRef == 'thread') {
       let editor = document.querySelector('#editorThread .ql-editor') as HTMLElement;
-      editor.style.padding = '12px 15px 90px 15px';
+      editor.style.padding = '12px 15px 100px 15px';
     } else if (this.channelService.editorRef == 'chat') {
       let editor = document.querySelector('#editorChat .ql-editor') as HTMLElement;
-      editor.style.padding = '12px 15px 90px 15px';
+      editor.style.padding = '12px 15px 100px 15px';
     }
   }
 
