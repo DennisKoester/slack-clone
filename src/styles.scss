@@ -187,7 +187,6 @@ p {
 .ql-editor {
   max-height: 250px;
   min-height: 80px;
-  // padding: 12px 15px 70px 15px;
 }
 
 .editor[_ngcontent-bbk-c150] quill-editor[_ngcontent-bbk-c150] {
@@ -271,12 +270,12 @@ p {
 // }
 
 .imageInMessage {
-  margin-left: 5px;
-  margin-right: 5px;
-  height: 60px;
-  width: 60px;
+  margin: 2px;
+  height: 58px;
+  width: 58px;
   object-fit: cover;
   border-radius: 15px;
+  border: 1px solid #575757;
 
   &:hover {
     cursor: pointer;
@@ -289,7 +288,6 @@ p {
     height: 100px;
     width: auto;
     margin: 5px;
-    // border-radius: 0;
   }
 }
 
@@ -324,3 +322,4 @@ p {
 .containerEditor {
   position: relative;
 }
+

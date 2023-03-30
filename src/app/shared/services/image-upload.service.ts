@@ -7,6 +7,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { UsersService } from './users.service';
 import { ChannelService } from './channel.service';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,17 +16,14 @@ export class ImageUploadService implements OnInit {
   newPhotoURL: any;
   newURLdefined: boolean = false;
   imageURL: any = [];
-  imgContainerChannel: boolean = false;
-  imgContainerThread: boolean = false;
-  imgContainerChat: boolean = false;
-  imgInEditor: boolean = false;
   loading: boolean = false;
   maxAmount: boolean = false;
 
   constructor(
     private afStorage: AngularFireStorage,
     private usersService: UsersService,
-    public channelService: ChannelService
+    public channelService: ChannelService,
+
   ) {}
 
   ngOnInit() {}
@@ -59,35 +57,36 @@ export class ImageUploadService implements OnInit {
   
   async uploadImageEditor(event: any) {
     const file = event.target.files[0];
-    if (file && this.imageURL.length < 3) {
-      this.maxAmount = false;
+    if (file && this.imageURL.length < 4) {
       this.loading = true;
-      this.imgInEditor = true;
       const randomId = Math.random().toString(36).substring(2);
       const path = `imagesEditor/${file.name + randomId}`;
       const uploadTask = await this.afStorage.upload(path, file);
       const url = await uploadTask.ref.getDownloadURL();
       this.addStyleToEditor();
-      this.imageURL.push(`<img class="imageInMessage" src="${url}">`);
-      await this.addImagesToEditor();
+      await this.imageURL.push(`<img class="imageInMessage" src="${url}">`);
+      console.log('array',this.imageURL)
+      await this.showImagesContainer();
       this.loading = false;
-    }
-    if (this.imageURL > 2) {
-      this.maxAmount = true;
     }
   }
 
 
   addStyleToEditor() {
-    let editor = document.querySelectorAll('.ql-editor');
-    for (let i = 0; i < editor.length; i++) {
-      const element = editor[i] as HTMLElement;
-      element.style.padding = '12px 15px 70px 15px';
+    if (this.channelService.editorRef == 'channel') {
+      let editor = document.querySelector('#editorChannel .ql-editor') as HTMLElement;
+      editor.style.padding = '12px 15px 90px 15px';
+    } else if (this.channelService.editorRef == 'thread') {
+      let editor = document.querySelector('#editorThread .ql-editor') as HTMLElement;
+      editor.style.padding = '12px 15px 90px 15px';
+    } else if (this.channelService.editorRef == 'chat') {
+      let editor = document.querySelector('#editorChat .ql-editor') as HTMLElement;
+      editor.style.padding = '12px 15px 90px 15px';
     }
   }
 
 
-  addImagesToEditor() {
+  showImagesContainer() {
     if (this.channelService.editorRef == 'channel') {
       document.getElementById('imagesChannel').style.zIndex = '3000';
     } else if (this.channelService.editorRef == 'thread') {

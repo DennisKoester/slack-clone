@@ -18,7 +18,7 @@ import { ImageUploadService } from 'src/app/shared/services/image-upload.service
 export class ChannelModuleComponent implements AfterViewChecked, OnInit{
   @ViewChild('scrollContainer') scrollContainer: ElementRef;
 
-
+  
 
   constructor(
     public channelService: ChannelService,
@@ -28,6 +28,8 @@ export class ChannelModuleComponent implements AfterViewChecked, OnInit{
 
   ngOnInit(){
   }
+
+  
 
   ngAfterViewChecked() {
     if (this.channelService.scrollCounter == 0) {

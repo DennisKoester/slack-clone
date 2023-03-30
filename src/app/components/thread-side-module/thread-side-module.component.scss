@@ -12,13 +12,16 @@
 .imagesContainerThread {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   position: absolute;
-  bottom: 15px;
+  bottom: 6px;
   left: 30px;
   right: 80px;
-  height: 60px;
-  background-color: rgba(255, 192, 203, 0.37);
+  height: 80px;
+  background-color:#1f2125;
   z-index: 0;
+  overflow-x: hidden !important;
+  overflow: auto;
 
   div {
     height: 60px;

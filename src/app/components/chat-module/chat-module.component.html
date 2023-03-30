@@ -40,7 +40,7 @@
     >
     </app-thread-card>
   </div>
-  <div class="containerEditor">
+  <div class="containerEditor" id="editorChat">
     <app-text-editor></app-text-editor>
     <div class="imagesContainerChat" id="imagesChat">
       <div *ngFor="let image of this.imgUploadService.imageURL" [innerHTML]="image" (click)="this.imgUploadService.deleteImage(image)"></div>

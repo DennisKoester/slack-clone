@@ -149,14 +149,11 @@ export class ChannelService {
     let container = '';
     if (ref == 'chat' || ref == 'channel') {
       container = 'scrollContainer';
-      console.log(ref);
     } else if (ref == 'thread') {
       container = 'scrollContainerThread';
-      console.log('threadcontainer');
     }
     const scrollContainer = document.getElementById(container);
     try {
-      console.log('scrollBottom');
       scrollContainer.scrollTop = scrollContainer.scrollHeight;
     } catch (err) {}
   }
@@ -167,6 +164,6 @@ export class ChannelService {
   }
 
   showRef() {
-    console.log(this.editorRef);
+    
   }
 }

@@ -104,8 +104,6 @@ export class TextEditorComponent implements OnInit {
 
   async sendMessage() {
     if (this.textToUpload || this.imgUploadService.imageURL.length>0) {
-      console.log('text',this.textToUpload);
-      console.log('img',this.imgUploadService.imageURL);
       if (this.channelService.editorRef == 'channel') {
         await this.createThread();
         this.emptyImgContainerChannel();
@@ -118,15 +116,6 @@ export class TextEditorComponent implements OnInit {
       }
       this.resetVariables();
       this.removeStyleFromEditor();
-    }
-  }
-
-
-  removeStyleFromEditor() {
-    let editor = document.querySelectorAll('.ql-editor');
-    for (let i = 0; i < editor.length; i++) {
-      const element = editor[i] as HTMLElement;
-      element.style.padding = '12px 15px 12px 15px';
     }
   }
 
@@ -172,7 +161,6 @@ export class TextEditorComponent implements OnInit {
 
   emptyImgContainerChannel() {
     if (document.getElementById('imagesChannel')) {
-      document.getElementById('imagesChannel').innerHTML = '';
       document.getElementById('imagesChannel').style.zIndex = '0';
     }
   }
@@ -225,7 +213,6 @@ export class TextEditorComponent implements OnInit {
 
   emptyImgContainerThread() {
     if (document.getElementById('imagesThread')) {
-      document.getElementById('imagesThread').innerHTML = '';
       document.getElementById('imagesThread').style.zIndex = '0';
     }
     
@@ -244,7 +231,6 @@ export class TextEditorComponent implements OnInit {
  
   emptyImgContainerChat() {
     if (document.getElementById('imagesChat')) {
-      document.getElementById('imagesChat').innerHTML = '';
       document.getElementById('imagesChat').style.zIndex = '0';
     }
   }
@@ -252,9 +238,15 @@ export class TextEditorComponent implements OnInit {
 
   resetVariables() {
     this.imgUploadService.imageURL = [];
-    this.imgUploadService.imgContainerChannel = false;
-    this.imgUploadService.imgContainerChat = false;
-    this.imgUploadService.imgContainerThread = false;
+  }
+
+
+  removeStyleFromEditor() {
+    let editor = document.querySelectorAll('.ql-editor');
+    for (let i = 0; i < editor.length; i++) {
+      const element = editor[i] as HTMLElement;
+      element.style.padding = '12px 15px 12px 15px';
+    }
   }
 
 
