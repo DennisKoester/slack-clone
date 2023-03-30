@@ -43,7 +43,7 @@
     </app-thread-card>
   </div>
   <div class="containerEditor" id="editorChannel" (click)="channelService.editorRef = 'channel'">
-    <app-text-editor></app-text-editor>
+    <app-text-editor editorRef="channel"></app-text-editor>
     <div class="imagesContainerChannel" id="imagesChannel">
       <div *ngFor="let image of this.imgUploadService.imageURL" [innerHTML]="image" (click)="this.imgUploadService.deleteImage(image)"></div>
     </div>
