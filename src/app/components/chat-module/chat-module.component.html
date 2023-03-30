@@ -43,7 +43,10 @@
   <div class="containerEditor" id="editorChat">
     <app-text-editor editorRef="chat"></app-text-editor>
     <div class="imagesContainerChat" id="imagesChat">
-      <img src="{{image}}" *ngFor="let image of this.imgUploadService.imageURL" (click)="this.imgUploadService.deleteImage(image)" class="imageInMessage">
+      <div *ngFor="let image of this.imgUploadService.imageURL" class="imageEditorContainer">
+        <img src="{{image}}" class="imageInMessage" (click)="this.channelService.openImg(image)">
+        <img src="/assets/img/x.svg" class="deleteImage" (click)="this.imgUploadService.deleteImage(image)">
+      </div>
     </div>
   </div>
 </div>

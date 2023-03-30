@@ -291,34 +291,35 @@ p {
   }
 }
 
-// .deleteImageInMessage {
-//  position: absolute;
-//  top: 0;
-//  right: 0;
-//  bottom: 0;
-//  left: 0;
-//  height: 58px;
-//  width: 58px;
-//  transform: scale(0.5);
-//  background-color: rgba(255, 255, 255, 0.692);
-//  border-radius: 29px;
-//  opacity: 0;
-//  filter: invert(0.2);
+.imageEditorContainer {
+  position: relative;
+}
 
-//   &:hover {
-//     opacity: 1;
-//     cursor: pointer;
-//  }
-// }
+.deleteImage {
+ position: absolute;
+ top: 0;
+ right: 0;
+ height: 20px;
+ width: 20px;
+ background-color: rgba(255, 255, 255, 0.692);
+ border-radius: 29px;
+ opacity: 1;
+ filter: invert(0.2);
+ cursor: pointer;
+
+ &:hover {
+    filter: brightness(1.15);
+  }
+}
 
 .imageUploaded {
-  
-    height: 100px !important;
-    width: auto !important;
-    margin: 5px;
-   
-  
+  height: 100px !important;
+  width: auto !important;
+  margin: 5px;
 
+  &:hover {
+    filter: brightness(1.15);
+  }
 }
 
 .openedImgContainer {
@@ -340,6 +341,7 @@ p {
   max-height: calc(100vh - 50px);
   max-width: calc(100vw - 50px);
   border-radius: 10px;
+  
   &:hover {
     cursor: unset;
     filter: unset;
