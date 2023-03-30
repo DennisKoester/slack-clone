@@ -75,9 +75,10 @@ input[type="file"] {
 .imageEditor {
   font-size: 18px;
   cursor: pointer;
+  filter: invert(0.7);
 
   &:hover {
-    filter: invert(1);
+    filter: invert(0);
   }
 }
 
