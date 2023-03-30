@@ -278,46 +278,37 @@ p {
 }
 
 .imageInMessage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
   height: 58px;
   width: 58px;
   object-fit: cover;
   border-radius: 15px;
   border: 1px solid #575757;
   cursor: pointer;
-  
-  &:hover + .deleteImageInMessage {
-    opacity: 1; 
-  }
 }
 
-.deleteImageInMessage {
- position: absolute;
- top: 0;
- right: 0;
- bottom: 0;
- left: 0;
- height: 58px;
- width: 58px;
- transform: scale(0.5);
- background-color: rgba(255, 255, 255, 0.692);
- border-radius: 29px;
- opacity: 0;
- filter: invert(0.2);
+// .deleteImageInMessage {
+//  position: absolute;
+//  top: 0;
+//  right: 0;
+//  bottom: 0;
+//  left: 0;
+//  height: 58px;
+//  width: 58px;
+//  transform: scale(0.5);
+//  background-color: rgba(255, 255, 255, 0.692);
+//  border-radius: 29px;
+//  opacity: 0;
+//  filter: invert(0.2);
 
-  &:hover {
-    opacity: 1;
-    cursor: pointer;
- }
-}
+//   &:hover {
+//     opacity: 1;
+//     cursor: pointer;
+//  }
+// }
 
 .imageUploaded {
   img {
-    position: relative;
+ 
     height: 100px;
     width: auto;
     margin: 5px;
