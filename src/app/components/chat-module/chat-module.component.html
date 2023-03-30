@@ -42,6 +42,8 @@
   </div>
   <div class="containerEditor">
     <app-text-editor></app-text-editor>
-    <div class="imagesContainerChat" id="imagesChat"></div>
+    <div class="imagesContainerChat" id="imagesChat">
+      <div *ngFor="let image of this.imgUploadService.imageURL" [innerHTML]="image" (click)="this.imgUploadService.deleteImage(image)"></div>
+    </div>
   </div>
 </div>

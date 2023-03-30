@@ -44,6 +44,8 @@
   </div>
   <div class="containerEditor" (click)="channelService.editorRef = 'channel'">
     <app-text-editor></app-text-editor>
-    <div class="imagesContainerChannel" id="imagesChannel"></div>
+    <div class="imagesContainerChannel" id="imagesChannel">
+      <div *ngFor="let image of this.imgUploadService.imageURL" [innerHTML]="image" (click)="this.imgUploadService.deleteImage(image)"></div>
+    </div>
   </div>
 </div>

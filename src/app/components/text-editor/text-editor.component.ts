@@ -49,16 +49,16 @@ export class TextEditorComponent implements OnInit {
   ) {}
 
   textToUpload;
-  imagesToUpload;
-
-  editorAuthor = '';
+  // imagesToUpload;
+  // editorAuthor = '';
   channelId;
   event: any = [];
   threads;
-  threadId;
-  thread;
-  quill;
-  errorMessage: boolean = false;
+  currDoc;
+  // threadId;
+  // thread;
+  // quill;
+  // errorMessage: boolean = false;
   config = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
@@ -69,7 +69,6 @@ export class TextEditorComponent implements OnInit {
     'emoji-toolbar': true,
     'emoji-textarea': false,
     'emoji-shortname': true,
-
     keyboard: {
       bindings: {
         ctrl_enter: {
@@ -83,16 +82,15 @@ export class TextEditorComponent implements OnInit {
     },
   };
 
-  newImage;
+  // newImage;
+// base64Str;
+  // canvas;
+  // maxW;
+  // maxH;
+  // ctx;
+  // status: boolean = false;
+  // button;
 
-base64Str;
-  canvas;
-  maxW;
-  maxH;
-  ctx;
-  status: boolean = false;
-  button;
-currDoc;
 
   ngOnInit() {}
 
@@ -105,7 +103,9 @@ currDoc;
 
 
   async sendMessage() {
-    if (this.textToUpload || this.imgUploadService.imageURL) {
+    if (this.textToUpload || this.imgUploadService.imageURL.length>0) {
+      console.log('text',this.textToUpload);
+      console.log('img',this.imgUploadService.imageURL);
       if (this.channelService.editorRef == 'channel') {
         await this.createThread();
         this.emptyImgContainerChannel();
@@ -116,14 +116,13 @@ currDoc;
         await this.createMessage('chat');
         this.emptyImgContainerChat();
       }
-      // this.channelService.scrollToBottom(this.channelService.editorRef);
       this.resetVariables();
-      this.removeStyleToEditor();
+      this.removeStyleFromEditor();
     }
   }
 
 
-  removeStyleToEditor() {
+  removeStyleFromEditor() {
     let editor = document.querySelectorAll('.ql-editor');
     for (let i = 0; i < editor.length; i++) {
       const element = editor[i] as HTMLElement;
@@ -174,6 +173,7 @@ currDoc;
   emptyImgContainerChannel() {
     if (document.getElementById('imagesChannel')) {
       document.getElementById('imagesChannel').innerHTML = '';
+      document.getElementById('imagesChannel').style.zIndex = '0';
     }
   }
 
@@ -226,7 +226,9 @@ currDoc;
   emptyImgContainerThread() {
     if (document.getElementById('imagesThread')) {
       document.getElementById('imagesThread').innerHTML = '';
+      document.getElementById('imagesThread').style.zIndex = '0';
     }
+    
   }
 
 
@@ -243,6 +245,7 @@ currDoc;
   emptyImgContainerChat() {
     if (document.getElementById('imagesChat')) {
       document.getElementById('imagesChat').innerHTML = '';
+      document.getElementById('imagesChat').style.zIndex = '0';
     }
   }
 

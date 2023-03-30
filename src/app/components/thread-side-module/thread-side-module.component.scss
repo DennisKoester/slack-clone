@@ -18,5 +18,9 @@
   right: 80px;
   height: 60px;
   background-color: rgba(255, 192, 203, 0.37);
-  z-index: 300000;
+  z-index: 0;
+
+  div {
+    height: 60px;
+  }
 }

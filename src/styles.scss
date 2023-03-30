@@ -274,8 +274,9 @@ p {
   margin-left: 5px;
   margin-right: 5px;
   height: 60px;
-  width: auto;
+  width: 60px;
   object-fit: cover;
+  border-radius: 15px;
 
   &:hover {
     cursor: pointer;
@@ -286,7 +287,9 @@ p {
 .imageUploaded {
   img {
     height: 100px;
+    width: auto;
     margin: 5px;
+    // border-radius: 0;
   }
 }
 

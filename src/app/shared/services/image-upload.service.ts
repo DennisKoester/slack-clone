@@ -20,7 +20,8 @@ export class ImageUploadService implements OnInit {
   imgContainerChat: boolean = false;
   imgInEditor: boolean = false;
   loading: boolean = false;
-  
+  maxAmount: boolean = false;
+
   constructor(
     private afStorage: AngularFireStorage,
     private usersService: UsersService,
@@ -58,7 +59,8 @@ export class ImageUploadService implements OnInit {
   
   async uploadImageEditor(event: any) {
     const file = event.target.files[0];
-    if (file) {
+    if (file && this.imageURL.length < 3) {
+      this.maxAmount = false;
       this.loading = true;
       this.imgInEditor = true;
       const randomId = Math.random().toString(36).substring(2);
@@ -66,16 +68,13 @@ export class ImageUploadService implements OnInit {
       const uploadTask = await this.afStorage.upload(path, file);
       const url = await uploadTask.ref.getDownloadURL();
       this.addStyleToEditor();
-      this.imageURL.push(`<img class="imageInMessage" (click)="this.imgUploadService.delete()" id=${url} src="${url}">`);
+      this.imageURL.push(`<img class="imageInMessage" src="${url}">`);
       await this.addImagesToEditor();
-      console.log('image loaded');
       this.loading = false;
     }
-  }
-
-
-  delete() {
-    console.log('delete');
+    if (this.imageURL > 2) {
+      this.maxAmount = true;
+    }
   }
 
 
@@ -89,17 +88,45 @@ export class ImageUploadService implements OnInit {
 
 
   addImagesToEditor() {
-    let image = this.imageURL[this.imageURL.length-1];
     if (this.channelService.editorRef == 'channel') {
-      document.querySelector('#imagesChannel').innerHTML += image;
+      document.getElementById('imagesChannel').style.zIndex = '3000';
     } else if (this.channelService.editorRef == 'thread') {
-      document.querySelector('#imagesThread').innerHTML += image;
+      document.getElementById('imagesThread').style.zIndex = '3000';
     } else if (this.channelService.editorRef == 'chat') {
-      document.querySelector('#imagesChat').innerHTML += image;
+      document.getElementById('imagesChat').style.zIndex = '3000';
     }
   }
 
 
+  deleteImage(image) {
+    for (let i = 0; i < this.imageURL.length; i++) {
+      if (this.imageURL[i] == image) this.imageURL.splice(i,1);
+    }
+    this.removeImageContainer();
+    this.removeStyleFromEditor();
+  }
+
+
+  removeImageContainer() {
+    if (this.channelService.editorRef == 'channel' && this.imageURL.length == 0) {
+      document.getElementById('imagesChannel').style.zIndex = '0';
+    } else if (this.channelService.editorRef == 'thread' && this.imageURL.length == 0) {
+      document.getElementById('imagesThread').style.zIndex = '0';
+    } else if (this.channelService.editorRef == 'chat' && this.imageURL.length == 0) {
+      document.getElementById('imagesChat').style.zIndex = '0';
+    }
+  }
+
+
+  removeStyleFromEditor() {
+    let editor = document.querySelectorAll('.ql-editor');
+    if (this.imageURL.length == 0) {
+      for (let i = 0; i < editor.length; i++) {
+        const element = editor[i] as HTMLElement;
+        element.style.padding = '12px 15px 12px 15px';
+      }
+    }
+  }
 
 
 }

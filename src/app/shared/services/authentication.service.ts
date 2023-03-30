@@ -87,6 +87,10 @@ export class AuthenticationService {
       });
   }
 
+
+
+
+
   // Send email verfificaiton when new user sign up
   // SendVerificationMail() {
   //   return this.afAuth.currentUser
