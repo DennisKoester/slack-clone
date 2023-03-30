@@ -11,13 +11,6 @@ mat-card {
   .card-header {
     display: flex;
    
-    img {
-      margin: 0 10px 0 0;
-      height: 50px;
-      width: 50px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
     .author {
       font-size: 15px;
       font-weight: 500;
@@ -29,6 +22,15 @@ mat-card {
       color: gray;
     }
   }
+
+.imageUser {
+  margin: 0 10px 0 0;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 
 .infoAnswers {
   margin-top: 5px;
