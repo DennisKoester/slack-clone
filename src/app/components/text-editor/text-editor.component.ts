@@ -37,6 +37,8 @@ import { ImageUploadService } from 'src/app/shared/services/image-upload.service
   styleUrls: ['./text-editor.component.scss'],
 })
 export class TextEditorComponent implements OnInit {
+  @Input() editorRef: string; // TEST : assign editor to component
+
   constructor(
     private route: ActivatedRoute,
     private firestore: Firestore,
@@ -104,13 +106,16 @@ export class TextEditorComponent implements OnInit {
 
   async sendMessage() {
     if (this.textToUpload || this.imgUploadService.imageURL.length>0) {
-      if (this.channelService.editorRef == 'channel') {
+      // if (this.channelService.editorRef == 'channel') {
+      if (this.editorRef == 'channel') {
         await this.createThread();
         this.emptyImgContainerChannel();
-      } else if (this.channelService.editorRef == 'thread') {
+      // } else if (this.channelService.editorRef == 'thread') {
+      } else if (this.editorRef == 'thread') {
         await this.createMessage('thread');
         this.emptyImgContainerThread();
-      } else if (this.channelService.editorRef == 'chat') {
+      // } else if (this.channelService.editorRef == 'chat') {
+      } else if (this.editorRef == 'chat') {
         await this.createMessage('chat');
         this.emptyImgContainerChat();
       }
