@@ -2,6 +2,6 @@
 <app-main></app-main>
 
 <div class="openedImgContainer" [ngClass]="channelService.status ? 'openedImgContainer' : 'd-none'" (click)="channelService.status = false">
-  <div class="openedImg" [innerHTML]="channelService.image"></div>
+  <img src="{{channelService.image}}"class="openedImg">
 </div>
 

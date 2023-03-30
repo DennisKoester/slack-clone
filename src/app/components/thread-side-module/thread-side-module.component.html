@@ -41,7 +41,7 @@
   <div class="containerEditor" id="editorThread" (click)="changeRef()">
     <app-text-editor editorRef="thread"></app-text-editor>
     <div class="imagesContainerThread" id="imagesThread">
-      <div *ngFor="let image of this.imgUploadService.imageURL" [innerHTML]="image" (click)="this.imgUploadService.deleteImage(image)"></div>
+      <div *ngFor="let image of this.imgUploadService.imageURL"><img src="{{image}}" (click)="this.imgUploadService.deleteImage(image)" class="imageInMessage"></div>
     </div>
   </div>
 </div>
