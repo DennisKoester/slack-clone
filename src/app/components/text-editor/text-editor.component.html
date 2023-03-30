@@ -12,7 +12,7 @@
       (change)="imgUploadService.uploadImageEditor($event)"
       type="file"
       id="file"
-      accept=".png,.jpg"
+      accept=".png,.jpg,.jpeg,.svg"
     />
   </div>
   <mat-spinner class="loadingSpinner" [diameter]="40" *ngIf="imgUploadService.loading"></mat-spinner>
