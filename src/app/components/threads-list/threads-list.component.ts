@@ -9,6 +9,7 @@ import {
 } from '@angular/fire/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { ChannelService } from 'src/app/shared/services/channel.service';
+import { ChatService } from 'src/app/shared/services/chat.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import * as GLOBAL_VAR from '../../shared/services/globals';
 
@@ -20,11 +21,13 @@ import * as GLOBAL_VAR from '../../shared/services/globals';
 export class ThreadsListComponent {
   ownThreads = [];
   currentUserData: any;
+  amountAnswers = [];
 
   constructor(
     private firestore: Firestore,
     public usersService: UsersService,
-    public channelService: ChannelService
+    public channelService: ChannelService,
+    public chatService: ChatService
   ) {}
 
   ngOnInit() {
@@ -45,8 +48,6 @@ export class ThreadsListComponent {
     const querySnapshot = await getDocs(threads);
 
     for (let i = 0; i < querySnapshot.docs.length; i++) {
-      // const authorId = querySnapshot.docs[i].data()['MESSAGES'][0]['author'];
-
       for (
         let j = 0;
         j < querySnapshot.docs[i].data()['MESSAGES'].length;
@@ -56,16 +57,17 @@ export class ThreadsListComponent {
           querySnapshot.docs[i].data()['MESSAGES'][j]['author'] ==
           currentUser.uid
         ) {
-          allThreads.push(querySnapshot.docs[i].data()['MESSAGES'][0]);
+          const thread = querySnapshot.docs[i].data()['MESSAGES'][0];
+          const amount = querySnapshot.docs[i].data()['MESSAGES'].length;
+          thread['author'] = this.chatService.getUserMetaData(thread['author']);
+          this.amountAnswers.push(amount);
+          allThreads.push(thread);
+
+          console.log('Amount is', this.amountAnswers);
         }
         this.sortOwnThreads(allThreads);
         this.ownThreads = allThreads;
       }
-
-      console.log(
-        'threads is',
-        querySnapshot.docs[i].data()['MESSAGES'].length
-      );
 
       // let thread = {
 
@@ -74,7 +76,6 @@ export class ThreadsListComponent {
       //   timestamp:
       // }
     }
-    console.log('allThreads is', allThreads);
   }
 
   sortOwnThreads(threads) {

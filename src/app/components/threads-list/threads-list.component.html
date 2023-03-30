@@ -11,13 +11,19 @@
 <div class="leftContent">
   <div class="scroll-container">
     <app-thread-card
-      *ngFor="let thread of this.ownThreads"
-      [author]="usersService.currentUserData.displayName"
-      [userImage]="usersService.currentUserData.photoURL"
+      [thread]="true"
+      *ngFor="let thread of this.ownThreads; index as i"
+      [author]="thread['author']['displayName']"
+      [userImage]="thread['author']['userImage']"
       [message]="thread['content']"
+      [image]="thread['image']"
+      [amountAnswers]="this.amountAnswers[i]"
       [timestamp]="thread['timestamp']['seconds'] * 1000"
       [class.d-none]="
         !thread['content']
+          .toLowerCase()
+          .includes(channelService.searchValue.toLowerCase()) &&
+        !thread['author']['displayName']
           .toLowerCase()
           .includes(channelService.searchValue.toLowerCase())
       "
