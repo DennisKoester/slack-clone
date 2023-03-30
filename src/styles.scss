@@ -337,10 +337,11 @@ p {
 
 .openedImg {
   height: 100%;
-  // width: 100%;
+  width: 100%;
   max-height: calc(100vh - 50px);
   max-width: calc(100vw - 50px);
   border-radius: 10px;
+  
   
   &:hover {
     cursor: unset;
