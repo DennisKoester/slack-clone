@@ -3,8 +3,8 @@
     - [OK] Button "New Chat" zu jedem User hinzufügen
     - [OK] Logged-in User nicht in Liste zeigen
 - [SLACK Anfrage, dann wäre Threads z.B. möglich]Beim Aufrufen der Seite entweder eigene Threadliste zeigen oder einen Channel aktivieren
-- Bei Auswahl von Channel/Chat: "subscribe" in jeweils anderer Sektion aufheben/löschen
-- "subscribe" auf Thread löschen beim Schließen des Threads
+- [OK] Bei Auswahl von Channel/Chat: "subscribe" in jeweils anderer Sektion aufheben/löschen
+- [OK] "subscribe" auf Thread löschen beim Schließen des Threads
 - [OK] Einloggen als Testuser
     - Settings für Testuser deaktivieren
     - Globale Variable isGuestUser = true|false einrichten
