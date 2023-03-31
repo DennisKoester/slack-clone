@@ -75,13 +75,16 @@ export class ImageUploadService implements OnInit {
   addStyleToEditor() {
     if (this.channelService.editorRef == 'channel') {
       let editor = document.querySelector('#editorChannel .ql-editor') as HTMLElement;
-      editor.style.padding = '12px 15px 100px 15px';
+      editor.style.margin = '0 0 90px 0';
+      editor.style.padding = '12px 15px 0 15px';
     } else if (this.channelService.editorRef == 'thread') {
       let editor = document.querySelector('#editorThread .ql-editor') as HTMLElement;
-      editor.style.padding = '12px 15px 100px 15px';
+      editor.style.margin = '0 0 90px 0';
+      editor.style.padding = '12px 15px 0 15px';
     } else if (this.channelService.editorRef == 'chat') {
       let editor = document.querySelector('#editorChat .ql-editor') as HTMLElement;
-      editor.style.padding = '12px 15px 100px 15px';
+      editor.style.margin = '0 0 90px 0';
+      editor.style.padding = '12px 15px 0 15px';
     }
   }
 
@@ -123,6 +126,7 @@ export class ImageUploadService implements OnInit {
       for (let i = 0; i < editor.length; i++) {
         const element = editor[i] as HTMLElement;
         element.style.padding = '12px 15px 12px 15px';
+        element.style.margin = '0';
       }
     }
   }

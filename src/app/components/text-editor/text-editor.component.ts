@@ -251,6 +251,7 @@ export class TextEditorComponent implements OnInit {
     for (let i = 0; i < editor.length; i++) {
       const element = editor[i] as HTMLElement;
       element.style.padding = '12px 15px 12px 15px';
+      element.style.margin = '0';
     }
   }
 
