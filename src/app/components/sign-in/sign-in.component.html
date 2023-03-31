@@ -14,6 +14,7 @@
             [formControl]="emailFormControl"
             placeholder="name@work-email.com"
             #userEmail
+            (keydown)="focusPassword($event)"
           />
           <mat-error
             *ngIf="
@@ -37,6 +38,7 @@
             placeholder="password"
             #userPassword
             id="userPassword"
+            (keydown)="signUp($event)"
           />
           <img src="assets/img/eye.svg" (click)="showPassword()" class="showPassword">
           <mat-error *ngIf="passwordFormControl.hasError('required')">

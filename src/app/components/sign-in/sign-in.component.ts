@@ -18,14 +18,25 @@ export class SignInComponent implements OnInit{
 
 
   ngOnInit() {
-    document.addEventListener('keyup', (e) => {
-      if (e.code === 'Enter') {
-       document.getElementById('buttonSignIn').click();
-      }
-    })
   }
 
 
+  focusPassword(event) {
+    console.log(event.key);
+    if (event.key === "Enter") {
+      document.getElementById('userPassword').focus();
+    }
+  }
+
+
+  signUp(event) {
+    console.log(event.key);
+    if (event.key === "Enter") {
+      document.getElementById('buttonSignUp').click();
+    }
+  }
+
+  
   showPassword() {
     this.password = !this.password;
   }

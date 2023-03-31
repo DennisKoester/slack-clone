@@ -17,11 +17,22 @@ export class SignUpComponent {
   constructor(public authenticationService: AuthenticationService) {}
 
   ngOnInit() {
-    document.addEventListener('keyup', (e) => {
-      if (e.code === 'Enter') {
-       document.getElementById('buttonSignUp').click();
-      }
-    })
+    
+  }
+
+  focusPassword(event) {
+    console.log(event.key);
+    if (event.key === "Enter") {
+      document.getElementById('userPassword').focus();
+    }
+  }
+
+
+  signUp(event) {
+    console.log(event.key);
+    if (event.key === "Enter") {
+      document.getElementById('buttonSignUp').click();
+    }
   }
 
 

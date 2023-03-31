@@ -101,11 +101,14 @@ export class ImageUploadService implements OnInit {
 
 
   deleteImage(image) {
+    this.afStorage.refFromURL(image).delete();
     for (let i = 0; i < this.imageURL.length; i++) {
       if (this.imageURL[i] == image) this.imageURL.splice(i,1);
     }
     this.removeImageContainer();
     this.removeStyleFromEditor();
+
+
   }
 
 
