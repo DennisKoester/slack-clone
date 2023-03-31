@@ -57,14 +57,18 @@ export class ThreadsListComponent {
           currentUser.uid
         ) {
           const threadId = querySnapshot.docs[i].id;
+          const channelId = querySnapshot.docs[i].ref.parent.parent.id;
           const firstThreadMessage = querySnapshot.docs[i].data()['MESSAGES'][0];
           const amount = querySnapshot.docs[i].data()['MESSAGES'].length;
           const lastAnswer = querySnapshot.docs[i].data()['MESSAGES'][amount - 1]['timestamp'];
+
+          // console.log('doc.parent.id',querySnapshot.docs[i].ref.parent.parent.id);
           
           firstThreadMessage['author'] = this.chatService.getUserMetaData(firstThreadMessage['author']);
           // this.amountAnswers.push(amount);
           this.ownThreads.push({
-            id: threadId,
+            threadId: threadId,
+            channelId: channelId,
             message: firstThreadMessage,
             lastAnswer: lastAnswer,
             amount: amount

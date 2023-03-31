@@ -13,7 +13,7 @@
     <app-thread-card
       [thread]="true"
       *ngFor="let thread of ownThreads"
-      [index]="thread['id']"
+      [index]="thread['threadId']"
       [author]="thread['message']['author']['displayName']"
       [userImage]="thread['message']['author']['userImage']"
       [message]="thread['message']['content']"
