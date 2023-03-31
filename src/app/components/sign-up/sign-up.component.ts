@@ -21,7 +21,6 @@ export class SignUpComponent {
   }
 
   focusPassword(event) {
-    console.log(event.key);
     if (event.key === "Enter") {
       document.getElementById('userPassword').focus();
     }
@@ -29,7 +28,6 @@ export class SignUpComponent {
 
 
   signUp(event) {
-    console.log(event.key);
     if (event.key === "Enter") {
       document.getElementById('buttonSignUp').click();
     }

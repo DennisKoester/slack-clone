@@ -22,7 +22,6 @@ export class SignInComponent implements OnInit{
 
 
   focusPassword(event) {
-    console.log(event.key);
     if (event.key === "Enter") {
       document.getElementById('userPassword').focus();
     }
@@ -30,13 +29,12 @@ export class SignInComponent implements OnInit{
 
 
   signUp(event) {
-    console.log(event.key);
     if (event.key === "Enter") {
-      document.getElementById('buttonSignUp').click();
+      document.getElementById('buttonSignIn').click();
     }
   }
 
-  
+
   showPassword() {
     this.password = !this.password;
   }
