@@ -38,37 +38,43 @@ export class ThreadsListComponent {
         this.getAllThreads();
       }
     });
-    this.usersService.getUsers();
+    // this.usersService.getUsers();
+    // this.usersService.usersCollListener.subscribe({
+    //   next: (users) => null,
+    // });
   }
 
   async getAllThreads() {
     const currentUser = this.currentUserData;
-    const allThreads = [];
+    // const allThreads = [];
     const threads = query(collectionGroup(this.firestore, 'THREADS'));
     const querySnapshot = await getDocs(threads);
 
     for (let i = 0; i < querySnapshot.docs.length; i++) {
-      for (
-        let j = 0;
-        j < querySnapshot.docs[i].data()['MESSAGES'].length;
-        j++
-      ) {
+      for (let j = 0; j < querySnapshot.docs[i].data()['MESSAGES'].length; j++) {
         if (
           querySnapshot.docs[i].data()['MESSAGES'][j]['author'] ==
           currentUser.uid
         ) {
-          const thread = querySnapshot.docs[i].data()['MESSAGES'][0];
+          const threadId = querySnapshot.docs[i].id;
+          const firstThreadMessage = querySnapshot.docs[i].data()['MESSAGES'][0];
           const amount = querySnapshot.docs[i].data()['MESSAGES'].length;
-          thread['author'] = this.chatService.getUserMetaData(thread['author']);
-          this.amountAnswers.push(amount);
-          allThreads.push(thread);
+          const lastAnswer = querySnapshot.docs[i].data()['MESSAGES'][amount - 1]['timestamp'];
+          
+          firstThreadMessage['author'] = this.chatService.getUserMetaData(firstThreadMessage['author']);
+          // this.amountAnswers.push(amount);
+          this.ownThreads.push({
+            id: threadId,
+            message: firstThreadMessage,
+            lastAnswer: lastAnswer,
+            amount: amount
+          });
 
-          console.log('Amount is', this.amountAnswers);
+          // console.log('querySnapshot.docs', querySnapshot.docs[i].id);
+          // console.log('Amount is', this.amountAnswers);
         }
-        this.sortOwnThreads(allThreads);
-        this.ownThreads = allThreads;
       }
-
+      
       // let thread = {
 
       //   author:,
@@ -76,13 +82,16 @@ export class ThreadsListComponent {
       //   timestamp:
       // }
     }
+    this.sortOwnThreads(this.ownThreads);
+    // this.ownThreads = allThreads;
+    console.log('ownThreads', this.ownThreads);
   }
 
   sortOwnThreads(threads) {
     threads.sort((thread_1: any, thread_2: any) => {
       return (
-        parseFloat(thread_2['timestamp']['seconds']) -
-        parseFloat(thread_1['timestamp']['seconds'])
+        parseFloat(thread_2['message']['timestamp']['seconds']) -
+        parseFloat(thread_1['message']['timestamp']['seconds'])
       );
     });
   }
