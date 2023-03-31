@@ -59,8 +59,8 @@ export class ThreadsListComponent {
           const threadId = querySnapshot.docs[i].id;
           const channelId = querySnapshot.docs[i].ref.parent.parent.id;
           const firstThreadMessage = querySnapshot.docs[i].data()['MESSAGES'][0];
-          const amount = querySnapshot.docs[i].data()['MESSAGES'].length;
-          const lastAnswer = querySnapshot.docs[i].data()['MESSAGES'][amount - 1]['timestamp'];
+          const amount = querySnapshot.docs[i].data()['MESSAGES'].length - 1;
+          const lastAnswer = querySnapshot.docs[i].data()['MESSAGES'][amount]['timestamp'];
 
           // console.log('doc.parent.id',querySnapshot.docs[i].ref.parent.parent.id);
           
@@ -76,6 +76,7 @@ export class ThreadsListComponent {
 
           // console.log('querySnapshot.docs', querySnapshot.docs[i].id);
           // console.log('Amount is', this.amountAnswers);
+          break;
         }
       }
       

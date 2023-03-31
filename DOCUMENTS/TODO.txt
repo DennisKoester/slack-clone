@@ -1,3 +1,4 @@
+- Bild-Upload in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
 - [OK?] currentUser überall aus usersService.currentUser auslesen
 - [OK] User-Liste
     - [OK] Button "New Chat" zu jedem User hinzufügen
@@ -8,8 +9,8 @@
 - [OK] Einloggen als Testuser
     - Settings für Testuser deaktivieren
     - Globale Variable isGuestUser = true|false einrichten
-- [SLACK ERROR] Eigene Threads anzeigen (Auflistung)
-- Channel privat/öffentlich?
+- [OK] Eigene Threads anzeigen (Auflistung)
+- [CANCELLED] Channel privat/öffentlich?
     - Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
 - [OK] Neuen Chat (persönliche Nachrichten) starten
     - [OK] Button "New Chat" unter Chatliste (wie bei Channels)

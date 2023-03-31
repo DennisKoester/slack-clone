@@ -10,7 +10,7 @@
         </div>
         <div
           *ngIf="thread"
-          (click)="channelService.openThread(index)"
+          (click)="channelService.openThread(channelId, threadId)"
           class="chatBubble"
         >
           <mat-icon
@@ -25,7 +25,7 @@
         <img *ngFor="let img of image" src="{{img}}" (click)="channelService.openImg(img)" class="imageUploaded imageInMessage">
       </div>
       <div *ngIf="thread && amountAnswers > 0" class="infoAnswers">
-        <span class="amountAnswers" (click)="channelService.openThread(index)">
+        <span class="amountAnswers" (click)="channelService.openThread(channelId, threadId)">
           {{ amountAnswers }}
           {{ amountAnswers > 1 ? "answers" : "answer" }}</span
         >

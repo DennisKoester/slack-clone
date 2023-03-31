@@ -124,7 +124,7 @@ export class ChannelService {
     });
   }
 
-  async openThread(i) {
+  async openThread(channelId, threadId) {
     if (innerWidth <= 800) {
       this.menuCollapsed = true;
     }
@@ -132,10 +132,7 @@ export class ChannelService {
       this.channelIsOpen = false;
     }
     this.threadIsOpen = true;
-    this.threadService.getThreadMessages(
-      this.channelId,
-      this.threads[i]['threadId']
-    );
+    this.threadService.getThreadMessages(channelId,threadId);
   }
 
   toggleMenu() {

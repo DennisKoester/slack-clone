@@ -13,7 +13,11 @@ export class ThreadCardComponent implements OnInit {
   @Input() message: string;
   @Input() image: string;
   @Input() timestamp: any;
-  @Input() index: number;
+
+  // @Input() index: number; // ******** Deprecated, kept just while testing
+  @Input() channelId: string;
+  @Input() threadId: string;
+
   @Input() thread: boolean = false;
   @Input() amountAnswers: number;
   @Input() lastAnswer;
@@ -30,15 +34,15 @@ export class ThreadCardComponent implements OnInit {
 
 
   async ngOnInit() {
-    await this.sendIndex();
+    // await this.sendIndex();
     await this.convert();
 
   }
    
 
-  sendIndex() {
-    this.channelService.setValue(this.index);
-  }
+  // sendIndex() {
+  //   this.channelService.setValue(this.index);
+  // }
 
   convert() {
     const parser = new DOMParser();

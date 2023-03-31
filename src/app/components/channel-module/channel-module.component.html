@@ -19,7 +19,11 @@
       [thread]="true"
       class="threadCard"
       *ngFor="let thread of channelService.threads; index as i"
-      [index]="i"
+
+      
+      [channelId]="channelService.channelId"
+      [threadId]="thread.threadId"
+
       [amountAnswers]="thread['MESSAGES'].length - 1"
       [lastAnswer]="
         thread['MESSAGES'][thread['MESSAGES'].length - 1]['timestamp'][
