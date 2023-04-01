@@ -1,4 +1,6 @@
-- Bild-Upload in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
+- Bild-Upload:
+    - Bild erst nach Bestätigung durch User in DB hochladen, davor in Array speichern
+    - in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
 - [OK?] currentUser überall aus usersService.currentUser auslesen
 - [OK] User-Liste
     - [OK] Button "New Chat" zu jedem User hinzufügen
