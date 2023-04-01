@@ -1,19 +1,31 @@
+- Fehlermeldungen abfangen wenn man falsches PW bei Sign In oder schon benutzte Email bei Sign Up eingibt.
+- Dateigröße in mb und pixel begrenzen
+- Functions global anlegen
+- Sanitizer Warning in der Console durch die angehängten Bilder
 - Bild-Upload:
     - Bild erst nach Bestätigung durch User in DB hochladen, davor in Array speichern
     - in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
+    
+- [in Arbeit] Threadliste
+    - Thread aus der Thread-List im side module öffnen.
+    - [OK] Anzahl der Antworten anzeigen
+    - [OK] Eventuell timestamp von der letzten Antwort (sort function passt noch?)
+    - Subscribe auf Threads-List
+- [SLACK Anfrage, dann wäre Threads z.B. möglich]Beim Aufrufen der Seite entweder eigene Threadliste zeigen oder einen Channel aktivieren
+    - Derzeit Fehlermeldung bei Aufruf der Threadliste bei Appstart
+- [in Arbeit] scrollToBottom auch wenn ein Channel via click geöffnet wird. 
+
 - [OK?] currentUser überall aus usersService.currentUser auslesen
 - [OK] User-Liste
     - [OK] Button "New Chat" zu jedem User hinzufügen
     - [OK] Logged-in User nicht in Liste zeigen
-- [SLACK Anfrage, dann wäre Threads z.B. möglich]Beim Aufrufen der Seite entweder eigene Threadliste zeigen oder einen Channel aktivieren
+    - [OK] Gast-User nicht in Liste anzeigen
 - [OK] Bei Auswahl von Channel/Chat: "subscribe" in jeweils anderer Sektion aufheben/löschen
 - [OK] "subscribe" auf Thread löschen beim Schließen des Threads
 - [OK] Einloggen als Testuser
     - Settings für Testuser deaktivieren
     - Globale Variable isGuestUser = true|false einrichten
 - [OK] Eigene Threads anzeigen (Auflistung)
-- [CANCELLED] Channel privat/öffentlich?
-    - Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
 - [OK] Neuen Chat (persönliche Nachrichten) starten
     - [OK] Button "New Chat" unter Chatliste (wie bei Channels)
 - [OK] Chats auflisten
@@ -36,13 +48,7 @@
 - [OK] Ein-/Ausloggen
 - [OK] Anmelden
 - [OK] Passwort zurücksetzen
+
 - [CANCELLED] Weiteren Empfänger zu Chat hinzufügen
-- Dateigröße in mb und pixel begrenzen
-- Fehlermeldungen abfangen wenn man falsches PW bei Sign In oder schon benutzte Email bei Sign Up eingibt.
-- [Arbeit] Thread aus der Thread-List im side module öffnen. (Nur side module oder komplett in den channel inkl side module?!)
-    - Anzahl der Antworten anzeigen
-    - Eventuell timestamp von der letzten Antwort (sort function passt noch?)
-    - Subscribe auf Threads-List
-- [Arbeit] scrollToBottom auch wenn ein Channel via click geöffnet wird. 
-- Functions global anlegen
-- Sanitizer Warning in der Console durch die angehängten Bilder
+- [CANCELLED] Channel privat/öffentlich?
+    - Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
