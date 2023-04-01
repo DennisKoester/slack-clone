@@ -10,6 +10,7 @@ import { addDoc, collection } from '@firebase/firestore';
 import {
   arrayUnion,
   collectionData,
+  CollectionReference,
   doc,
   documentId,
   Firestore,
@@ -37,26 +38,15 @@ import { ImageUploadService } from 'src/app/shared/services/image-upload.service
   styleUrls: ['./text-editor.component.scss'],
 })
 export class TextEditorComponent implements OnInit {
-  @Input() editorRef: string; // TEST : assign editor to component
+  @Input() editorRef: string;
 
-  constructor(
-    private route: ActivatedRoute,
-    private firestore: Firestore,
-    public authenticationService: AuthenticationService,
-    public channelService: ChannelService,
-    public threadService: ThreadService,
-    public chatService: ChatService,
-    public usersService: UsersService,
-    public imgUploadService: ImageUploadService
-  ) {}
-
-  textToUpload;
+  textToUpload: any;
   // imagesToUpload;
   // editorAuthor = '';
-  channelId;
+  channelId: string;
   event: any = [];
-  threads;
-  currDoc;
+  threads: CollectionReference<any>;
+  currDoc: any;
   // threadId;
   // thread;
   // quill;
@@ -84,6 +74,7 @@ export class TextEditorComponent implements OnInit {
     },
   };
 
+  
   // newImage;
 // base64Str;
   // canvas;
@@ -93,6 +84,16 @@ export class TextEditorComponent implements OnInit {
   // status: boolean = false;
   // button;
 
+  constructor(
+    private route: ActivatedRoute,
+    private firestore: Firestore,
+    public authenticationService: AuthenticationService,
+    public channelService: ChannelService,
+    public threadService: ThreadService,
+    public chatService: ChatService,
+    public usersService: UsersService,
+    public imgUploadService: ImageUploadService
+  ) {}
 
   ngOnInit() {}
 
@@ -106,15 +107,12 @@ export class TextEditorComponent implements OnInit {
 
   async sendMessage() {
     if (this.textToUpload || this.imgUploadService.imageURL.length>0) {
-      // if (this.channelService.editorRef == 'channel') {
       if (this.editorRef == 'channel') {
         await this.createThread();
         this.emptyImgContainerChannel();
-      // } else if (this.channelService.editorRef == 'thread') {
       } else if (this.editorRef == 'thread') {
         await this.createMessage('thread');
         this.emptyImgContainerThread();
-      // } else if (this.channelService.editorRef == 'chat') {
       } else if (this.editorRef == 'chat') {
         await this.createMessage('chat');
         this.emptyImgContainerChat();
@@ -255,5 +253,11 @@ export class TextEditorComponent implements OnInit {
     }
   }
 
+  // IN PROGRESS: Create ref for image upload
+  setImageUploadEditorRef() {
+    if (!this.imgUploadService.imgUploadEditorRef)
+      this.imgUploadService.imgUploadEditorRef = this.editorRef;
 
+    console.log(`editorRef: ${this.editorRef} | imgUploadEditorRef: ${this.imgUploadService.imgUploadEditorRef}`);
+  }
 }

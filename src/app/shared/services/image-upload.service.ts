@@ -19,6 +19,9 @@ export class ImageUploadService implements OnInit {
   loading: boolean = false;
   maxAmount: boolean = false;
 
+  // IN PROGRESS: Create ref for image upload
+  imgUploadEditorRef: string = '';
+
   constructor(
     private afStorage: AngularFireStorage,
     private usersService: UsersService,
@@ -69,6 +72,10 @@ export class ImageUploadService implements OnInit {
       await this.showImagesContainer();
       this.loading = false;
     }
+
+    // IN PROGRESS: Create ref for image upload
+    this.imgUploadEditorRef = '';
+    console.log('imgUplEditRef reset @uploadImageEditor()')
   }
 
 
@@ -108,7 +115,9 @@ export class ImageUploadService implements OnInit {
     this.removeImageContainer();
     this.removeStyleFromEditor();
 
-
+    // IN PROGRESS: Create ref for image upload
+    this.imgUploadEditorRef = '';
+    console.log('imgUplEditRef reset @deleteImage()')
   }
 
 

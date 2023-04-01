@@ -4,7 +4,7 @@
   <button class="send-btn" (click)="sendMessage()">
     <mat-icon matTooltip="send">send</mat-icon>
   </button>
-  <div class="uploadImageEditor">
+  <div class="uploadImageEditor" (click)="setImageUploadEditorRef()">
     <label for="file" class="upload-file" >
       <i class="material-icons imageEditor" matTooltip="add up to 4 images">image</i>
     </label>
@@ -15,6 +15,6 @@
       accept=".png,.jpg,.jpeg,.svg"
     />
   </div>
-  <mat-spinner class="loadingSpinner" [diameter]="40" *ngIf="imgUploadService.loading"></mat-spinner>
+  <mat-spinner class="loadingSpinner" [diameter]="40" *ngIf="imgUploadService.loading && editorRef == imgUploadService.imgUploadEditorRef"></mat-spinner>
 </div>
 
