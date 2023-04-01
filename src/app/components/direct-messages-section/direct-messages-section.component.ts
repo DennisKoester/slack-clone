@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { ChatService } from 'src/app/shared/services/chat.service';
+import { GlobalFunctionsService } from 'src/app/shared/services/global-functions.service';
 
 @Component({
   selector: 'app-direct-messages-section',
@@ -23,7 +24,8 @@ export class DirectMessagesSectionComponent {
     public firestore: Firestore,
     private usersService: UsersService,
     public router: Router,
-    public chatService: ChatService) {
+    public chatService: ChatService,
+    public globalFunctions: GlobalFunctionsService) {
     this.usersService.usersCollListener.subscribe({
       next: (users) => null
     });

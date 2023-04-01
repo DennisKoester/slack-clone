@@ -10,6 +10,7 @@ import {
 import { TextEditorComponent } from 'src/app/components/text-editor/text-editor.component';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { ChannelService } from './channel.service';
+import { GlobalFunctionsService } from './global-functions.service';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,8 @@ export class AuthenticationService {
     private router: Router,
     public ngZone: NgZone,
     public afs: AngularFirestore,
-    public channelService: ChannelService
+    public channelService: ChannelService,
+    public globalFunctions: GlobalFunctionsService
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -165,7 +167,7 @@ export class AuthenticationService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['']);
-      this.channelService.threadIsOpen = false;
+      this.globalFunctions.threadIsOpen = false;
     });
   }
 }
