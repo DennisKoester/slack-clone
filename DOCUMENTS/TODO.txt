@@ -1,13 +1,17 @@
 - Fehlermeldungen abfangen wenn man falsches PW bei Sign In oder schon benutzte Email bei Sign Up eingibt.
 - Dateigröße in mb und pixel begrenzen
+<<<<<<< HEAD
 - Functions global anlegen
 - [OK?] Sanitizer Warning in der Console durch die angehängten Bilder
+=======
+- Sanitizer Warning in der Console durch die angehängten Bilder
+>>>>>>> bd9e2431f1a8e286f1b236ef67d384ec14ee77eb
 - Bild-Upload:
     - [OK] Bild erst nach Bestätigung durch User in DB hochladen, davor in Array speichern
     - in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
-    
+- [in Arbeit] Loader für Threads-List
 - [in Arbeit] Threadliste
-    - Thread aus der Thread-List im side module öffnen.
+    - [OK] Thread aus der Thread-List im side module öffnen.
     - [OK] Anzahl der Antworten anzeigen
     - [OK] Eventuell timestamp von der letzten Antwort (sort function passt noch?)
     - Subscribe auf Threads-List
@@ -16,6 +20,7 @@
 - [in Arbeit] scrollToBottom auch wenn ein Channel via click geöffnet wird. 
 
 - [OK?] currentUser überall aus usersService.currentUser auslesen
+- [OK]Functions global anlegen
 - [OK] User-Liste
     - [OK] Button "New Chat" zu jedem User hinzufügen
     - [OK] Logged-in User nicht in Liste zeigen
