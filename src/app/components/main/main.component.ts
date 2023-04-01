@@ -41,10 +41,4 @@ export class MainComponent implements OnInit {
       this.channelService.channelIsOpen = false;
     }
   }
-
-
-  clickedOutside() {
-    console.log('clicked outside');
-    // this.channelService.menuCollapsed = true;
-  }
 }

@@ -71,7 +71,10 @@ export class ChannelService {
       await this.showChannelName(channelId);
       await this.getThreads(channelId);
       this.openedChannel = false;
-      // this.scrollToBottom('channel'); // TODO not working
+      setTimeout(() => {
+        
+        this.scrollToBottom('channel'); // TODO not working
+      }, 300);
     }
   }
 

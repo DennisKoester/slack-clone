@@ -21,4 +21,9 @@ export class GlobalFunctionsService {
       this.threadIsOpen = false;
     }
   }
+
+  clickedOutside() {
+    console.log('clicked outside');
+    // this.menuCollapsed = true;
+  }
 }

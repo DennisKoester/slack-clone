@@ -1,4 +1,4 @@
-<div class="channel-header">
+<div id="header">
   <mat-toolbar>
     <mat-toolbar-row class="header-toolbar">
       <!-- <button
@@ -13,7 +13,8 @@
 
       </button> -->
 
-      <div id="menuBtn"
+      <div
+        id="menuBtn"
         class="plate plate1"
         [ngClass]="globalFunctions.menuCollapsed ? '' : 'active'"
         (click)="globalFunctions.toggleMenu()"

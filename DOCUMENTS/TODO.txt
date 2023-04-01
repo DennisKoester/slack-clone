@@ -1,7 +1,6 @@
 - Fehlermeldungen abfangen wenn man falsches PW bei Sign In oder schon benutzte Email bei Sign Up eingibt.
 - Dateigröße in mb und pixel begrenzen
-- Functions global anlegen
-- [OK?] Sanitizer Warning in der Console durch die angehängten Bilder
+- Es ist nicht möglich das selbe Bild noch mal zu laden in den Editor nachdem es gelöscht wurde.
 - Bild-Upload:
     - [OK] Bild erst nach Bestätigung durch User in DB hochladen, davor in Array speichern
     - in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
@@ -16,6 +15,8 @@
 - [in Arbeit] scrollToBottom auch wenn ein Channel via click geöffnet wird. 
 
 - [OK?] currentUser überall aus usersService.currentUser auslesen
+
+- [OK] Sanitizer Warning in der Console durch die angehängten Bilder
 - [OK]Functions global anlegen
 - [OK] User-Liste
     - [OK] Button "New Chat" zu jedem User hinzufügen
