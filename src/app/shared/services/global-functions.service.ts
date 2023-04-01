@@ -6,19 +6,19 @@ import { Injectable } from '@angular/core';
 export class GlobalFunctionsService {
   constructor() {}
 
-//   menuCollapsed = false;
-//   threadIsOpen: boolean = false;
+  menuCollapsed = false;
+  threadIsOpen: boolean = false;
 
-//   closeMenu() {
-//     if (innerWidth < 620) {
-//       this.toggleMenu();
-//     }
-//   }
+  closeMenu() {
+    if (innerWidth < 620) {
+      this.toggleMenu();
+    }
+  }
 
-//   toggleMenu() {
-//     this.menuCollapsed = !this.menuCollapsed;
-//     if (innerWidth > 620 && this.threadIsOpen === true) {
-//       this.threadIsOpen = false;
-//     }
-//   }
+  toggleMenu() {
+    this.menuCollapsed = !this.menuCollapsed;
+    if (innerWidth > 620 && this.threadIsOpen === true) {
+      this.threadIsOpen = false;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ChannelService } from 'src/app/shared/services/channel.service';
+import { GlobalFunctionsService } from 'src/app/shared/services/global-functions.service';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,8 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {}
 
-  constructor(public channelService: ChannelService) {}
+  constructor(public channelService: ChannelService, public globalFunctions: GlobalFunctionsService
+    ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -19,30 +21,30 @@ export class MainComponent implements OnInit {
     // if (innerWidth <= 620 && this.channelService.menuCollapsed === false) {
     if (
       innerWidth <= 800 &&
-      this.channelService.menuCollapsed === false &&
-      this.channelService.threadIsOpen === true
+      this.globalFunctions.menuCollapsed === false &&
+      this.globalFunctions.threadIsOpen === true
     ) {
-      this.channelService.menuCollapsed = true;
+      this.globalFunctions.menuCollapsed = true;
     } else if (
       innerWidth > 620 &&
-      this.channelService.menuCollapsed === true &&
-      this.channelService.threadIsOpen === false
+      this.globalFunctions.menuCollapsed === true &&
+      this.globalFunctions.threadIsOpen === false
     ) {
-      this.channelService.menuCollapsed = false;
-    } else if (innerWidth > 620 && this.channelService.threadIsOpen === true) {
+      this.globalFunctions.menuCollapsed = false;
+    } else if (innerWidth > 620 && this.globalFunctions.threadIsOpen === true) {
       this.channelService.channelIsOpen = true;
     } else if (
       innerWidth <= 620 &&
-      this.channelService.threadIsOpen === true &&
+      this.globalFunctions.threadIsOpen === true &&
       this.channelService.channelIsOpen === true
     ) {
       this.channelService.channelIsOpen = false;
     }
   }
 
-  closeMenu() {
-    if (innerWidth < 620) {
-      this.channelService.toggleMenu();
-    }
+
+  clickedOutside() {
+    console.log('clicked outside');
+    // this.channelService.menuCollapsed = true;
   }
 }

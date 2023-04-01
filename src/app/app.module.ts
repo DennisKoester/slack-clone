@@ -66,6 +66,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { NewChatComponent } from './components/new-chat/new-chat.component';
 import { ThreadsListComponent } from './components/threads-list/threads-list.component';
+import { ClickOutsideDirective } from './shared/directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { ThreadsListComponent } from './components/threads-list/threads-list.com
     UserCardComponent,
     NewChatComponent,
     ThreadsListComponent,
+    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,11 @@
 <mat-drawer-container class="example-container">
-  <mat-drawer *ngIf="!channelService.menuCollapsed" mode="side" opened>
+  <mat-drawer
+    *ngIf="!globalFunctions.menuCollapsed"
+    mode="side"
+    opened
+    clickOutside
+    (clickOutside)="clickedOutside()"
+  >
     <div class="server-name">
       <div class="logo">
         <img src="./assets/img/logo.png" />
@@ -11,7 +17,7 @@
     </div>
     <div class="navigation">
       <div
-        (click)="closeMenu()"
+        (click)="globalFunctions.closeMenu()"
         [routerLink]="['/home/threads-list']"
         class="nav-hl flex-ac"
       >
@@ -19,7 +25,7 @@
         <p>Threads</p>
       </div>
       <div
-        (click)="closeMenu()"
+        (click)="globalFunctions.closeMenu()"
         [routerLink]="['/home/user-list']"
         class="nav-hl flex-ac"
       >

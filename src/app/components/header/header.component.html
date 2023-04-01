@@ -13,10 +13,10 @@
 
       </button> -->
 
-      <div
+      <div id="menuBtn"
         class="plate plate1"
-        [ngClass]="channelService.menuCollapsed ? '' : 'active'"
-        (click)="channelService.toggleMenu()"
+        [ngClass]="globalFunctions.menuCollapsed ? '' : 'active'"
+        (click)="globalFunctions.toggleMenu()"
       >
         <svg
           class="burger"

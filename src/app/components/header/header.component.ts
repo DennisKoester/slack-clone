@@ -7,6 +7,7 @@ import { ImageUploadService } from 'src/app/shared/services/image-upload.service
 import { UsersService } from 'src/app/shared/services/users.service';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { HomeComponent } from '../home/home.component';
+import { GlobalFunctionsService } from 'src/app/shared/services/global-functions.service';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +31,8 @@ export class HeaderComponent implements OnInit {
     public home: HomeComponent,
     public channelService: ChannelService,
     public usersService: UsersService,
-    public imgUploadService: ImageUploadService
+    public imgUploadService: ImageUploadService,
+    public globalFunctions: GlobalFunctionsService
   ) {}
 
   ngOnInit() {}

@@ -1,19 +1,13 @@
 import { Injectable } from '@angular/core';
 import {
-  collectionData,
   doc,
-  getDoc,
-  getDocs,
   onSnapshot,
-  orderBy,
-  query,
 } from '@angular/fire/firestore';
 import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Unsubscribe } from 'firebase/app-check';
-import { Observable, Subscription } from 'rxjs';
-import { ChannelService } from './channel.service';
 import * as GLOBAL_VAR from './globals';
 import { UsersService } from './users.service';
+import { GlobalFunctionsService } from './global-functions.service';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +27,7 @@ export class ChatService {
   constructor(
     private firestore: Firestore,
     private usersService: UsersService,
-    private channelService: ChannelService
+    private globalFunctions: GlobalFunctionsService
   ) {
     // this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
     this.usersService.usersCollListener.subscribe({
@@ -45,7 +39,7 @@ export class ChatService {
     if (this.unsubscribe) this.unsubscribe();
     this.chatId = chatId;
     this.getChatData(chatId);
-    this.closeMenu();
+    this.globalFunctions.closeMenu();
   }
 
   getChatData(chatId: string) {
@@ -97,12 +91,6 @@ export class ChatService {
     };
   }
 
-  closeMenu() {
-    if (innerWidth < 620) {
-      this.channelService.toggleMenu();
-      console.log('menu closed');
-    }
-  }
 
   selectUserForChat(uid: string, displayName: string) {
     this.selectedUserIds = [];

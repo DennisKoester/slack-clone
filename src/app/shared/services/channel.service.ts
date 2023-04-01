@@ -15,6 +15,7 @@ import * as GLOBAL_VAR from './globals';
 import { UsersService } from './users.service';
 import { ThreadService } from './thread.service';
 import { ActivatedRoute } from '@angular/router';
+import { GlobalFunctionsService } from './global-functions.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +24,8 @@ export class ChannelService {
   channelName: string = '';
   channelIsPrivate: boolean = false;
   private index: number;
-  threadIsOpen: boolean = false;
   channelIsOpen: boolean = true;
   openedChannel = false;
-  openedThread = false;
-  menuCollapsed = false;
   threads: any = [];
   threads$: Observable<any>;
   unsubChannel: Subscription;
@@ -40,7 +38,6 @@ export class ChannelService {
   searchActive: boolean = false;
   threadId;
   editorRef: string = 'channel';
-  channelIdOpenedThread;
   test: any = [];
   imagesOriginal: any = [];
   image;
@@ -50,7 +47,8 @@ export class ChannelService {
   constructor(
     private firestore: Firestore,
     private usersService: UsersService,
-    private threadService: ThreadService
+    private threadService: ThreadService,
+    public globalFunctions: GlobalFunctionsService
   ) {
     this.usersService.usersCollListener.subscribe({
       next: (users) => null,
@@ -64,9 +62,9 @@ export class ChannelService {
       if (this.unsubChannel) {
         this.unsubChannel.unsubscribe();
       }
-      if (innerWidth <= 620 && !this.menuCollapsed) {
-        this.menuCollapsed = true;
-        this.threadIsOpen = false;
+      if (innerWidth <= 620 && !this.globalFunctions.menuCollapsed) {
+        this.globalFunctions.menuCollapsed = true;
+        this.globalFunctions.threadIsOpen = false;
         this.channelIsOpen = true;
       }
       this.openedChannel = true;
@@ -126,20 +124,13 @@ export class ChannelService {
 
   async openThread(channelId, threadId) {
     if (innerWidth <= 800) {
-      this.menuCollapsed = true;
+      this.globalFunctions.menuCollapsed = true;
     }
     if (innerWidth <= 620) {
       this.channelIsOpen = false;
     }
-    this.threadIsOpen = true;
-    this.threadService.getThreadMessages(channelId,threadId);
-  }
-
-  toggleMenu() {
-    this.menuCollapsed = !this.menuCollapsed;
-    if (innerWidth < 800 && this.threadIsOpen === true) {
-      this.threadIsOpen = false;
-    }
+    this.globalFunctions.threadIsOpen = true;
+    this.threadService.getThreadMessages(channelId, threadId);
   }
 
   scrollToBottom(ref): void {
@@ -160,7 +151,5 @@ export class ChannelService {
     this.status = !this.status;
   }
 
-  showRef() {
-    
-  }
+  showRef() {}
 }
