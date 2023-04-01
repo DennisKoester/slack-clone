@@ -1,14 +1,24 @@
 <mat-toolbar-row class="channel-toolbar">
   <div class="flex-ac">Threads List</div>
 </mat-toolbar-row>
-<div *ngIf="this.ownThreads.length == 0" class="wrapper-msg">
-  <div class="welcome-msg">
-    <h1>Welcome to Slack!</h1>
-    <br /><br />
-    <p>Create your first thread to see it in this list.</p>
-  </div>
-</div>
+
 <div class="leftContent">
+  <div class="wrapper">
+    <img
+      *ngIf="this.threadsLoading"
+      class="loader1 welcome-msg"
+      src="../../../assets/img/logo.png"
+    />
+    <div
+      *ngIf="this.ownThreads.length == 0 && this.threadsLoading == false"
+      class="welcome-msg"
+    >
+      <h1>Welcome to Slack!</h1>
+      <br /><br />
+      <p>Create your first thread to see it in this list.</p>
+    </div>
+  </div>
+
   <div class="scroll-container">
     <app-thread-card
       [thread]="true"

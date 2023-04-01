@@ -22,6 +22,7 @@ export class ThreadsListComponent {
   ownThreads = [];
   currentUserData: any;
   amountAnswers = [];
+  threadsLoading: boolean = false;
 
   constructor(
     private firestore: Firestore,
@@ -31,13 +32,19 @@ export class ThreadsListComponent {
   ) {}
 
   ngOnInit() {
+    this.threadsLoading = true;
+
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.currentUserData = user;
-        this.getAllThreads();
+
+        setTimeout(() => {
+          this.getAllThreads();
+        }, 1000);
       }
     });
+
     // this.usersService.getUsers();
     // this.usersService.usersCollListener.subscribe({
     //   next: (users) => null,
@@ -46,40 +53,48 @@ export class ThreadsListComponent {
 
   async getAllThreads() {
     const currentUser = this.currentUserData;
-    // const allThreads = [];
     const threads = query(collectionGroup(this.firestore, 'THREADS'));
     const querySnapshot = await getDocs(threads);
 
     for (let i = 0; i < querySnapshot.docs.length; i++) {
-      for (let j = 0; j < querySnapshot.docs[i].data()['MESSAGES'].length; j++) {
+      for (
+        let j = 0;
+        j < querySnapshot.docs[i].data()['MESSAGES'].length;
+        j++
+      ) {
         if (
           querySnapshot.docs[i].data()['MESSAGES'][j]['author'] ==
           currentUser.uid
         ) {
           const threadId = querySnapshot.docs[i].id;
           const channelId = querySnapshot.docs[i].ref.parent.parent.id;
-          const firstThreadMessage = querySnapshot.docs[i].data()['MESSAGES'][0];
+          const firstThreadMessage =
+            querySnapshot.docs[i].data()['MESSAGES'][0];
           const amount = querySnapshot.docs[i].data()['MESSAGES'].length - 1;
-          const lastAnswer = querySnapshot.docs[i].data()['MESSAGES'][amount]['timestamp'];
+          const lastAnswer =
+            querySnapshot.docs[i].data()['MESSAGES'][amount]['timestamp'];
 
           // console.log('doc.parent.id',querySnapshot.docs[i].ref.parent.parent.id);
-          
-          firstThreadMessage['author'] = this.chatService.getUserMetaData(firstThreadMessage['author']);
+
+          firstThreadMessage['author'] = this.chatService.getUserMetaData(
+            firstThreadMessage['author']
+          );
           // this.amountAnswers.push(amount);
           this.ownThreads.push({
             threadId: threadId,
             channelId: channelId,
             message: firstThreadMessage,
             lastAnswer: lastAnswer,
-            amount: amount
+            amount: amount,
           });
 
           // console.log('querySnapshot.docs', querySnapshot.docs[i].id);
           // console.log('Amount is', this.amountAnswers);
           break;
         }
+        this.threadsLoading = false;
       }
-      
+
       // let thread = {
 
       //   author:,

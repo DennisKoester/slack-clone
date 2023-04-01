@@ -9,6 +9,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { TextEditorComponent } from 'src/app/components/text-editor/text-editor.component';
 import { getAuth, updateProfile } from 'firebase/auth';
+import { ChannelService } from './channel.service';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,8 @@ export class AuthenticationService {
     public afAuth: AngularFireAuth,
     private router: Router,
     public ngZone: NgZone,
-    public afs: AngularFirestore
+    public afs: AngularFirestore,
+    public channelService: ChannelService
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -86,10 +88,6 @@ export class AuthenticationService {
         }, 4000);
       });
   }
-
-
-
-
 
   // Send email verfificaiton when new user sign up
   // SendVerificationMail() {
@@ -167,6 +165,7 @@ export class AuthenticationService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['']);
+      this.channelService.threadIsOpen = false;
     });
   }
 }
