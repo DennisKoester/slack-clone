@@ -2,8 +2,10 @@
 - Dateigröße in mb und pixel begrenzen
 - Es ist nicht möglich das selbe Bild noch mal zu laden in den Editor nachdem es gelöscht wurde.
 - Bild-Upload:
-    - [OK] Bild erst nach Bestätigung durch User in DB hochladen, davor in Array speichern
-    - in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
+    - UserImage/Message: Bild erst nach Bestätigung durch User in DB hochladen, davor nur in lokalem Array speichern
+        - Array beim Öffnen eines Channel/Thread/Chat initial leeren!
+    - Editoren sind nicht voneinander getrennt! Hochzuladende Bilder können in zwei parallel geöffneten Editoren erscheinen, wenn in beiden Bilder ausgewählt werden, ohne zunächst die erste Nachricht abzusenden.
+    - [OK] in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
 - [in Arbeit] Loader für Threads-List
 - [in Arbeit] Threadliste
     - [OK] Thread aus der Thread-List im side module öffnen.
