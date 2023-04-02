@@ -67,8 +67,11 @@ export class ChatService {
     chatMessages.forEach((message: any) => {
       message['author'] = this.getUserMetaData(message['author']);
       this.chatMessages.push(message);
-      this.globalFunctions.scrollCounter = 0;
     });
+
+    setTimeout(() => {
+      this.globalFunctions.scrollCounter = 0;
+    }, 0);
     // console.log('ChatMessages: ', this.chatMessages);
   }
 
