@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { UsersService } from './shared/services/users.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +7,6 @@ import { UsersService } from './shared/services/users.service';
 export class AppComponent {
   title = 'slack-clone';
 
-  constructor (public usersService: UsersService) {
+  constructor () {
   }
 }

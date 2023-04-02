@@ -16,7 +16,6 @@ import { ChatService } from 'src/app/shared/services/chat.service';
 })
 export class ThreadsListComponent {
   ownThreads: Array<any> = [];
-  amountAnswers: Array<any> = [];
   threadsLoading: boolean = false;
   currentUserData: any;
 

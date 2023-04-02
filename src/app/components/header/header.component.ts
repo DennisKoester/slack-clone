@@ -12,9 +12,6 @@ import { GlobalFunctionsService } from 'src/app/shared/services/global-functions
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  currentUserId: string;
-  photoURL: string;
-
   // status: boolean = false;
 
   constructor(

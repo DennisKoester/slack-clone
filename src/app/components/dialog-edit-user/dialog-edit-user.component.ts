@@ -15,7 +15,6 @@ export class DialogEditUserComponent implements OnInit {
   currentUserId: string = '';
   name: string;
   email: string;
-  emailVerified: boolean;
   photoURL: string;
   guest: boolean = false;
 
