@@ -9,27 +9,29 @@
         </button>
       </div>
     </div>
-    <div class="navigation">
-      <div
-        (click)="globalFunctions.closeMenu()"
-        [routerLink]="['/home/threads-list']"
-        class="nav-hl flex-ac"
-      >
-        <mat-icon font-icon>comment</mat-icon>
-        <p>Threads</p>
+    <div class="nav-scroll-container">
+      <div class="navigation">
+        <div
+          (click)="globalFunctions.closeMenu()"
+          [routerLink]="['/home/threads-list']"
+          class="nav-hl flex-ac"
+        >
+          <mat-icon font-icon>comment</mat-icon>
+          <p>Threads</p>
+        </div>
+        <div
+          (click)="globalFunctions.closeMenu()"
+          [routerLink]="['/home/user-list']"
+          class="nav-hl flex-ac"
+        >
+          <mat-icon font-icon>supervisor_account</mat-icon>
+          <p>Users</p>
+        </div>
       </div>
-      <div
-        (click)="globalFunctions.closeMenu()"
-        [routerLink]="['/home/user-list']"
-        class="nav-hl flex-ac"
-      >
-        <mat-icon font-icon>supervisor_account</mat-icon>
-        <p>Users</p>
-      </div>
-    </div>
 
-    <app-channels></app-channels>
-    <app-direct-messages-section></app-direct-messages-section>
+      <app-channels></app-channels>
+      <app-direct-messages-section></app-direct-messages-section>
+    </div>
   </mat-drawer>
   <mat-drawer-content>
     <div class="leftAndRight">

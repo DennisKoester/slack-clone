@@ -66,6 +66,11 @@ h4 {
   overflow: hidden;
 }
 
+.nav-scroll-container {
+  height: calc(100% - 61px);
+  overflow-y: scroll;
+}
+
 .navigation {
   div:first-of-type {
     margin-top: 8px;
