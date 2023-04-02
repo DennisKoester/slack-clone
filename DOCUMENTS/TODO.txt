@@ -56,3 +56,8 @@
 - [CANCELLED] Weiteren Empfänger zu Chat hinzufügen
 - [CANCELLED] Channel privat/öffentlich?
     - Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
+
+
+    test1234@welt.de test1234
+    hallo1@welt.de Test1234
+    hallo2@welt.de Test1234

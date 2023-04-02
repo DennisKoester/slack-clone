@@ -25,28 +25,25 @@ export class ThreadCardComponent implements OnInit {
   test: any = [];
   status: boolean = false;
 
-
   constructor(
     public channelService: ChannelService,
     public threadService: ThreadService,
-    public usersService: UsersService
+    public usersService: UsersService,
   ) {}
-
 
   async ngOnInit() {
     // await this.sendIndex();
-    await this.convert();
-
+    // await this.convert();
   }
-   
 
   // sendIndex() {
   //   this.channelService.setValue(this.index);
   // }
 
-  convert() {
-    const parser = new DOMParser();
-    const document = parser.parseFromString(this.message, 'text/html');
-  }
+  // convert() {
+  //   const parser = new DOMParser();
+  //   const document = parser.parseFromString(this.message, 'text/html');
+  // }
+
 
 }

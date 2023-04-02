@@ -1,11 +1,5 @@
 <mat-drawer-container class="example-container">
-  <mat-drawer
-    *ngIf="!globalFunctions.menuCollapsed"
-    mode="side"
-    opened
-    clickOutside
-    (clickOutside)="globalFunctions.clickedOutside()"
-  >
+  <mat-drawer *ngIf="!globalFunctions.menuCollapsed" mode="side" opened>
     <div class="server-name">
       <div class="logo">
         <img src="./assets/img/logo.png" />

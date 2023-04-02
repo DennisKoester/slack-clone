@@ -18,12 +18,7 @@ export class GlobalFunctionsService {
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
     if (innerWidth > 620 && this.threadIsOpen === true) {
-      this.threadIsOpen = false;
+      // this.threadIsOpen = false;
     }
-  }
-
-  clickedOutside() {
-    console.log('clicked outside');
-    // this.menuCollapsed = true;
   }
 }

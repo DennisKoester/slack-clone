@@ -30,6 +30,7 @@ export class ThreadService {
   ) {}
 
   async getThreadMessages(channelId, threadId) {
+    this.thread = '';
     if (this.unsubscribe) this.unsubscribe();
     this.channelId = channelId;
     this.threadId = threadId;

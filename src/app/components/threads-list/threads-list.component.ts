@@ -41,14 +41,9 @@ export class ThreadsListComponent {
 
         setTimeout(() => {
           this.getAllThreads();
-        }, 1000);
+        }, 500);
       }
     });
-
-    // this.usersService.getUsers();
-    // this.usersService.usersCollListener.subscribe({
-    //   next: (users) => null,
-    // });
   }
 
   async getAllThreads() {

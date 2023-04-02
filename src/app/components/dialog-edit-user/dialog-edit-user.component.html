@@ -26,15 +26,15 @@
     </div>
 
     <div class="button-upload">
-      <label for="file" class="upload-file">
+      <label for="fileDialog" class="upload-file">
         <i class="material-icons">cloud_upload</i>
         Upload image
       </label>
       <input
         [disabled]="guest"
-        (change)="imgUploadService.uploadImage($event)"
+        (change)="imgUploadService.readURL($event)"
         type="file"
-        id="file"
+        id="fileDialog"
         accept=".png,.jpg,.jpeg,.svg"
       />
     </div>

@@ -1,5 +1,6 @@
 import {
   AfterViewChecked,
+  AfterViewInit,
   Component,
   ElementRef,
   OnInit,
@@ -15,7 +16,7 @@ import { ImageUploadService } from 'src/app/shared/services/image-upload.service
   templateUrl: './channel-module.component.html',
   styleUrls: ['./channel-module.component.scss'],
 })
-export class ChannelModuleComponent implements AfterViewChecked, OnInit {
+export class ChannelModuleComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollContainer') scrollContainer: ElementRef;
 
   constructor(
@@ -27,12 +28,13 @@ export class ChannelModuleComponent implements AfterViewChecked, OnInit {
   ngOnInit() {}
 
   ngAfterViewChecked() {
-    if (this.channelService.scrollCounter == 0) {
-      this.channelService.scrollToBottom('channel');
-      console.log(this.channelService.scrollCounter);
-    }
-    setTimeout(() => {
-      this.channelService.scrollCounter = 1;
-    }, 1000);
+    // this.channelService.scrollToBottom('channel');
+    // if (this.channelService.scrollCounter == 0) {
+    //   this.channelService.scrollToBottom('channel');
+    //   console.log(this.channelService.scrollCounter);
+    // // }
+    // setTimeout(() => {
+    //   this.channelService.scrollCounter = 1;
+    // }, 1000);
   }
 }
