@@ -62,11 +62,12 @@ export class ChatService {
     // console.log('ChatMembers: ', this.chatMembers);
   }
 
-  showChatMessages(chatMessages: Array<any>) {
+  async showChatMessages(chatMessages: Array<any>) {
     this.chatMessages = [];
     chatMessages.forEach((message: any) => {
       message['author'] = this.getUserMetaData(message['author']);
       this.chatMessages.push(message);
+      this.globalFunctions.scrollCounter = 0;
     });
     // console.log('ChatMessages: ', this.chatMessages);
   }

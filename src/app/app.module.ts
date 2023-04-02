@@ -8,7 +8,6 @@ import { QuillModule } from 'ngx-quill';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-
 //firebase neu
 // import { environment } from '../environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -18,7 +17,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 //firebase alt
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard'; 
+import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
@@ -38,8 +37,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 //components
 import { SignInComponent } from './components/sign-in/sign-in.component';

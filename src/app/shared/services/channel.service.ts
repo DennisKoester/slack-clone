@@ -43,7 +43,6 @@ export class ChannelService {
   imagesOriginal: any = [];
   image;
   status: boolean = false;
-  scrollCounter = 0;
 
   constructor(
     private firestore: Firestore,
@@ -101,6 +100,7 @@ export class ChannelService {
       this.sortThreads(threads);
       this.getUserNames(threads);
       this.threads = threads;
+      this.globalFunctions.scrollCounter = 0;
     });
   }
 
@@ -136,19 +136,6 @@ export class ChannelService {
     }
     this.globalFunctions.threadIsOpen = true;
     this.threadService.getThreadMessages(channelId, threadId);
-  }
-
-  scrollToBottom(ref): void {
-    let container = '';
-    if (ref == 'chat' || ref == 'channel') {
-      container = 'scrollContainer';
-    } else if (ref == 'thread') {
-      container = 'scrollContainerThread';
-    }
-    const scrollContainer = document.getElementById(container);
-    try {
-      scrollContainer.scrollTop = scrollContainer.scrollHeight;
-    } catch (err) {}
   }
 
   openImg(image) {
