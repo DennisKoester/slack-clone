@@ -14,6 +14,7 @@
         <div
           (click)="globalFunctions.closeMenu()"
           [routerLink]="['/home/threads-list']"
+          routerLinkActive="activeLink"
           class="nav-hl flex-ac"
         >
           <mat-icon font-icon>comment</mat-icon>
@@ -22,6 +23,7 @@
         <div
           (click)="globalFunctions.closeMenu()"
           [routerLink]="['/home/user-list']"
+          routerLinkActive="activeLink"
           class="nav-hl flex-ac"
         >
           <mat-icon font-icon>supervisor_account</mat-icon>

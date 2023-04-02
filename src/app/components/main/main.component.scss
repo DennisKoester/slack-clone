@@ -97,7 +97,7 @@ h4 {
     overflow: hidden;
   }
 
-  &:hover {
+  &:hover:not(.activeLink) {
     border-radius: 5px;
     background-color: rgb(35, 33, 39);
   }

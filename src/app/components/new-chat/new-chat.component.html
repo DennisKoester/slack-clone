@@ -3,28 +3,44 @@
     <div id="select-chatmembers">
       <span>To:&nbsp;</span>
       <div id="sel-user-container">
-        <div class="sel-user-item" *ngFor="let name of chatService.selectedUserNames; let i = index">
+        <div
+          class="sel-user-item"
+          *ngFor="let name of chatService.selectedUserNames; let i = index"
+        >
           <span>{{ name }}</span>
-          <mat-icon class="sel-user-close" fontIcon="close" (click)="deselectUser(i)"></mat-icon>
+          <mat-icon
+            class="sel-user-close"
+            fontIcon="close"
+            (click)="deselectUser(i)"
+          ></mat-icon>
         </div>
       </div>
     </div>
-    <button mat-raised-button color="primary" (click)="createChat()" [disabled]="chatService.selectedUserIds.length == 0">Create chat</button>
   </div>
-  <div class="searchbar">
-    <input
-      type="text"
-      placeholder="Search user..."
-      [(ngModel)]="chatService.searchUser"
-    />
+  <div class="new-chat-container">
+    <div class="searchbar">
+      <input
+        type="text"
+        placeholder="Search user..."
+        [(ngModel)]="chatService.searchUser"
+      />
 
-    <mat-icon
-      class="delete"
-      fontIcon="delete"
-      (click)="resetSearchUser()"
-      *ngIf="chatService.searchUser"
-    ></mat-icon>
-    <mat-icon class="search" fontIcon="search"></mat-icon>
+      <mat-icon
+        class="delete"
+        fontIcon="delete"
+        (click)="resetSearchUser()"
+        *ngIf="chatService.searchUser"
+      ></mat-icon>
+      <mat-icon class="search" fontIcon="search"></mat-icon>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="createChat()"
+      [disabled]="chatService.selectedUserIds.length == 0"
+    >
+      Create chat
+    </button>
   </div>
 </mat-toolbar-row>
 
@@ -39,9 +55,9 @@
       (!user['displayName']
         .toLowerCase()
         .includes(chatService.searchUser.toLowerCase()) &&
-      !user['email']
-        .toLowerCase()
-        .includes(chatService.searchUser.toLowerCase())) ||
+        !user['email']
+          .toLowerCase()
+          .includes(chatService.searchUser.toLowerCase())) ||
       chatService.selectedUserIds.includes(user['uid']) ||
       user['uid'] == usersService.currentUserData.uid ||
       user['uid'] == guestId

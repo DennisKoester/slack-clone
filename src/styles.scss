@@ -248,6 +248,19 @@ p {
   background-color: rgba(56, 56, 56, 1) !important;
 }
 
+.mat-mdc-raised-button:disabled {
+  color: #747474 !important;
+  background-color: rgb(49, 49, 52) !important;
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+  background-color: rgba(255, 187, 0, 0.596) !important;
+}
+
+.mat-mdc-raised-button:hover {
+  background-color: rgba(255, 187, 0, 0.8) !important;
+}
+
 .cdk-global-scrollblock {
   overflow: hidden !important;
 }
@@ -368,6 +381,11 @@ p {
   border: 1px solid #fff;
 }
 
-.mat-drawer-inner-container{
+.mat-drawer-inner-container {
   overflow: hidden !important;
+}
+
+.activeLink {
+  border-radius: 5px;
+  background-color: rgba(255, 187, 0, 0.596);
 }

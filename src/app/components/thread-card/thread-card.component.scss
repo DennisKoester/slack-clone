@@ -4,13 +4,9 @@ mat-card {
   color: white;
   padding: 20px;
 
-  &:hover {
-    background-color: rgb(31, 33, 37);
-  }
-
   .card-header {
     display: flex;
-   
+
     .author {
       font-size: 15px;
       font-weight: 500;
@@ -23,28 +19,22 @@ mat-card {
     }
   }
 
-.imageUser {
-  margin: 0 10px 0 0;
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-  border-radius: 8px;
-}
+  .imageUser {
+    margin: 0 10px 0 0;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
 
+  .infoAnswers {
+    margin-top: 5px;
+  }
 
-.infoAnswers {
-  margin-top: 5px;
-}
-
-  .amountAnswers{
+  .amountAnswers {
     color: #1b8cd1;
     font-weight: 500;
     cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-      filter: brightness(1.3);
-    }
   }
 
   .lastAnswer {
@@ -61,15 +51,25 @@ mat-card {
     font-size: 20px;
     cursor: pointer;
     filter: invert(0.15);
-
-    &:hover {
-      filter: invert(0.25);
-    }
   }
 }
-
 
 .imagesContainer {
   display: flex;
   flex-wrap: wrap;
+}
+
+@media (hover: hover) {
+  .amountAnswers:hover {
+    text-decoration: underline;
+    filter: brightness(1.3);
+  }
+
+  mat-card:hover {
+    background-color: rgb(31, 33, 37);
+  }
+
+  mat-icon:hover {
+    filter: invert(0.25) !important;
+  }
 }
