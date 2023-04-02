@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  doc,
-  onSnapshot,
-} from '@angular/fire/firestore';
+import { doc, onSnapshot } from '@angular/fire/firestore';
 import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Unsubscribe } from 'firebase/app-check';
 import * as GLOBAL_VAR from './globals';
@@ -36,6 +33,7 @@ export class ChatService {
   }
 
   async openChat(chatId: string) {
+    this.chatMessages = [];
     if (this.unsubscribe) this.unsubscribe();
     this.chatId = chatId;
     this.getChatData(chatId);
@@ -90,7 +88,6 @@ export class ChatService {
       userImage: userData.photoURL,
     };
   }
-
 
   selectUserForChat(uid: string, displayName: string) {
     this.selectedUserIds = [];

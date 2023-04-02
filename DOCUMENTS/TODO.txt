@@ -1,7 +1,7 @@
 - Fehlermeldungen abfangen wenn man falsches PW bei Sign In oder schon benutzte Email bei Sign Up eingibt.
 - Dateigröße in mb und pixel begrenzen
 - Es ist nicht möglich das selbe Bild noch mal zu laden in den Editor nachdem es gelöscht wurde.
-- Bild-Upload:
+- [OK] Bild-Upload:
     - [OK] Bild erst nach Bestätigung durch User in DB hochladen, davor in Array speichern
     - in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
 - [in Arbeit] Loader für Threads-List
@@ -54,3 +54,8 @@
 - [CANCELLED] Weiteren Empfänger zu Chat hinzufügen
 - [CANCELLED] Channel privat/öffentlich?
     - Für privaten Channel muss Userauswahl integriert werden; bei Auflistung muss logged-in User abgefragt werden!
+
+
+    test1234@welt.de test1234
+    hallo1@welt.de Test1234
+    hallo2@welt.de Test1234

@@ -16,6 +16,7 @@ import { UsersService } from './users.service';
 import { ThreadService } from './thread.service';
 import { ActivatedRoute } from '@angular/router';
 import { GlobalFunctionsService } from './global-functions.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
@@ -48,7 +49,8 @@ export class ChannelService {
     private firestore: Firestore,
     private usersService: UsersService,
     private threadService: ThreadService,
-    public globalFunctions: GlobalFunctionsService
+    public globalFunctions: GlobalFunctionsService,
+    public sanitizer: DomSanitizer
   ) {
     this.usersService.usersCollListener.subscribe({
       next: (users) => null,
@@ -56,7 +58,7 @@ export class ChannelService {
   }
 
   async openChannel(channelId: string) {
-    this.scrollCounter = 0;
+    this.threads = [];
     this.channelId = channelId;
     if (this.openedChannel == false) {
       if (this.unsubChannel) {
@@ -71,10 +73,10 @@ export class ChannelService {
       await this.showChannelName(channelId);
       await this.getThreads(channelId);
       this.openedChannel = false;
-      setTimeout(() => {
-        
-        this.scrollToBottom('channel'); // TODO not working
-      }, 300);
+      // setTimeout(() => {
+
+      //   this.scrollToBottom('channel'); // TODO not working
+      // }, 300);
     }
   }
 

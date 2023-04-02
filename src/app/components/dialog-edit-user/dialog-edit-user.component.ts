@@ -51,8 +51,9 @@ export class DialogEditUserComponent implements OnInit {
     this.imgUploadService.newURLdefined = false;
   }
 
-  updateUser() {
+  async updateUser() {
     const currentUser = this.usersService.currentUserData;
+    await this.imgUploadService.uploadImage();
     updateProfile(currentUser, {
       displayName: this.name,
       photoURL: this.imgUploadService.newPhotoURL,

@@ -9,7 +9,6 @@
 <div
   class="leftContent"
   [routerLink]="['/home/channel/' + channelService.channelId]"
-  
   (click)="channelService.showRef()"
 >
   <div #scrollContainer id="scrollContainer" class="scroll-container">
@@ -19,11 +18,8 @@
       [thread]="true"
       class="threadCard"
       *ngFor="let thread of channelService.threads; index as i"
-
-      
       [channelId]="channelService.channelId"
       [threadId]="thread.threadId"
-
       [amountAnswers]="thread['MESSAGES'].length - 1"
       [lastAnswer]="
         thread['MESSAGES'][thread['MESSAGES'].length - 1]['timestamp'][
@@ -46,12 +42,27 @@
     >
     </app-thread-card>
   </div>
-  <div class="containerEditor" id="editorChannel" (click)="channelService.editorRef = 'channel'">
+  <div
+    class="containerEditor"
+    id="editorChannel"
+    (click)="channelService.editorRef = 'channel'"
+  >
     <app-text-editor editorRef="channel"></app-text-editor>
     <div class="imagesContainerChannel" id="imagesChannel">
-      <div *ngFor="let image of this.imgUploadService.imageURL" class="imageEditorContainer">
-        <img src="{{image}}" class="imageInMessage" (click)="this.channelService.openImg(image)">
-        <img src="/assets/img/x.svg" class="deleteImage" (click)="this.imgUploadService.deleteImage(image)">
+      <div
+        *ngFor="let image of this.imgUploadService.imageURL"
+        class="imageEditorContainer"
+      >
+        <img
+          src="{{ image }}"
+          class="imageInMessage"
+          (click)="this.channelService.openImg(image)"
+        />
+        <img
+          src="/assets/img/x.svg"
+          class="deleteImage"
+          (click)="this.imgUploadService.deleteImage(image)"
+        />
       </div>
     </div>
   </div>

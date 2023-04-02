@@ -72,7 +72,7 @@ p {
   top: -205px !important;
   // bottom: 135px !important;
   left: unset !important;
-  max-width: unset;
+  max-width: 400px;
   width: 100%;
 }
 
@@ -93,7 +93,7 @@ p {
 
 .ql-toolbar.ql-snow {
   background-color: rgb(31, 33, 37);
-  padding: 8px 8px 8px 36px
+  padding: 8px 8px 8px 36px;
 }
 
 .ng-star-inserted.ql-container.ql-snow {
@@ -296,18 +296,18 @@ p {
 }
 
 .deleteImage {
- position: absolute;
- top: 0;
- right: 0;
- height: 20px;
- width: 20px;
- background-color: rgba(255, 255, 255, 0.692);
- border-radius: 29px;
- opacity: 1;
- filter: invert(0.2);
- cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 20px;
+  width: 20px;
+  background-color: rgba(255, 255, 255, 0.692);
+  border-radius: 29px;
+  opacity: 1;
+  filter: invert(0.2);
+  cursor: pointer;
 
- &:hover {
+  &:hover {
     filter: brightness(1.15);
   }
 }
@@ -341,8 +341,7 @@ p {
   max-height: calc(100vh - 50px);
   max-width: calc(100vw - 50px);
   border-radius: 10px;
-  
-  
+
   &:hover {
     cursor: unset;
     filter: unset;
