@@ -3,7 +3,7 @@
 - Es ist nicht möglich das selbe Bild noch mal zu laden in den Editor nachdem es gelöscht wurde.
 - [OK] Bild-Upload:
     - [OK] Bild erst nach Bestätigung durch User in DB hochladen, davor in Array speichern
-    - in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
+    - [OK] in Editor: Loading-Spinner erscheint in Channel/Chat-Editor UND Thread-Editor gleichzeitig!
 - [in Arbeit] Loader für Threads-List
 - [in Arbeit] Threadliste
     - [OK] Thread aus der Thread-List im side module öffnen.
