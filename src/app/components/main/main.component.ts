@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { GlobalFunctionsService } from 'src/app/shared/services/global-functions.service';
 
@@ -7,18 +7,21 @@ import { GlobalFunctionsService } from 'src/app/shared/services/global-functions
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
   @Input() isPrivate: boolean;
 
-  ngOnInit() {}
+  constructor(
+    public channelService: ChannelService,
+    public globalFunctions: GlobalFunctionsService
+  ) {}
 
-  constructor(public channelService: ChannelService, public globalFunctions: GlobalFunctionsService
-    ) {}
-
+  /**
+   * Handles the responsiveness of the whole page
+   * @param {Event} event
+   */
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize(event: any) {
     event.target.innerWidth;
-    // if (innerWidth <= 620 && this.channelService.menuCollapsed === false) {
     if (
       innerWidth <= 800 &&
       this.globalFunctions.menuCollapsed === false &&

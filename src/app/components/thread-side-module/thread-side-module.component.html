@@ -15,7 +15,6 @@
 <div
   id="scrollContainerThread"
   class="rightContent"
-  
   (click)="channelService.showRef()"
 >
   <div *ngIf="threadService.thread">
@@ -36,14 +35,24 @@
       "
     >
     </app-thread-card>
-    
   </div>
   <div class="containerEditor" id="editorThread" (click)="changeRef()">
     <app-text-editor editorRef="thread"></app-text-editor>
     <div class="imagesContainerThread" id="imagesThread">
-      <div *ngFor="let image of this.imgUploadService.imageURL" class="imageEditorContainer">
-        <img src="{{image}}" class="imageInMessage" (click)="this.channelService.openImg(image)">
-        <img src="/assets/img/x.svg" class="deleteImage" (click)="this.imgUploadService.deleteImage(image)">
+      <div
+        *ngFor="let image of this.imgUploadService.imageURL"
+        class="imageEditorContainer"
+      >
+        <img
+          src="{{ image }}"
+          class="imageInMessage"
+          (click)="this.channelService.openImg(image)"
+        />
+        <img
+          src="/assets/img/x.svg"
+          class="deleteImage"
+          (click)="this.imgUploadService.deleteImage(image)"
+        />
       </div>
     </div>
   </div>

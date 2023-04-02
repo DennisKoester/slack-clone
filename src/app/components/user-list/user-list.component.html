@@ -4,8 +4,13 @@
 
 <div class="leftContent">
   <div class="scroll-container">
-    <app-user-card class="userCard" *ngFor="let user of usersService.users" [userName]="user['displayName']"
-      [email]="user['email']" [userImage]="user['photoURL']" [class.d-none]="
+    <app-user-card
+      class="userCard"
+      *ngFor="let user of usersService.users"
+      [userName]="user['displayName']"
+      [email]="user['email']"
+      [userImage]="user['photoURL']"
+      [class.d-none]="
         (!user['displayName']
           .toLowerCase()
           .includes(channelService.searchValue.toLowerCase()) &&
@@ -13,9 +18,11 @@
             .toLowerCase()
             .includes(channelService.searchValue.toLowerCase())) ||
         user['uid'] == usersService.currentUserData.uid ||
-        user['uid'] == guestId"
-        (click)="chatService.selectUserForChat(user['uid'], user['displayName'])"
+        user['uid'] == guestId
+      "
+      (click)="chatService.selectUserForChat(user['uid'], user['displayName'])"
       matTooltip="Click to start new chat"
-      [routerLink]="['/home/new-chat']"></app-user-card>
+      [routerLink]="['/home/new-chat']"
+    ></app-user-card>
   </div>
 </div>

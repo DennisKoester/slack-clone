@@ -1,12 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { getAuth } from 'firebase/auth';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ChannelService } from 'src/app/shared/services/channel.service';
-import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
-import { HomeComponent } from '../home/home.component';
 import { GlobalFunctionsService } from 'src/app/shared/services/global-functions.service';
 
 @Component({
@@ -14,48 +11,35 @@ import { GlobalFunctionsService } from 'src/app/shared/services/global-functions
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  currentUser;
+export class HeaderComponent {
   currentUserId: string;
-  status: boolean = false;
   photoURL: string;
-  // searchValue: string;
 
-  openProfile(): void {
-    this.status = !this.status;
-  }
+  // status: boolean = false;
 
   constructor(
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
-    public home: HomeComponent,
     public channelService: ChannelService,
     public usersService: UsersService,
-    public imgUploadService: ImageUploadService,
     public globalFunctions: GlobalFunctionsService
   ) {}
 
-  ngOnInit() {}
+  // openProfile(): void {
+  //   this.status = !this.status;
+  // }
 
+  /**
+   * Opens the dialog to edit the user
+   */
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogEditUserComponent);
   }
 
+  /**
+   * Clears the searchbar
+   */
   resetSearch() {
     this.channelService.searchValue = '';
   }
-
-  // getURL() {
-  //   this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
-  //   this.usersService.usersCollListener.subscribe({
-  //     next: (users) => null,
-  //   });
-
-  //   const currentUserData =
-  //     this.usersService.usersCollListener.value.users.find(
-  //       (user) => this.currentUserId == user.uid
-  //     );
-  //   this.photoURL = currentUserData.photoURL;
-  //   console.log('userimage', currentUserData);
-  // }
 }

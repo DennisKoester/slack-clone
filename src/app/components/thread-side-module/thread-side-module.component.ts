@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ThreadService } from 'src/app/shared/services/thread.service';
 import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
@@ -17,12 +17,18 @@ export class ThreadSideModuleComponent {
     public globalFunctions: GlobalFunctionsService
   ) {}
 
+  /**
+   * Closes thread side module
+   */
   closeThread() {
     this.globalFunctions.threadIsOpen = false;
     this.channelService.channelIsOpen = true;
     this.threadService.unsubscribe();
   }
 
+  /**
+   *
+   */
   changeRef() {
     this.channelService.editorRef = 'thread';
     setTimeout(() => {

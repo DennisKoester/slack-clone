@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ThreadsListComponent } from './threads-list.component';
 
 describe('ThreadsListComponent', () => {
@@ -8,9 +7,8 @@ describe('ThreadsListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ThreadsListComponent ]
-    })
-    .compileComponents();
+      declarations: [ThreadsListComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ThreadsListComponent);
     component = fixture.componentInstance;

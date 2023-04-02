@@ -1,13 +1,19 @@
 <h1 mat-dialog-title>Create new channel</h1>
 <div mat-dialog-content id="dialog-content">
-    <mat-form-field appearance="fill">
-        <mat-label>Channel name</mat-label>
-        <input matInput [(ngModel)]="dialogData.name">
-    </mat-form-field>
-    <!-- <mat-checkbox [(ngModel)]="dialogData.isPrivate" color="primary">Channel is private!</mat-checkbox> -->
+  <mat-form-field appearance="fill">
+    <mat-label>Channel name</mat-label>
+    <input matInput [(ngModel)]="dialogData.name" />
+  </mat-form-field>
+  <!-- <mat-checkbox [(ngModel)]="dialogData.isPrivate" color="primary">Channel is private!</mat-checkbox> -->
 </div>
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button cdkFocusInitial [mat-dialog-close]="dialogData"
-        [disabled]="dialogData.name.length == 0">OK</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    cdkFocusInitial
+    [mat-dialog-close]="dialogData"
+    [disabled]="dialogData.name.length == 0"
+  >
+    OK
+  </button>
 </div>

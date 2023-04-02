@@ -5,7 +5,6 @@
 
 .left {
   width: 100%;
-  // min-width: 350px;
   height: calc(100svh - 64px);
 }
 
@@ -51,27 +50,12 @@ span {
   }
 }
 
-// .hide-scrollbar::-webkit-scrollbar {
-//   display: none;
-// }
-
-// .hide-scrollbar {
-//   -ms-overflow-style: none;
-//   scrollbar-width: none;
-// }
-
 .open {
   display: block;
 }
 
 .d-none {
   display: none;
-}
-
-@media screen and (max-width: 620px) {
-  .right {
-    border-left: unset !important;
-  }
 }
 
 .imagesContainerChannel {
@@ -83,7 +67,7 @@ span {
   left: 30px;
   right: 80px;
   height: 80px;
-  background-color:#1f2125;
+  background-color: #1f2125;
   z-index: 0;
   overflow-x: hidden !important;
   overflow: auto;
@@ -93,3 +77,8 @@ span {
   }
 }
 
+@media screen and (max-width: 620px) {
+  .right {
+    border-left: unset !important;
+  }
+}

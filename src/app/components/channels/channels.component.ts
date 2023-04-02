@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCreateChannelComponent } from '../dialog-create-channel/dialog-create-channel.component';
 import {
-  addDoc,
   collection,
   collectionData,
   CollectionReference,
@@ -10,13 +9,10 @@ import {
   setDoc,
   doc,
   DocumentData,
-  query,
-  orderBy,
-  onSnapshot,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { ChannelService } from 'src/app/shared/services/channel.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 
 @Component({
@@ -25,11 +21,18 @@ import * as GLOBAL_VAR from 'src/app/shared/services/globals';
   styleUrls: ['./channels.component.scss'],
 })
 export class ChannelsComponent {
-  collapsed = false;
+  collapsed: boolean = false;
   channelsCollection: CollectionReference;
   channels$: Observable<DocumentData[]>;
   channels: Array<any> = [];
 
+  /**
+   * Subscription on channels collection and sorting by name
+   * @param dialog
+   * @param firestore
+   * @param channelService
+   * @param router
+   */
   constructor(
     public dialog: MatDialog,
     private firestore: Firestore,
@@ -41,7 +44,6 @@ export class ChannelsComponent {
       idField: 'channelId',
     });
     this.channels$.subscribe((data) => {
-      console.log(data);
       this.channels = data;
       this.channels.sort((a, b) => {
         if (a.name.toLowerCase() < b.name.toLowerCase()) {
@@ -71,10 +73,6 @@ export class ChannelsComponent {
     dialogRef.afterClosed().subscribe(async (dialogData) => {
       if (dialogData.name) {
         await this.createChannel(dialogData);
-
-        console.log(
-          `Channel '${dialogData.name}' created (private = ${dialogData.isPrivate}).`
-        );
       }
     });
   }
@@ -91,10 +89,13 @@ export class ChannelsComponent {
       isPrivate: data.isPrivate,
       users: [],
     });
-
     this.navigateToCreatedChannel(channelRef);
   }
 
+  /**
+   * Navigates directly to the created channel
+   * @param {DOC} channelRef Document of the new channel
+   */
   navigateToCreatedChannel(channelRef: any) {
     const createdChannelId = channelRef.id;
 

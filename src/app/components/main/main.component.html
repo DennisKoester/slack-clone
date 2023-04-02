@@ -4,21 +4,33 @@
       <div class="logo">
         <img src="./assets/img/logo.png" />
         <span>Slack Clone</span>
-        <button class="new-msg-btn" mat-mini-fab (click)="globalFunctions.closeMenu()"
-          [routerLink]="['/home/new-chat']">
+        <button
+          class="new-msg-btn"
+          mat-mini-fab
+          (click)="globalFunctions.closeMenu()"
+          [routerLink]="['/home/new-chat']"
+        >
           <mat-icon [ngStyle]="{ color: 'black' }">edit_note</mat-icon>
         </button>
       </div>
     </div>
     <div class="nav-scroll-container">
       <div class="navigation">
-        <div (click)="globalFunctions.closeMenu()" [routerLink]="['/home/threads-list']" routerLinkActive="activeLink"
-          class="nav-hl flex-ac">
+        <div
+          (click)="globalFunctions.closeMenu()"
+          [routerLink]="['/home/threads-list']"
+          routerLinkActive="activeLink"
+          class="nav-hl flex-ac"
+        >
           <mat-icon font-icon>comment</mat-icon>
           <p>Threads</p>
         </div>
-        <div (click)="globalFunctions.closeMenu()" [routerLink]="['/home/user-list']" routerLinkActive="activeLink"
-          class="nav-hl flex-ac">
+        <div
+          (click)="globalFunctions.closeMenu()"
+          [routerLink]="['/home/user-list']"
+          routerLinkActive="activeLink"
+          class="nav-hl flex-ac"
+        >
           <mat-icon font-icon>supervisor_account</mat-icon>
           <p>Users</p>
         </div>

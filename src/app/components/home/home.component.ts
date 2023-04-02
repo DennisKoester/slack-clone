@@ -1,6 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import Quill from 'quill';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { Component, OnInit } from '@angular/core';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 
@@ -11,11 +9,13 @@ import { UsersService } from 'src/app/shared/services/users.service';
 })
 export class HomeComponent implements OnInit {
   constructor(
-    public authenticationService: AuthenticationService,
     public usersService: UsersService,
     public channelService: ChannelService
   ) {}
 
+  /**
+   * Gets all users and the current user on init
+   */
   ngOnInit() {
     this.usersService.getUsers();
     this.usersService.getCurrentUser();

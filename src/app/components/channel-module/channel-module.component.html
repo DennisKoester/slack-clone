@@ -12,8 +12,6 @@
   (click)="channelService.showRef()"
 >
   <div #scrollContainer id="scrollContainer" class="scroll-container">
-    <!-- <app-thread-card *ngFor="let thread of channelService.threads index as i" [index]="i" [author]="channelService.allAuthors[i]" [message]="channelService.allMessages[i]" (click)="openThread()"></app-thread-card> -->
-
     <app-thread-card
       [thread]="true"
       class="threadCard"

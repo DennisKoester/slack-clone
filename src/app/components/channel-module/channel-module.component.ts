@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { ChannelService } from 'src/app/shared/services/channel.service';
-import { MainComponent } from '../main/main.component';
 import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 import { GlobalFunctionsService } from 'src/app/shared/services/global-functions.service';
 
@@ -21,13 +20,15 @@ export class ChannelModuleComponent implements AfterViewChecked, OnInit {
 
   constructor(
     public channelService: ChannelService,
-    public navFunction: MainComponent,
     public imgUploadService: ImageUploadService,
     public globalFunctions: GlobalFunctionsService
   ) {}
 
   ngOnInit() {}
 
+  /**
+   * Scrolls to the bottom of the open channel
+   */
   ngAfterViewChecked() {
     if (this.globalFunctions.scrollCounter == 0) {
       this.globalFunctions.scrollToBottom('channel');

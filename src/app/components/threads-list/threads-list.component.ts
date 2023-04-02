@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
 import {
-  collection,
   collectionGroup,
   Firestore,
   getDocs,
   query,
-  where,
 } from '@angular/fire/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ChatService } from 'src/app/shared/services/chat.service';
-import { UsersService } from 'src/app/shared/services/users.service';
-import * as GLOBAL_VAR from '../../shared/services/globals';
 
 @Component({
   selector: 'app-threads-list',
@@ -19,18 +15,20 @@ import * as GLOBAL_VAR from '../../shared/services/globals';
   styleUrls: ['./threads-list.component.scss'],
 })
 export class ThreadsListComponent {
-  ownThreads = [];
-  currentUserData: any;
-  amountAnswers = [];
+  ownThreads: Array<any> = [];
+  amountAnswers: Array<any> = [];
   threadsLoading: boolean = false;
+  currentUserData: any;
 
   constructor(
     private firestore: Firestore,
-    public usersService: UsersService,
     public channelService: ChannelService,
     public chatService: ChatService
   ) {}
 
+  /**
+   * Starts loading spinner, gets current user data and initializes getting all threads
+   */
   ngOnInit() {
     this.threadsLoading = true;
 
@@ -46,6 +44,9 @@ export class ThreadsListComponent {
     });
   }
 
+  /**
+   * Loading all threads and pushes own filtered threads
+   */
   async getAllThreads() {
     const currentUser = this.currentUserData;
     const threads = query(collectionGroup(this.firestore, 'THREADS'));
@@ -69,12 +70,9 @@ export class ThreadsListComponent {
           const lastAnswer =
             querySnapshot.docs[i].data()['MESSAGES'][amount]['timestamp'];
 
-          // console.log('doc.parent.id',querySnapshot.docs[i].ref.parent.parent.id);
-
           firstThreadMessage['author'] = this.chatService.getUserMetaData(
             firstThreadMessage['author']
           );
-          // this.amountAnswers.push(amount);
           this.ownThreads.push({
             threadId: threadId,
             channelId: channelId,
@@ -82,26 +80,18 @@ export class ThreadsListComponent {
             lastAnswer: lastAnswer,
             amount: amount,
           });
-
-          // console.log('querySnapshot.docs', querySnapshot.docs[i].id);
-          // console.log('Amount is', this.amountAnswers);
           break;
         }
-        this.threadsLoading = false;
       }
-
-      // let thread = {
-
-      //   author:,
-      //   content:,
-      //   timestamp:
-      // }
     }
     this.sortOwnThreads(this.ownThreads);
-    // this.ownThreads = allThreads;
-    console.log('ownThreads', this.ownThreads);
+    this.threadsLoading = false;
   }
 
+  /**
+   * Sorts all own threads by timestamp to the newest on top
+   * @param threads All own threads
+   */
   sortOwnThreads(threads) {
     threads.sort((thread_1: any, thread_2: any) => {
       return (

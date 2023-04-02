@@ -1,6 +1,9 @@
 <mat-card>
   <div class="card-header">
-    <img class="imageUser" src="{{ userImage ?? 'assets/img/profile_icon.png' }}" />
+    <img
+      class="imageUser"
+      src="{{ userImage ?? 'assets/img/profile_icon.png' }}"
+    />
     <div>
       <div class="card-header">
         <div class="author">{{ author }}</div>
@@ -22,10 +25,18 @@
 
       <div [innerHTML]="message"></div>
       <div class="imagesContainer">
-        <img *ngFor="let img of image" src="{{img}}" (click)="channelService.openImg(img)" class="imageUploaded imageInMessage">
+        <img
+          *ngFor="let img of image"
+          src="{{ img }}"
+          (click)="channelService.openImg(img)"
+          class="imageUploaded imageInMessage"
+        />
       </div>
       <div *ngIf="thread && amountAnswers > 0" class="infoAnswers">
-        <span class="amountAnswers" (click)="channelService.openThread(channelId, threadId)">
+        <span
+          class="amountAnswers"
+          (click)="channelService.openThread(channelId, threadId)"
+        >
           {{ amountAnswers }}
           {{ amountAnswers > 1 ? "answers" : "answer" }}</span
         >
