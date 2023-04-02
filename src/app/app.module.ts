@@ -7,6 +7,7 @@ import { ActivatedRoute, RouterModule, ROUTES } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 //firebase neu
 // import { environment } from '../environments/environment';
@@ -125,7 +126,10 @@ import { ThreadsListComponent } from './components/threads-list/threads-list.com
     MatSnackBarModule,
     AngularFireAuthGuardModule,
   ],
-  providers: [AuthenticationService],
+  providers: [
+    AuthenticationService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
