@@ -28,10 +28,6 @@ export class ChannelsComponent {
 
   /**
    * Subscription on channels collection and sorting by name
-   * @param dialog
-   * @param firestore
-   * @param channelService
-   * @param router
    */
   constructor(
     public dialog: MatDialog,

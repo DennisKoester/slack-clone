@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collectionData, doc,getDoc } from '@angular/fire/firestore';
+import { collectionData, doc, getDoc } from '@angular/fire/firestore';
 import { collection, Firestore } from '@angular/fire/firestore';
 import { Observable, Subscription } from 'rxjs';
 import * as GLOBAL_VAR from './globals';
@@ -11,7 +11,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ChannelService {
   channelName: string = '';
   channelIsOpen: boolean = true;
@@ -22,18 +21,17 @@ export class ChannelService {
   channelId: string;
   searchValue: string = '';
   searchActive: boolean = false;
-  threadId;
+  threadId: number;
   editorRef: string = 'channel';
-  image;
+  image: string;
   status: boolean = false;
-  threadsCollection;
+  threadsCollection: any;
 
   channelIsPrivate: boolean = false;
- private index: number;
- public setValue(value: number) {
-  this.index = value;
-}
-
+  private index: number;
+  public setValue(value: number) {
+    this.index = value;
+  }
 
   constructor(
     private firestore: Firestore,
@@ -46,7 +44,6 @@ export class ChannelService {
       next: (users) => null,
     });
   }
-
 
   /**
    * function to open a channel by clicking on the channel name
@@ -62,13 +59,8 @@ export class ChannelService {
       await this.showChannelName(channelId);
       await this.getThreads(channelId);
       this.openedChannel = false;
-      // setTimeout(() => {
-
-      //   this.scrollToBottom('channel'); // TODO not working
-      // }, 300);
     }
   }
-
 
   /**
    * function to remove a subscribe from a channel
@@ -79,9 +71,8 @@ export class ChannelService {
     }
   }
 
-
   /**
-   * function to change the layout of the page 
+   * function to change the layout of the page
    */
   changeChannelLayout() {
     if (innerWidth <= 620 && !this.globalFunctions.menuCollapsed) {
@@ -90,7 +81,6 @@ export class ChannelService {
       this.channelIsOpen = true;
     }
   }
-
 
   /**
    * function to show the correct channel name
@@ -105,14 +95,15 @@ export class ChannelService {
     this.channelIsPrivate = channelData['isPrivate'];
   }
 
-
   /**
    * function to show the threads of the opened channel
    * @param channelID - id of the current channel
    */
   async getThreads(channelID: string) {
     this.getThreadsCollection(channelID);
-    this.threads$ = collectionData(this.threadsCollection, { idField: 'threadId' });
+    this.threads$ = collectionData(this.threadsCollection, {
+      idField: 'threadId',
+    });
     this.unsubChannel = this.threads$.subscribe((threads) => {
       this.sortThreads(threads);
       this.getUserNames(threads);
@@ -120,7 +111,6 @@ export class ChannelService {
       this.globalFunctions.scrollCounter = 0;
     });
   }
-
 
   /**
    * function to get the collection of the threads
@@ -135,7 +125,6 @@ export class ChannelService {
     );
   }
 
-
   /**
    * function to sort the threads by timestamp
    * @param threads - contains all threads from the opened channel
@@ -148,7 +137,6 @@ export class ChannelService {
       );
     });
   }
-
 
   /**
    * function to get the user names of the threads
@@ -166,7 +154,6 @@ export class ChannelService {
       };
     });
   }
-
 
   /**
    * function to open a thread by clicking on it
@@ -191,16 +178,12 @@ export class ChannelService {
     }
   }
 
-
   /**
    * function to enlarge an image by clicking on it
    * @param image - url of the image
    */
   openImg(image) {
-    console.log(image);
     this.image = image;
     this.status = !this.status;
   }
-
-
 }
