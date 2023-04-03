@@ -14,6 +14,7 @@ import { ChatService } from 'src/app/shared/services/chat.service';
   templateUrl: './threads-list.component.html',
   styleUrls: ['./threads-list.component.scss'],
 })
+
 export class ThreadsListComponent {
   ownThreads: Array<any> = [];
   threadsLoading: boolean = false;

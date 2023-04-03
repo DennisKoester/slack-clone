@@ -1,8 +1,4 @@
 import { Injectable, OnInit } from '@angular/core';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-} from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { UsersService } from './users.service';
 import { ChannelService } from './channel.service';
@@ -10,6 +6,7 @@ import { ChannelService } from './channel.service';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ImageUploadService {
   auth: any;
   newPhotoURL: any;
