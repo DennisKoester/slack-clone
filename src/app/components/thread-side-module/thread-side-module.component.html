@@ -12,10 +12,7 @@
     </div>
   </div>
 </mat-toolbar-row>
-<div
-  id="scrollContainerThread"
-  class="rightContent"
->
+<div id="scrollContainerThread" class="rightContent">
   <div *ngIf="threadService.thread">
     <app-thread-card
       *ngFor="let message of threadService.thread['MESSAGES']; index as i"

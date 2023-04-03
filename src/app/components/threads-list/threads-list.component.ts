@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { collectionGroup, Firestore, getDocs, query } from '@angular/fire/firestore';
+import {
+  collectionGroup,
+  Firestore,
+  getDocs,
+  query,
+} from '@angular/fire/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ChatService } from 'src/app/shared/services/chat.service';
@@ -13,22 +18,20 @@ export class ThreadsListComponent {
   ownThreads: Array<any> = [];
   threadsLoading: boolean = false;
   currentUserData: any;
-  currentUser;
-  threads;
-  querySnapshot;
-  threadId;
-  channelId;
-  firstThreadMessage;
-  lastAnswer;
-  amount;
-
+  currentUser: any;
+  threads: any;
+  querySnapshot: any;
+  threadId: number;
+  channelId: number;
+  firstThreadMessage: string;
+  lastAnswer: number;
+  amount: number;
 
   constructor(
     private firestore: Firestore,
     public channelService: ChannelService,
     public chatService: ChatService
   ) {}
-
 
   /**
    * Starts loading spinner, gets current user data and initializes getting all threads
@@ -46,7 +49,6 @@ export class ThreadsListComponent {
     });
   }
 
-
   /**
    * Loading all threads and pushes own filtered threads
    */
@@ -59,42 +61,46 @@ export class ThreadsListComponent {
     this.threadsLoading = false;
   }
 
-
-/**
- * function to get all Documents in which the current user is involved
- */
+  /**
+   * function to get all Documents in which the current user is involved
+   */
   getAllDocs() {
     for (let i = 0; i < this.querySnapshot.docs.length; i++) {
-      for (let j = 0;j < this.querySnapshot.docs[i].data()['MESSAGES'].length;j++) {
+      for (
+        let j = 0;
+        j < this.querySnapshot.docs[i].data()['MESSAGES'].length;
+        j++
+      ) {
         if (
           this.querySnapshot.docs[i].data()['MESSAGES'][j]['author'] ==
           this.currentUser.uid
         ) {
           this.getParameters(this.querySnapshot, i);
-          this.pushToOwnThreads()
+          this.pushToOwnThreads();
           break;
         }
       }
     }
   }
 
-
-/**
- * function to get all parameters from the thread
- */
+  /**
+   * function to get all parameters from the thread
+   */
   getParameters(querySnapshot, i) {
     this.threadId = querySnapshot.docs[i].id;
     this.channelId = querySnapshot.docs[i].ref.parent.parent.id;
     this.firstThreadMessage = querySnapshot.docs[i].data()['MESSAGES'][0];
     this.amount = querySnapshot.docs[i].data()['MESSAGES'].length - 1;
-    this.lastAnswer = querySnapshot.docs[i].data()['MESSAGES'][this.amount]['timestamp'];
-    this.firstThreadMessage['author'] = this.chatService.getUserMetaData(this.firstThreadMessage['author']);
+    this.lastAnswer =
+      querySnapshot.docs[i].data()['MESSAGES'][this.amount]['timestamp'];
+    this.firstThreadMessage['author'] = this.chatService.getUserMetaData(
+      this.firstThreadMessage['author']
+    );
   }
 
-
-/**
- * function to push all messages into an array
- */
+  /**
+   * function to push all messages into an array
+   */
   pushToOwnThreads() {
     this.ownThreads.push({
       threadId: this.threadId,
@@ -104,7 +110,6 @@ export class ThreadsListComponent {
       amount: this.amount,
     });
   }
-
 
   /**
    * Sorts all own threads by timestamp to the newest on top

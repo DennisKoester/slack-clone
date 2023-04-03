@@ -12,8 +12,6 @@ import { GlobalFunctionsService } from 'src/app/shared/services/global-functions
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  // status: boolean = false;
-
   constructor(
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
@@ -21,10 +19,6 @@ export class HeaderComponent {
     public usersService: UsersService,
     public globalFunctions: GlobalFunctionsService
   ) {}
-
-  // openProfile(): void {
-  //   this.status = !this.status;
-  // }
 
   /**
    * Opens the dialog to edit the user
@@ -41,7 +35,7 @@ export class HeaderComponent {
   }
 
   /**
-   * 
+   *
    */
   openLegals() {
     this.globalFunctions.legals = !this.globalFunctions.legals;

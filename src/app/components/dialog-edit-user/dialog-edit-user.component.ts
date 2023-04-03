@@ -50,12 +50,11 @@ export class DialogEditUserComponent implements OnInit {
       displayName: this.name,
       photoURL: this.imgUploadService.newPhotoURL,
     })
-      .then(() => {
-        this.updateUserEmail();
-        this.updateUserDoc();
-        this.imgUploadService.deleteProfilePhoto();
-      })
+      .then(() => {})
       .catch((error) => {});
+    this.updateUserEmail();
+    this.updateUserDoc();
+    this.imgUploadService.deleteProfilePhoto();
   }
 
   /**
