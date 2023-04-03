@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { doc, onSnapshot } from '@angular/fire/firestore';
-import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
+import {  Firestore } from '@angular/fire/firestore';
 import { Unsubscribe } from 'firebase/app-check';
 import * as GLOBAL_VAR from './globals';
 import { UsersService } from './users.service';
@@ -26,12 +26,16 @@ export class ChatService {
     private usersService: UsersService,
     private globalFunctions: GlobalFunctionsService
   ) {
-    // this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
     this.usersService.usersCollListener.subscribe({
       next: (users) => null,
     });
   }
 
+
+  /**
+   * Opens the selected chat
+   * @param chatId The ID of the chat to be opened
+   */
   async openChat(chatId: string) {
     this.chatMessages = [];
     if (this.unsubscribe) this.unsubscribe();
@@ -40,17 +44,26 @@ export class ChatService {
     this.globalFunctions.closeMenu();
   }
 
+
+  /**
+   * Reads the data of the selected chat from the database
+   * @param chatId The ID of the selected chat
+   */
   getChatData(chatId: string) {
     this.unsubscribe = onSnapshot(
       doc(this.firestore, GLOBAL_VAR.COLL_CHATS, chatId),
       (chatData) => {
-        // console.log('ChatData: ', chatData.data());
         this.showChatMembers(chatData.data()['USERS']);
         this.showChatMessages(chatData.data()['MESSAGES']);
       }
     );
   }
 
+
+  /**
+   * Display the chat members
+   * @param chatMembers The list of the chat members
+   */
   showChatMembers(chatMembers: Array<string>) {
     this.currentUserId = this.usersService.currentUserData.uid;
     this.chatMembers = [];
@@ -59,9 +72,13 @@ export class ChatService {
         this.chatMembers.push(this.getUserMetaData(member));
       }
     });
-    // console.log('ChatMembers: ', this.chatMembers);
   }
 
+
+  /**
+   * Displays the chat messages
+   * @param chatMessages The list of the chat messages
+   */
   async showChatMessages(chatMessages: Array<any>) {
     this.chatMessages = [];
     chatMessages.forEach((message: any) => {
@@ -72,8 +89,8 @@ export class ChatService {
     setTimeout(() => {
       this.globalFunctions.scrollCounter = 0;
     }, 0);
-    // console.log('ChatMessages: ', this.chatMessages);
   }
+
 
   /**
    * Reads the metadata of the user
@@ -84,15 +101,18 @@ export class ChatService {
     const userData = this.usersService.usersCollListener.value.users.find(
       (user: any) => _user == user.uid
     );
-
-    // console.log('userData in getUserMetaData: ', userData);
-
     return {
       displayName: userData.displayName,
       userImage: userData.photoURL,
     };
   }
 
+
+  /**
+   * Selects a user for the new chat
+   * @param uid The ID of the selected user
+   * @param displayName The display name of the selected user
+   */
   selectUserForChat(uid: string, displayName: string) {
     this.selectedUserIds = [];
     this.selectedUserNames = [];

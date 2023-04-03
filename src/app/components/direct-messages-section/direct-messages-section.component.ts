@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { collection, CollectionReference, doc, DocumentData, getDoc } from '@firebase/firestore';
+import { collection, CollectionReference, DocumentData } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { UsersService } from 'src/app/shared/services/users.service';
@@ -29,7 +29,6 @@ export class DirectMessagesSectionComponent {
     this.usersService.usersCollListener.subscribe({
       next: (users) => null
     });
-    // this.currentUserId = JSON.parse(localStorage.getItem('user')).uid;
     this.getChatsFromDb();
   }
 
@@ -45,7 +44,6 @@ export class DirectMessagesSectionComponent {
     this.chatsCollection = collection(this.firestore, GLOBAL_VAR.COLL_CHATS);
     this.chats$ = collectionData(this.chatsCollection, {idField: 'chatId'});
     this.chats$.subscribe((chatsData) => {
-      // console.log('All chats', chatsData);
       this.chats = this.filterChats(chatsData);
     });
   }
@@ -59,7 +57,6 @@ export class DirectMessagesSectionComponent {
   filterChats(chatsData: Array<any>) {
     this.currentUserId = this.usersService.currentUserData.uid;
     let chats = chatsData.filter(chat => chat['USERS'].includes(this.currentUserId));
-    // console.log(`Private chats for ${this.currentUserId}`, JSON.stringify(chats));
     chats = this.cleanUpUserLists(chats);
     chats = this.getUserNamesAndImages(chats);
     return chats;
@@ -75,7 +72,6 @@ export class DirectMessagesSectionComponent {
     chats.forEach((chat) => {
       chat['USERS'] = chat['USERS'].filter(user => user != this.currentUserId);
     });
-    // console.log('Filtered chat list: ', chats);
     return chats;
   }
 
@@ -88,12 +84,9 @@ export class DirectMessagesSectionComponent {
   getUserNamesAndImages(chats: Array<any>) {
     chats.forEach(chat => {
       for (let u = 0; u < chat['USERS'].length; u++) {
-        // console.log(`Processing chatUser: ${chat['USERS'][u]}`);
         chat['USERS'][u] = this.chatService.getUserMetaData(chat['USERS'][u]);
-        // console.log(`After processing chatUser: `, chat['USERS'][u]);
       }
     });
-    // console.log('Metadata implemented: ', chats);
     return chats;
   }
 }

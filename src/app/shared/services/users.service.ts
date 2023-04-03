@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { collectionData } from '@angular/fire/firestore';
 import { collection, Firestore } from '@angular/fire/firestore';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 @Injectable({
