@@ -9,7 +9,6 @@
 <div
   class="leftContent"
   [routerLink]="['/home/channel/' + channelService.channelId]"
-  
 >
   <div #scrollContainer id="scrollContainer" class="scroll-container">
     <app-thread-card
@@ -57,7 +56,7 @@
           (click)="this.channelService.openImg(image)"
         />
         <img
-          src="/assets/img/x.svg"
+          src="assets/img/x.svg"
           class="deleteImage"
           (click)="this.imgUploadService.deleteImage(image)"
         />
