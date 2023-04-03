@@ -30,6 +30,7 @@ export class TextEditorComponent implements OnDestroy{
       ['code-block'],
       [{ list: 'ordered' }, { list: 'bullet' }],
       ['emoji'],
+      ['link']
     ],
     'emoji-toolbar': true,
     'emoji-textarea': false,
