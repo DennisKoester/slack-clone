@@ -11,7 +11,7 @@ import { ChannelService } from './channel.service';
   providedIn: 'root',
 })
 export class ImageUploadService {
-
+  auth: any;
   newPhotoURL: any;
   newURLdefined: boolean = false;
   imageURL: any = [];
@@ -81,9 +81,10 @@ export class ImageUploadService {
 
 
   /**
-   * function to upload a image to the editor
+   * function to upload an image to the editor
    */
   async uploadImageEditor(event: any) {
+    debugger;
     const file = event.target.files[0];
     if (file && this.imageURL.length < 4) {
       this.loading = true;
@@ -121,7 +122,7 @@ export class ImageUploadService {
       this.addMarginPadding(editor);
     } else if (this.channelService.editorRef == 'chat') {
       let editor = document.querySelector('#editorChat .ql-editor') as HTMLElement;
-      
+      this.addMarginPadding(editor);
     }
   }
 

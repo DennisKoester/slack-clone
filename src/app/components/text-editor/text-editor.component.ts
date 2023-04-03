@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy ,Input } from '@angular/core';
+import { Component, OnDestroy ,Input } from '@angular/core';
 
 import { EditorChangeContent,EditorChangeSelection } from 'ngx-quill/public-api';
 import { ActivatedRoute } from '@angular/router';
