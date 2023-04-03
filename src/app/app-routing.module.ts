@@ -12,10 +12,12 @@ import { NewChatComponent } from './components/new-chat/new-chat.component';
 import { ThreadsListComponent } from './components/threads-list/threads-list.component';
 import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 
+
 const routes: Routes = [
   { path: '', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+
   {
     path: 'home',
     component: HomeComponent,
