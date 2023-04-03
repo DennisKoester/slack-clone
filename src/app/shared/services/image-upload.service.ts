@@ -11,7 +11,6 @@ import { ChannelService } from './channel.service';
   providedIn: 'root',
 })
 export class ImageUploadService {
-
   newPhotoURL: any;
   newURLdefined: boolean = false;
   imageURL: any = [];
@@ -21,13 +20,11 @@ export class ImageUploadService {
   url: any;
   imgUploadEditorRef: string = '';
 
-
   constructor(
     private afStorage: AngularFireStorage,
     private usersService: UsersService,
     public channelService: ChannelService
   ) {}
-
 
   /**
    * function to upload a new profile photo
@@ -43,7 +40,6 @@ export class ImageUploadService {
     }
   }
 
-
   /**
    * function to read the url of the selected photo
    */
@@ -57,7 +53,6 @@ export class ImageUploadService {
     }
   }
 
-
   /**
    * function to cancel the upload of a new profile photo
    */
@@ -66,7 +61,6 @@ export class ImageUploadService {
       this.afStorage.refFromURL(this.newPhotoURL).delete();
     }
   }
-
 
   /**
    * function to delete the profile photo
@@ -78,7 +72,6 @@ export class ImageUploadService {
       this.afStorage.refFromURL(oldPhotoURL).delete();
     }
   }
-
 
   /**
    * function to upload a image to the editor
@@ -96,7 +89,6 @@ export class ImageUploadService {
     this.imgUploadEditorRef = '';
   }
 
-
   /**
    * function to upload the selected image
    * @param file - selected file
@@ -108,23 +100,26 @@ export class ImageUploadService {
     this.url = await uploadTask.ref.getDownloadURL();
   }
 
-
   /**
    * function to add style to the editor
    */
   addStyleToEditor() {
     if (this.channelService.editorRef == 'channel') {
-      let editor = document.querySelector('#editorChannel .ql-editor') as HTMLElement;
+      let editor = document.querySelector(
+        '#editorChannel .ql-editor'
+      ) as HTMLElement;
       this.addMarginPadding(editor);
     } else if (this.channelService.editorRef == 'thread') {
-      let editor = document.querySelector('#editorThread .ql-editor') as HTMLElement;
+      let editor = document.querySelector(
+        '#editorThread .ql-editor'
+      ) as HTMLElement;
       this.addMarginPadding(editor);
     } else if (this.channelService.editorRef == 'chat') {
-      let editor = document.querySelector('#editorChat .ql-editor') as HTMLElement;
-      
+      let editor = document.querySelector(
+        '#editorChat .ql-editor'
+      ) as HTMLElement;
     }
   }
-
 
   /**
    * function to add margin and padding to the editor
@@ -134,7 +129,6 @@ export class ImageUploadService {
     editor.style.margin = '0 0 90px 0';
     editor.style.padding = '12px 15px 0 15px';
   }
-
 
   /**
    * function to show the image container in the editor
@@ -148,7 +142,6 @@ export class ImageUploadService {
       document.getElementById('imagesChat').style.zIndex = '3000';
     }
   }
-
 
   /**
    * function to delete the image that was clicked on
@@ -164,20 +157,27 @@ export class ImageUploadService {
     this.imgUploadEditorRef = '';
   }
 
-
   /**
    * function to hide the image Container in the editor
    */
   removeImageContainer() {
-    if (this.channelService.editorRef == 'channel' &&this.imageURL.length == 0) {
+    if (
+      this.channelService.editorRef == 'channel' &&
+      this.imageURL.length == 0
+    ) {
       document.getElementById('imagesChannel').style.zIndex = '0';
-    } else if (this.channelService.editorRef == 'thread' &&this.imageURL.length == 0) {
+    } else if (
+      this.channelService.editorRef == 'thread' &&
+      this.imageURL.length == 0
+    ) {
       document.getElementById('imagesThread').style.zIndex = '0';
-    } else if (this.channelService.editorRef == 'chat' &&this.imageURL.length == 0) {
+    } else if (
+      this.channelService.editorRef == 'chat' &&
+      this.imageURL.length == 0
+    ) {
       document.getElementById('imagesChat').style.zIndex = '0';
     }
   }
-
 
   /**
    * function ro remove style from editor
@@ -192,6 +192,4 @@ export class ImageUploadService {
       }
     }
   }
-
-
 }
