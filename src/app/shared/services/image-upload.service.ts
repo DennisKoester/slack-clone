@@ -152,7 +152,7 @@ export class ImageUploadService {
     for (let i = 0; i < this.imageURL.length; i++) {
       if (this.imageURL[i] == image) this.imageURL.splice(i, 1);
     }
-    // document.getElementById('fileEditor').innerHTML = '';
+    
     this.removeStyleFromEditor();
     this.imgUploadEditorRef = '';
   }
