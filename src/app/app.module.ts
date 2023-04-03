@@ -61,6 +61,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { NewChatComponent } from './components/new-chat/new-chat.component';
 import { ThreadsListComponent } from './components/threads-list/threads-list.component';
+import { LegalsComponent } from './components/legals/legals.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { ThreadsListComponent } from './components/threads-list/threads-list.com
     UserCardComponent,
     NewChatComponent,
     ThreadsListComponent,
+    LegalsComponent,
   ],
   imports: [
     BrowserModule,

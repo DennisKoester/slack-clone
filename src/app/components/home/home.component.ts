@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { GlobalFunctionsService } from 'src/app/shared/services/global-functions.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,8 @@ import { UsersService } from 'src/app/shared/services/users.service';
 export class HomeComponent implements OnInit {
   constructor(
     public usersService: UsersService,
-    public channelService: ChannelService
+    public channelService: ChannelService,
+    public globalFunctions: GlobalFunctionsService
   ) {}
 
   /**

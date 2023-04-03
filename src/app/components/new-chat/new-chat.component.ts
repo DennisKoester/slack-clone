@@ -17,8 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./new-chat.component.scss'],
 })
 export class NewChatComponent {
-  // selectedUserIds: Array<string> = [];
-  // selectedUserNames: Array<string> = [];
+
   chatsCollection: CollectionReference;
   guestId = GLOBAL_VAR.guest;
 
@@ -43,10 +42,12 @@ export class NewChatComponent {
     this.chatService.selectedUserNames.push(name);
   }
 
+
   deselectUser(index: number) {
     this.chatService.selectedUserIds.splice(index, 1);
     this.chatService.selectedUserNames.splice(index, 1);
   }
+
 
   async createChat() {
     this.chatsCollection = collection(this.firestore, GLOBAL_VAR.COLL_CHATS);
@@ -55,18 +56,13 @@ export class NewChatComponent {
     this.chatService.openChat(newChatId);
   }
 
+
   async writeToDatabase() {
     const chatData = {
       USERS: [this.usersService.currentUserData.uid, ...this.chatService.selectedUserIds],
       MESSAGES: [],
     };
-
-    console.log('ChatData: ', chatData);
-
     const chatDoc = await addDoc(this.chatsCollection, chatData);
-
-    console.log('New Chat: ', chatDoc.id);
-
     this.chatService.selectedUserIds = [];
     this.chatService.selectedUserNames = [];
     return chatDoc.id;

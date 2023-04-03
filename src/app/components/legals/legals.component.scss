@@ -1,0 +1,17 @@
+.legals {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.685);
+  z-index: 99999;
+
+  mat-icon {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+}

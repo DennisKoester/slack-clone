@@ -9,7 +9,7 @@ export class GlobalFunctionsService {
   menuCollapsed = false;
   threadIsOpen: boolean = false;
   scrollCounter = 0;
-
+  legals: boolean = false;
 
   closeMenu() {
     if (innerWidth < 620) {

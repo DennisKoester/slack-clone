@@ -39,4 +39,11 @@ export class HeaderComponent {
   resetSearch() {
     this.channelService.searchValue = '';
   }
+
+  /**
+   * 
+   */
+  openLegals() {
+    this.globalFunctions.legals = !this.globalFunctions.legals;
+  }
 }
