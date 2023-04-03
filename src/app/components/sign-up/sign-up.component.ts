@@ -16,24 +16,29 @@ export class SignUpComponent {
   
   constructor(public authenticationService: AuthenticationService) {}
 
-  ngOnInit() {
-    
-  }
-
+/**
+ * function to jump to the password field when clicking enter in the email-field
+ * @param event - triggered on click
+ */
   focusPassword(event) {
     if (event.key === "Enter") {
       document.getElementById('userPassword').focus();
     }
   }
 
-
+/**
+ * function to sign up when clicking enter in the password-field
+ * @param event - triggered on click
+ */
   signUp(event) {
     if (event.key === "Enter") {
       document.getElementById('buttonSignUp').click();
     }
   }
 
-
+/**
+ * function to show or hide the password when clicking on the eye-symbol
+ */
   showPassword() {
     this.password = !this.password;
   }

@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core';
-import {
-  collectionData,
-  doc,
-  getDoc,
-  getDocs,
-  onSnapshot,
-  orderBy,
-  query,
-} from '@angular/fire/firestore';
-import { collection, DocumentData, Firestore } from '@angular/fire/firestore';
+import { doc, getDoc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore } from '@angular/fire/firestore';
 import { Unsubscribe } from 'firebase/app-check';
-import { Observable, Subscription } from 'rxjs';
 import * as GLOBAL_VAR from './globals';
 import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class ThreadService {
   channelId: string;
   threadId: string;
@@ -27,8 +19,14 @@ export class ThreadService {
   constructor(
     private firestore: Firestore,
     private usersService: UsersService
-  ) {}
+  ) { }
 
+
+  /**
+   * function to show the messages of a single thread
+   * @param channelId - id of the current Channel
+   * @param threadId - id of the current thread
+   */
   async getThreadMessages(channelId, threadId) {
     this.thread = '';
     if (this.unsubscribe) this.unsubscribe();
@@ -38,6 +36,11 @@ export class ThreadService {
     this.showChannelName();
   }
 
+
+/**
+ * function to get the data of a single thread
+ * @param threadId - id of the current thread
+ */
   getData(threadId) {
     this.unsubscribe = onSnapshot(
       doc(
@@ -54,6 +57,10 @@ export class ThreadService {
     );
   }
 
+
+/**
+ * function to show the correct channel name on top of the opened thread
+ */
   async showChannelName() {
     const channelCollection = getDoc(
       doc(this.firestore, GLOBAL_VAR.COLL_CHANNELS, this.channelId)
@@ -62,6 +69,10 @@ export class ThreadService {
     this.channelName = channelData['name'];
   }
 
+
+  /**
+   * function to get the user names of the opened thread
+   */
   getUserNamesThread() {
     this.thread['MESSAGES'].forEach((message: string) => {
       const uid = message['author'];

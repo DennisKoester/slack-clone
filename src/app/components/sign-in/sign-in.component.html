@@ -1,27 +1,18 @@
 <div class="overflow">
+
   <app-sign-header></app-sign-header>
+
   <div class="mainContentContainer">
     <div class="mainContent">
       <h1>Sign in - enter your email & password</h1>
-      <!-- <p>We suggest using the <span class="bold">email address that you use at work.</span></p> -->
 
       <form class="form">
+
         <mat-form-field class="inputEmail">
           <mat-label>Email</mat-label>
-          <input
-            type="email"
-            matInput
-            [formControl]="emailFormControl"
-            placeholder="name@work-email.com"
-            #userEmail
-            (keydown)="focusPassword($event)"
-          />
-          <mat-error
-            *ngIf="
-              emailFormControl.hasError('email') &&
-              !emailFormControl.hasError('required')
-            "
-          >
+          <input type="email" matInput [formControl]="emailFormControl" placeholder="name@work-email.com" #userEmail
+            (keydown)="focusPassword($event)" />
+          <mat-error *ngIf=" emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Please enter a valid email address
           </mat-error>
           <mat-error *ngIf="emailFormControl.hasError('required')">
@@ -31,71 +22,44 @@
 
         <mat-form-field class="inputEmail">
           <mat-label>Password</mat-label>
-          <input
-            [type]="password ? 'password' : 'text'"
-            matInput
-            [formControl]="passwordFormControl"
-            placeholder="password"
-            #userPassword
-            id="userPassword"
-            (keydown)="signUp($event)"
-          />
+          <input [type]="password ? 'password' : 'text'" matInput [formControl]="passwordFormControl"
+            placeholder="password" #userPassword id="userPassword" (keydown)="signIn($event)" />
           <img src="assets/img/eye.svg" (click)="showPassword()" class="showPassword">
           <mat-error *ngIf="passwordFormControl.hasError('required')">
             Password is <strong>required</strong>
           </mat-error>
-          
         </mat-form-field>
-        
+
       </form>
 
-      <button
-        mat-raised-button
-        color="warn"
-        (click)="
-          authenticationService.SignIn(userEmail.value, userPassword.value)
-        "
-        id="buttonSignIn"
-      >
+      <button mat-raised-button color="warn" (click)=" authenticationService.SignIn(userEmail.value, userPassword.value)" id="buttonSignIn">
         sign in
       </button>
 
       <div class="horizontalContent">
-        <hr />
+        <hr/>
         <span>OR</span>
-        <hr />
+        <hr/>
       </div>
 
-      <button
-        mat-stroked-button
-        color="primary"
-        (click)="authenticationService.GoogleAuth()"
-      >
+      <button mat-stroked-button color="primary" (click)="authenticationService.GoogleAuth()">
         sign in with Google
       </button>
-      <button
-        mat-stroked-button
-        color="primary"
-        (click)="authenticationService.SignIn('guest@login.at', 'guestlogin')"
-      >
+
+      <button mat-stroked-button color="primary" (click)="authenticationService.SignIn('guest@login.at', 'guestlogin')">
         Guest login
       </button>
-      <span class="forgotPassword" routerLink="/forgot-password"
-        >Forgot Password?</span
-      >
+
+      <span class="forgotPassword" routerLink="/forgot-password">Forgot Password?</span>
       <span class="spanQuestion">Don't have an account?</span>
       <a routerLink="/sign-up" class="spanSignUp">Sign up!</a>
     </div>
   </div>
 
-  <mat-card
-    [class.d-none]="!authenticationService.signInError"
-    [class.signInError]="authenticationService.signInError"
-  >
-    <mat-card-content>{{
-      authenticationService.signInErrorMessage
-    }}</mat-card-content>
+  <mat-card [class.d-none]="!authenticationService.signInError" [class.signInError]="authenticationService.signInError">
+    <mat-card-content>{{authenticationService.signInErrorMessage}}</mat-card-content>
   </mat-card>
 
   <app-sign-footer></app-sign-footer>
+
 </div>

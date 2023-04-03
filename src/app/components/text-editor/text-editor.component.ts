@@ -38,19 +38,12 @@ import { ImageUploadService } from 'src/app/shared/services/image-upload.service
   styleUrls: ['./text-editor.component.scss'],
 })
 export class TextEditorComponent implements OnInit {
-  @Input() editorRef: string;
 
+  @Input() editorRef: string;
   textToUpload: any;
-  // imagesToUpload;
-  // editorAuthor = '';
   channelId: string;
-  event: any = [];
   threads: CollectionReference<any>;
   currDoc: any;
-  // threadId;
-  // thread;
-  // quill;
-  // errorMessage: boolean = false;
   config = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
@@ -74,15 +67,6 @@ export class TextEditorComponent implements OnInit {
     },
   };
 
-  
-  // newImage;
-// base64Str;
-  // canvas;
-  // maxW;
-  // maxH;
-  // ctx;
-  // status: boolean = false;
-  // button;
 
   constructor(
     private route: ActivatedRoute,
@@ -95,9 +79,14 @@ export class TextEditorComponent implements OnInit {
     public imgUploadService: ImageUploadService
   ) {}
 
+
   ngOnInit() {}
 
 
+/**
+ * function to get text and emojis of the editor
+ * @param event - changes when content of editor changes
+ */
   async getContent(event: EditorChangeContent | EditorChangeSelection) {
     if (event.event === 'text-change') {
       this.textToUpload = event.html;
@@ -105,6 +94,9 @@ export class TextEditorComponent implements OnInit {
   }
 
 
+/**
+ * function to send the message by clicking on the send-symbol
+ */
   async sendMessage() {
     if (this.textToUpload || this.imgUploadService.imageURL.length>0) {
       if (this.editorRef == 'channel') {
@@ -123,7 +115,9 @@ export class TextEditorComponent implements OnInit {
   }
 
 
-//CREATE THREAD
+  /**
+   * function to create a thread
+   */
   async createThread() {
     const timestamp = Timestamp.fromDate(new Date());
     const currentUserId = this.usersService.currentUserData.uid;
@@ -137,7 +131,9 @@ export class TextEditorComponent implements OnInit {
     document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
   }
 
-
+/**
+ * function to get the collection of threads
+ */
   getCollection() {
     this.threads = collection(
       this.firestore,
@@ -147,7 +143,11 @@ export class TextEditorComponent implements OnInit {
     );
   }
 
-
+/**
+ * function to add a document to the thread-collection
+ * @param timestamp - time, when the message was sent
+ * @param currentUserId - id of the logged in user
+ */
   async addDocument(timestamp, currentUserId) {
     const threadId = await addDoc(this.threads, {
       MESSAGES: [
@@ -162,6 +162,9 @@ export class TextEditorComponent implements OnInit {
   }
 
 
+/**
+ * function to empty the images from the editor
+ */
   emptyImgContainerChannel() {
     if (document.getElementById('imagesChannel')) {
       document.getElementById('imagesChannel').style.zIndex = '0';
@@ -169,7 +172,10 @@ export class TextEditorComponent implements OnInit {
   }
 
 
-//CREATE MESSAGE IN THREAD
+/**
+ * function to create a message in a thread or chat
+ * @param type - could be "thread" or "chat"
+ */
   async createMessage(type: string) {
     let selector = '';
     const timestamp = Timestamp.fromDate(new Date());
@@ -177,20 +183,21 @@ export class TextEditorComponent implements OnInit {
     if (this.textToUpload || this.imgUploadService.imageURL) {
       await this.updateDocument(type, timestamp, currentUserId);
     }
-    if (type == 'chat') {
-      selector = '.leftContent #editor .ql-editor';
-    } else if (type == 'thread') {
-      selector = '.rightContent #editor .ql-editor';
-    }
-    document.querySelector(selector).innerHTML = '';
+    this.emptyEditor(selector, type);
   }
 
 
+  /**
+   * function to update a document of a thread or a chat
+   * @param type - could be "thread" or "chat"
+   * @param timestamp - time, when the message was sent
+   * @param currentUserId - id of the logged in user
+   */
   async updateDocument(type: string, timestamp: any, currentUserId: string) {
     if (type == 'thread') {
-      this.updateThread();
+      this.getThread();
     } else if (type == 'chat') {
-      this.updateChat();
+      this.getChat();
     }
     await updateDoc(this.currDoc, {
       MESSAGES: arrayUnion({
@@ -203,7 +210,10 @@ export class TextEditorComponent implements OnInit {
   }
 
 
-  updateThread() {
+  /**
+   * function to get the correct thread
+   */
+  getThread() {
     this.currDoc = doc(
       this.firestore,
       GLOBAL_VAR.COLL_CHANNELS,
@@ -214,16 +224,20 @@ export class TextEditorComponent implements OnInit {
   }
 
 
+  /**
+   * function to empty the images from the editor
+   */
   emptyImgContainerThread() {
     if (document.getElementById('imagesThread')) {
       document.getElementById('imagesThread').style.zIndex = '0';
     }
-    
   }
 
 
-//CREATE MESSAGE IN CHAT
-  updateChat() {
+  /**
+   * fucntion to get the correct chat
+   */
+  getChat() {
     this.currDoc = doc(
       this.firestore,
       GLOBAL_VAR.COLL_CHATS,
@@ -232,6 +246,9 @@ export class TextEditorComponent implements OnInit {
   }
 
  
+  /**
+   * function to empty the images from the editor
+   */
   emptyImgContainerChat() {
     if (document.getElementById('imagesChat')) {
       document.getElementById('imagesChat').style.zIndex = '0';
@@ -239,11 +256,32 @@ export class TextEditorComponent implements OnInit {
   }
 
 
+  /**
+   * function to empty the editor
+   * @param selector - to empty the correct editor
+   * @param type - could be "thread" or "chat"
+   */
+  emptyEditor(selector, type) {
+    if (type == 'chat') {
+      selector = '.leftContent #editor .ql-editor';
+    } else if (type == 'thread') {
+      selector = '.rightContent #editor .ql-editor';
+    }
+    document.querySelector(selector).innerHTML = '';
+  }
+
+
+  /**
+   * function to empty the array with the images
+   */
   resetVariables() {
     this.imgUploadService.imageURL = [];
   }
 
 
+  /**
+   * function to remove some style from the editor
+   */
   removeStyleFromEditor() {
     let editor = document.querySelectorAll('.ql-editor');
     for (let i = 0; i < editor.length; i++) {
@@ -253,11 +291,11 @@ export class TextEditorComponent implements OnInit {
     }
   }
 
-  // IN PROGRESS: Create ref for image upload
+/**
+ * function to pass parameters
+ */
   setImageUploadEditorRef() {
     if (!this.imgUploadService.imgUploadEditorRef)
       this.imgUploadService.imgUploadEditorRef = this.editorRef;
-
-    console.log(`editorRef: ${this.editorRef} | imgUploadEditorRef: ${this.imgUploadService.imgUploadEditorRef}`);
   }
 }

@@ -8,7 +8,7 @@ import * as GLOBAL_VAR from 'src/app/shared/services/globals';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent implements OnInit{
+export class SignInComponent {
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required]);
@@ -17,10 +17,10 @@ export class SignInComponent implements OnInit{
   constructor(public authenticationService: AuthenticationService) {}
 
 
-  ngOnInit() {
-  }
-
-
+/**
+ * function to jump to the password field when clicking enter in the email-field
+ * @param event - triggered on click
+ */
   focusPassword(event) {
     if (event.key === "Enter") {
       document.getElementById('userPassword').focus();
@@ -28,13 +28,20 @@ export class SignInComponent implements OnInit{
   }
 
 
-  signUp(event) {
+/**
+ * function to sign in when clicking enter in the password-field
+ * @param event - triggered on click
+ */
+  signIn(event) {
     if (event.key === "Enter") {
       document.getElementById('buttonSignIn').click();
     }
   }
 
 
+/**
+ * function to show or hide the password when clicking on the eye-symbol
+ */
   showPassword() {
     this.password = !this.password;
   }

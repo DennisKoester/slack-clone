@@ -3,12 +3,9 @@ import { User } from '../services/user';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import * as auth from 'firebase/auth';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
-import { TextEditorComponent } from 'src/app/components/text-editor/text-editor.component';
-import { getAuth, updateProfile } from 'firebase/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+
+import { updateProfile } from 'firebase/auth';
 import { ChannelService } from './channel.service';
 import { GlobalFunctionsService } from './global-functions.service';
 
@@ -16,16 +13,14 @@ import { GlobalFunctionsService } from './global-functions.service';
   providedIn: 'root',
 })
 export class AuthenticationService {
+
   resetPw = false;
   signUpError = false;
   signUpErrorMessage;
-
   signInError = false;
   signInErrorMessage;
-
   forgotPwError = false;
   forgotPwErrorMessage;
-
   userData: any;
 
   constructor(
@@ -36,8 +31,10 @@ export class AuthenticationService {
     public channelService: ChannelService,
     public globalFunctions: GlobalFunctionsService
   ) {
-    /* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
+
+    /**
+     * function to saving user data in localstorage when logged in and setting up null when logged out
+     */
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
@@ -50,7 +47,12 @@ export class AuthenticationService {
     });
   }
 
-  // Sign up with email/password
+  
+  /**
+   * function to sign up with email/password
+   * @param email - entered email-address
+   * @param password - entered password 
+   */
   SignUp(email: string, password: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
@@ -70,12 +72,16 @@ export class AuthenticationService {
       });
   }
 
-  // Sign in with email/password
+  // function to sign in with email/password
+  /**
+   * 
+   * @param email - entered email-address
+   * @param password - entered password
+   */
   SignIn(email, password) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        // this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
             this.router.navigate(['home/threads-list']);
@@ -91,16 +97,11 @@ export class AuthenticationService {
       });
   }
 
-  // Send email verfificaiton when new user sign up
-  // SendVerificationMail() {
-  //   return this.afAuth.currentUser
-  //     .then((u: any) => u.sendEmailVerification())
-  //     .then(() => {
-  //       this.router.navigate(['verify-email']);
-  //     });
-  // }
 
-  // Reset Forggot password
+  /**
+   * function to reset forggot password
+   * @param passwordResetEmail - entered email address to reset password
+   */
   ForgotPassword(passwordResetEmail: string) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
@@ -119,19 +120,30 @@ export class AuthenticationService {
       });
   }
 
-  // Returns true when user is looged in and email is verified
+  
+  /**
+   * @returns - true when user is looged in and email is verified
+   */
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null && user.emailVerified !== false ? true : false;
   }
 
-  // Sign in with Google
+
+  /**
+   * 
+   * @returns - true when user is looged in
+   */
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       this.router.navigate(['home/threads-list']);
     });
   }
 
+
+  /**
+   * function to sign in with google
+   */
   AuthLogin(provider: any) {
     return this.afAuth
       .signInWithPopup(provider)
@@ -144,9 +156,12 @@ export class AuthenticationService {
       });
   }
 
-  /* Setting up user data when sign in with username/password, 
-  sign up with username/password and sign in with social auth  
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
+
+  /**
+   * function to set user data with email, name and photoURL
+   * @param user 
+   * @returns 
+   */
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
@@ -162,7 +177,10 @@ export class AuthenticationService {
     });
   }
 
-  // Sign out
+
+  /**
+   * function to sign out, remove user from local storage, navigate to login-screen
+   */
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');

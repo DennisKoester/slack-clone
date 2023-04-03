@@ -10,8 +10,8 @@ import { ChannelService } from './channel.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ImageUploadService implements OnInit {
-  auth: any;
+export class ImageUploadService {
+
   newPhotoURL: any;
   newURLdefined: boolean = false;
   imageURL: any = [];
@@ -19,8 +19,8 @@ export class ImageUploadService implements OnInit {
   maxAmount: boolean = false;
   fileData: any;
   url: any;
-  // IN PROGRESS: Create ref for image upload
   imgUploadEditorRef: string = '';
+
 
   constructor(
     private afStorage: AngularFireStorage,
@@ -28,8 +28,10 @@ export class ImageUploadService implements OnInit {
     public channelService: ChannelService
   ) {}
 
-  ngOnInit() {}
 
+  /**
+   * function to upload a new profile photo
+   */
   async uploadImage() {
     if (this.fileData) {
       const randomId = Math.random().toString(36).substring(2);
@@ -41,6 +43,10 @@ export class ImageUploadService implements OnInit {
     }
   }
 
+
+  /**
+   * function to read the url of the selected photo
+   */
   readURL(event: any): void {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -51,12 +57,20 @@ export class ImageUploadService implements OnInit {
     }
   }
 
+
+  /**
+   * function to cancel the upload of a new profile photo
+   */
   cancelUpload() {
     if (this.newURLdefined) {
       this.afStorage.refFromURL(this.newPhotoURL).delete();
     }
   }
 
+
+  /**
+   * function to delete the profile photo
+   */
   deleteProfilePhoto() {
     const currentUser = this.usersService.currentUserData;
     const oldPhotoURL = currentUser.photoURL;
@@ -65,48 +79,66 @@ export class ImageUploadService implements OnInit {
     }
   }
 
+
+  /**
+   * function to upload a image to the editor
+   */
   async uploadImageEditor(event: any) {
     const file = event.target.files[0];
     if (file && this.imageURL.length < 4) {
       this.loading = true;
-      const randomId = Math.random().toString(36).substring(2);
-      const path = `imagesEditor/${file.name + randomId}`;
-      const uploadTask = await this.afStorage.upload(path, file);
-      const url = await uploadTask.ref.getDownloadURL();
+      await this.uploadProcess(file);
       this.addStyleToEditor();
-      this.imageURL.push(url);
-      console.log(this.imageURL);
+      this.imageURL.push(this.url);
       await this.showImagesContainer();
       this.loading = false;
     }
-
-    // IN PROGRESS: Create ref for image upload
     this.imgUploadEditorRef = '';
-    console.log('imgUplEditRef reset @uploadImageEditor()');
   }
 
+
+  /**
+   * function to upload the selected image
+   * @param file - selected file
+   */
+  async uploadProcess(file) {
+    const randomId = Math.random().toString(36).substring(2);
+    const path = `imagesEditor/${file.name + randomId}`;
+    const uploadTask = await this.afStorage.upload(path, file);
+    this.url = await uploadTask.ref.getDownloadURL();
+  }
+
+
+  /**
+   * function to add style to the editor
+   */
   addStyleToEditor() {
     if (this.channelService.editorRef == 'channel') {
-      let editor = document.querySelector(
-        '#editorChannel .ql-editor'
-      ) as HTMLElement;
-      editor.style.margin = '0 0 90px 0';
-      editor.style.padding = '12px 15px 0 15px';
+      let editor = document.querySelector('#editorChannel .ql-editor') as HTMLElement;
+      this.addMarginPadding(editor);
     } else if (this.channelService.editorRef == 'thread') {
-      let editor = document.querySelector(
-        '#editorThread .ql-editor'
-      ) as HTMLElement;
-      editor.style.margin = '0 0 90px 0';
-      editor.style.padding = '12px 15px 0 15px';
+      let editor = document.querySelector('#editorThread .ql-editor') as HTMLElement;
+      this.addMarginPadding(editor);
     } else if (this.channelService.editorRef == 'chat') {
-      let editor = document.querySelector(
-        '#editorChat .ql-editor'
-      ) as HTMLElement;
-      editor.style.margin = '0 0 90px 0';
-      editor.style.padding = '12px 15px 0 15px';
+      let editor = document.querySelector('#editorChat .ql-editor') as HTMLElement;
+      
     }
   }
 
+
+  /**
+   * function to add margin and padding to the editor
+   * @param editor - to get the correct editor
+   */
+  addMarginPadding(editor) {
+    editor.style.margin = '0 0 90px 0';
+    editor.style.padding = '12px 15px 0 15px';
+  }
+
+
+  /**
+   * function to show the image container in the editor
+   */
   showImagesContainer() {
     if (this.channelService.editorRef == 'channel') {
       document.getElementById('imagesChannel').style.zIndex = '3000';
@@ -117,6 +149,11 @@ export class ImageUploadService implements OnInit {
     }
   }
 
+
+  /**
+   * function to delete the image that was clicked on
+   * @param image - url of the image to be deleted
+   */
   deleteImage(image) {
     this.afStorage.refFromURL(image).delete();
     for (let i = 0; i < this.imageURL.length; i++) {
@@ -124,31 +161,27 @@ export class ImageUploadService implements OnInit {
     }
     this.removeImageContainer();
     this.removeStyleFromEditor();
-
-    // IN PROGRESS: Create ref for image upload
     this.imgUploadEditorRef = '';
-    console.log('imgUplEditRef reset @deleteImage()');
   }
 
+
+  /**
+   * function to hide the image Container in the editor
+   */
   removeImageContainer() {
-    if (
-      this.channelService.editorRef == 'channel' &&
-      this.imageURL.length == 0
-    ) {
+    if (this.channelService.editorRef == 'channel' &&this.imageURL.length == 0) {
       document.getElementById('imagesChannel').style.zIndex = '0';
-    } else if (
-      this.channelService.editorRef == 'thread' &&
-      this.imageURL.length == 0
-    ) {
+    } else if (this.channelService.editorRef == 'thread' &&this.imageURL.length == 0) {
       document.getElementById('imagesThread').style.zIndex = '0';
-    } else if (
-      this.channelService.editorRef == 'chat' &&
-      this.imageURL.length == 0
-    ) {
+    } else if (this.channelService.editorRef == 'chat' &&this.imageURL.length == 0) {
       document.getElementById('imagesChat').style.zIndex = '0';
     }
   }
 
+
+  /**
+   * function ro remove style from editor
+   */
   removeStyleFromEditor() {
     let editor = document.querySelectorAll('.ql-editor');
     if (this.imageURL.length == 0) {
@@ -159,4 +192,6 @@ export class ImageUploadService implements OnInit {
       }
     }
   }
+
+
 }
