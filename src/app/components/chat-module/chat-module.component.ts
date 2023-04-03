@@ -17,6 +17,10 @@ export class ChatModuleComponent implements AfterViewChecked {
     public globalFunctions: GlobalFunctionsService
   ) {}
 
+
+  /**
+   * Handles 'scroll to bottom' after component is loaded
+   */
   ngAfterViewChecked() {
     if (this.globalFunctions.scrollCounter == 0) {
       this.globalFunctions.scrollToBottom('chat');

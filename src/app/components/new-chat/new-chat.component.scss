@@ -81,6 +81,10 @@
   background-color: rgba(255, 187, 0, 0.596) !important;
 }
 
-.mat-mdc-raised-button:hover {
-  background-color: rgba(255, 187, 0, 0.8) !important;
+.mat-mdc-raised-button {
+  @media (hover: hover) {
+    &:hover {
+      background-color: rgba(255, 187, 0, 0.8) !important;
+    }
+  }
 }

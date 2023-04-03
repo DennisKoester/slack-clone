@@ -17,7 +17,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./new-chat.component.scss'],
 })
 export class NewChatComponent {
-
   chatsCollection: CollectionReference;
   guestId = GLOBAL_VAR.guest;
 
@@ -29,10 +28,20 @@ export class NewChatComponent {
     private infoMaxMembersReached: MatSnackBar
   ) {}
 
+
+  /**
+   * Resets the search bar content
+   */
   resetSearchUser() {
     this.chatService.searchUser = '';
   }
 
+
+  /**
+   * Writes the data of the selected user to the respective array
+   * @param uid - The ID of the user
+   * @param name - The name of the user
+   */
   selectUser(uid: string, name: string) {
     if (this.chatService.selectedUserIds.length >= 5) {
       this.infoMaxMembersReached.open('Maximum of 5 chat members reached.', 'OK', {duration: 4000});
@@ -43,12 +52,19 @@ export class NewChatComponent {
   }
 
 
+  /**
+   * Removes the selected user from the array
+   * @param index - The index within the array
+   */
   deselectUser(index: number) {
     this.chatService.selectedUserIds.splice(index, 1);
     this.chatService.selectedUserNames.splice(index, 1);
   }
 
 
+  /**
+   * Creates a new chat
+   */
   async createChat() {
     this.chatsCollection = collection(this.firestore, GLOBAL_VAR.COLL_CHATS);
     const newChatId = await this.writeToDatabase();
@@ -57,6 +73,9 @@ export class NewChatComponent {
   }
 
 
+  /**
+   * Writes the data of the new chat to the database
+   */
   async writeToDatabase() {
     const chatData = {
       USERS: [this.usersService.currentUserData.uid, ...this.chatService.selectedUserIds],
