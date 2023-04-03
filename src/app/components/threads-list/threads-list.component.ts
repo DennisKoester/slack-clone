@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  collectionGroup,
-  Firestore,
-  getDocs,
-  query,
-} from '@angular/fire/firestore';
+import { collectionGroup, Firestore, getDocs, query } from '@angular/fire/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ChatService } from 'src/app/shared/services/chat.service';
@@ -19,6 +14,18 @@ export class ThreadsListComponent {
   threadsLoading: boolean = false;
   currentUserData: any;
 
+  currentUser;
+  threads;
+  querySnapshot;
+
+  threadId;
+  channelId;
+  firstThreadMessage;
+  lastAnswer;
+  amount;
+
+
+
   constructor(
     private firestore: Firestore,
     public channelService: ChannelService,
@@ -30,12 +37,10 @@ export class ThreadsListComponent {
    */
   ngOnInit() {
     this.threadsLoading = true;
-
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.currentUserData = user;
-
         setTimeout(() => {
           this.getAllThreads();
         }, 500);
@@ -43,49 +48,65 @@ export class ThreadsListComponent {
     });
   }
 
+
   /**
    * Loading all threads and pushes own filtered threads
    */
   async getAllThreads() {
-    const currentUser = this.currentUserData;
-    const threads = query(collectionGroup(this.firestore, 'THREADS'));
-    const querySnapshot = await getDocs(threads);
+    this.currentUser = this.currentUserData;
+    this.threads = query(collectionGroup(this.firestore, 'THREADS'));
+    this.querySnapshot = await getDocs(this.threads);
+    this.getAllDocs();
+    this.sortOwnThreads(this.ownThreads);
+    this.threadsLoading = false;
+  }
 
-    for (let i = 0; i < querySnapshot.docs.length; i++) {
-      for (
-        let j = 0;
-        j < querySnapshot.docs[i].data()['MESSAGES'].length;
-        j++
-      ) {
+
+/**
+ * function to get all Documents in which the current user is involved
+ */
+  getAllDocs() {
+    for (let i = 0; i < this.querySnapshot.docs.length; i++) {
+      for (let j = 0;j < this.querySnapshot.docs[i].data()['MESSAGES'].length;j++) {
         if (
-          querySnapshot.docs[i].data()['MESSAGES'][j]['author'] ==
-          currentUser.uid
+          this.querySnapshot.docs[i].data()['MESSAGES'][j]['author'] ==
+          this.currentUser.uid
         ) {
-          const threadId = querySnapshot.docs[i].id;
-          const channelId = querySnapshot.docs[i].ref.parent.parent.id;
-          const firstThreadMessage =
-            querySnapshot.docs[i].data()['MESSAGES'][0];
-          const amount = querySnapshot.docs[i].data()['MESSAGES'].length - 1;
-          const lastAnswer =
-            querySnapshot.docs[i].data()['MESSAGES'][amount]['timestamp'];
-
-          firstThreadMessage['author'] = this.chatService.getUserMetaData(
-            firstThreadMessage['author']
-          );
-          this.ownThreads.push({
-            threadId: threadId,
-            channelId: channelId,
-            message: firstThreadMessage,
-            lastAnswer: lastAnswer,
-            amount: amount,
-          });
+          this.getParameters(this.querySnapshot, i);
+          this.pushToOwnThreads()
           break;
         }
       }
     }
-    this.sortOwnThreads(this.ownThreads);
-    this.threadsLoading = false;
   }
+
+
+/**
+ * function to get all parameters from the thread
+ */
+  getParameters(querySnapshot, i) {
+    this.threadId = querySnapshot.docs[i].id;
+    this.channelId = querySnapshot.docs[i].ref.parent.parent.id;
+    this.firstThreadMessage = querySnapshot.docs[i].data()['MESSAGES'][0];
+    this.amount = querySnapshot.docs[i].data()['MESSAGES'].length - 1;
+    this.lastAnswer = querySnapshot.docs[i].data()['MESSAGES'][this.amount]['timestamp'];
+    this.firstThreadMessage['author'] = this.chatService.getUserMetaData(this.firstThreadMessage['author']);
+  }
+
+
+/**
+ * function to push all messages into an array
+ */
+  pushToOwnThreads() {
+    this.ownThreads.push({
+      threadId: this.threadId,
+      channelId: this.channelId,
+      message: this.firstThreadMessage,
+      lastAnswer: this.lastAnswer,
+      amount: this.amount,
+    });
+  }
+
 
   /**
    * Sorts all own threads by timestamp to the newest on top

@@ -10,8 +10,6 @@ import { FormControl, Validators } from '@angular/forms';
 export class ForgotPasswordComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(public authenticationService: AuthenticationService) {
-
-  }
+  constructor(public authenticationService: AuthenticationService) {}
 
 }

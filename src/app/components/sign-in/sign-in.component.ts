@@ -1,7 +1,7 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../shared/services/authentication.service';
-import * as GLOBAL_VAR from 'src/app/shared/services/globals';
+
 
 @Component({
   selector: 'app-sign-in',
