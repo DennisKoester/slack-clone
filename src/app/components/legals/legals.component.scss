@@ -4,14 +4,68 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.685);
+  background-color: #191b1e;
+  color: white;
   z-index: 99999;
+  padding-left: 100px;
+  padding-right: 100px;
+  height: 100%;
+  overflow: auto;
+  word-break: break-word;
 
+  a {
+    color: grey;
+  }
   mat-icon {
     position: absolute;
     top: 40px;
     right: 40px;
     font-size: 30px;
     cursor: pointer;
+    filter: invert(0);
+  }
+}
+
+.imprint {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.dataProtection {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 800px) {
+  .legals {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .imprint {
+    margin-top: 50px;
+  }
+  
+  .dataProtection {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 350px) {
+  .legals {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    mat-icon {
+      top: 20px;
+      right: 20px;
+    }
+  }
+
+  .imprint {
+    margin-top: 20px;
+  }
+  
+  .dataProtection {
+    margin-bottom: 20px;
   }
 }
