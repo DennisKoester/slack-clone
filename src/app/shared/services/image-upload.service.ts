@@ -84,7 +84,6 @@ export class ImageUploadService {
    * function to upload an image to the editor
    */
   async uploadImageEditor(event: any) {
-    debugger;
     const file = event.target.files[0];
     if (file && this.imageURL.length < 4) {
       this.loading = true;
@@ -160,7 +159,7 @@ export class ImageUploadService {
     for (let i = 0; i < this.imageURL.length; i++) {
       if (this.imageURL[i] == image) this.imageURL.splice(i, 1);
     }
-    this.removeImageContainer();
+    // document.getElementById('fileEditor').innerHTML = '';
     this.removeStyleFromEditor();
     this.imgUploadEditorRef = '';
   }
