@@ -19,9 +19,11 @@ h4 {
   padding: 5px 12px;
   cursor: pointer;
 
-  &:hover:not(.activeLink) {
-    border-radius: 5px;
-    background-color: rgb(35, 33, 39);
+  @media (hover: hover) {
+    &:hover:not(.activeLink) {
+      border-radius: 5px;
+      background-color: rgb(35, 33, 39);
+    }
   }
 }
 
