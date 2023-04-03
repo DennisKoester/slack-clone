@@ -141,7 +141,6 @@ export class ChannelService {
    * @param threads - contains all threads from the opened channel
    */
   sortThreads(threads) {
-    console.log('threads', threads);
     threads.sort((thread_1: any, thread_2: any) => {
       return (
         parseFloat(thread_1['MESSAGES'][0]['timestamp']['seconds']) -

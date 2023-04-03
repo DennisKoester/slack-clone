@@ -32,9 +32,9 @@ export class ChannelModuleComponent implements AfterViewChecked, OnInit {
   ngAfterViewChecked() {
     if (this.globalFunctions.scrollCounter == 0) {
       this.globalFunctions.scrollToBottom('channel');
-      console.log(this.globalFunctions.scrollCounter);
+      // console.log(this.globalFunctions.scrollCounter);
     }
     this.globalFunctions.scrollCounter++;
-    console.log(this.globalFunctions.scrollCounter);
+    // console.log(this.globalFunctions.scrollCounter);
   }
 }

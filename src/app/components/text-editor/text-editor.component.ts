@@ -1,35 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { User } from '@firebase/auth';
-import {
-  EditorChangeContent,
-  EditorChangeSelection,
-} from 'ngx-quill/public-api';
+import { Component, OnInit, OnDestroy ,Input } from '@angular/core';
+
+import { EditorChangeContent,EditorChangeSelection } from 'ngx-quill/public-api';
 import { ActivatedRoute } from '@angular/router';
 import { addDoc, collection } from '@firebase/firestore';
-import {
-  arrayUnion,
-  collectionData,
-  CollectionReference,
-  doc,
-  documentId,
-  Firestore,
-  getDoc,
-  Timestamp,
-  updateDoc,
-} from '@angular/fire/firestore';
-import { Observable } from '@firebase/util';
-import { DocumentData } from '@angular/fire/compat/firestore';
-import { getAuth } from 'firebase/auth';
+import { arrayUnion, CollectionReference, doc, Firestore,  Timestamp, updateDoc} from '@angular/fire/firestore';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ThreadService } from 'src/app/shared/services/thread.service';
 import { ChatService } from 'src/app/shared/services/chat.service';
-import Quill from 'quill';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as GLOBAL_VAR from 'src/app/shared/services/globals';
 import { UsersService } from 'src/app/shared/services/users.service';
-import { query } from '@angular/animations';
 import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 
 @Component({
@@ -37,7 +18,7 @@ import { ImageUploadService } from 'src/app/shared/services/image-upload.service
   templateUrl: './text-editor.component.html',
   styleUrls: ['./text-editor.component.scss'],
 })
-export class TextEditorComponent implements OnInit {
+export class TextEditorComponent implements OnDestroy{
 
   @Input() editorRef: string;
   textToUpload: any;
@@ -68,6 +49,11 @@ export class TextEditorComponent implements OnInit {
   };
 
 
+ngOnDestroy() {
+  this.imgUploadService.imageURL = [];
+}
+
+
   constructor(
     private route: ActivatedRoute,
     private firestore: Firestore,
@@ -78,9 +64,6 @@ export class TextEditorComponent implements OnInit {
     public usersService: UsersService,
     public imgUploadService: ImageUploadService
   ) {}
-
-
-  ngOnInit() {}
 
 
 /**

@@ -20,9 +20,9 @@ export class ChatModuleComponent implements AfterViewChecked {
   ngAfterViewChecked() {
     if (this.globalFunctions.scrollCounter == 0) {
       this.globalFunctions.scrollToBottom('chat');
-      console.log(this.globalFunctions.scrollCounter);
+      // console.log(this.globalFunctions.scrollCounter);
     }
     this.globalFunctions.scrollCounter++;
-    console.log(this.globalFunctions.scrollCounter);
+    // console.log(this.globalFunctions.scrollCounter);
   }
 }
