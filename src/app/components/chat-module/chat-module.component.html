@@ -16,7 +16,6 @@
   class="leftContent"
   [routerLink]="['/home/chat/' + chatService.chatId]"
   (click)="channelService.editorRef = 'chat'"
-  (click)="channelService.showRef()"
 >
   <div id="scrollContainer" class="scroll-container">
     <app-thread-card
