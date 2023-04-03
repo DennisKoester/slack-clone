@@ -39,11 +39,16 @@ html,
 body {
   height: 100svh;
   font-size: 14px;
+  -webkit-overflow-scrolling: touch;
 }
 body {
   margin: 0;
   overflow: hidden;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+p {
+  margin: 0 !important;
 }
 
 .resizeImg {
@@ -60,10 +65,6 @@ body {
     max-width: 100%;
     max-height: 100%;
   }
-}
-
-p {
-  margin: 0 !important;
 }
 
 .full-height {
