@@ -3,7 +3,10 @@ import { User } from '../services/user';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import * as auth from 'firebase/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/compat/firestore';
 
 import { updateProfile } from 'firebase/auth';
 import { ChannelService } from './channel.service';
@@ -13,7 +16,6 @@ import { GlobalFunctionsService } from './global-functions.service';
   providedIn: 'root',
 })
 export class AuthenticationService {
-
   resetPw = false;
   signUpError = false;
   signUpErrorMessage;
@@ -31,7 +33,6 @@ export class AuthenticationService {
     public channelService: ChannelService,
     public globalFunctions: GlobalFunctionsService
   ) {
-
     /**
      * function to saving user data in localstorage when logged in and setting up null when logged out
      */
@@ -47,11 +48,10 @@ export class AuthenticationService {
     });
   }
 
-  
   /**
    * function to sign up with email/password
    * @param email - entered email-address
-   * @param password - entered password 
+   * @param password - entered password
    */
   SignUp(email: string, password: string) {
     return this.afAuth
@@ -72,9 +72,8 @@ export class AuthenticationService {
       });
   }
 
-  // function to sign in with email/password
   /**
-   * 
+   * function to sign in with email/password
    * @param email - entered email-address
    * @param password - entered password
    */
@@ -96,7 +95,6 @@ export class AuthenticationService {
         }, 4000);
       });
   }
-
 
   /**
    * function to reset forggot password
@@ -120,7 +118,6 @@ export class AuthenticationService {
       });
   }
 
-  
   /**
    * @returns - true when user is looged in and email is verified
    */
@@ -129,9 +126,8 @@ export class AuthenticationService {
     return user !== null && user.emailVerified !== false ? true : false;
   }
 
-
   /**
-   * 
+   *
    * @returns - true when user is looged in
    */
   GoogleAuth() {
@@ -139,7 +135,6 @@ export class AuthenticationService {
       this.router.navigate(['home/threads-list']);
     });
   }
-
 
   /**
    * function to sign in with google
@@ -156,11 +151,10 @@ export class AuthenticationService {
       });
   }
 
-
   /**
    * function to set user data with email, name and photoURL
-   * @param user 
-   * @returns 
+   * @param user
+   * @returns
    */
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
@@ -176,7 +170,6 @@ export class AuthenticationService {
       merge: true,
     });
   }
-
 
   /**
    * function to sign out, remove user from local storage, navigate to login-screen

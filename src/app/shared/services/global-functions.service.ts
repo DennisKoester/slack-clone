@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 export class GlobalFunctionsService {
   constructor() {}
 
-  menuCollapsed = false;
+  menuCollapsed: boolean = false;
   threadIsOpen: boolean = false;
-  scrollCounter = 0;
+  scrollCounter: number = 0;
   legals: boolean = false;
 
   closeMenu() {
@@ -17,11 +17,9 @@ export class GlobalFunctionsService {
     }
   }
 
- 
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
     if (innerWidth > 620 && this.threadIsOpen === true) {
-      // this.threadIsOpen = false;
     }
   }
 
@@ -29,7 +27,7 @@ export class GlobalFunctionsService {
     let container = '';
     if (ref == 'chat' || ref == 'channel') {
       container = 'scrollContainer';
-    } 
+    }
     const scrollContainer = document.getElementById(container);
     try {
       scrollContainer.scrollTop = scrollContainer.scrollHeight;

@@ -1,47 +1,38 @@
-@import 'src/app/components/channel-module/channel-module.component.scss';
-// @import 'src/app/components/channel-item/channel-item.component.scss';
-
-// #add-user {
-//     cursor: pointer;
-//     margin-left: 12px;
-//     width: 28px;
-//     height: 28px;
-//     font-size: 24px;
-// }
+@import "src/app/components/channel-module/channel-module.component.scss";
 
 #members-list {
-    max-width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    flex-wrap: wrap;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: wrap;
 
-    span {
-        @media screen and (max-width: 1000px) {
-            font-size: 16px;
-        }
-
-        @media screen and (max-width: 450px) {
-            font-size: 14px;
-            line-height: 17px;
-        }
+  span {
+    @media screen and (max-width: 1000px) {
+      font-size: 16px;
     }
+
+    @media screen and (max-width: 450px) {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
 }
 
 .imagesContainerChat {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    position: absolute;
-    bottom: 40px;
-    left: 30px;
-    right: 80px;
-    height: 80px;
-    background-color:#1f2125;
-    z-index: 0;
-    overflow-x: hidden !important;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  position: absolute;
+  bottom: 40px;
+  left: 30px;
+  right: 80px;
+  height: 80px;
+  background-color: #1f2125;
+  z-index: 0;
+  overflow-x: hidden !important;
   overflow: auto;
 
-    div {
-        height: 60px;
-      }
+  div {
+    height: 60px;
   }
+}
