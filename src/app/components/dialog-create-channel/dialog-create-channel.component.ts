@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 export class DialogCreateChannelComponent {
   dialogData = {
     name: '',
-    // isPrivate: false,
+    isPrivate: false,
   };
 }
