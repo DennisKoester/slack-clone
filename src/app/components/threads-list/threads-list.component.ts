@@ -13,11 +13,9 @@ export class ThreadsListComponent {
   ownThreads: Array<any> = [];
   threadsLoading: boolean = false;
   currentUserData: any;
-
   currentUser;
   threads;
   querySnapshot;
-
   threadId;
   channelId;
   firstThreadMessage;
@@ -25,12 +23,12 @@ export class ThreadsListComponent {
   amount;
 
 
-
   constructor(
     private firestore: Firestore,
     public channelService: ChannelService,
     public chatService: ChatService
   ) {}
+
 
   /**
    * Starts loading spinner, gets current user data and initializes getting all threads

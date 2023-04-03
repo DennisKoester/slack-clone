@@ -15,28 +15,36 @@ export class UsersService {
 
   constructor(private firestore: Firestore) {}
 
+
+  /**
+   * function to get the current user
+   */
   getCurrentUser() {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.currentUserData = user;
-        console.log('AUTH USER IS', this.currentUserData);
-      } else {
-        console.log('user is signed out');
       }
     });
   }
 
+
+  /**
+   * function to get all registered users
+   */
   getUsers() {
     const usersCollection = collection(this.firestore, GLOBAL_VAR.COLL_USERS);
     const users$ = collectionData(usersCollection, { idField: 'uid' });
     users$.subscribe((_users) => {
-      console.log(`Users:`, _users);
       this.usersCollListener.next({ users: _users });
       this.sortUsers(_users);
     });
   }
 
+
+  /**
+   * function to sort users by name
+   */
   sortUsers(_users) {
     this.users = _users;
     this.users.sort((a, b) => {

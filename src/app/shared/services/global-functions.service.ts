@@ -10,12 +10,14 @@ export class GlobalFunctionsService {
   threadIsOpen: boolean = false;
   scrollCounter = 0;
 
+
   closeMenu() {
     if (innerWidth < 620) {
       this.toggleMenu();
     }
   }
 
+ 
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
     if (innerWidth > 620 && this.threadIsOpen === true) {
