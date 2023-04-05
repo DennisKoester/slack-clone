@@ -13,7 +13,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ChannelService {
   channelName: string = '';
-  channelIsOpen: boolean = true;
   openedChannel = false;
   threads: any = [];
   threads$: Observable<any>;
@@ -75,11 +74,17 @@ export class ChannelService {
    * function to change the layout of the page
    */
   changeChannelLayout() {
-    if (innerWidth <= 620 && !this.globalFunctions.menuCollapsed) {
+    if (innerWidth <= 620) {
       this.globalFunctions.menuCollapsed = true;
       this.globalFunctions.threadIsOpen = false;
-      this.channelIsOpen = true;
+    } else if (
+      innerWidth <= 900 &&
+      !this.globalFunctions.menuCollapsed &&
+      this.globalFunctions.threadIsOpen
+    ) {
+      this.globalFunctions.threadIsOpen = false;
     }
+    this.globalFunctions.channelIsOpen = true;
   }
 
   /**
@@ -170,11 +175,13 @@ export class ChannelService {
    * function to change the layout of the page
    */
   changeThreadLayout() {
-    if (innerWidth <= 800) {
+    if (innerWidth < 1200) {
       this.globalFunctions.menuCollapsed = true;
     }
-    if (innerWidth <= 620) {
-      this.channelIsOpen = false;
+    if (innerWidth < 900) {
+      this.globalFunctions.menuCollapsed = true;
+      this.globalFunctions.channelIsOpen = false;
+      console.log('channel closed');
     }
   }
 

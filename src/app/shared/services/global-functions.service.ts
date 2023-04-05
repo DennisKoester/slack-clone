@@ -8,6 +8,7 @@ export class GlobalFunctionsService {
 
   menuCollapsed: boolean = false;
   threadIsOpen: boolean = false;
+  channelIsOpen: boolean = true;
   scrollCounter: number = 0;
   legals: boolean = false;
 
@@ -19,7 +20,7 @@ export class GlobalFunctionsService {
 
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
-    if (innerWidth > 620 && this.threadIsOpen === true) {
+    if (innerWidth <= 1200 && this.threadIsOpen && this.channelIsOpen) {
       this.threadIsOpen = false;
     }
   }

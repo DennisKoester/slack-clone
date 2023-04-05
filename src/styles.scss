@@ -233,8 +233,12 @@ p {
 
 .ql-syntax {
   overflow: hidden;
-  width: 270px;
+  width: 100%;
   white-space: pre-wrap;
+
+  @media (max-width: 430px) {
+    max-width: 270px;
+  }
 }
 
 // Material Design Changes //

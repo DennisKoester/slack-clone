@@ -23,7 +23,7 @@ export class MainComponent {
   onResize(event: any) {
     event.target.innerWidth;
     if (
-      innerWidth <= 800 &&
+      innerWidth <= 1200 &&
       this.globalFunctions.menuCollapsed === false &&
       this.globalFunctions.threadIsOpen === true
     ) {
@@ -35,13 +35,13 @@ export class MainComponent {
     ) {
       this.globalFunctions.menuCollapsed = false;
     } else if (innerWidth > 620 && this.globalFunctions.threadIsOpen === true) {
-      this.channelService.channelIsOpen = true;
-    } else if (
-      innerWidth <= 620 &&
+      this.globalFunctions.channelIsOpen = true;
+    }  if (
+      innerWidth <= 900 &&
       this.globalFunctions.threadIsOpen === true &&
-      this.channelService.channelIsOpen === true
+      this.globalFunctions.channelIsOpen === true
     ) {
-      this.channelService.channelIsOpen = false;
+      this.globalFunctions.channelIsOpen = false;
     }
   }
 }

@@ -22,7 +22,7 @@ export class ThreadSideModuleComponent {
    */
   closeThread() {
     this.globalFunctions.threadIsOpen = false;
-    this.channelService.channelIsOpen = true;
+    this.globalFunctions.channelIsOpen = true;
     this.threadService.unsubscribe();
   }
 
