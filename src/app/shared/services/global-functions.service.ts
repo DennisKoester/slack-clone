@@ -20,6 +20,7 @@ export class GlobalFunctionsService {
   toggleMenu() {
     this.menuCollapsed = !this.menuCollapsed;
     if (innerWidth > 620 && this.threadIsOpen === true) {
+      this.threadIsOpen = false;
     }
   }
 

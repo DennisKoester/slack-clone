@@ -46,7 +46,13 @@ body {
   font-size: 14px;
   -webkit-overflow-scrolling: touch;
 }
+
 body {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   margin: 0;
   overflow: hidden;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -223,6 +229,12 @@ p {
 
 .editor[_ngcontent-bbk-c150] quill-editor[_ngcontent-bbk-c150] {
   height: unset !important;
+}
+
+.ql-syntax {
+  overflow: hidden;
+  width: 270px;
+  white-space: pre-wrap;
 }
 
 // Material Design Changes //

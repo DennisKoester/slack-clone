@@ -6,7 +6,6 @@ import { ChannelService } from './channel.service';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ImageUploadService {
   auth: any;
   newPhotoURL: any;
@@ -113,7 +112,9 @@ export class ImageUploadService {
       ) as HTMLElement;
       this.addMarginPadding(editor);
     } else if (this.channelService.editorRef == 'chat') {
-      let editor = document.querySelector('#editorChat .ql-editor') as HTMLElement;
+      let editor = document.querySelector(
+        '#editorChat .ql-editor'
+      ) as HTMLElement;
       this.addMarginPadding(editor);
     }
   }
@@ -152,6 +153,7 @@ export class ImageUploadService {
     this.removeImageContainer();
     this.removeStyleFromEditor();
     this.imgUploadEditorRef = '';
+    (<HTMLInputElement>document.getElementById('fileEditor')).value = '';
   }
 
   /**

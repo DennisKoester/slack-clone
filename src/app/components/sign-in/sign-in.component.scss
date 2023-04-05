@@ -6,7 +6,7 @@
 .mainContentContainer {
   display: flex;
   justify-content: center;
-  height: calc(100vH - 119px - 90px);
+  height: calc(100vh - 119px - 90px);
 }
 
 .mainContent {
@@ -16,7 +16,7 @@
   max-width: 700px;
 
   h1 {
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 600;
     line-height: 46px;
     text-align: center;
@@ -91,10 +91,22 @@
 }
 
 @keyframes signInError {
-  0% {opacity: 0; transform: scale(0)};
-  5% {opacity: 1; transform: scale(1)};
-  95% {opacity: 1; transform: scale(1)};
-  100% {opacity: 0; transform: scale(0)};
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  5% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  95% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
 }
 
 .d-none {
@@ -134,9 +146,10 @@
 }
 
 @media (max-width: 450px) {
-  .mainContent  {
+  .mainContent {
     h1 {
-      font-size: 40px;
+      font-size: 32px;
+      margin: 0;
     }
 
     button {
@@ -169,7 +182,7 @@
 }
 
 @media (max-width: 350px) {
-  .mainContent  {
+  .mainContent {
     button {
       width: 250px;
     }
@@ -194,7 +207,7 @@
 }
 
 @media (max-width: 300px) {
-  .mainContent  {
+  .mainContent {
     h1 {
       font-size: 36px;
     }
