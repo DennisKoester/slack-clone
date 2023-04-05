@@ -4,7 +4,7 @@
 @import "~quill/dist/quill.snow.css";
 @import "~quill-emoji/dist/quill-emoji.css";
 @import "material-icons/iconfont/material-icons.css";
-@import "styles/fonts.scss";
+// @import "styles/fonts.scss";
 
 a {
   color: white !important;
@@ -44,7 +44,6 @@ html,
 body {
   height: 100svh;
   font-size: 14px;
-  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -56,6 +55,7 @@ body {
   margin: 0;
   overflow: hidden;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  -webkit-overflow-scrolling: touch;
 }
 
 p {
@@ -130,7 +130,7 @@ p {
 
 .ql-toolbar.ql-snow {
   background-color: rgb(31, 33, 37);
-  padding: 8px 8px 8px 36px;
+  padding: 8px 36px 8px 8px;
 }
 
 .ng-star-inserted.ql-container.ql-snow {
@@ -224,7 +224,7 @@ p {
 
 .ql-editor {
   max-height: 250px;
-  min-height: 80px;
+  margin-bottom: 50px;
 }
 
 .editor[_ngcontent-bbk-c150] quill-editor[_ngcontent-bbk-c150] {

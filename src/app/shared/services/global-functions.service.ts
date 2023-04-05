@@ -16,6 +16,8 @@ export class GlobalFunctionsService {
     if (innerWidth < 620) {
       this.toggleMenu();
     }
+    this.channelIsOpen = true;
+    this.threadIsOpen = false;
   }
 
   toggleMenu() {

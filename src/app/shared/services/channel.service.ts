@@ -176,12 +176,11 @@ export class ChannelService {
    */
   changeThreadLayout() {
     if (innerWidth < 1200) {
-      this.globalFunctions.menuCollapsed = true;
+      this.globalFunctions.channelIsOpen = false;
     }
-    if (innerWidth < 900) {
+    if (innerWidth < 620) {
       this.globalFunctions.menuCollapsed = true;
       this.globalFunctions.channelIsOpen = false;
-      console.log('channel closed');
     }
   }
 
