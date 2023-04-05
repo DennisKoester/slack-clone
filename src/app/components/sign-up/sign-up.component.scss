@@ -6,7 +6,7 @@
 .mainContentContainer {
   display: flex;
   justify-content: center;
-  height: calc(100vH - 119px - 90px);
+  height: calc(100vh - 119px - 90px);
 }
 
 .mainContent {
@@ -15,15 +15,14 @@
   align-items: center;
   max-width: 700px;
 
-  h1 {
-    font-size: 48px;
+  h2 {
+    font-size: 30px;
     font-weight: 600;
     line-height: 48px;
     text-align: center;
-    padding: 0 0 30px 0;
+    padding: 0 15px 30px 15px;
     color: #1d1c1d;
     white-space: initial;
-   
   }
 
   p {
@@ -119,10 +118,22 @@
 }
 
 @keyframes signUpError {
-  0% {opacity: 0; transform: scale(0)};
-  5% {opacity: 1; transform: scale(1)};
-  95% {opacity: 1; transform: scale(1)};
-  100% {opacity: 0; transform: scale(0)};
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  5% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  95% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
 }
 
 @media (max-width: 700px) {
@@ -151,7 +162,7 @@
 }
 
 @media (max-width: 450px) {
-  .mainContent  {
+  .mainContent {
     h1 {
       font-size: 40px;
     }
@@ -180,7 +191,7 @@
 }
 
 @media (max-width: 350px) {
-  .mainContent  {
+  .mainContent {
     button {
       width: 250px;
     }
@@ -204,7 +215,7 @@
 }
 
 @media (max-width: 300px) {
-  .mainContent  {
+  .mainContent {
     h1 {
       font-size: 36px;
     }
