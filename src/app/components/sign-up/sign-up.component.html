@@ -4,11 +4,7 @@
   <div class="mainContentContainer">
     <div class="mainContent">
       <h2>Sign Up - Enter your email & a password</h2>
-      <p>
-        We suggest using the<span class="bold">
-          email address that you use at work.</span
-        >
-      </p>
+      <p>We suggest using the email address that you use at work.</p>
 
       <form class="form">
         <mat-form-field class="inputEmail">
@@ -66,13 +62,13 @@
         Sign Up
       </button>
 
-      <button
+      <!-- <button
         mat-raised-button
         color="warn"
         (click)="authenticationService.SignIn('guest@login.at', 'guestlogin')"
       >
         Guest login
-      </button>
+      </button> -->
 
       <div class="horizontalContent">
         <hr />
@@ -80,11 +76,7 @@
         <hr />
       </div>
 
-      <button
-        mat-stroked-button
-        color="primary"
-        (click)="authenticationService.GoogleAuth()"
-      >
+      <button mat-stroked-button (click)="authenticationService.GoogleAuth()">
         Sign in with Google
       </button>
 

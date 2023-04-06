@@ -59,7 +59,7 @@
         "
         id="buttonSignIn"
       >
-        sign in
+        Sign In
       </button>
 
       <div class="horizontalContent">
@@ -68,12 +68,8 @@
         <hr />
       </div>
 
-      <button
-        mat-stroked-button
-        color="primary"
-        (click)="authenticationService.GoogleAuth()"
-      >
-        sign in with Google
+      <button mat-stroked-button (click)="authenticationService.GoogleAuth()">
+        Sign in with Google
       </button>
 
       <button
@@ -81,14 +77,14 @@
         color="primary"
         (click)="authenticationService.SignIn('guest@login.at', 'guestlogin')"
       >
-        Guest login
+        Guest Login
       </button>
 
       <span class="forgotPassword" routerLink="/forgot-password"
         >Forgot Password?</span
       >
       <span class="spanQuestion">Don't have an account?</span>
-      <a routerLink="/sign-up" class="spanSignUp">Sign up!</a>
+      <a routerLink="/sign-up" class="spanSignUp">Sign Up!</a>
     </div>
   </div>
 
