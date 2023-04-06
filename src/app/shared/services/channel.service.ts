@@ -113,7 +113,9 @@ export class ChannelService {
       this.sortThreads(threads);
       this.getUserNames(threads);
       this.threads = threads;
-      this.globalFunctions.scrollCounter = 0;
+      setTimeout(() => {
+        this.globalFunctions.scrollCounter = 0;
+      }, 0);
     });
   }
 

@@ -24,6 +24,9 @@ export class ThreadSideModuleComponent {
     this.globalFunctions.threadIsOpen = false;
     this.globalFunctions.channelIsOpen = true;
     this.threadService.unsubscribe();
+    if (!this.globalFunctions.channelIsOpen) {
+      this.globalFunctions.scrollCounter = 0;
+    }
   }
 
   /**

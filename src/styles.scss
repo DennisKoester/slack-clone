@@ -4,7 +4,7 @@
 @import "~quill/dist/quill.snow.css";
 @import "~quill-emoji/dist/quill-emoji.css";
 @import "material-icons/iconfont/material-icons.css";
-// @import "styles/fonts.scss";
+// @import "./fonts.scss";
 
 a {
   color: white !important;
@@ -225,7 +225,7 @@ p {
 
 .ql-editor {
   max-height: 250px;
-  margin-bottom: 50px;
+  margin: 0 0 50px 0 !important;
 }
 
 .editor[_ngcontent-bbk-c150] quill-editor[_ngcontent-bbk-c150] {
