@@ -56,6 +56,7 @@ body {
   overflow: hidden;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   -webkit-overflow-scrolling: touch;
+  background-color: var(--bg-color-side-nav);
 }
 
 p {
@@ -257,6 +258,10 @@ p {
 }
 .mat-mdc-menu-content button span {
   color: white;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white !important;
 }
 
 .mdc-dialog__container * {

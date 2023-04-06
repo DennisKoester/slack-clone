@@ -1,91 +1,26 @@
-.overflow {
-  height: 100%;
-  overflow: auto;
-}
+@import "../sign-in/sign-in.component.scss";
 
-.mainContentContainer {
-  display: flex;
-  justify-content: center;
-  height: calc(100vh - 119px - 90px);
-}
-
-.mainContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 700px;
-
-  h2 {
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 48px;
-    text-align: center;
-    padding: 0 15px 30px 15px;
-    color: #1d1c1d;
-    white-space: initial;
-  }
-
-  p {
-    font-size: 18px;
-    color: #454245;
-    padding-bottom: 40px;
-  }
-
-  button {
-    width: 400px;
-    height: 44px;
-    margin-bottom: 8px;
-    margin-top: 8px;
-    font-size: 18px;
-  }
+p {
+  font-size: 18px;
+  color: white;
+  padding-bottom: 40px;
+  text-align: center;
 }
 
 .bold {
   font-weight: 500;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-.inputEmail {
-  width: 400px;
-}
-
-.horizontalContent {
-  display: flex;
-  width: 400px;
-  margin: 16px 0 24px 0;
-
-  hr {
-    width: 150px;
-    height: 0;
-    border: 1px solid #dddddd;
-    border-top: 0;
-  }
-
-  span {
-    font-size: 15px;
-  }
-}
-
-.spanQuestion {
-  margin-top: 10px;
-  color: #616061;
-}
-
 .spanSignIn {
   color: #1266a6 !important;
   text-decoration: none !important;
 
-  &:hover {
-    text-decoration: underline;
+  @media (hover: hover) {
+    &:hover {
+      color: #177bc8 !important;
+      text-decoration: underline !important;
+    }
   }
-}
-
-.d-none {
-  display: none;
 }
 
 .signUpError {
@@ -93,7 +28,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 460px;
+  top: 425px;
   height: auto;
   width: 400px;
   background-color: #ef4135;
@@ -101,20 +36,6 @@
   font-size: 16px;
   z-index: 1000;
   animation: signUpError 4s ease-in-out;
-}
-
-.showPassword {
-  position: absolute;
-  right: 0;
-  top: calc(50% - 10px);
-  height: 20px;
-  z-index: 2000;
-  cursor: pointer;
-  filter: invert(0.1);
-
-  &:hover {
-    filter: invert(0);
-  }
 }
 
 @keyframes signUpError {
@@ -143,47 +64,23 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 600px) {
   .signUpError {
-    top: 510px;
+    top: 470px;
   }
 }
 
 @media (max-width: 550px) {
   p {
-    text-align: center;
     padding-left: 40px;
     padding-right: 40px;
   }
-
   .signUpError {
-    top: 530px;
+    top: 490px;
   }
 }
 
 @media (max-width: 450px) {
-  .mainContent {
-    h1 {
-      font-size: 40px;
-    }
-
-    button {
-      width: 300px;
-    }
-  }
-
-  .inputEmail {
-    width: 300px;
-  }
-
-  .horizontalContent {
-    width: 300px;
-
-    hr {
-      width: 100px;
-    }
-  }
-
   .signUpError {
     width: 300px;
     font-size: 14px;
@@ -191,59 +88,13 @@
 }
 
 @media (max-width: 350px) {
-  .mainContent {
-    button {
-      width: 250px;
-    }
-  }
-
-  .inputEmail {
-    width: 250px;
-  }
-
-  .horizontalContent {
-    width: 250px;
-
-    hr {
-      width: 80px;
-    }
-  }
-
   .signUpError {
     width: 250px;
+    top: 560px;
   }
 }
-
 @media (max-width: 300px) {
-  .mainContent {
-    h1 {
-      font-size: 36px;
-    }
-
-    button {
-      width: 200px;
-    }
-  }
-
-  .inputEmail {
-    width: 200px;
-  }
-
-  .horizontalContent {
-    width: 200px;
-
-    hr {
-      width: 60px;
-    }
-  }
-
   .signUpError {
     width: 250px;
-  }
-}
-
-@media (max-height: 800px) {
-  .mainContentContainer {
-    height: unset;
   }
 }

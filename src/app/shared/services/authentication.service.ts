@@ -147,7 +147,7 @@ export class AuthenticationService {
         this.SetUserData(result.user);
       })
       .catch((error) => {
-        window.alert(error);
+        console.log(error);
       });
   }
 
