@@ -1,5 +1,7 @@
-<div class="user-direct-msg flex-ac" >
-    <img src="{{ image ?? 'assets/img/profile_icon.png' }}" />
-    <p>{{ name }}</p>
-    <div class="badge-more-users" *ngIf="membersCount > 1">+{{ membersCount - 1 }}</div>
+<div class="user-direct-msg flex-ac">
+  <img src="{{ image ?? 'assets/img/profile_placeholder.png' }}" />
+  <p>{{ name }}</p>
+  <div class="badge-more-users" *ngIf="membersCount > 1">
+    +{{ membersCount - 1 }}
+  </div>
 </div>
