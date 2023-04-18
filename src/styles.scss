@@ -108,20 +108,24 @@ p {
 // Quil Editor Changes //
 
 #emoji-palette {
-  top: -205px !important;
+  top: -175px !important;
   left: unset !important;
   max-width: 400px;
   width: 100%;
 }
 
 #tab-panel {
-  max-height: 120px !important;
+  max-height: 100px !important;
 }
 
 .ql-toolbar {
   border: 1px solid white;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+}
+
+.ql-editing {
+  left: 15px !important;
 }
 
 .ql-container {

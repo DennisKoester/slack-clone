@@ -10,6 +10,14 @@
     white-space: pre-wrap !important;
   }
 
+  .sendInfoTxt {
+    position: absolute;
+    left: 15px;
+    bottom: 10px;
+    font-size: 10px;
+    color: rgb(165, 165, 165);
+  }
+
   .send-btn {
     position: absolute;
     right: 15px;

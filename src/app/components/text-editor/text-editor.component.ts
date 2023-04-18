@@ -1,8 +1,18 @@
-import { Component, OnDestroy ,Input } from '@angular/core';
-import { EditorChangeContent,EditorChangeSelection } from 'ngx-quill/public-api';
+import { Component, OnDestroy, Input } from '@angular/core';
+import {
+  EditorChangeContent,
+  EditorChangeSelection,
+} from 'ngx-quill/public-api';
 import { ActivatedRoute } from '@angular/router';
 import { addDoc, collection } from '@firebase/firestore';
-import { arrayUnion, CollectionReference, doc, Firestore,  Timestamp, updateDoc} from '@angular/fire/firestore';
+import {
+  arrayUnion,
+  CollectionReference,
+  doc,
+  Firestore,
+  Timestamp,
+  updateDoc,
+} from '@angular/fire/firestore';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { ChannelService } from 'src/app/shared/services/channel.service';
 import { ThreadService } from 'src/app/shared/services/thread.service';
@@ -17,8 +27,7 @@ import { ImageUploadService } from 'src/app/shared/services/image-upload.service
   templateUrl: './text-editor.component.html',
   styleUrls: ['./text-editor.component.scss'],
 })
-export class TextEditorComponent implements OnDestroy{
-
+export class TextEditorComponent implements OnDestroy {
   @Input() editorRef: string;
   textToUpload: any;
   channelId: string;
@@ -30,16 +39,17 @@ export class TextEditorComponent implements OnDestroy{
       ['code-block'],
       [{ list: 'ordered' }, { list: 'bullet' }],
       ['emoji'],
-      ['link']
+      ['link'],
     ],
     'emoji-toolbar': true,
     'emoji-textarea': false,
     'emoji-shortname': true,
     keyboard: {
       bindings: {
-        ctrl_enter: {
+        short_enter: {
           key: 13,
-          ctrlKey: true,
+          // ctrlKey: true,
+          shortKey: true,
           handler: () => {
             this.sendMessage();
           },
@@ -48,11 +58,9 @@ export class TextEditorComponent implements OnDestroy{
     },
   };
 
-
-ngOnDestroy() {
-  this.imgUploadService.imageURL = [];
-}
-
+  ngOnDestroy() {
+    this.imgUploadService.imageURL = [];
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -65,23 +73,21 @@ ngOnDestroy() {
     public imgUploadService: ImageUploadService
   ) {}
 
-
-/**
- * function to get text and emojis of the editor
- * @param event - changes when content of editor changes
- */
+  /**
+   * function to get text and emojis of the editor
+   * @param event - changes when content of editor changes
+   */
   async getContent(event: EditorChangeContent | EditorChangeSelection) {
     if (event.event === 'text-change') {
       this.textToUpload = event.html;
     }
   }
 
-
-/**
- * function to send the message by clicking on the send-symbol
- */
+  /**
+   * function to send the message by clicking on the send-symbol
+   */
   async sendMessage() {
-    if (this.textToUpload || this.imgUploadService.imageURL.length>0) {
+    if (this.textToUpload || this.imgUploadService.imageURL.length > 0) {
       if (this.editorRef == 'channel') {
         await this.createThread();
         this.emptyImgContainerChannel();
@@ -96,7 +102,6 @@ ngOnDestroy() {
       this.removeStyleFromEditor();
     }
   }
-
 
   /**
    * function to create a thread
@@ -114,9 +119,9 @@ ngOnDestroy() {
     document.querySelector('.leftContent #editor .ql-editor').innerHTML = '';
   }
 
-/**
- * function to get the collection of threads
- */
+  /**
+   * function to get the collection of threads
+   */
   getCollection() {
     this.threads = collection(
       this.firestore,
@@ -126,11 +131,11 @@ ngOnDestroy() {
     );
   }
 
-/**
- * function to add a document to the thread-collection
- * @param timestamp - time, when the message was sent
- * @param currentUserId - id of the logged in user
- */
+  /**
+   * function to add a document to the thread-collection
+   * @param timestamp - time, when the message was sent
+   * @param currentUserId - id of the logged in user
+   */
   async addDocument(timestamp, currentUserId) {
     const threadId = await addDoc(this.threads, {
       MESSAGES: [
@@ -138,27 +143,25 @@ ngOnDestroy() {
           timestamp: timestamp,
           author: currentUserId,
           content: this.textToUpload ?? '',
-          image: this.imgUploadService.imageURL ?? ''
+          image: this.imgUploadService.imageURL ?? '',
         },
       ],
     });
   }
 
-
-/**
- * function to empty the images from the editor
- */
+  /**
+   * function to empty the images from the editor
+   */
   emptyImgContainerChannel() {
     if (document.getElementById('imagesChannel')) {
       document.getElementById('imagesChannel').style.zIndex = '0';
     }
   }
 
-
-/**
- * function to create a message in a thread or chat
- * @param type - could be "thread" or "chat"
- */
+  /**
+   * function to create a message in a thread or chat
+   * @param type - could be "thread" or "chat"
+   */
   async createMessage(type: string) {
     let selector = '';
     const timestamp = Timestamp.fromDate(new Date());
@@ -168,7 +171,6 @@ ngOnDestroy() {
     }
     this.emptyEditor(selector, type);
   }
-
 
   /**
    * function to update a document of a thread or a chat
@@ -187,11 +189,10 @@ ngOnDestroy() {
         timestamp: timestamp,
         author: currentUserId,
         content: this.textToUpload ?? '',
-        image: this.imgUploadService.imageURL ?? ''
+        image: this.imgUploadService.imageURL ?? '',
       }),
     });
   }
-
 
   /**
    * function to get the correct thread
@@ -206,7 +207,6 @@ ngOnDestroy() {
     );
   }
 
-
   /**
    * function to empty the images from the editor
    */
@@ -215,7 +215,6 @@ ngOnDestroy() {
       document.getElementById('imagesThread').style.zIndex = '0';
     }
   }
-
 
   /**
    * fucntion to get the correct chat
@@ -228,7 +227,6 @@ ngOnDestroy() {
     );
   }
 
- 
   /**
    * function to empty the images from the editor
    */
@@ -237,7 +235,6 @@ ngOnDestroy() {
       document.getElementById('imagesChat').style.zIndex = '0';
     }
   }
-
 
   /**
    * function to empty the editor
@@ -253,14 +250,12 @@ ngOnDestroy() {
     document.querySelector(selector).innerHTML = '';
   }
 
-
   /**
    * function to empty the array with the images
    */
   resetVariables() {
     this.imgUploadService.imageURL = [];
   }
-
 
   /**
    * function to remove some style from the editor
@@ -274,9 +269,9 @@ ngOnDestroy() {
     }
   }
 
-/**
- * function to pass parameters
- */
+  /**
+   * function to pass parameters
+   */
   setImageUploadEditorRef() {
     if (!this.imgUploadService.imgUploadEditorRef)
       this.imgUploadService.imgUploadEditorRef = this.editorRef;
