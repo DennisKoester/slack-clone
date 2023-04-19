@@ -248,6 +248,12 @@ p {
 
 // Material Design Changes //
 
+.mat-mdc-tooltip-trigger {
+  touch-action: auto !important;
+  -webkit-user-select: auto !important;
+  -webkit-user-drag: auto !important;
+}
+
 .mat-icon {
   overflow: unset !important;
 }

@@ -16,13 +16,13 @@ import { GlobalFunctionsService } from './global-functions.service';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  resetPw = false;
-  signUpError = false;
-  signUpErrorMessage;
-  signInError = false;
-  signInErrorMessage;
-  forgotPwError = false;
-  forgotPwErrorMessage;
+  resetPw: boolean = false;
+  signUpError: boolean = false;
+  signUpErrorMessage: string;
+  signInError: boolean = false;
+  signInErrorMessage: string;
+  forgotPwError: boolean = false;
+  forgotPwErrorMessage: string;
   userData: any;
 
   constructor(
@@ -111,7 +111,7 @@ export class AuthenticationService {
       })
       .catch((error) => {
         this.forgotPwError = true;
-        this.forgotPwErrorMessage = error;
+        this.forgotPwErrorMessage = error.message;
         setTimeout(() => {
           this.forgotPwError = false;
         }, 4000);
