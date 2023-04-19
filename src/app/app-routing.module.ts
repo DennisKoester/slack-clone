@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -52,8 +52,16 @@ const routes: Routes = [
   },
 ];
 
+const config = {
+  onSameUrlNavigation: 'reload',
+  scrollPositionRestoration: 'enabled',
+  useHash: false,
+  anchorScrolling: 'enabled',
+  scrollBehavior: 'smooth',
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, config as ExtraOptions)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
