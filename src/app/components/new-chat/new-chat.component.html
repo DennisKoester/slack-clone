@@ -44,25 +44,27 @@
   </div>
 </mat-toolbar-row>
 
-<div id="scrollContainer" class="scroll-container">
-  <app-user-card
-    class="userCard"
-    *ngFor="let user of usersService.users"
-    [userName]="user['displayName']"
-    [email]="user['email']"
-    [userImage]="user['photoURL']"
-    [class.d-none]="
-      (!user['displayName']
-        .toLowerCase()
-        .includes(chatService.searchUser.toLowerCase()) &&
-        !user['email']
+<div class="leftContent">
+  <div id="scrollContainer" class="scroll-container">
+    <app-user-card
+      class="userCard"
+      *ngFor="let user of usersService.users"
+      [userName]="user['displayName']"
+      [email]="user['email']"
+      [userImage]="user['photoURL']"
+      [class.d-none]="
+        (!user['displayName']
           .toLowerCase()
-          .includes(chatService.searchUser.toLowerCase())) ||
-      chatService.selectedUserIds.includes(user['uid']) ||
-      user['uid'] == usersService.currentUserData.uid ||
-      user['uid'] == guestId
-    "
-    (click)="selectUser(user['uid'], user['displayName'])"
-    matTooltip="Click to select this user"
-  ></app-user-card>
+          .includes(chatService.searchUser.toLowerCase()) &&
+          !user['email']
+            .toLowerCase()
+            .includes(chatService.searchUser.toLowerCase())) ||
+        chatService.selectedUserIds.includes(user['uid']) ||
+        user['uid'] == usersService.currentUserData.uid ||
+        user['uid'] == guestId
+      "
+      (click)="selectUser(user['uid'], user['displayName'])"
+      matTooltip="Click to select this user"
+    ></app-user-card>
+  </div>
 </div>
