@@ -65,7 +65,7 @@ export class ImageUploadService {
   deleteProfilePhoto() {
     const currentUser = this.usersService.currentUserData;
     const oldPhotoURL = currentUser.photoURL;
-    if (oldPhotoURL) {
+    if (oldPhotoURL && this.newURLdefined) {
       this.afStorage.refFromURL(oldPhotoURL).delete();
     }
   }

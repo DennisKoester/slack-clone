@@ -49,7 +49,7 @@ export class DialogEditUserComponent implements OnInit {
     updateProfile(currentUser, {
       displayName: this.name,
       photoURL: this.imgUploadService.newPhotoURL,
-    })
+    });
     this.updateUserEmail();
     this.updateUserDoc();
     this.imgUploadService.deleteProfilePhoto();
@@ -61,7 +61,7 @@ export class DialogEditUserComponent implements OnInit {
   updateUserEmail() {
     const currentUser = this.usersService.currentUserData;
 
-    updateEmail(currentUser, this.email)
+    updateEmail(currentUser, this.email);
   }
 
   /**
